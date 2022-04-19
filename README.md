@@ -1,64 +1,91 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Pharmacy_Near_Me
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Project and code roles
 
-## About Laravel
+## branch's name
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+`v-1.1/branchName`
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+example
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+`v-1.1/login`
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Github/git roles
 
-## Laravel Sponsors
+The commit type can include the following:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+`add` – a new feature
 
-### Premium Partners
+`fix` – a bug fix has occurred
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## Names
 
-## Contributing
+| What           | How                                  | Example                 |
+| -------------- | ------------------------------------ | ----------------------- |
+| Controller     | singular                             | ArticleController       |
+| -              | -                                    | -                       |
+| Route          | plural                               | /articles/2             |
+| -              | -                                    | -                       |
+| Model          | singular                             | User                    |
+| Model property | snake_case                           | $model->created_at      |
+| -              | -                                    | -                       |
+| Table          | plural                               | article_comments        |
+| Table column   | snake_case without model name        | title                   |
+| -              | -                                    | -                       |
+| Primary key    | -                                    | id                      |
+| Foreign key    | singular model name with \_id suffix | article_id              |
+| -              | -                                    | -                       |
+| Method         | camelCase                            | getAll                  |
+| Variable       | camelCase                            | $articlesWithAuthor     |
+| -              | -                                    | -                       |
+| View           | kebab-case                           | show-filtered.blade.php |
+| -------------- | ------------------------------------ | ----------------------- |
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## controller and routers
 
-## Code of Conduct
+| Verb   | URI                 | why                  | Function name |
+| ------ | ------------------- | -------------------- | ------------- |
+| GET    | `/photos`           | show all items page  | index         |
+| GET    | `/photos/{id}`      | show one item page   | show          |
+| GET    | `/photos/create`    | create new item page | create        |
+| GET    | `/photos/{id}/edit` | edit one item page   | edit          |
+| POST   | `/photos`           | store new item       | store         |
+| PUT    | `/photos/{id}`      | update item          | update        |
+| DELETE | `/photos/{id}`      | delete item          | destroy       |
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+example
 
-## Security Vulnerabilities
+php
+Route::get('/users', [UserController::class, 'index']);
+Route::post('/users', [UserController::class, 'store']);
+Route::put('/users/{id}', [UserController::class, 'update']);
+Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## Leader roles
+
+### Github/git roles
+
+`feat` – a new feature is introduced
+
+`fix` – a bug fix has occurred
+
+`refactor` – refactored code that neither fixes a bug nor adds a feature
+
+`docs` – updates to documentation such as a the README or other markdown files
+
+`style` – changes that do not affect the meaning of the code, likely related to code formatting such as white-space, missing semi-colons, and so on.
+
+`test` – including new or correcting previous tests
+
+`perf` – performance improvements
+
+`build` – changes that affect the build system or external dependencies
+
+---
