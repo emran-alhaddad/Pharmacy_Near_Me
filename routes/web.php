@@ -26,6 +26,10 @@ Route::post('/forgot-password', [ForgetPasswordController::class,'create'])->mid
 Route::get('/reset-password/{token}',[ResetPasswordController::class,'show'])->middleware('guest')->name('reset-password');
 Route::post('/reset-password', [ResetPasswordController::class,'store'])->middleware('guest')->name('reset-password');
 
+Route::post('/register',[RegisterController::class,'register']);
+Route::group(['middleware'=>'auth'],function(){
+
+
 Route::get('/logins',[LoginController::class,'login'])->name('logins');
 Route::post('/logins',[LoginController::class,'doLogin'])->name('logins');
 
