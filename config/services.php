@@ -30,5 +30,10 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    'facebook' => [
+        'client_id' => 513060173658172,
+        'client_secret' => 'a908676d234d1cbd580d50c9511c6603',
+        'redirect' => 'http://localhost:8000/login/collback',
+    ],
 
 ];

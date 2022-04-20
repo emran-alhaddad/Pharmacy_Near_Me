@@ -3,7 +3,11 @@
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\login\LoginController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
+use App\Http\Controllers\SocialController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,3 +30,12 @@ Route::group(['middleware'=>'auth'],function(){
 });
 Route::get('/logins',[LoginController::class,'login'])->name('logins'); 
 Route::post('/logins',[LoginController::class,'doLogin'])->name('logins');
+
+
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('facebook')->redirect();
+});
+ 
+Route::get('auth/facebook', [SocialController::class, 'facebookRedirect']);
+Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFacebook']);
+
