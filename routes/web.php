@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\login\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,3 +26,9 @@ Route::post('/forgot-password', [ForgetPasswordController::class,'create'])->mid
 Route::get('/reset-password/{token}',[ResetPasswordController::class,'show'])->middleware('guest')->name('reset-password');
 Route::post('/reset-password', [ResetPasswordController::class,'store'])->middleware('guest')->name('reset-password');
 
+Route::get('/logins',[LoginController::class,'login'])->name('logins');
+Route::post('/logins',[LoginController::class,'doLogin'])->name('logins');
+
+Route::group(['middleware'=>'auth'],function(){
+
+});
