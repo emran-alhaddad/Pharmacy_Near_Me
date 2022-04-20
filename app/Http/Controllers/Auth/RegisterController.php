@@ -12,7 +12,12 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
-    public function register(Request $request)
+    public function index()
+    {
+        // return view('Auth.register');
+    }
+
+    public function create(Request $request)
     {
 
         $this->validateFields($request);
@@ -34,6 +39,8 @@ class RegisterController extends Controller
             return "<h1 style='color:red'>Access Denied !!!</h1>";
     }
 
+
+    // Private Functions
     private function registerClient(User $user)
     {
         $user->is_active = 1;
