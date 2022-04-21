@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\login\LoginController;
+use App\Http\Controllers\Auth\Social\GoogleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,10 +30,18 @@ Route::post('/reset-password', [ResetPasswordController::class,'store'])->middle
 Route::post('/register',[RegisterController::class,'register']);
 Route::group(['middleware'=>'auth'],function(){
 
-
+});
 Route::get('/logins',[LoginController::class,'login'])->name('logins');
 Route::post('/logins',[LoginController::class,'doLogin'])->name('logins');
 
-Route::group(['middleware'=>'auth'],function(){
+// Testing  Register With Google Account
 
+Route::get('/', function(){
+    return view('welcome');
 });
+
+Route::get('/home', function(){
+    return "Home Page";
+})->name('home');
+Route::get('redirect', [GoogleController::class,'redirect']);
+Route::get('callback', [GoogleController::class,'callback']);
