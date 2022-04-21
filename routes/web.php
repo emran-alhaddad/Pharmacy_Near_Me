@@ -4,9 +4,14 @@ use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\login\LoginController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\Auth\Social\GoogleController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
+use App\Http\Controllers\SocialController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,13 +32,18 @@ Route::post('/forgot-password', [ForgetPasswordController::class,'create'])->mid
 Route::get('/reset-password/{token}',[ResetPasswordController::class,'show'])->middleware('guest')->name('reset-password');
 Route::post('/reset-password', [ResetPasswordController::class,'store'])->middleware('guest')->name('reset-password');
 
-Route::post('/register',[RegisterController::class,'register']);
 Route::group(['middleware'=>'auth'],function(){
+
+    Route::get('/logout',[LoginController::class,'LogoutController'])->name('logout');
 
 });
 Route::get('/logins',[LoginController::class,'login'])->name('logins');
 Route::post('/logins',[LoginController::class,'doLogin'])->name('logins');
 
+
+Route::get('show', [SocialController::class, 'show']);
+Route::get('auth/facebook', [SocialController::class, 'facebookRedirect']);
+Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFacebook']);
 // Testing  Register With Google Account
 
 Route::get('/', function(){

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->primary('user_id');
             $table->timestamps();
 
+
         });
     }
 
