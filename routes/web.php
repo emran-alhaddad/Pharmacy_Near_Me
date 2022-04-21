@@ -4,7 +4,7 @@ use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\login\LoginController;
-
+use App\Http\Controllers\LogoutController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
@@ -35,7 +35,7 @@ Route::post('/reset-password', [ResetPasswordController::class,'store'])->middle
 
 Route::group(['middleware'=>'auth'],function(){
 
-   
+    Route::get('/logout',[LoginController::class,'LogoutController'])->name('logout');
    
 });
 Route::get('/logins',[LoginController::class,'login'])->name('logins'); 
