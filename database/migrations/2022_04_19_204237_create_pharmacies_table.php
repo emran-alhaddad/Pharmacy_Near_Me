@@ -18,12 +18,11 @@ return new class extends Migration
             $table->string('images')->nullable();
             $table->string('license')->nullable();
             $table->string('description')->nullable();
-            
-            $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
-
             $table->primary('user_id');
-           
+            $table->timestamps();
+
+
         });
     }
 
