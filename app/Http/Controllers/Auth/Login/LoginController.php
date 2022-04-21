@@ -35,7 +35,8 @@ class LoginController extends Controller
     }
     public function login()
     {
-        return "Login Page";
+        // return "Login Page";
         // return view('show-login');
+        return view('auth.login');
     }
 }
