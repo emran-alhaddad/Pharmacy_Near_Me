@@ -24,7 +24,7 @@
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
 
 
-            <div class="container">
+            <!-- <div class="container">
                 <form action="/register" class="form" method="post">
 
                     <input type="text" name="name" class="form-controll">
@@ -34,6 +34,30 @@
                     <input type="password" name="password" class="form-controll">
                     <br>
                     <input type="password" name="password_confirmation" class="form-controll">
+                    <br>
+                    <input type="submit" value="Save">
+                </form>
+            </div> -->
+
+            <div class="container">
+                <form action="/pharmacies" class="form" method="post">
+
+                    <select name="city" id="">
+                    <option selected disabled>All</option>
+                    <option value="1">Taiz</option>
+                    <option value="2">Sanaa</option>
+                    <option value="3">Aden</option>
+                    <option value="4">Ibb</option>
+                    </select>
+                    <br>
+                    <select name="zone" id="">
+                    <option selected disabled>All</option>
+                    <option value="1">A</option>
+                    <option value="2">B</option>
+                    <option value="3">C</option>
+                    <option value="4">D</option>
+                    </select>
+                    <input type="text" name="name_Pharmacy" class="form-controll">
                     <br>
                     <input type="submit" value="Save">
                 </form>

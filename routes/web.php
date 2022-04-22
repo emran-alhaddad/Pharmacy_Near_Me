@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\login\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\User\UserSearchController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
@@ -22,6 +23,10 @@ use App\Http\Controllers\SocialController;
 |
 */
 
+Route::get('/',function(){
+    return view('welcome');
+});
+
 Route::get('/register',[RegisterController::class,'index'])->name('register');
 Route::post('/register',[RegisterController::class,'create']);
 
@@ -36,10 +41,12 @@ Route::post('/reset-password', [ResetPasswordController::class,'store'])->middle
 Route::group(['middleware'=>'auth'],function(){
 
     Route::get('/logout',[LoginController::class,'LogoutController'])->name('logout');
+    
    
 });
 Route::get('/logins',[LoginController::class,'login'])->name('logins'); 
 Route::post('/logins',[LoginController::class,'doLogin'])->name('logins');
+Route::post('/pharmacies',[UserSearchController::class,'searchPharmacies'])->name('pharmacies');
 
 
 
