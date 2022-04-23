@@ -18,8 +18,13 @@
 <body>
 
 	<!-- header section starts  -->
-	    @include('includes.FrontHeader')
+	 @include('includes.FrontHeader')
 	<!-- header section ends -->
+
+
+    <!-- Search Pharmacy section start -->
+     @include('includes.FrontSearch')
+    <!-- Search Pharmacy section ends -->
 
 
 
@@ -27,8 +32,9 @@
 
 
 	<!-- footer section starts  -->
-        @include('includes.FrontFooter')
+     @include('includes.FrontFooter')
 	<!-- footer section ends -->
+
 
 	<!-- custom js file link  -->
 	<script src="/js/script.js"></script>
