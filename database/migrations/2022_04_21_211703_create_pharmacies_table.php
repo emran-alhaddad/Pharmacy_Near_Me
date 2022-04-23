@@ -14,8 +14,6 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pharmacies', function (Blueprint $table) {
-
-            
         $table->unsignedBigInteger('user_id');
         $table->string('images')->nullable();
         $table->string('license')->nullable();
@@ -27,7 +25,7 @@ return new class extends Migration
 
         $table->primary('user_id');
     });
-       
+
     }
 
     /**
