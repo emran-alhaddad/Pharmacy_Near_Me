@@ -16,7 +16,7 @@ use App\Http\Controllers\Front\interfacesController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/front', function () {
     return view('front.index');
 });
 
@@ -24,5 +24,6 @@ Route::get('/', function () {
 Route::namespace('Front')->group(function () {
 
     // Front Pages ROUTES
-    Route::get('/ads', [interfacesController::class, 'ads'])->name('ads');
+    Route::get('/index', [interfacesController::class, 'index'])->name('index');
+    Route::get('/contact', [interfacesController::class, 'contact'])->name('contact');
 });
