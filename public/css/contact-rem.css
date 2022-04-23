@@ -1,0 +1,112 @@
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.section-title {
+    margin: 2.2rem 0;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 0;
+    color: var(--main-color);
+    position: relative;
+    z-index: 1;
+}
+
+.section-title h2:before {
+    content: attr(data-text);
+    color: var(--hover-main);
+    font-size: calc(2.5rem + 7vw);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-transform: uppercase;
+    opacity: 0.1;
+    z-index: -1;
+}
+
+.contact-section {
+    /* min-height: 100vh; */
+    display: block;
+    width: 100%;
+    background-color: var(--bg-sec);
+    padding: 100px 15px;
+}
+
+.contact-section .contact-form {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding-top: 20px;
+}
+
+.contact-section .contact-form form {
+    max-width: 900px;
+    margin: auto;
+}
+
+.contact-section .contact-form .input-group {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 10px 15px;
+}
+
+.contact-section .contact-form .input-group.input-3 {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+}
+
+.contact-section .contact-form .input-control {
+    width: 100%;
+    height: 50px;
+    margin-bottom: 30px;
+    background-color: transparent;
+    font-size: 1.7rem;
+    border: 1px solid var(--hover-main);
+    padding: 0 15px;
+    border-radius: var(--radius);
+    transition: border 0.3s ease;
+    color: #222222;
+}
+
+.contact-section .contact-form textarea.input-control {
+    height: 180px;
+    resize: none;
+    padding-top: 15px;
+}
+
+.contact-section .contact-form .input-control:focus {
+    outline: none;
+    border-color: var(--hover-secondary);
+}
+
+.contact-section .contact-form .submit-btn {
+    height: 50px;
+    background-color: var(--main-color);
+    color: #ffffff;
+    font-size: 1.7rem;
+    border: 1px solid transparent;
+    width: 100%;
+    border-radius: var(--radius);
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.contact-section .contact-form .submit-btn:hover {
+    background-color: transparent;
+    color: var(--main-color);
+    border-color: var(--main-color);
+}
+
+
+
+/* responsive */
+@media(max-width: 767px) {
+    .contact-section .contact-form .input-group.input-3 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
