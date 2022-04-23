@@ -18,8 +18,7 @@ class interfacesController extends Controller
 
     public function pharmacy()
     {
-        // return view('front.pharmacies');
-        return "pharma Page";
+        return view('front.pharmacies');
     }
     public function ads()
     {
