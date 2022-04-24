@@ -10,6 +10,9 @@ use App\Http\Controllers\Front\authController;
 // admin for haneen
 use App\Http\Controllers\Front\adminController;
 
+//pharmacy profile for haneen
+use App\Http\Controllers\Front\pharmacyController;
+
 /*
 |--------------------------------------------------------------------------
 | front Routes
@@ -44,7 +47,16 @@ Route::namespace('Front')->group(function () {
 
 // Views Admin haneen Write Her
 
-Route::namespace('Admin')->group(function () {
+Route::namespace('Front')->group(function () {
 
     Route::get('/admin_dashboard', [adminController::class, 'Show_index'])->name('Show_index');
 });
+
+Route::namespace('Front')->group(function () {
+
+    Route::get('/phar_profile', [pharmacyController::class, 'Show_index'])->name('Show_index');
+
+    Route::get('/chat', [pharmacyController::class, 'Show_chat'])->name('Show_chat');
+});
+
+
