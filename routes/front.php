@@ -36,11 +36,18 @@ Route::namespace('Front')->group(function () {
     Route::get('/contact', [interfacesController::class, 'contact'])->name('contact');
 });
 
-// Views Auth
-// Route::namespace('Auth')->group(function () {
-//     Route::get('/login', [authController::class, 'login'])->name('adminLogin');
-//     Route::get('/signup', [authController::class, 'login'])->name('signup');
-// });
+ //Views Auth
+Route::namespace('Auth')->group(function () {
+    Route::get('/adminLogin', [authController::class, 'adminLogin'])->name('adminLogin');
+    Route::get('/userLogin', [authController::class, 'userLogin'])->name('userLogin');
+    Route::get('/pharmasticLogin', [authController::class, 'pharmasticLogin'])->name('pharmasticLogin');
+    Route::get('/userSignup', [authController::class, 'userSignup'])->name('userSignup');
+
+    Route::get('/pharmasticSignup', [authController::class, 'pharmasticSignup'])->name('pharmasticSignup');
+    Route::get('/adminReset_password', [authController::class, 'adminReset_password'])->name('adminReset_password');
+    Route::get('/userReset_password', [authController::class, 'userReset_password'])->name('userReset_password');
+    Route::get('/pharmasticReset_password', [authController::class, 'pharmasticReset_password'])->name('pharmasticReset_password');
+});
 
 // Views Admin haneen Write Her
 
