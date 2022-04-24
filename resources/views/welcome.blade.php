@@ -411,7 +411,7 @@
         class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
 
 
-            <!-- <div class="container">
+             <div class="container">
                 <form action="/register" class="form" method="post">
 
                     <input type="text" name="name" class="form-controll">
@@ -422,9 +422,14 @@
                     <br>
                     <input type="password" name="password_confirmation" class="form-controll">
                     <br>
+                    <select name="user_type" id="">
+                    <option value="client">Client</option>
+                    <option value="pharmacy">Pharmacy</option>
+                    </select>
+                    <br>
                     <input type="submit" value="Save">
                 </form>
-            </div> -->
+            </div> 
 
             <div class="container">
                 <form action="/pharmacies" class="form" method="post">

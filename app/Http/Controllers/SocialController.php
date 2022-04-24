@@ -1,11 +1,9 @@
 <?php
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
 use App\Models\User;
-use Validator;
-use Socialite;
-use Exception;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
+
 class SocialController extends Controller
 {   
 CONST DRIVER_TYPE = 'facebook';
@@ -44,7 +42,7 @@ CONST DRIVER_TYPE = 'facebook';
                 return 'login';
                 }
     
-        } catch (Exception $exception) {
+        } catch (\Exception $exception) {
             dd($exception->getMessage());
         }
     }
