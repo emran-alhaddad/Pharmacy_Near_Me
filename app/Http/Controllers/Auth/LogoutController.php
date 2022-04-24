@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
+
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-use Illuminate\Http\Request;
 
 class LogoutController extends Controller
 {
@@ -11,6 +12,6 @@ class LogoutController extends Controller
    public function logout()
    {
     Auth::logout();
-    return redirect('logins');
+    return redirect()->route('login');
    }
 }

@@ -4,17 +4,13 @@ use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Http\Controllers\Auth\Register\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\login\LoginController;
-use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\Social\FacebookController;
 use App\Http\Controllers\Auth\Social\GoogleController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\User\UserSearchController;
 use Illuminate\Support\Facades\Route;
-use Laravel\Socialite\Facades\Socialite;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
-// use  App\Http\Controllers\Auth\Login\FacebookController;
-// use  App\Http\Controllers\Auth\Login\GoogleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +23,10 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+
+
 Route::get('/',function(){
-    return view('welcome');
+    return view('front.index');
 });
 
 // Register
@@ -62,13 +60,15 @@ Route::group(['middleware'=>'auth'],function(){
         return "Admin Profile Page";
     })->name('admin-profile');
     // Logout
-    Route::get('/logout',[LoginController::class,'LogoutController'])->name('logout');
+    Route::get('/logout',[LogoutController::class,'logout'])->name('logout');
 });
 
 Route::post('/pharmacies',[UserSearchController::class,'searchPharmacies'])->name('pharmacies');
 
-Route::get('auth/facebook', [SocialController::class, 'facebookRedirect']);
-Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFacebook']);
+
+Route::get('auth/facebook', [FacebookController::class,'redirect']);
+Route::get('auth/facebook/pharmacy', [FacebookController::class,'redirectPharmacy']);
+Route::get('auth/facebook/callback', [FacebookController::class,'callback']);
 
 Route::get('auth/google', [GoogleController::class,'redirect']);
 Route::get('auth/google/pharmacy', [GoogleController::class,'redirectPharmacy']);
