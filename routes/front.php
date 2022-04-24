@@ -44,7 +44,7 @@ Route::namespace('Front')->group(function () {
 
 // Views Admin haneen Write Her
 
-Route::namespace('Admin')->group(function () {
+Route::namespace('Front')->group(function () {
 
     Route::get('/admin_dashboard', [adminController::class, 'Show_index'])->name('Show_index');
 });
