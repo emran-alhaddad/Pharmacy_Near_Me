@@ -13,7 +13,9 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-use App\Http\Controllers\SocialController;
+use  App\Http\Controllers\Auth\Login\FacebookController;
+use  App\Http\Controllers\Auth\Login\GoogleController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,14 +59,12 @@ Route::group(['middleware'=>'auth'],function(){
     })->name('pharmacy-profile');
     // Logout
     Route::get('/logout',[LoginController::class,'LogoutController'])->name('logout');
-
 });
 
 Route::post('/pharmacies',[UserSearchController::class,'searchPharmacies'])->name('pharmacies');
 
 Route::get('auth/facebook', [SocialController::class, 'facebookRedirect']);
 Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFacebook']);
-// Testing  Register With Google Account
 
 Route::get('/', function(){
     return view('welcome');
@@ -74,3 +74,4 @@ Route::get('auth/verify_email/{token}', [VerifyEmailController::class,'verify'])
 Route::get('auth/google', [GoogleController::class,'redirect']);
 Route::get('auth/google/pharmacy', [GoogleController::class,'redirectPharmacy']);
 Route::get('auth/google/callback', [GoogleController::class,'callback']);
+
