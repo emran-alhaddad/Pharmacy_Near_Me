@@ -2,40 +2,59 @@
 
 namespace App\Http\Controllers\Auth\Social;
 
+use App\Http\Controllers\Auth\Register\RegisterController;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Socialite;
+use Illuminate\Support\Facades\Cookie;
+use Laravel\Socialite\Facades\Socialite;
 
 class GoogleController extends Controller
 {
-    public function redirect()
-{
-    return Socialite::driver('google')->redirect();
-}
 
-public function callback()
-{
-    try {
+    public function redirect()
+    {
+        return Socialite::driver('google')->redirect()
+            ->withCookie(cookie('is_pharmacy', false, 5));
+    }
+
+    public function redirectPharmacy()
+    {
+        return Socialite::driver('google')->redirect()
+            ->withCookie(cookie('is_pharmacy', true, 5));
+    }
+
+    public function callback()
+    {
+        try {
             $user = Socialite::driver('google')->user();
             $userCheck = User::where('google_id', $user->id)->first();
-            if($userCheck){
+            if ($userCheck) {
                 Auth::login($userCheck);
-                return redirect('/home');
-            }else{
+                return redirect()->route('client-profile');
+            } else {
                 $newUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
-                    'google_id'=> $user->id,
+                    'google_id' => $user->id,
                     'password' => encrypt('123456dummy')
                 ]);
+
+                $is_pharmacy = Cookie::get('is_pharmacy');
+
+                if ($is_pharmacy) {
+                    RegisterController::registerPharmacy($newUser);
+                    $route = 'pharmacy-profile';
+                } else {
+                    RegisterController::registerClient($newUser);
+                    $route = 'pharmacy-profile';
+                }
                 Auth::login($newUser);
-                return redirect('/home');
+
+                return redirect()->route($route);
             }
         } catch (\Exception $e) {
             dd($e->getMessage());
         }
-   }
+    }
 }
-
-
