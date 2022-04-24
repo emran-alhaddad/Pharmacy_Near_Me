@@ -22,22 +22,12 @@ class interfacesController extends Controller
     }
     public function ads()
     {
-        // return view('front.ads');
-        return "ads Page";
+        return view('front.ads');
+        // return "ads Page";
     }
     public function about()
     {
-        // return view('front.about');
-        return "about Page";
-    }
-    public function login()
-    {
-        // return view('front.login');
-        return "login Page";
-    }
-    public function signup()
-    {
-        // return view('front.signup');
-        return "signup Page";
+        return view('front.about');
+        // return "about Page";
     }
 }

@@ -6,6 +6,7 @@
     <!-- Search Pharmacy section start -->
      @include('includes.FrontSearch')
     <!-- Search Pharmacy section ends -->
+
         <!-- pharmacies section starts  -->
         <section class="pharmacies" id="pharmacies">
 
