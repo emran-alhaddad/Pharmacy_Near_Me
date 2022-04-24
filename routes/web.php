@@ -5,14 +5,16 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\login\LoginController;
 use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\Auth\Social\GoogleController;
+// use App\Http\Controllers\Auth\Social\GoogleController;
 use App\Http\Controllers\User\UserSearchController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-use App\Http\Controllers\SocialController;
+use  App\Http\Controllers\Auth\Login\FacebookController;
+use  App\Http\Controllers\Auth\Login\GoogleController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,16 +41,17 @@ Route::post('/reset-password', [ResetPasswordController::class,'store'])->middle
 
 Route::group(['middleware'=>'auth'],function(){
 
-    Route::get('/logout',[LoginController::class,'LogoutController'])->name('logout');
+    Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 });
 Route::get('/logins',[LoginController::class,'login'])->name('logins');
 Route::post('/logins',[LoginController::class,'doLogin'])->name('logins');
 Route::post('/pharmacies',[UserSearchController::class,'searchPharmacies'])->name('pharmacies');
 
 
-Route::get('show', [SocialController::class, 'show']);
-Route::get('auth/facebook', [SocialController::class, 'facebookRedirect']);
-Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFacebook']);
+
+Route::get('show', [FacebookController::class, 'show']);
+Route::get('auth/facebook', [FacebookController::class, 'redirect']);
+Route::get('auth/facebook/callback', [FacebookController::class, 'login']);
 // Testing  Register With Google Account
 
 Route::get('/', function(){
