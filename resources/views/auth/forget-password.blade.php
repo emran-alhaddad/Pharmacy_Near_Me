@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-	<title>تسجيل الدخول</title>
+	<title>Forget Password</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	
 
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 </head>
@@ -33,60 +33,47 @@
 
 	<div class="bg-contact3">
 		<div class="container-contact3">
-			<div class="wrap-contact3 " style="height: 580px;">
-				<form class="contact3-form validate-form" style="direction: rtl;">
-					<span class="contact3-form-title" style="margin-top: 1em;margin-right: 0em;">
-					تسجيل الدخول
+			<div class="wrap-contact3 " style="height: 485px;">
+				<form action="{{ route('forget-password') }}" method="POST" class="contact3-form validate-form" style="direction: rtl;">
+					@csrf
+					<span class="contact3-form-title" style="margin-top: 1em;">
+					هل نسيت كلمة المرور؟
 					</span>
+					
+						<span style="color: rgb(246, 244, 244);font-size: 16x;">لا تقلق فقط ادخل بريدك الالكتروني وسنقوم بارسال رابط كلمة المرور الجديدة</span>
+			
 
-				
-
-				
-
+<br>
+<br>
 					<div class="wrap-input3 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 						<input class="input3" type="text" name="email" placeholder=" الايميل ">
 						<span class="focus-input3"></span>
 					</div>
 
-					<div class="wrap-input3 validate-input" data-validate="password is required">
-						<input class="input3" type="password" name="password" placeholder="كلمة السر">
-						<span class="focus-input3"></span>
-					</div>
-
-
-
-				
 
 					<div class="container-contact3-form-btn">
-						<button class="contact3-form-btn">
-							دخول
+						<button type="submit" class="contact3-form-btn">
+							تغيير كلمة السر
 						</button>
 						
 				
 					</div>
 					
-					<div class="container-contact3-form-btn1">
-						<a href="#"> نسيت كلمة المرور؟</a>
+					<div class="container-contact3-form-btn1" style="position: relative;top: 1em;right: 10em;">
+						<a href="#"> تذكرت؟</a>
 						<br>
-						<a href="#"> انشاء حساب جديد</a>
-						<br><br>
-					
-
+						<a href="{{ route('login') }}">سجل الدخول</a>
 						
-						  
-						  
 					</div>
 					<!--<img src="images/undraw_medicine_b-1-ol.svg" style="width: 10em;height: 10em;" >-->
 				</form>
 			
 			</div>
-			<img src="images/undraw_medicine_b-1-ol.svg" width="110em" height="110em">
+			<img src="images/undraw_fireworks_re_2xi7.svg" width="110em" height="110em" style="right: 19em;">
 		</div>
 	</div>
 
 
-	
-<!--===============================================================================================-->
 	
 
 </body>
