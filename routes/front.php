@@ -47,12 +47,12 @@ Route::namespace('Front')->group(function () {
 
 // Views Admin haneen Write Her
 
-Route::namespace('Front')->group(function () {
+Route::namespace('Admin')->group(function () {
 
     Route::get('/admin_dashboard', [adminController::class, 'Show_index'])->name('Show_index');
 });
 
-Route::namespace('Front')->group(function () {
+Route::namespace('Phar')->group(function () {
 
     Route::get('/phar_profile', [pharmacyController::class, 'Show_index'])->name('Show_index');
 
