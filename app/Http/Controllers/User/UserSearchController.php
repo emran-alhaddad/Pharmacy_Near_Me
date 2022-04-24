@@ -4,7 +4,6 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Pharmacy;
 use Illuminate\Support\Facades\DB;
 
 class UserSearchController extends Controller
@@ -27,8 +26,7 @@ class UserSearchController extends Controller
          if($request->has('city')) $qry->where('zones.city_id',$request->city);
          if($request->has('zone')) $qry->where('pharmacies.zone_id',$request->zone);
 
-         dd($qry->get());
-        return response($phar);
+        return response($qry->get());
     }
 
 }

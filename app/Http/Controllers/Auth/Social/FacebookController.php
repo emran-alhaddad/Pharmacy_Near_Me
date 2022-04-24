@@ -9,18 +9,19 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Laravel\Socialite\Facades\Socialite;
 
-class GoogleController extends Controller
+class FacebookController extends Controller
 {
+    //
 
     public function redirect()
     {
-        return Socialite::driver('google')->redirect()
+        return Socialite::driver('facebook')->redirect()
             ->withCookie(cookie('is_pharmacy', false, 5));
     }
 
     public function redirectPharmacy()
     {
-        return Socialite::driver('google')->redirect()
+        return Socialite::driver('facebook')->redirect()
             ->withCookie(cookie('is_pharmacy', true, 5));
     }
 
@@ -28,11 +29,9 @@ class GoogleController extends Controller
     {
         try {
 
-            $user = Socialite::driver('google')->user();
-            $userCheck = User::where('google_id', $user->id)->first();
+            $user = Socialite::driver('facebook')->user();
+            $userCheck = User::where('facebook_id', $user->id)->first();
             if ($userCheck) {
-
-                Auth::login($userCheck);
                 if (Auth::user()->hasRole('admin'))
                     return redirect()->route('admin-profile');
 
@@ -43,24 +42,25 @@ class GoogleController extends Controller
                     return redirect()->route('pharmacy-profile');
             } else {
 
+                // return  redirect('dashboard')->with(['user' => $user]);
                 $is_pharmacy = Cookie::get('is_pharmacy');
                 $reg = new RegisterController();
-                $data = $reg->createUser(
+                $reg->createUser(
                     [
                         'name' => $user->name,
                         'email' => $user->email,
                         'password' => '123456dummy',
                         'password_confirmation' => '123456dummy',
-                        'google_id' => $user->id,
+                        'facebook_id' => $user->id,
                         'user_type' => $is_pharmacy ? "pharmacy" : "client"
                     ]
                 );
-
-                Auth::login($data['user']);
-                return redirect()->route($data['route']);
             }
         } catch (\Exception $e) {
             dd($e->getMessage());
         }
     }
+
+ 
+
 }
