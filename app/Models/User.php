@@ -24,6 +24,7 @@ class User extends Authenticatable
         'email',
         'password',
         'google_id',
+        'facebook_id',
         'phone',
         'avater',
         'is_active'

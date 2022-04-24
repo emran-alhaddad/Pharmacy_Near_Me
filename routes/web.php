@@ -13,7 +13,9 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-use App\Http\Controllers\SocialController;
+use  App\Http\Controllers\Auth\Login\FacebookController;
+use  App\Http\Controllers\Auth\Login\GoogleController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,7 +63,6 @@ Route::group(['middleware'=>'auth'],function(){
     })->name('admin-profile');
     // Logout
     Route::get('/logout',[LoginController::class,'LogoutController'])->name('logout');
-
 });
 
 Route::post('/pharmacies',[UserSearchController::class,'searchPharmacies'])->name('pharmacies');

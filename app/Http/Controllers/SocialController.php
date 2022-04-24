@@ -23,7 +23,7 @@ CONST DRIVER_TYPE = 'facebook';
             
             $user = Socialite::driver('facebook')->user();
         
-            $isUser = User::where('remember_token', $user->token)->first();
+            $isUser = User::where('facebook_id', $user->id)->first();
      
             if($isUser){
                 Auth::login($isUser);
@@ -31,6 +31,7 @@ CONST DRIVER_TYPE = 'facebook';
             }else{
                 $createUser = User::create([
                     'name' => $user->name,
+                    'facebook_id' => $user->id,
                     'email' => $user->email,
                     
                     'password' => encrypt('admin@123'),
@@ -45,5 +46,7 @@ CONST DRIVER_TYPE = 'facebook';
             dd($exception->getMessage());
         }
     }
+
+   
     
 }
