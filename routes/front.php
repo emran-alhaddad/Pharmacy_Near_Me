@@ -37,10 +37,10 @@ Route::namespace('Front')->group(function () {
 });
 
 // Views Auth
-Route::namespace('Auth')->group(function () {
-    Route::get('/login', [authController::class, 'login'])->name('adminLogin');
-    Route::get('/signup', [authController::class, 'login'])->name('signup');
-});
+// Route::namespace('Auth')->group(function () {
+//     Route::get('/login', [authController::class, 'login'])->name('adminLogin');
+//     Route::get('/signup', [authController::class, 'login'])->name('signup');
+// });
 
 // Views Admin haneen Write Her
 
