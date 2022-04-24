@@ -61,5 +61,6 @@ Route::get('/', function(){
 Route::get('/home', function(){
     return "Home Page";
 })->name('home');
-Route::get('redirect', [GoogleController::class,'redirect']);
-Route::get('callback', [GoogleController::class,'callback']);
+Route::get('auth/google', [GoogleController::class,'redirect']);
+Route::get('auth/google/callback', [GoogleController::class,'callback']);
+
