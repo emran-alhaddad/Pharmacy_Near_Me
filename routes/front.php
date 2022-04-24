@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Front\interfacesController;
+use App\Http\Controllers\Admin\IndexController;
 
 
 /*
@@ -34,4 +35,10 @@ Route::namespace('Front')->group(function () {
     Route::get('/signup', [interfacesController::class, 'login'])->name('signup');
 
     Route::get('/contact', [interfacesController::class, 'contact'])->name('contact');
+});
+
+
+Route::namespace('Admin')->group(function () {
+Route::get('/admin_dashboard',[IndexController::class,'show_index'])->name("show_index");
+
 });
