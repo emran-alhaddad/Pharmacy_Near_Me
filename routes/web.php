@@ -55,6 +55,10 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/pharmacy/profile', function(){
         return "Pharmacy Profile Page";
     })->name('pharmacy-profile');
+
+    Route::get('/admin/profile', function(){
+        return "Admin Profile Page";
+    })->name('admin-profile');
     // Logout
     Route::get('/logout',[LoginController::class,'LogoutController'])->name('logout');
 
@@ -64,13 +68,10 @@ Route::post('/pharmacies',[UserSearchController::class,'searchPharmacies'])->nam
 
 Route::get('auth/facebook', [SocialController::class, 'facebookRedirect']);
 Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFacebook']);
-// Testing  Register With Google Account
 
-Route::get('/', function(){
-    return view('welcome');
-});
-
-Route::get('auth/verify_email/{token}', [VerifyEmailController::class,'verify']);
 Route::get('auth/google', [GoogleController::class,'redirect']);
 Route::get('auth/google/pharmacy', [GoogleController::class,'redirectPharmacy']);
 Route::get('auth/google/callback', [GoogleController::class,'callback']);
+
+Route::get('auth/verify_email/{token}', [VerifyEmailController::class,'verify']);
+

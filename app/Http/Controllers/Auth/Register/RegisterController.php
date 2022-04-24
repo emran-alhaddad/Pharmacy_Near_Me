@@ -8,6 +8,7 @@ use App\Models\Admin;
 use App\Models\Client;
 use App\Models\Pharmacy;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -31,15 +32,19 @@ class RegisterController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-        $token = Str::uuid();
-        $user->remember_token = $token;
 
-        $email_data = [
-            'name' => $user->name,
-            'activation_url' => URL::to('/').'/auth/verify_email/'.$token
-        ];
 
-        
+        if (!$request->has('email_verified_at')) {
+            $token = Str::uuid();
+            $user->remember_token = $token;
+            $email_data = [
+                'name' => $user->name,
+                'activation_url' => URL::to('/') . '/auth/verify_email/' . $token
+            ];
+        }
+
+
+
         if ($request->has('user_type')) {
             switch ($request->user_type) {
                 case 'client':
@@ -51,10 +56,35 @@ class RegisterController extends Controller
                 default:
                     return "<h1 style='color:red'> Access Denied  Unknown User Type!!!</h1>";
             }
-            Mail::to($request->email)->send(new VerifyEmail($email_data));
+
+            if (!$request->has('email_verified_at'))
+                Mail::to($request->email)->send(new VerifyEmail($email_data));
             return $res;
         } else
             return "<h1 style='color:red'>Access Denied !!!</h1>";
+    }
+
+    public function createUser($request)
+    {
+        $user = new User();
+        $user->name = $request['name'];
+        $user->email = $request['email'];
+        $user->password = Hash::make($request['password']);
+        $user->email_verified_at = Carbon::now()->timestamp;
+        if(isset($request['google_id']))$user->google_id = $request['google_id'];
+        if(isset($request['facebook_id']))$user->facebook_id = $request['facebook_id'];
+        
+        $token = Str::uuid();
+        $user->remember_token = $token;
+
+            switch ($request['user_type']) {
+                case 'client':
+                    return $this->registerClient($user);
+                    break;
+                case 'pharmacy':
+                    return $this->registerPharmacy($user);
+                    break;
+            }
     }
 
 
@@ -67,8 +97,8 @@ class RegisterController extends Controller
             Client::create([
                 'user_id' => $user->id,
             ]);
-            
-            return "<h1>Client Registered Success</h1>";
+
+            return redirect()->route('client-profile');
         }
     }
 
@@ -80,7 +110,8 @@ class RegisterController extends Controller
             Pharmacy::create([
                 'user_id' => $user->id,
             ]);
-            return "<h1>Pharmacy Registered Success</h1>";
+            return redirect()->route('pharmacy-profile');
+
         }
     }
 
@@ -92,7 +123,7 @@ class RegisterController extends Controller
             Admin::create([
                 'user_id' => $user->id,
             ]);
-            return "<h1>Admin Registered Success</h1>";
+            return redirect()->route('admin-profile');
         }
     }
 

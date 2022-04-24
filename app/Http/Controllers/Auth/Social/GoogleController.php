@@ -33,25 +33,17 @@ class GoogleController extends Controller
                 Auth::login($userCheck);
                 return redirect()->route('client-profile');
             } else {
-                $newUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'google_id' => $user->id,
-                    'password' => encrypt('123456dummy')
-                ]);
 
                 $is_pharmacy = Cookie::get('is_pharmacy');
+                $reg = new RegisterController();
+                $reg->createUser(
+                ['name' => $user->name,
+                'email' => $user->email,
+                'password' => '123456dummy',
+                'password_confirmation' => '123456dummy',
+                'google_id' => $user->id,
+                'user_type' => $is_pharmacy?"pharmacy":"client"]);
 
-                if ($is_pharmacy) {
-                    RegisterController::registerPharmacy($newUser);
-                    $route = 'pharmacy-profile';
-                } else {
-                    RegisterController::registerClient($newUser);
-                    $route = 'pharmacy-profile';
-                }
-                Auth::login($newUser);
-
-                return redirect()->route($route);
             }
         } catch (\Exception $e) {
             dd($e->getMessage());
