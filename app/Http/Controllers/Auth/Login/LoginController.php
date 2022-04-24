@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
+
     public function doLogin(Request  $request)
     {
         Validator::validate($request->all(),[
@@ -24,6 +25,8 @@ class LoginController extends Controller
             return view('show-client-profile');
             elseif (Auth::user()->hasRole('pharmacy'))
              return view('show-pharmacy-profile');
+
+
         }
         else
           return 'show-login';
