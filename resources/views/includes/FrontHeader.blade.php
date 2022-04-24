@@ -8,7 +8,7 @@
         <a href="{{ route('about') }}">About Us</a>
         <a href="{{ route('contact') }}">Contact Us</a>
         <a href="{{ route('login') }}" class="border">LogIn</a>
-        <a href="{{ route('signup') }}" class="log-btn">SignUp</a>
+        <a href="{{ route('register') }}" class="log-btn">SignUp</a>
     </nav>
 
     <div id="menu-btn" class="fas fa-bars"></div>
