@@ -8,13 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('auth/css/bootstrap.min.css') }}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('auth/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
     <!--===============================================================================================-->
 
 
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('auth/css/main.css') }}">
     <!--===============================================================================================-->
 </head>
 
@@ -74,11 +74,11 @@
 
 
                     </div>
-                    <!--<img src="images/undraw_medicine_b-1-ol.svg" style="width: 10em;height: 10em;" >-->
+                    <!--<img src="{{ asset('auth/images/undraw_medicine_b-1-ol.svg') }}" style="width: 10em;height: 10em;" >-->
                 </form>
 
             </div>
-            <img src="images/undraw_medicine_b-1-ol.svg" width="110em" height="110em">
+            <img src="{{ asset('auth/images/undraw_medicine_b-1-ol.svg') }}" width="110em" height="110em">
         </div>
     </div>
 

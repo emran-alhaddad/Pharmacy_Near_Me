@@ -7,7 +7,7 @@
 <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <!-- custom css file link  -->
-	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="{{ asset('auth/css/style.css') }}">
 </head>
 <body>
 
@@ -70,7 +70,7 @@
                 </tr> <!-- COPY -->
                 <tr>
                     <td bgcolor="#ffffff" align="right" style="padding: 20px 30px 20px 30px; color: var(--black); font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                        <p style="margin: 0;"><a href="#" target="_blank" style="color: var(--hover-main);">https://ts.xx/sdfgd</a></p>
+                        <p style="margin: 0;"><a href="{{ $data['activation_url'] }}" target="_blank" style="color: var(--hover-main);">{{ $data['activation_url'] }}</a></p>
                     </td>
                 </tr>
 

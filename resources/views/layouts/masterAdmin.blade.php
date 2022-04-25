@@ -7,10 +7,10 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel="shortcut icon" type="image/x-icon" href="assets_admin/img/leaf.svg">
-<title>Admin Dashboard</title>
-<link href="assets_admin/css/bootstrap.css" rel="stylesheet">
-<link href="assets_admin/css/main.css" rel="stylesheet">
+<link rel="shortcut icon" type="image/x-icon" href="{{ asset('admin/img/leaf.svg') }}">
+<title>Admin Dashboard</title> {{ asset('admin/') }}
+<link href="{{ asset('admin/css/bootstrap.css') }}" rel="stylesheet">
+<link href="{{ asset('admin/css/main.css') }}" rel="stylesheet">
 </head>
 
 <body class="d-flex flex-column h-10">
@@ -21,7 +21,7 @@
 			<nav id="sidebar" class="active">
 
 				<div class="sidebar-header text-center">
-					<img src="assets_admin/img/leaf.svg" alt="logo" class="app-logo">
+					<img src="{{ asset('admin/img/leaf.svg') }}" alt="logo" class="app-logo">
 					<h4 class="sidebar-title theme-item">ابولو</h4>
 				</div>
 
@@ -197,7 +197,7 @@
 							class="btn btn-light py-0">
 							<i data-feather="menu"></i> <span></span>
 						</button>
-						<img src="assets_admin/img/leaf.svg" alt="logo"
+						<img src="{{ asset('admin/img/leaf.svg') }}" alt="logo"
 							class="app-logo theme-item mx-2 navbrandarea1">
 						<h4 class="sidebar-title theme-item mt-2 navbrandarea2">ابولو</h4>
 						<button class="navbar-toggler py-0" type="button"
@@ -215,7 +215,7 @@
 										class="nav-item nav-link dropdown-toggle text-secondary py-0"
 										id="navbarDropdown3" role="button" data-bs-toggle="dropdown"
 										aria-expanded="false"> <img class="theme-item user-avatar"
-										src="assets_admin/img/earth.svg" alt="User image"> <!--<i class="theme-item" -->
+										src="{{ asset('admin/img/earth.svg') }}" alt="User image"> <!--<i class="theme-item" -->
 										<!--data-feather="user"></i> --> <span class="theme-item">
 											</span><i class="theme-item" data-feather="chevron-down"></i></a>
 									<ul class="dropdown-menu dropdown-menu-end"
@@ -459,10 +459,10 @@
 		onclick="scrollToTopFunction()" id="scrollToTop" title="Scroll to top">
 		<i data-feather="arrow-up-circle"></i>
 	</button>
-	<script src="assets_admin/js/feather.min.js"></script>
-	<script src="assets_admin/js/bootstrap.bundle.min.js"></script>
-	<script src="assets_admin/js/Chart.min.js"></script>
-	<script src="assets_admin/js/script.js"></script>
+	<script src="{{ asset('admin/js/feather.min.js') }}"></script>
+	<script src="{{ asset('admin/js/bootstrap.bundle.min.js') }}"></script>
+	<script src="{{ asset('admin/js/Chart.min.js') }}"></script>
+	<script src="{{ asset('admin/js/script.js') }}"></script>
 
 	<script type="text/javascript">
 		document.addEventListener("DOMContentLoaded", function(event) {
@@ -575,7 +575,7 @@
 			}
 		});
 	</script>
-	<script src="assets_admin/js/jspdf.min.js"></script>
+	<script src="{{ asset('admin/js/jspdf.min.js') }}"></script>
 	<script>
 		function onClick() {
 			var pdfExport = new jsPDF('p', 'pt', 'a4');
