@@ -79,6 +79,19 @@
 				
 					</div>
 					
+					<div class="container-contact3-form-btn1">
+						<a href="#"> نسيت كلمة المرور؟</a>
+						<br>
+						<a href="#"> انشاء حساب جديد</a>
+						<br><br>
+					
+
+						
+						  
+						  
+					</div>
+					<!--<img src="images/undraw_medicine_b-1-ol.svg" style="width: 10em;height: 10em;" >-->
+				
 				
 					<!--<img src="{{ asset('auth/images/undraw_medicine_b-1-ol.svg') }}" style="width: 10em;height: 10em;" >-->
 				</form>

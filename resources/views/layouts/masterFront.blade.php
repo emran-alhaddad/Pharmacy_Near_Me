@@ -12,6 +12,7 @@
     <!-- custom css file link  -->
 	<link rel="stylesheet" href="{{ asset('auth/css/style.css') }}">
 	<link rel="stylesheet" href="{{ asset('auth/css/contact.css') }}">
+	<link rel="stylesheet" href="{{ asset('auth/css/about.css') }}">
 
 
 </head>

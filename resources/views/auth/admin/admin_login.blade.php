@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Forget Password</title>
+
+	<title>تسجيل الدخول</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="{{ asset('auth/images/icons/favicon.ico') }}"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ asset('auth/vendor/bootstrap/css/bootstrap.min.css') }}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
 
+
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ asset('auth/css/util.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('auth/css/main.css') }}">
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	
+
+	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 </head>
 <body>
@@ -33,53 +33,68 @@
 
 	<div class="bg-contact3">
 		<div class="container-contact3">
-			<div class="wrap-contact3 " style="height: 485px;">
-				<form action="{{ route('forget-password') }}" method="POST" class="contact3-form validate-form" style="direction: rtl;">
-					@csrf
-					<span class="contact3-form-title" style="margin-top: 1em;">
-					هل نسيت كلمة المرور؟
+			<div class="wrap-contact3 " style="height: 580px;">
+				<form class="contact3-form validate-form" style="direction: rtl;">
+					<span class="contact3-form-title" style="margin-top: 1em;margin-right: 0em;">
+					تسجيل الدخول
 					</span>
-					
-						<span style="color: rgb(246, 244, 244);font-size: 16x;">لا تقلق فقط ادخل بريدك الالكتروني وسنقوم بارسال رابط كلمة المرور الجديدة</span>
-			
 
-<br>
-<br>
+				
+
+				
+
 					<div class="wrap-input3 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 						<input class="input3" type="text" name="email" placeholder=" الايميل ">
 						<span class="focus-input3"></span>
 					</div>
 
+					<div class="wrap-input3 validate-input" data-validate="password is required">
+						<input class="input3" type="password" name="password" placeholder="كلمة السر">
+						<span class="focus-input3"></span>
+					</div>
+
+
+
+				
 
 					<div class="container-contact3-form-btn">
-						<button type="submit" class="contact3-form-btn">
-							تغيير كلمة السر
+						<button class="contact3-form-btn">
+							دخول
 						</button>
 						
 				
 					</div>
 					
-					<div class="container-contact3-form-btn1" style="position: relative;top: 1em;right: 10em;">
-						<a href="#"> تذكرت؟</a>
+					<div class="container-contact3-form-btn1">
+						<a href="#"> نسيت كلمة المرور؟</a>
 						<br>
-						<a href="{{ route('login') }}">سجل الدخول</a>
-						
+						<a href="#"> انشاء حساب جديد</a>
+						<br><br>
+			
 					</div>
-
 					<!--<img src="images/undraw_medicine_b-1-ol.svg" style="width: 10em;height: 10em;" >-->
-				
+					<p>او يمكنك تسجيل الدخول عن طريق</p>
+					<div >
+						<a href="#" ><img src="images/facebook.svg" height="20em" width="20em" class="image"></a>
+						<a href="#" ><img src="images/google.svg" height="20em" width="20em" class="image"></a>
 					
-
-					<!--<img src="{{ asset('auth/images/undraw_medicine_b-1-ol.svg') }}" style="width: 10em;height: 10em;" >-->
-
+					</div>
+					<p>او يمكنك تسجيل الدخول عن طريق</p>
+					<div >
+						<a href="#" ><img src="images/facebook.svg" height="20em" width="20em" class="image"></a>
+						<a href="#" ><img src="images/google.svg" height="20em" width="20em" class="image"></a>
+					
+					</div>
 				</form>
 			
 			</div>
-			<img src="{{ asset('auth/images/undraw_fireworks_re_2xi7.svg') }}" width="110em" height="110em" style="right: 19em;">
+			<img src="images/undraw_medicine_b-1-ol.svg" width="110em" height="110em">
 		</div>
 	</div>
 
 
+	
+<!--===============================================================================================-->
 	
 
 </body>

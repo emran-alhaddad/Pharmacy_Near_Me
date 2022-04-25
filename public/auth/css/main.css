@@ -94,6 +94,17 @@ ul, li {
 
 
 /*---------------------------------------------*/
+p{color:var(--a-color) ;}
+.image{
+  border-radius: 50%;
+  position: relative;
+  right: 16.5em;
+  vertical-align: middle;
+  border-style: none;
+  top: 30em;
+  top: -2.6000000000000014em;
+}
+
 input {
 	outline: none;
 	border: none;
@@ -105,10 +116,7 @@ input:-moz-placeholder { color:  var(--input-color);}
 input::-moz-placeholder { color:  var(--input-color);}
 input:-ms-input-placeholder { color:  var(--input-color);}
 
-textarea::-webkit-input-placeholder { color:  var(--input-color);}
-textarea:-moz-placeholder { color:  var(--input-color);}
-textarea::-moz-placeholder { color:  var(--input-color);}
-textarea:-ms-input-placeholder { color:  var(--input-color);}
+
 
 /*---------------------------------------------*/
 button {
