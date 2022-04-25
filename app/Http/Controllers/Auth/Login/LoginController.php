@@ -6,32 +6,47 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use  App\Models\User;
 
 class LoginController extends Controller
 {
+
     public function doLogin(Request  $request)
     {
         Validator::validate($request->all(),[
             'email'=>['email','required'],
             'password'=>['required']
         ]);
+        $user = User::where('email','=',$request->email)->first();
 
-        if(Auth::attempt(['email'=>$request->email ,'password'=>$request->password]))
-        {
-            if(Auth::user()->hasRole('admin'))
-            return view('show-admin-profile');
-           elseif (Auth::user()->hasRole('client'))
-            return view('show-client-profile');
-            elseif (Auth::user()->hasRole('pharmacy'))
-             return view('show-pharmacy-profile');
+        if($user->email_verified_at && Auth::attempt(['email'=>$request->email ,'password'=>$request->password , 'is_active' => 1]))
+        {  
+        return LoginController::checkrole(Auth::user());
         }
         else
-          return 'show-login';
+          return 'show-Register';
     }
     public function login()
     {
-        // return "Login Page";
-        // return view('show-login');
+        
         return view('auth.login');
+    }
+
+    public static function checkrole($user)
+    {   
+       
+        
+        if ($user->hasRole('admin'))
+        return redirect()->route('admin-profile');
+
+    elseif ($user->hasRole('client')) 
+    return redirect()->route('client-profile');
+      
+
+    elseif ($user->hasRole('pharmacy'))
+        return redirect()->route('pharmacy-profile');
+   
+
+        
     }
 }

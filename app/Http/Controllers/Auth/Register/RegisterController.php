@@ -19,8 +19,7 @@ class RegisterController extends Controller
 {
     public function index()
     {
-        return view('welcome');
-        // return view('Auth.register');
+        return view('auth.register');
     }
 
     public function create(Request $request)
@@ -64,7 +63,7 @@ class RegisterController extends Controller
             return "<h1 style='color:red'>Access Denied !!!</h1>";
     }
 
-    public function createUser($request)
+    public function createUser(array $request)
     {
         $user = new User();
         $user->name = $request['name'];
@@ -79,10 +78,10 @@ class RegisterController extends Controller
 
             switch ($request['user_type']) {
                 case 'client':
-                    return $this->registerClient($user);
+                    return ['user'=>$user,'route'=>$this->registerClient($user)];
                     break;
                 case 'pharmacy':
-                    return $this->registerPharmacy($user);
+                    return ['user'=>$user,'route'=>$this->registerPharmacy($user)];
                     break;
             }
     }
@@ -98,7 +97,7 @@ class RegisterController extends Controller
                 'user_id' => $user->id,
             ]);
 
-            return redirect()->route('client-profile');
+            return 'client-profile';
         }
     }
 
@@ -110,7 +109,7 @@ class RegisterController extends Controller
             Pharmacy::create([
                 'user_id' => $user->id,
             ]);
-            return redirect()->route('pharmacy-profile');
+            return 'pharmacy-profile';
 
         }
     }

@@ -2,12 +2,11 @@
 <html lang="en">
 
 <head>
-
-    <title>تسجيل الدخول</title>
+    <title>Sign Up</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
+    <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -22,7 +21,7 @@
 
 
     <div class="blob">
-
+        <!-- This SVG is from https://codepen.io/Ali_Farooq_/pen/gKOJqx -->
         <svg width="900" height="700" xmlns="http://www.w3.org/2000/svg" version="1.0" width="1280.000000pt"
             height="1247.000000pt" viewBox="0 0 1280.000000 1247.000000" preserveAspectRatio="xMidYMid meet">
 
@@ -36,15 +35,42 @@
     </div>
 
 
+
+
     <div class="bg-contact3">
         <div class="container-contact3">
-            <div class="wrap-contact3 " style="height: 580px;">
-                <form action="{{ route('login') }}" method="POST" class="contact3-form validate-form" style="direction: rtl;" >
+            <div class="wrap-contact3 " style="height: 606px;">
+                <form action="{{ route('register') }}" method="POST" class="contact3-form validate-form"
+                    style="direction: rtl;">
                     @csrf
-                    <span class="contact3-form-title" style="margin-top: 1em;margin-right: 0em;">
-                        تسجيل الدخول
+                    <span class="contact3-form-title">
+                        انشاء حساب
                     </span>
 
+                    <div class="wrap-contact3-form-radio">
+                        <div class="contact3-form-radio m-r-42">
+                            <input class="input-radio3" id="radio1" type="radio" name="user_type" value="client"
+                                checked="checked">
+                            <label class="label-radio3" for="radio1">
+                                مستخدم
+                            </label>
+                        </div>
+
+                        <div class="contact3-form-radio m-r-42">
+                            <input class="input-radio3" id="radio3" type="radio" name="user_type" value="pharmacy"
+                                checked="checked">
+                            <label class="label-radio3" for="radio3">
+                                صيدلي
+                            </label>
+                        </div>
+
+
+                    </div>
+
+                    <div class="wrap-input3 validate-input" data-validate="Name is required">
+                        <input class="input3" type="text" name="name" placeholder=الاسم>
+                        <span class="focus-input3"></span>
+                    </div>
 
                     <div class="wrap-input3 validate-input" data-validate="Valid email is required: ex@abc.xyz">
                         <input class="input3" type="text" name="email" placeholder=" الايميل ">
@@ -55,36 +81,26 @@
                         <input class="input3" type="password" name="password" placeholder="كلمة السر">
                         <span class="focus-input3"></span>
                     </div>
+
+                    <div class="wrap-input3 validate-input" data-validate="conf-password is required">
+                        <input class="input3" type="password" name="password_confirmation"
+                            placeholder="تاكيد كلمة المرور">
+                        <span class="focus-input3"></span>
+                    </div>
+
+
                     <div class="container-contact3-form-btn">
                         <button type="submit" class="contact3-form-btn">
-                            دخول
+                            ارسال
                         </button>
-
-
                     </div>
-
-                    <div class="container-contact3-form-btn1">
-                        <a href="{{ route('forget-password') }}"> نسيت كلمة المرور؟</a>
-                        <br>
-                        <a href="{{ route('register') }}"> انشاء حساب جديد</a>
-                        <br><br>
-
-
-
-
-
-                    </div>
-                    <!--<img src="images/undraw_medicine_b-1-ol.svg" style="width: 10em;height: 10em;" >-->
                 </form>
 
             </div>
-            <img src="images/undraw_medicine_b-1-ol.svg" width="110em" height="110em">
+
         </div>
     </div>
 
-
-
-    <!--===============================================================================================-->
 
 
 </body>
