@@ -10,6 +10,9 @@ use App\Http\Controllers\Front\authController;
 // admin for haneen
 use App\Http\Controllers\Front\adminController;
 
+//pharmacy profile for haneen
+use App\Http\Controllers\Front\pharmacyController;
+
 /*
 |--------------------------------------------------------------------------
 | front Routes
@@ -34,9 +37,10 @@ Route::namespace('Front')->group(function () {
     Route::get('/ads', [interfacesController::class, 'ads'])->name('ads');
     Route::get('/about', [interfacesController::class, 'about'])->name('about');
     Route::get('/contact', [interfacesController::class, 'contact'])->name('contact');
+    Route::get('/confirm', [interfacesController::class, 'confirm'])->name('confirm');
 });
 
- //Views Auth
+//Views Auth
 Route::namespace('Auth')->group(function () {
     Route::get('/adminLogin', [authController::class, 'adminLogin'])->name('adminLogin');
     Route::get('/userLogin', [authController::class, 'userLogin'])->name('userLogin');
@@ -55,7 +59,14 @@ Route::namespace('Auth')->group(function () {
 
 // Views Admin haneen Write Her
 
-// Route::namespace('Admin')->group(function () {
+Route::namespace('Admin')->group(function () {
 
-//     Route::get('/admin', [authController::class, 'login'])->name('adminLogin');
-// });
+    Route::get('/admin_dashboard', [adminController::class, 'Show_index'])->name('Show_index');
+});
+
+Route::namespace('Phar')->group(function () {
+
+    Route::get('/phar_profile', [pharmacyController::class, 'Show_index'])->name('Show_index');
+
+    Route::get('/chat', [pharmacyController::class, 'Show_chat'])->name('Show_chat');
+});

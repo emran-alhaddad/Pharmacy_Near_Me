@@ -30,4 +30,9 @@ class interfacesController extends Controller
         return view('front.about');
         // return "about Page";
     }
+    public function confirm()
+    {
+        return view('email.verify-email');
+        // return "about Page";
+    }
 }
