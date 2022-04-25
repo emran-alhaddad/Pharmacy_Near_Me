@@ -8,11 +8,13 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\Auth\Login\LoginController;
 
 class GoogleController extends Controller
 {
 
     public function redirect()
+
     {
         return Socialite::driver('google')->redirect()
             ->withCookie(cookie('is_pharmacy', false, 5));
@@ -32,15 +34,9 @@ class GoogleController extends Controller
             $userCheck = User::where('google_id', $user->id)->first();
             if ($userCheck) {
 
-                Auth::login($userCheck);
-                if (Auth::user()->hasRole('admin'))
-                    return redirect()->route('admin-profile');
-
-                elseif (Auth::user()->hasRole('client'))
-                    return redirect()->route('client-profile');
-
-                elseif (Auth::user()->hasRole('pharmacy'))
-                    return redirect()->route('pharmacy-profile');
+              Auth::login($userCheck, $remember = true);
+                  $user=Auth::user();
+              return LoginController::checkrole($user);
             } else {
 
                 $is_pharmacy = Cookie::get('is_pharmacy');

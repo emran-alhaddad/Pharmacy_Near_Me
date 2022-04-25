@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\Auth\Login\LoginController;
 
 class FacebookController extends Controller
 {
@@ -30,16 +31,15 @@ class FacebookController extends Controller
         try {
 
             $user = Socialite::driver('facebook')->user();
+           
             $userCheck = User::where('facebook_id', $user->id)->first();
             if ($userCheck) {
-                if (Auth::user()->hasRole('admin'))
-                    return redirect()->route('admin-profile');
-
-                elseif (Auth::user()->hasRole('client'))
-                    return redirect()->route('client-profile');
-
-                elseif (Auth::user()->hasRole('pharmacy'))
-                    return redirect()->route('pharmacy-profile');
+               
+               
+                 Auth::login($userCheck, $remember = true);
+                  $user=Auth::user();
+              return LoginController::checkrole($user);
+               
             } else {
 
                 // return  redirect('dashboard')->with(['user' => $user]);
