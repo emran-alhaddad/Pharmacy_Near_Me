@@ -77,6 +77,12 @@
 						  
 					</div>
 					<!--<img src="images/undraw_medicine_b-1-ol.svg" style="width: 10em;height: 10em;" >-->
+					<p>او يمكنك تسجيل الدخول عن طريق</p>
+					<div >
+						<a href="#" ><img src="images/facebook.svg" height="20em" width="20em" class="image"></a>
+						<a href="#" ><img src="images/google.svg" height="20em" width="20em" class="image"></a>
+					
+					</div>
 				</form>
 			
 			</div>
