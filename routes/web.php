@@ -12,6 +12,7 @@ use App\Http\Controllers\User\UserSearchController;
 use Illuminate\Support\Facades\Route;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
