@@ -39,7 +39,10 @@
 	<div class="bg-contact3">
 		<div class="container-contact3">
 			<div class="wrap-contact3 " style="height: 485px;">
-				<form class="contact3-form validate-form" style="direction: rtl;margin-top: -2em;">
+				<form method="POST" action="{{ route('reset-password',$token) }}" class="contact3-form validate-form" style="direction: rtl;margin-top: -2em;">
+                                @csrf
+
+                                <input type="hidden" name="token" value="{{ $token }}">
 					<span class="contact3-form-title" style="margin-top: 1em;">
 					تغيير كلمة المرور
 					</span>
@@ -62,15 +65,11 @@
 					</div>
 
 					<div class="wrap-input3 validate-input" data-validate = "conf-password is required">
-						<input class="input3" type="password" name="conf-password" placeholder="تاكيد كلمة المرور">
+						<input class="input3" type="password" name="password_confirmation" placeholder="تاكيد كلمة المرور">
 						<span class="focus-input3"></span>
 					</div>
 
-				
-				
-
-
-				
+			
 
 					<div class="container-contact3-form-btn">
 						<button class="contact3-form-btn">
