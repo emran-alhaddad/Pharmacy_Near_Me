@@ -37,9 +37,10 @@ Route::namespace('Front')->group(function () {
     Route::get('/ads', [interfacesController::class, 'ads'])->name('ads');
     Route::get('/about', [interfacesController::class, 'about'])->name('about');
     Route::get('/contact', [interfacesController::class, 'contact'])->name('contact');
+    Route::get('/confirm', [interfacesController::class, 'confirm'])->name('confirm');
 });
 
- //Views Auth
+//Views Auth
 Route::namespace('Auth')->group(function () {
     Route::get('/adminLogin', [authController::class, 'adminLogin'])->name('adminLogin');
     Route::get('/userLogin', [authController::class, 'userLogin'])->name('userLogin');
@@ -65,5 +66,3 @@ Route::namespace('Phar')->group(function () {
 
     Route::get('/chat', [pharmacyController::class, 'Show_chat'])->name('Show_chat');
 });
-
-
