@@ -48,17 +48,23 @@ Route::post('/reset-password', [ResetPasswordController::class,'store'])->middle
 // Routes That Needs Authentication
 Route::group(['middleware'=>'auth'],function(){
 
+    Route::group([ 'middleware' => ['role:client']], function() {
     Route::get('/client/profile', function(){
         return "Client Profile Page";
     })->name('client-profile');
+});
 
-    Route::get('/pharmacy/profile', function(){
-        return "Pharmacy Profile Page";
+Route::group([ 'middleware' => ['role:pharmacy']], function() {
+      Route::get('/pharmacy/profile', function(){
+            return "pharmacy Profile Page";
     })->name('pharmacy-profile');
-
+    });
+    
+    Route::group([ 'middleware' => ['role:admin']], function() {    
     Route::get('/admin/profile', function(){
         return "Admin Profile Page";
     })->name('admin-profile');
+});
     // Logout
     Route::get('/logout',[LogoutController::class,'logout'])->name('logout');
 });
