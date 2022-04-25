@@ -17,8 +17,8 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('auth/select2/select2.min.css') }}">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ asset('auth/select2/util.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('auth/select2/main.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('auth/css/util.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('auth/css/main.css') }}">
 <!--===============================================================================================-->
 </head>
 <body>
