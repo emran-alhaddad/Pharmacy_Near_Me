@@ -38,26 +38,45 @@ class authController extends Controller
                 
                }
 
-/**reset password */
+/**forget password */
 
 
 
-public function adminReset_password()
+public function adminForget_password()
 {
-   return view('auth.admin.reset_password.blade');
+   return view('auth.admin.forget_password');
     //  return "login admin Page";
   }
 
-  public function userReset_password()
+  public function userForget_password()
   {
-     return view('auth.user.reset_password.blade');
+     return view('auth.user.forget_password');
       
     }
-    public function pharmasticReset_password()
+    public function pharmasticForget_password()
     {
-       return view('auth.pharmacist.reset_password.blade');
+       return view('auth.pharmacist.forget_password');
        
       }
 
+   /**reser password */
+
+   public function adminReset_password()
+   {
+      return view('auth.admin.resert_password');
+       //  return "login admin Page";
+     }
    
+     public function userReset_password()
+     {
+        return view('auth.user.resert_password');
+         
+       }
+       public function pharmasticReset_password()
+       {
+          return view('auth.pharmacist.resert_password');
+          
+         }
+   
+
 }
