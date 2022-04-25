@@ -47,6 +47,10 @@ Route::namespace('Auth')->group(function () {
     Route::get('/adminReset_password', [authController::class, 'adminReset_password'])->name('adminReset_password');
     Route::get('/userReset_password', [authController::class, 'userReset_password'])->name('userReset_password');
     Route::get('/pharmasticReset_password', [authController::class, 'pharmasticReset_password'])->name('pharmasticReset_password');
+
+    Route::get('/adminForget_password', [authController::class, 'adminForget_password'])->name('adminForget_password');
+    Route::get('/userForget_password', [authController::class, 'userForget_password'])->name('userForget_password');
+    Route::get('/pharmasticForget_password', [authController::class, 'pharmasticForget_password'])->name('pharmasticForget_password');
 });
 
 // Views Admin haneen Write Her
