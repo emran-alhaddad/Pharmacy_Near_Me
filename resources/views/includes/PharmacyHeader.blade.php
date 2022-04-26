@@ -95,7 +95,7 @@
 
         <div class="collapse navbar-collapse" id="navbarCollapse" >
             <div class="navbar-nav mx-5 " style=" align-items: center;">
-                <a href="#" class="nav-item nav-link active"><i class="bi bi-chat"></i></a>
+                <a href="/chat" class="nav-item nav-link active"><i class="bi bi-chat"></i></a>
                 <a href="#" class="nav-item nav-link active"><i class="bi bi-gear"></i></a>
                 <a href="#" class="nav-item nav-link active"><i class="bi bi-bell"></i></a>
 
