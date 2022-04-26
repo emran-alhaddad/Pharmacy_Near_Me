@@ -3,45 +3,45 @@
     <div class="box-container">
 
         <div class="box">
-            <h3>quick links</h3>
-            <a href="Home"> <i class="fas fa-arrow-right"></i> Home</a>
-            <a href="Pharmacies"> <i class="fas fa-arrow-right"></i> Pharmacies</a>
-            <a href="Ads"> <i class="fas fa-arrow-right"></i> Ads</a>
-            <a href="contact.html"> <i class="fas fa-arrow-right"></i> Contact Us</a>
-            <a href="About Us"> <i class="fas fa-arrow-right"></i> About Us</a>
+            <h3>روابط سريعة </h3>
+            <a href="Home"> <i class="fas fa-arrow-left"></i> الرئيسية</a>
+            <a href="Pharmacies"> <i class="fas fa-arrow-left"></i> الصيدليات</a>
+            <a href="Ads"> <i class="fas fa-arrow-left"></i> الإعلانات</a>
+            <a href="contact.html"> <i class="fas fa-arrow-left"></i> تواصل معنا </a>
+            <a href="About Us"> <i class="fas fa-arrow-left"></i> عن الموقع</a>
 
         </div>
 
         <div class="box">
-            <h3>extra links</h3>
-            <a href="#"> <i class="fas fa-arrow-right"></i> terms </a>
-            <a href="#"> <i class="fas fa-arrow-right"></i> terms </a>
-            <a href="#"> <i class="fas fa-arrow-right"></i> terms </a>
-            <a href="#"> <i class="fas fa-arrow-right"></i> terms </a>
-            <a href="#"> <i class="fas fa-arrow-right"></i> terms </a>
+            <h3> روابط خارجية </h3>
+            <a href="#"> <i class="fas fa-arrow-left"></i>  شروط </a>
+            <a href="#"> <i class="fas fa-arrow-left"></i>  شروط </a>
+            <a href="#"> <i class="fas fa-arrow-left"></i>  شروط </a>
+            <a href="#"> <i class="fas fa-arrow-left"></i>  شروط </a>
+            <a href="#"> <i class="fas fa-arrow-left"></i>  شروط </a>
         </div>
 
         <div class="box">
-            <h3>follow us</h3>
-            <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
-            <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
-            <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
-            <a href="#"> <i class="fab fa-linkedin"></i> linkedin </a>
-            <a href="#"> <i class="fab fa-pinterest"></i> pinterest </a>
+            <h3>تابعنا على</h3>
+            <a href="#"> <i class="fab fa-facebook-f"></i> فيس بوك  </a>
+            <a href="#"> <i class="fab fa-twitter"></i> تويتر  </a>
+            <a href="#"> <i class="fab fa-instagram"></i>  انستجرام </a>
+            <a href="#"> <i class="fab fa-linkedin"></i>  لينكد ان </a>
+            <a href="#"> <i class="fab fa-linkedin"></i>  لينكد ان </a>
         </div>
 
         <div class="box">
-            <h3>newsletter</h3>
-            <p>subscribe for latest updates</p>
+            <h3>نشرة الأخبار</h3>
+            <p> اشترك لمعرفة أخر الأخبار والإشتراكات </p>
             <form action="">
-                <input type="email" placeholder="enter your email">
-                <input type="submit" value="subscribe" class="btn">
+                <input type="email" placeholder="ادخل ايميلك هنا ">
+                <input type="submit" value="اشتراك" class="btn">
             </form>
-            <img src="{{ asset('auth/images/payment.png') }}" class="payment" alt="">
+            <img src="images/payment.png" class="payment" alt="">
         </div>
 
     </div>
 
-    <div class="credit"> created by <span>Taiz Pharmacy Team</span> | all rights reserved </div>
+    <div class="credit"> تم تصميمه بواسطة<span> Taiz Pharmacy Team </span> | &copy; جميع الحقوق محفوظة </div>
 
 </section>

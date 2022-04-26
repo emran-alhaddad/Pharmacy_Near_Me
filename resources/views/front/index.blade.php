@@ -31,7 +31,7 @@
                     </div>
                 </div>
             @endforeach
-                
+
             </div>
         </section>
         <!-- pharmacies section ends -->
