@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\Social\FacebookController;
 use App\Http\Controllers\Auth\Social\GoogleController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\Pharmacy\ReplyController;
 use App\Http\Controllers\User\UserSearchController;
 use Illuminate\Support\Facades\Route;
 
@@ -59,7 +60,15 @@ Route::group([ 'middleware' => ['role:pharmacy']], function() {
       Route::get('/pharmacy/profile', function(){
             return "pharmacy Profile Page";
     })->name('pharmacy-profile');
-    });
+
+    Route::get('/pharmacy/requests',[ReplyController::class,'index'])->name('pharmacy-requests');
+    Route::get('/pharmacy/request/{id}',[ReplyController::class,'showRequest']);
+    Route::post('/pharmacy/request/{id}',[ReplyController::class,'acceptRequest']);
+    Route::get('/pharmacy/replies/{id}',[ReplyController::class,'showReplies'])->name('pharmacy-replies');
+    Route::post('/pharmacy/reply',[ReplyController::class,'create'])->name('pharmacy-reply');
+
+    
+});
     
     Route::group([ 'middleware' => ['role:admin']], function() {    
     Route::get('/admin/profile', function(){
@@ -70,7 +79,8 @@ Route::group([ 'middleware' => ['role:pharmacy']], function() {
     Route::get('/logout',[LogoutController::class,'logout'])->name('logout');
 });
 
-Route::post('/pharmacies',[UserSearchController::class,'searchPharmacies'])->name('pharmacies');
+
+Route::post('/pharmacies/search',[UserSearchController::class,'searchPharmacies'])->name('search-pharmacies');
 
 
 Route::get('auth/facebook', [FacebookController::class,'redirect'])->name('facebook-client');
