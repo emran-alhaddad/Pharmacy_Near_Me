@@ -277,7 +277,7 @@ textarea.input3 {
 /*------------------------------------------------------------------
 [  ]*/
 .container-contact3-form-btn {
-  padding-top: 23px;
+  /* padding-top: 23px; */
 }
 
 .contact3-form-btn {
@@ -513,6 +513,38 @@ display: none;
 }
 
 
+.social{
+  text-align: center;
+  margin-top: 30px;
+}
+
+.social .social-divider{
+  width: 80%;
+  text-align: center;
+  border-bottom: 1px solid #979faf;
+  line-height: 0.1em;
+  margin: -20px 0 20px;
+  margin-left: 10%;
+}
+.social-divider span{
+  padding: 0 10px;
+    background-color: #97dfe9;
+    font-size: smaller;
+    color: #645d5d;
+}
+
+.social .social-images{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.social .social-images img{
+  position: static;
+  width: 60%;
+}
 
 
 

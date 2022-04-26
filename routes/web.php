@@ -73,12 +73,12 @@ Route::group([ 'middleware' => ['role:pharmacy']], function() {
 Route::post('/pharmacies',[UserSearchController::class,'searchPharmacies'])->name('pharmacies');
 
 
-Route::get('auth/facebook', [FacebookController::class,'redirect']);
-Route::get('auth/facebook/pharmacy', [FacebookController::class,'redirectPharmacy']);
+Route::get('auth/facebook', [FacebookController::class,'redirect'])->name('facebook-client');
+Route::get('auth/facebook/pharmacy', [FacebookController::class,'redirectPharmacy'])->name('facebook-pharmacy');
 Route::get('auth/facebook/callback', [FacebookController::class,'callback']);
 
-Route::get('auth/google', [GoogleController::class,'redirect']);
-Route::get('auth/google/pharmacy', [GoogleController::class,'redirectPharmacy']);
+Route::get('auth/google', [GoogleController::class,'redirect'])->name('google-client');
+Route::get('auth/google/pharmacy', [GoogleController::class,'redirectPharmacy'])->name('google-pharmacy');
 Route::get('auth/google/callback', [GoogleController::class,'callback']);
 
 Route::get('auth/verify_email/{token}', [VerifyEmailController::class,'verify']);

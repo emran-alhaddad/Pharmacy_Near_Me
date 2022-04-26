@@ -9,7 +9,8 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{ asset('auth/css/bootstrap.min.css') }}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('auth/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('auth/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
     <!--===============================================================================================-->
 
 
@@ -34,9 +35,6 @@
         </svg>
     </div>
 
-
-
-
     <div class="bg-contact3">
         <div class="container-contact3">
             <div class="wrap-contact3 " style="height: 606px;">
@@ -50,7 +48,7 @@
                     <div class="wrap-contact3-form-radio">
                         <div class="contact3-form-radio m-r-42">
                             <input class="input-radio3" id="radio1" type="radio" name="user_type" value="client"
-                                checked="checked">
+                                checked="checked" onchange="changeClient()">
                             <label class="label-radio3" for="radio1">
                                 مستخدم
                             </label>
@@ -58,7 +56,7 @@
 
                         <div class="contact3-form-radio m-r-42">
                             <input class="input-radio3" id="radio3" type="radio" name="user_type" value="pharmacy"
-                                checked="checked">
+                                onchange="changePharmacy()">
                             <label class="label-radio3" for="radio3">
                                 صيدلي
                             </label>
@@ -91,18 +89,38 @@
 
                     <div class="container-contact3-form-btn">
                         <button type="submit" class="contact3-form-btn">
-                            ارسال
+                            تسجيل الحساب
                         </button>
                     </div>
                 </form>
 
-            </div>
+                <div class="social">
+                    <div class="social-divider">
+                        <span>او يمكنك إنشاء حساب عن طريق</span>
+                    </div>
 
+                    <div class="social-images">
+                        <a id="facebook" href="{{ route('facebook-client') }}"><img
+                                src="{{ asset('auth/images/Facebook.png') }}"></a>
+                        <a id="google" href="{{ route('google-client') }}"><img
+                                src="{{ asset('auth/images/Google.png') }}"></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
+<script>
+    function changePharmacy() {
+        document.getElementById('facebook').href = "{{ route('facebook-pharmacy') }}";
+        document.getElementById('google').href = "{{ route('google-pharmacy') }}";
+    }
 
-
+    function changeClient() {
+        document.getElementById('facebook').href = "{{ route('facebook-client') }}";
+        document.getElementById('google').href = "{{ route('google-client') }}";
+    }
+</script>
 </body>
 
 </html>
