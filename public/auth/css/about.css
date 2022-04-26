@@ -48,7 +48,7 @@ img {
 
 
 .inner {
-  margin-bottom: 20em;
+  margin-bottom: 29em;
   width: 63em;
   height: 25em;
   border-radius: var(--inner-border-rud);
@@ -58,7 +58,7 @@ img {
 }
 
 .image-holder {
-  width: 40%;
+  width: 100%;
   height: 521px; }
 
 

@@ -54,7 +54,7 @@
                             </label>
                         </div>
 
-                        <div class="contact3-form-radio m-r-42">
+                        <div class="contact3-form-radio "style="margin-right: 2em;">
                             <input class="input-radio3" id="radio3" type="radio" name="user_type" value="pharmacy"
                                 onchange="changePharmacy()">
                             <label class="label-radio3" for="radio3">

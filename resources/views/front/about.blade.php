@@ -23,7 +23,8 @@
 	
 			<div class="inner">
 				<div class="image-holder">
-					<img src="images/medicen.jpg" alt="">
+					<img src="{{ asset('auth/images/medicen.jpg') }}" alt="">
+					
 				</div>
 				<div class="form-content"  >
 					
