@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="rtl">
+<html lang="en" dir="rtl" >
 
 <head>
     <meta charset="UTF-8">
@@ -85,31 +85,23 @@
 
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light px-5 ">
-        <!-- Container wrapper -->
-        <div class="container-fluid">
 
-            <!-- Navbar brand -->
-            <a class="navbar-brand mt-2 mt-lg-0" href="#">ابولو
-            </a>
-            <!--  start Left links -->
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0  flex-row ">
-                <li class="nav-item">
-                    <a href="/chat">
-                        <i class="bi bi-chat"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <i class="bi bi-gear"></i>
+<nav class="navbar navbar-expand-lg navbar-light bg-white p-4">
+    <div class="container-fluid">
+            <h6> <a href="#" class="navbar-brand">ابولو</a></h6>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                </li>
-                <li>
-                    <i class="bi bi-gear"></i>
-                </li>
+        <div class="collapse navbar-collapse" id="navbarCollapse" >
+            <div class="navbar-nav mx-5 " style=" align-items: center;">
+                <a href="#" class="nav-item nav-link active"><i class="bi bi-chat"></i></a>
+                <a href="#" class="nav-item nav-link active"><i class="bi bi-gear"></i></a>
+                <a href="#" class="nav-item nav-link active"><i class="bi bi-bell"></i></a>
 
-            </ul>
-            <!-- end Left links -->
-            <!-- Container wrapper -->
-    </nav>
-    <!-- end Navbar -->
+            </div>
+        </div>
+    </div>
+</nav>
+
+

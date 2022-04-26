@@ -15,28 +15,28 @@
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="text-right"> اعدادات الملف الشخصي للصيدلية</h4>
                     </div>
-                    <div class="row mt-2">
-                        <div class="col-md-6"><label class="labels">الاسم</label><input type="text"
+                    <div class="row mt-3">
+                        <div class="col-md-6"> <label class="f-5 my-4">الاسم</label><input type="text"
                                 class="form-control" placeholder="first name" value=""></div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-12"><label class="labels"> رقم الجوال</label><input type="text"
+                        <div class="col-md-12"><label class="f-5 my-4"> رقم الجوال</label><input type="text"
                                 class="form-control" placeholder="enter phone number" value=""></div>
-                        <div class="col-md-12"><label class="labels"> العنوان 1</label><input type="text"
+                        <div class="col-md-12"><label class="f-5 my-4"> العنوان 1</label><input type="text"
                                 class="form-control" placeholder="enter address line 1" value=""></div>
-                        <div class="col-md-12"><label class="labels"> العنوان 2</label><input type="text"
+                        <div class="col-md-12"><label class="f-5 my-4"> العنوان 2</label><input type="text"
                                 class="form-control" placeholder="enter address line 2" value=""></div>
-                        <div class="col-md-12"><label class="labels">المديرية</label><input type="text"
+                        <div class="col-md-12"><label class="f-5 my-4">المديرية</label><input type="text"
                                 class="form-control" placeholder="enter address line 2" value=""></div>
-                        <div class="col-md-12"><label class="labels">المربع السكني</label><input type="text"
+                        <div class="col-md-12"><label class="f-5 my-4">المربع السكني</label><input type="text"
                                 class="form-control" placeholder="enter address line 2" value=""></div>
-                        <div class="col-md-12"><label class="labels"> الايميل</label><input type="text"
+                        <div class="col-md-12"><label class="f-5 my-4"> الايميل</label><input type="text"
                                 class="form-control" placeholder="enter email id" value=""></div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-6"><label class="labels">الدولة</label><input type="text"
+                        <div class="col-md-6"><label class="f-5 my-4">الدولة</label><input type="text"
                                 class="form-control" placeholder="country" value=""></div>
-                        <div class="col-md-6"><label class="labels">المدينة</label><input type="text"
+                        <div class="col-md-6"><label class="f-5 my-4">المدينة</label><input type="text"
                                 class="form-control" value="" placeholder="state"></div>
                     </div>
                     <div class="mt-5 text-center"><button class="btn btn-primary profile-button text-dark "
