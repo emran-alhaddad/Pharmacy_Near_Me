@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Pharmacy;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -24,6 +25,7 @@ class PharmaciesSeeder extends Seeder
             $user->name = Str::random(8);
             $user->email = Str::random(12) . '@gmail.com';
             $user->password = Hash::make('123456789');
+            $user->email_verified_at = Carbon::now()->timestamp;
             $user->is_active = 1;
             if ($user->save()) {
                 $user->attachRole('pharmacy');

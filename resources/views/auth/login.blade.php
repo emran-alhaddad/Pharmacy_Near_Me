@@ -39,6 +39,11 @@
 
     <div class="bg-contact3">
         <div class="container-contact3">
+            @if (session('status'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
             <div class="wrap-contact3 " style="height: 580px;">
                 <form action="{{ route('login') }}" method="POST" class="contact3-form validate-form"
                     style="direction: rtl;">
@@ -77,8 +82,10 @@
                     </div>
 
                     <div class="social-images">
-                        <a href="{{ route('facebook-client') }}"><img src="{{ asset('auth/images/Facebook.png') }}"></a>
-                        <a href="{{ route('google-client') }}"><img src="{{ asset('auth/images/Google.png') }}" ></a>
+                        <a href="{{ route('facebook-client') }}"><img
+                                src="{{ asset('auth/images/Facebook.png') }}"></a>
+                        <a href="{{ route('google-client') }}"><img
+                                src="{{ asset('auth/images/Google.png') }}"></a>
                     </div>
                 </div>
 

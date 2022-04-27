@@ -28,67 +28,64 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/',[interfacesController::class,'index']);
+Route::get('/', [interfacesController::class, 'index']);
 
 // Register
-Route::get('/register',[RegisterController::class,'index'])->name('register');
-Route::post('/register',[RegisterController::class,'create']);
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'create']);
 
 // Login
-Route::get('/login',[LoginController::class,'login'])->name('login');
-Route::post('/login',[LoginController::class,'doLogin']);
+Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/login', [LoginController::class, 'doLogin']);
 
 // Forget Password
-Route::get('/forgot-password', [ForgetPasswordController::class,'index'])->middleware('guest')->name('forget-password');
-Route::post('/forgot-password', [ForgetPasswordController::class,'create'])->middleware('guest');
+Route::get('/forgot-password', [ForgetPasswordController::class, 'index'])->middleware('guest')->name('forget-password');
+Route::post('/forgot-password', [ForgetPasswordController::class, 'create'])->middleware('guest');
 
 // Reset Password
-Route::get('/reset-password/{token}',[ResetPasswordController::class,'show'])->middleware('guest')->name('reset-password');
-Route::post('/reset-password', [ResetPasswordController::class,'store'])->middleware('guest')->name('reset-password');
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'show'])->middleware('guest')->name('reset-password');
+Route::post('/reset-password', [ResetPasswordController::class, 'store'])->middleware('guest')->name('reset-password');
 
 // Routes That Needs Authentication
-Route::group(['middleware'=>'auth'],function(){
+Route::group(['middleware' => 'auth'], function () {
 
-    Route::group([ 'middleware' => ['role:client']], function() {
-    Route::get('/client/profile', function(){
-        return "Client Profile Page";
-    })->name('client-profile');
-});
+    Route::group(['middleware' => ['role:client']], function () {
+        Route::get('/client/profile', function () {
+            return "Client Profile Page";
+        })->name('client-profile');
+    });
 
-Route::group([ 'middleware' => ['role:pharmacy']], function() {
-      Route::get('/pharmacy/profile', function(){
+    Route::group(['middleware' => ['role:pharmacy']], function () {
+        Route::get('/pharmacy/profile', function () {
             return "pharmacy Profile Page";
-    })->name('pharmacy-profile');
+        })->name('pharmacy-profile');
 
-    Route::get('/pharmacy/requests',[ReplyController::class,'index'])->name('pharmacy-requests');
-    Route::get('/pharmacy/request/{id}',[ReplyController::class,'showRequest']);
-    Route::post('/pharmacy/request/{id}',[ReplyController::class,'acceptRequest']);
-    Route::get('/pharmacy/replies/{id}',[ReplyController::class,'showReplies'])->name('pharmacy-replies');
-    Route::post('/pharmacy/reply',[ReplyController::class,'create'])->name('pharmacy-reply');
+        Route::get('/pharmacy/requests', [ReplyController::class, 'index'])->name('pharmacy-requests');
+        Route::get('/pharmacy/request/{id}', [ReplyController::class, 'showRequest']);
+        Route::post('/pharmacy/request/{id}', [ReplyController::class, 'acceptRequest']);
+        Route::get('/pharmacy/replies/{id}', [ReplyController::class, 'showReplies'])->name('pharmacy-replies');
+        Route::post('/pharmacy/reply', [ReplyController::class, 'create'])->name('pharmacy-reply');
+    });
 
-    
-});
-    
-    Route::group([ 'middleware' => ['role:admin']], function() {    
-    Route::get('/admin/profile', function(){
-        return "Admin Profile Page";
-    })->name('admin-profile');
-});
+    Route::group(['middleware' => ['role:admin']], function () {
+        Route::get('/admin/profile', function () {
+            return "Admin Profile Page";
+        })->name('admin-profile');
+    });
     // Logout
-    Route::get('/logout',[LogoutController::class,'logout'])->name('logout');
+    Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 });
 
 
-Route::post('/pharmacies/search',[UserSearchController::class,'searchPharmacies'])->name('search-pharmacies');
+Route::post('/pharmacies/search', [UserSearchController::class, 'searchPharmacies'])->name('search-pharmacies');
 
 
-Route::get('auth/facebook', [FacebookController::class,'redirect'])->name('facebook-client');
-Route::get('auth/facebook/pharmacy', [FacebookController::class,'redirectPharmacy'])->name('facebook-pharmacy');
-Route::get('auth/facebook/callback', [FacebookController::class,'callback']);
+Route::get('auth/facebook', [FacebookController::class, 'redirect'])->name('facebook-client');
+Route::get('auth/facebook/pharmacy', [FacebookController::class, 'redirectPharmacy'])->name('facebook-pharmacy');
+Route::get('auth/facebook/callback', [FacebookController::class, 'callback']);
 
-Route::get('auth/google', [GoogleController::class,'redirect'])->name('google-client');
-Route::get('auth/google/pharmacy', [GoogleController::class,'redirectPharmacy'])->name('google-pharmacy');
-Route::get('auth/google/callback', [GoogleController::class,'callback']);
+Route::get('auth/google', [GoogleController::class, 'redirect'])->name('google-client');
+Route::get('auth/google/pharmacy', [GoogleController::class, 'redirectPharmacy'])->name('google-pharmacy');
+Route::get('auth/google/callback', [GoogleController::class, 'callback']);
 
-Route::get('auth/verify_email/{token}', [VerifyEmailController::class,'verify']);
-
+Route::get('auth/verify_email/{token}', [VerifyEmailController::class, 'verify']);

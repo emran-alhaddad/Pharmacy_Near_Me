@@ -19,13 +19,17 @@ class LoginController extends Controller
         ]);
         $user = User::where('email','=',$request->email)->first();
 
-        if($user->email_verified_at && Auth::attempt(['email'=>$request->email ,'password'=>$request->password , 'is_active' => 1]))
+        if(Auth::attempt(['email'=>$request->email ,'password'=>$request->password , 'is_active' => 1]))
         {  
-        return LoginController::checkrole(Auth::user());
+            if ($user->email_verified_at)
+            return LoginController::checkrole(Auth::user());
+            else
+            return back()->with('status','Your Account Needs Email Verification');
         }
         else
-          return 'show-Register';
+          return back()->with('status','Invalid Credentials !!!');
     }
+
     public function login()
     {
         

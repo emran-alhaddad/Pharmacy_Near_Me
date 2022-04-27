@@ -15,8 +15,14 @@ return new class extends Migration
     {
         Schema::create('request__details', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            
+            $table->unsignedBigInteger('request_id');
+            $table->string('drug_image')->nullable();
+            $table->string('drug_title')->nullable();
+            $table->unsignedInteger('quantity'); 
+            $table->boolean('accept_alternative')->default(false);
+            $table->unsignedInteger('repeat_every')->nullable(); 
+            $table->unsignedInteger('repeat_until')->nullable(); 
+            $table->foreign('request_id')->references('id')->on('requests');
         });
     }
 
