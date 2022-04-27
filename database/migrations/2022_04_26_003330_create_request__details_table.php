@@ -16,16 +16,12 @@ return new class extends Migration
         Schema::create('request__details', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('request_id');
-            $table->unsignedInteger('stats');
             $table->unsignedInteger('quantity');
-           
-            $table->string('drug_image');
-            $table->string('drug_title');
-            $table->unsignedInteger('repeat_every');
-            $table->boolean('accept_alternative');
-            $table->datetime('repeat_until');
-
-            
+            $table->string('drug_image')->nullable();
+            $table->string('drug_title')->nullable();
+            $table->boolean('accept_alternative')->default(0);
+            $table->unsignedInteger('repeat_every')->nullable();
+            $table->timestamp('repeat_until')->nullable();
             $table->foreign('request_id')->references('id')->on('requests');
 
         });

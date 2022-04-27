@@ -1,5 +1,6 @@
 <?php
 
+use App\Utils\ReplyState;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('request_id');
             $table->string('message')->nullable();
-            $table->unsignedInteger('state')->default(0);
+            $table->integer('state')->default(ReplyState::WAIT_ACCEPTANCE);
             $table->foreign('request_id')->references('id')->on('requests');
             $table->timestamps();
         });

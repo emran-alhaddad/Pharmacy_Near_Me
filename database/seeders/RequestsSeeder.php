@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Request as OrderRequest;
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -31,7 +32,7 @@ class RequestsSeeder extends Seeder
                         'quantity' => $i * $i,
                         'accept_alternative' => true,
                         'repeat_every' => $i * $i,
-                        'repeat_until' => $i * $i + 10,
+                        'repeat_until' => Carbon::now()->toDateTime(),
                     ]);
                 }
             }
