@@ -13,4 +13,17 @@ class Request_Details extends Model
     {
         $this->belongsTo(Request::class,'id');
     }
+    public $timestamps = false;
+    protected $fillable = [
+        'request_id',
+        'quantity',
+        'stats',
+        'drug_image',
+        'drug_title',
+         'repeat_every',
+         'accept_alternative',
+         'repeat_until'
+       
+
+    ];
 }

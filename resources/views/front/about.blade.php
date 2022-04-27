@@ -19,21 +19,22 @@
 </div>
 <div class="wrapper">
 
-	   
-	
+
+
 			<div class="inner">
-				<div class="image-holder">
-					<img src="{{ asset('auth/images/medicen.jpg') }}" alt="">
-					
-				</div>
+
 				<div class="form-content"  >
-					
-					<p>نحن شركة تقدم خدمة جمع جميع صيدليات مدينة معينة المتوزعة في كل مناطق في موقع ويب واحد ليسهل على المواطن شراء دواء معين من اي صيديلة يختار </p>
-				
-					
+
+					<p class="about-p">نحن شركة تقدم خدمة جمع جميع صيدليات مدينة معينة المتوزعة في كل مناطق في موقع ويب واحد ليسهل على المواطن شراء دواء معين من اي صيديلة يختار </p>
+
+
+				</div>
+                	<div class="image-holder">
+					<img src="{{ asset('auth/images/medicen.jpg') }}" alt="">
+
 				</div>
 			</div>
-	
+
 
 
 </div>
@@ -41,7 +42,7 @@
 
 
 
- 	
+
  	</div>
  </section>
     <!-- about section end -->

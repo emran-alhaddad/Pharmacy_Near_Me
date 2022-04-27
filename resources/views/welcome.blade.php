@@ -412,9 +412,10 @@
 
 
              <div class="container">
-                <form action="/register" class="form" method="post">
-
-                    <input type="text" name="name" class="form-controll">
+                <form  @ onsubmit="myFunction()" action={{route('rquest-add');}} class="form" method="post">
+                @csrf
+                    <input type="hidden" id="data" name="data" value=""
+                     class="form-controll">
                     <br>
                     <input type="email" name="email" class="form-controll">
                     <br>
@@ -431,32 +432,24 @@
                 </form>
             </div> 
 
-            <div class="container">
-                <form action="/pharmacies" class="form" method="post">
-
-                    <select name="city" id="">
-                    <option selected disabled>All</option>
-                    <option value="1">Taiz</option>
-                    <option value="2">Sanaa</option>
-                    <option value="3">Aden</option>
-                    <option value="4">Ibb</option>
-                    </select>
-                    <br>
-                    <select name="zone" id="">
-                    <option selected disabled>All</option>
-                    <option value="1">A</option>
-                    <option value="2">B</option>
-                    <option value="3">C</option>
-                    <option value="4">D</option>
-                    </select>
-                    <input type="text" name="name_Pharmacy" class="form-controll">
-                    <br>
-                    <input type="submit" value="Save">
-                </form>
+            
             </div>
         </div>
 
+
+
     </div>
+    <script>
+    
+function myFunction() {
+    var  durg={"data":
+         [{drug_title:"sprien",drug_image:"drug_image.png",quantity:50 , accept_alternative:0}]
+        };
+    const myJSON = JSON.stringify(durg);
+    document.getElementById("data").value=myJSON;
+  alert(document.getElementById("data").value);
+}
+</script>
 </body>
 
 </html>

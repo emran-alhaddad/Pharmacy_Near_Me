@@ -13,6 +13,9 @@ use App\Http\Controllers\Pharmacy\ReplyController;
 use App\Http\Controllers\User\UserSearchController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\User\request\RequestController;
+
+
 
 
 /*
@@ -53,11 +56,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/client/profile', function () {
             return "Client Profile Page";
         })->name('client-profile');
+
+        Route::get('/rquest/index', [RequestController::class, 'index'])->name('rquest-index');
+        // Route::get('/rquest/add',[RequestController::class,'insert'])->name('rquest-add');
+
     });
 
     Route::group(['middleware' => ['role:pharmacy']], function () {
         Route::get('/pharmacy/profile', function () {
-            return "pharmacy Profile Page";
+            return view("phar.index");
         })->name('pharmacy-profile');
 
         Route::get('/pharmacy/requests', [ReplyController::class, 'index'])->name('pharmacy-requests');
@@ -69,7 +76,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['middleware' => ['role:admin']], function () {
         Route::get('/admin/profile', function () {
-            return "Admin Profile Page";
+            return view('admin.index');
         })->name('admin-profile');
     });
     // Logout
@@ -89,3 +96,4 @@ Route::get('auth/google/pharmacy', [GoogleController::class, 'redirectPharmacy']
 Route::get('auth/google/callback', [GoogleController::class, 'callback']);
 
 Route::get('auth/verify_email/{token}', [VerifyEmailController::class, 'verify']);
+Route::post('/rquest-add', [RequestController::class, 'insert'])->name('rquest-add');
