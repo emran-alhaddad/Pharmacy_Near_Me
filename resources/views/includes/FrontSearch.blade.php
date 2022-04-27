@@ -1,14 +1,14 @@
 <section>
     <div>
-        <h2 class="heading">Find <span>pharmacy</span></h2>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias, totam.</p>
+        <h2 class="heading">جد  <span>صيدليتك </span></h2>
+        <p>يمكنك إدخال اسم الصيدلية للبحث عنها أو اختيار المديرة والمربع السكني  للبحث ضمن منطقة محددة </p>
     </div>
     <form action="{{ route('search-pharmacies') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <input type="text" name="name_Pharmacy" placeholder="Enter Pharmacy Name">
+        <input type="text" name="name_Pharmacy" placeholder="ادخل إسم الصيدلية ">
 
         <select name='city' class="input-field">
-            <option selected disabled>All </option>
+            <option selected disabled> المديرية </option>
             @foreach ($cities as $city)
                 <option value="{{ $city->id }}">{{ $city->name }}</option>
             @endforeach
@@ -16,14 +16,14 @@
         </select>
 
         <select id="inputAriae" name='zone' class="input-field">
-            <option selected disabled>All </option>
+            <option selected disabled> المنطقة </option>
             @foreach ($zones as $zone)
                 <option value="{{ $zone->id }}">{{ $zone->name }}</option>
             @endforeach
 
         </select>
 
-        <button type="submit" class="s-btn">Find</button>
+        <button type="submit" class="s-btn">بحث</button>
     </form>
 
 </section>

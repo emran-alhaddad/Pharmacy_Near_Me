@@ -1,14 +1,14 @@
 <header class="header">
-    <a href="#" class="logo"> <i class="fas fa-pills"></i> Pharmacies </a>
+    <a href="#" class="logo"> <i class="fas fa-pills"></i> أبولو </a>
 
     <nav class="navbar">
-        <a href="{{ route('index') }}">Home</a>
-        <a href="{{ route('pharmacies') }}">Pharmacies</a>
-        <a href="{{ route('ads') }}">Ads</a>
-        <a href="{{ route('about') }}">About Us</a>
-        <a href="{{ route('contact') }}">Contact Us</a>
-        <a href="{{ route('login') }}" class="border">LogIn</a>
-        <a href="{{ route('register') }}" class="log-btn">SignUp</a>
+        <a href="{{ route('index') }}"> الرئيسية</a>
+        <a href="{{ route('pharmacies') }}">الصيدليات </a>
+        <a href="{{ route('ads') }}">الإعلانات</a>
+        <a href="{{ route('about') }}"> عن الموقع</a>
+        <a href="{{ route('contact') }}">تواصل معنا </a>
+        <a href="{{ route('login') }}" class="border"> دخول</a>
+        <a href="{{ route('register') }}" class="log-btn">تسجيل حساب </a>
     </nav>
 
     <div id="menu-btn" class="fas fa-bars"></div>

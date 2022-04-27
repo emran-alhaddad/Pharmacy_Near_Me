@@ -9,6 +9,10 @@
 
     --main-color: #543ab7;
     --secondary-color: #00acc1;
+
+    /* --main-color: #478ac9;
+    --secondary-color: #adf6f2; */
+
     --hover-main: #817ecd;
     --hover-secondary: #9bb0dd;
     --bg-sec: #f2f2fa;
@@ -29,7 +33,9 @@
 }
 
 html {
-    font-size: 62.5%;
+    font-size: 60.5%;
+    font-weight: 700;
+    line-height: 1.5;
     overflow-x: hidden;
     scroll-padding-top: 7rem;
     scroll-behavior: smooth;
@@ -81,7 +87,7 @@ section:nth-child(even) {
     box-shadow: var(--box-shadow);
     color: var(--main-color);
     cursor: pointer;
-    font-size: 1.7rem;
+    font-size: 2rem;
     text-align: center;
     background: #fff;
 }
@@ -92,20 +98,28 @@ section:nth-child(even) {
     padding: .7rem;
     border: var(--border);
     border-radius: var(--radius);
-    color: var(--main-color);
+    /* color: var(--main-color); */
     cursor: pointer;
 }
 
-p {
+.log-btn:hover {
+    background-color: var(--hover-main);
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.search p {
     color: var(--black);
-    font-size: 1.7rem;
+    font-size: 2rem;
     padding: 10px 0;
+    font-weight: 800;
 }
 
 input, select, .s-btn {
     width: 100%;
     padding: 1rem 1.2rem;
-    font-size: 1.6rem;
+    font-size: 2rem;
+    font-weight: 800;
     color: var(--black);
     border: solid 1px var(--main-color);
     margin: 1rem 0;
@@ -163,7 +177,7 @@ select:hover {
 }
 
 .header .logo {
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: var(--black);
 }
 
@@ -172,13 +186,15 @@ select:hover {
 }
 
 .header .navbar a {
-    font-size: 1.7rem;
+    font-size: 2rem;
+    font-weight: 700;
     color: var(--light-color);
     margin-left: 2rem;
 }
 
 .header .navbar a:hover {
     color: var(--main-color);
+    font-size: 2.1rem;
 }
 
 #menu-btn {
@@ -260,8 +276,9 @@ select:hover {
 
 .banner-container .banner .content p {
     color: #eee;
-    font-size: 1.7rem;
+    font-size: 2rem;
     padding: 10px 0;
+    font-weight: 800;
 
 }
 
@@ -331,22 +348,6 @@ select:hover {
     background-color: linear-gradient(-55deg, var(--hover-main) 29%, var(--main-color) 29.1%, var(--main-color) 68%, var(--hover-main) 68.1%);
 }
 
-/* The dots/bullets/indicators */
-.dot {
-    cursor: pointer;
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbb;
-    /* border-radius: 50%; */
-    border-radius: var(--radius);
-    display: inline-block;
-    transition: background-color 0.6s ease;
-}
-
-.active, .dot:hover {
-    background-color: #717171;
-}
 
 /* Fading animation */
 .fade {
@@ -400,28 +401,33 @@ select:hover {
 
 .pharmacies .box-container .box h3 {
     color: var(--black);
-    font-size: 2rem;
+    font-size: 3rem;
 }
 
 .pharmacies .box-container .box span, .pharmacies .box-container .box p {
-    color: var(--hover-main);
-    font-size: 1.6rem;
+
+    color: var(--black);
+    font-size: 2rem;
+    padding: 10px 0;
+    font-weight: 800;
 }
 
 .pharmacies .box-container .box i {
     color: var(--main-color);
+    font-size: 1.4rem;
+    padding-inline-end: .5rem;
 
 }
 
 .pharmacies .box-container .box .share {
-    padding-top: 2rem;
+    padding-top: 1.6rem;
 }
 
 .pharmacies .box-container .box .share a {
     height: 5rem;
     width: 5rem;
     line-height: 4.5rem;
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--main-color);
     border-radius: var(--radius);
     border: var(--border);
@@ -453,18 +459,21 @@ select:hover {
 
 .footer .box-container .box a, .footer .box-container .box p {
     display: block;
-    font-size: 1.6rem;
+    font-weight: 800;
     color: var(--light-color);
     padding: 1rem 0;
+    font-size: 2rem;
+    font-weight: 800;
+
 }
 
 .footer .box-container .box a i {
-    padding-right: .5rem;
+    padding-left: .5rem;
     color: var(--main-color);
 }
 
 .footer .box-container .box a:hover i {
-    padding-right: 2rem;
+    padding-left: 2rem;
     color: var(--main-color);
 }
 
