@@ -8,6 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 </head>
 
 <style>
@@ -54,6 +55,10 @@
         background-color: var(--bg-sec);
     }
 
+    i{
+        font-size:25px;
+    }
+
 </style>
 
 <body>
@@ -80,21 +85,22 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
+                     <li class="nav-item">
                             <a href="#!" class="nav-link">
-                                <i class="fas fa-times"></i>
+                            <i class="bi bi-list-ul"></i>
                             </a>
                         </li>
+                        <!-- <li class="nav-item">
+                            <a href="" class="nav-link">
+                            <i class="bi bi-house-door"></i>
+                            </a>
+                        </li> -->
                         <li class="nav-item">
-                            <a href="#!" class="nav-link">
-                                <i class="fas fa-times"></i>
+                            <a href="/phar_profile" class="nav-link">
+                            <i class="bi bi-arrow-right-circle"></i>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#!" class="nav-link">
-                                <i class="fas fa-times"></i>
-                            </a>
-                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -158,17 +164,17 @@
                     </div>
 
                 </div>
-                <div class="card-footer bg-white position-absolute bottom-0 m-0 p-1 ">
+                <div class="card-footer bg-white position-absolute bottom-0 me-5 p-1 ">
                     <div class="input-group">
                         <div class="input-group-text bg-transparent border-0">
                             <button class="btn btn-light text-secondary">
-                                <i class="fas fa-paperclip"></i>
+                            <i class="bi bi-paperclip"></i>
                             </button>
                         </div>
                         <input type="text" class="form-control border-0" placeholder="Write a message...">
                         <div class="input-group-text bg-transparent border-0">
                             <button class="btn btn-light text-secondary">
-                                <i class="fas fa-plane"></i>
+                            <i class="bi bi-send"></i>
                             </button>
                         </div>
                     </div>
