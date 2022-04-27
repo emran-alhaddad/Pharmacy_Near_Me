@@ -17,56 +17,21 @@
 
             <div class="box-container">
 
+            @foreach ($pharmacies as $pharmacy)
                 <div class="box">
-                    <img src="images/download.jpg" alt="">
-                    <h3>Pharmacy Name</h3>
+                    <img src="{{ asset('uploads/pharmacy/avater/').'/'.$pharmacy->avater }}" alt="">
+                    <h3>{{ $pharmacy->name }}</h3>
                     <span><i class="fa-solid fa-location-dot"></i> almesbah district</span>
                     <p><i class="fa-solid fa-circle-info"></i> Lorem ipsum dolor</p>
 
                     <div class="share">
-                        <a href="#" class="fas fa-phone"></a>
+                        <a href="{{ $pharmacy->phone }}" class="fas fa-phone"></a>
                         <a href="#" class="fa-solid fa-comments"></a>
-                        <a href="#" class="fas fa-user-circle"></a>
+                        <a href="mailTo:{{ $pharmacy->email }}" class="fas fa-user-circle"></a>
                     </div>
                 </div>
-
-                <div class="box">
-                    <img src="images/download.jpg" alt="">
-                    <h3>Pharmacy Name</h3>
-                    <span><i class="fa-solid fa-location-dot"></i> almesbah district</span>
-                    <p><i class="fa-solid fa-circle-info"></i> Lorem ipsum dolor</p>
-
-                    <div class="share">
-                        <a href="#" class="fas fa-phone"></a>
-                        <a href="#" class="fa-solid fa-comments"></a>
-                        <a href="#" class="fas fa-user-circle"></a>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <img src="images/download.jpg" alt="">
-                    <h3>Pharmacy Name</h3>
-                    <span><i class="fa-solid fa-location-dot"></i> almesbah district</span>
-                    <p><i class="fa-solid fa-circle-info"></i> Lorem ipsum dolor</p>
-
-                    <div class="share">
-                        <a href="#" class="fas fa-phone"></a>
-                        <a href="#" class="fa-solid fa-comments"></a>
-                        <a href="#" class="fas fa-user-circle"></a>
-                    </div>
-                </div>
-                <div class="box">
-                    <img src="images/download.jpg" alt="">
-                    <h3>Pharmacy Name</h3>
-                    <span><i class="fa-solid fa-location-dot"></i> almesbah district</span>
-                    <p><i class="fa-solid fa-circle-info"></i> Lorem ipsum dolor</p>
-
-                    <div class="share">
-                        <a href="#" class="fas fa-phone"></a>
-                        <a href="#" class="fa-solid fa-comments"></a>
-                        <a href="#" class="fas fa-user-circle"></a>
-                    </div>
-                </div>
+            @endforeach
+                
             </div>
         </section>
         <!-- pharmacies section ends -->

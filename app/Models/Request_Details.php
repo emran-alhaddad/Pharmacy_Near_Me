@@ -15,9 +15,9 @@ class Request_Details extends Model
         'stats',
         'drug_image',
         'drug_title',
-        // 'repeat_every',
-        // 'accept_alternative',
-        // 'repeat_until'
+         'repeat_every',
+         'accept_alternative',
+         'repeat_until'
        
 
     ];

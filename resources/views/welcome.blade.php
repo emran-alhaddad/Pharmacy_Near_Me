@@ -443,7 +443,7 @@
     
 function myFunction() {
     var  durg={"data":
-         [{drug_title:"sprien",drug_image:"drug_image.png",quantity:4}]
+         [{drug_title:"sprien",drug_image:"drug_image.png",quantity:50 , accept_alternative:0}]
         };
     const myJSON = JSON.stringify(durg);
     document.getElementById("data").value=myJSON;

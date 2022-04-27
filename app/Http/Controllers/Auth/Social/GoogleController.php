@@ -31,12 +31,16 @@ class GoogleController extends Controller
         try {
 
             $user = Socialite::driver('google')->user();
-            $userCheck = User::where('google_id', $user->id)->first();
+            $userCheck = User::where(function ($query) use ($user) {
+                $query->where('google_id', $user->id)
+                    ->orWhere('email', $user->email);
+            })->first();
+            
             if ($userCheck) {
 
-              Auth::login($userCheck, $remember = true);
-                  $user=Auth::user();
-              return LoginController::checkrole($user);
+                Auth::login($userCheck, $remember = true);
+                $user = Auth::user();
+                return LoginController::checkrole($user);
             } else {
 
                 $is_pharmacy = Cookie::get('is_pharmacy');

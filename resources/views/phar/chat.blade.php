@@ -12,18 +12,18 @@
 
 <style>
     :root {
-    --black: #444;
-    --light-color: #777;
-    --box-shadow: .5rem .5rem 0 rgba(22, 160, 133, .2);
-    --text-shadow: .4rem .4rem 0 rgba(0, 0, 0, .2);
-    --border: .2rem solid var(--main-color);
+        --black: #444;
+        --light-color: #777;
+        --box-shadow: .5rem .5rem 0 rgba(22, 160, 133, .2);
+        --text-shadow: .4rem .4rem 0 rgba(0, 0, 0, .2);
+        --border: .2rem solid var(--main-color);
 
-    --main-color: #543ab7;
-    --secondary-color: #00acc1;
-    --hover-main: #817ecd;
-    --hover-secondary: #9bb0dd;
-    --bg-sec: #f2f2fa;
-}
+        --main-color: #543ab7;
+        --secondary-color: #00acc1;
+        --hover-main: #817ecd;
+        --hover-secondary: #9bb0dd;
+        --bg-sec: #f2f2fa;
+    }
 
     a.nav-link {
         color: gray;
@@ -50,7 +50,7 @@
         border-radius: 8px;
     }
 
-    body{
+    body {
         background-color: var(--bg-sec);
     }
 
@@ -104,7 +104,8 @@
 
                     <div class="pe-2">
                         <div>
-                            <div class="card card-text d-inline-block p-2 px-3 m-1 bg-primary text-white">Hi helh, are you available to chat?
+                            <div class="card card-text d-inline-block p-2 px-3 m-1 bg-primary text-white">Hi helh, are
+                                you available to chat?
                             </div>
                         </div>
                         <div>
@@ -156,24 +157,24 @@
                         </div>
                     </div>
 
-            </div>
-            <div class="card-footer bg-white position-absolute bottom-0 m-0 p-1 ">
-                <div class="input-group">
-                    <div class="input-group-text bg-transparent border-0">
-                        <button class="btn btn-light text-secondary">
-                            <i class="fas fa-paperclip"></i>
-                        </button>
-                    </div>
-                    <input type="text" class="form-control border-0" placeholder="Write a message...">
-                    <div class="input-group-text bg-transparent border-0">
-                        <button class="btn btn-light text-secondary">
-                            <i class="fas fa-plane"></i>
-                        </button>
+                </div>
+                <div class="card-footer bg-white position-absolute bottom-0 m-0 p-1 ">
+                    <div class="input-group">
+                        <div class="input-group-text bg-transparent border-0">
+                            <button class="btn btn-light text-secondary">
+                                <i class="fas fa-paperclip"></i>
+                            </button>
+                        </div>
+                        <input type="text" class="form-control border-0" placeholder="Write a message...">
+                        <div class="input-group-text bg-transparent border-0">
+                            <button class="btn btn-light text-secondary">
+                                <i class="fas fa-plane"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </body>
 
 </html>

@@ -31,10 +31,12 @@ class FacebookController extends Controller
         try {
 
             $user = Socialite::driver('facebook')->user();
-           
-            $userCheck = User::where('facebook_id', $user->id)->first();
+            $userCheck = User::where(function ($query) use ($user) {
+                $query->where('facebook_id', $user->id)
+                    ->orWhere('email', $user->email);
+            })->first();
+
             if ($userCheck) {
-               
                
                  Auth::login($userCheck, $remember = true);
                   $user=Auth::user();
@@ -42,7 +44,6 @@ class FacebookController extends Controller
                
             } else {
 
-                // return  redirect('dashboard')->with(['user' => $user]);
                 $is_pharmacy = Cookie::get('is_pharmacy');
                 $reg = new RegisterController();
                 $reg->createUser(

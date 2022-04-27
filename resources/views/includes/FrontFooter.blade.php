@@ -37,7 +37,7 @@
                 <input type="email" placeholder="enter your email">
                 <input type="submit" value="subscribe" class="btn">
             </form>
-            <img src="images/payment.png" class="payment" alt="">
+            <img src="{{ asset('auth/images/payment.png') }}" class="payment" alt="">
         </div>
 
     </div>

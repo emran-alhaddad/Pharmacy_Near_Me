@@ -2,16 +2,21 @@
 <html lang="en">
 
 <head>
-    <title>Forget Password</title>
+    <title>Sign Up</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="{{ asset('auth/images/icons/favicon.ico') }}" />
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('auth/vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('auth/css/bootstrap.min.css') }}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('auth/css/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('auth/animate/animate.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('auth/css-hamburgers/hamburgers.min.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('auth/select2/select2.min.css') }}">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{ asset('auth/css/util.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('auth/css/main.css') }}">
@@ -39,15 +44,14 @@
     <div class="bg-contact3">
         <div class="container-contact3">
             <div class="wrap-contact3 " style="height: 485px;">
-                <form action="{{ route('forget-password') }}" method="POST" class="contact3-form validate-form"
-                    style="direction: rtl;">
+                <form method="POST" action="{{ route('reset-password', $token) }}" class="contact3-form validate-form"
+                    style="direction: rtl;margin-top: -2em;">
                     @csrf
-                    <span class="contact3-form-title" style="margin-top: 1em;">
-                        هل نسيت كلمة المرور؟
-                    </span>
 
-                    <span style="color: rgb(246, 244, 244);font-size: 16x;">لا تقلق فقط ادخل بريدك الالكتروني وسنقوم
-                        بارسال رابط كلمة المرور الجديدة</span>
+                    <input type="hidden" name="token" value="{{ $token }}">
+                    <span class="contact3-form-title" style="margin-top: 1em;">
+                        تغيير كلمة المرور
+                    </span>
                     <br>
                     <br>
                     <div class="wrap-input3 validate-input" data-validate="Valid email is required: ex@abc.xyz">
@@ -55,24 +59,42 @@
                         <span class="focus-input3"></span>
                     </div>
 
+                    <div class="wrap-input3 validate-input" data-validate="password is required">
+                        <input class="input3" type="password" name="password" placeholder="كلمة السر">
+                        <span class="focus-input3"></span>
+                    </div>
+
+                    <div class="wrap-input3 validate-input" data-validate="conf-password is required">
+                        <input class="input3" type="password" name="password_confirmation"
+                            placeholder="تاكيد كلمة المرور">
+                        <span class="focus-input3"></span>
+                    </div>
+
+
 
                     <div class="container-contact3-form-btn">
-                        <button type="submit" class="contact3-form-btn">
+                        <button class="contact3-form-btn">
                             تغيير كلمة السر
                         </button>
+
+
                     </div>
 
-                    <div class="container-contact3-form-btn1" style="position: relative;top: 1em;right: 10em;">
-                        <a href="#"> تذكرت؟</a>
+                    <div class="container-contact3-form-btn1">
+                        <a href="#"> نسيت كلمة المرور؟</a>
                         <br>
-                        <a href="{{ route('login') }}">سجل الدخول</a>
+                        <a href="#"> انشاء حساب جديد</a>
+                        <br><br>
+
+
+
+
 
                     </div>
-
                     <!--<img src="images/undraw_medicine_b-1-ol.svg" style="width: 10em;height: 10em;" >-->
 
-                    <!--<img src="{{ asset('auth/images/undraw_medicine_b-1-ol.svg') }}" style="width: 10em;height: 10em;" >-->
 
+                    <!--<img src="{{ asset('auth/images/undraw_medicine_b-1-ol.svg') }}" style="width: 10em;height: 10em;" >-->
                 </form>
 
             </div>
@@ -80,6 +102,9 @@
                 style="right: 19em;">
         </div>
     </div>
+
+
+
 
 </body>
 
