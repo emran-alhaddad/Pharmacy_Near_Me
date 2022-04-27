@@ -59,14 +59,30 @@ Route::namespace('Auth')->group(function () {
 
 // Views Admin haneen Write Her
 
-Route::namespace('Admin')->group(function () {
+// Routes That Needs Authentication
+Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('/admin_dashboard', [adminController::class, 'Show_index'])->name('Show_index');
+
+    Route::group(['middleware' => ['role:pharmacy']], function () {
+
+        Route::namespace('Phar')->group(function () {
+
+            Route::get('/phar_profile', [pharmacyController::class, 'Show_index'])->name('Show_index');
+        
+            Route::get('/chat', [pharmacyController::class, 'Show_chat'])->name('Show_chat');
+        });
+
+    });
+
+    Route::group(['middleware' => ['role:admin']], function () {
+        Route::namespace('Admin')->group(function () {
+
+            Route::get('/admin_dashboard', [adminController::class, 'Show_index'])->name('Show_index');
+        });
+    });
+
 });
 
-Route::namespace('Phar')->group(function () {
 
-    Route::get('/phar_profile', [pharmacyController::class, 'Show_index'])->name('Show_index');
 
-    Route::get('/chat', [pharmacyController::class, 'Show_chat'])->name('Show_chat');
-});
+

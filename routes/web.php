@@ -29,8 +29,6 @@ use App\Http\Controllers\User\request\RequestController;
 |
 */
 
-
-
 Route::get('/', [interfacesController::class, 'index']);
 
 // Register
