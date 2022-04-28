@@ -23,7 +23,7 @@
 
 			<div class="inner">
 
-				<div class="form-content"  >
+				<div class="form-content" style="padding:1em"; >
 
 					<p class="about-p">نحن شركة تقدم خدمة جمع جميع صيدليات مدينة معينة المتوزعة في كل مناطق في موقع ويب واحد ليسهل على المواطن شراء دواء معين من اي صيديلة يختار </p>
 
