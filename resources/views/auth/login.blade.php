@@ -22,7 +22,7 @@
   <section class="h-100 gradient-form div-center" >
     <div class="container py-5 h-100" style="height: 2em; ">
     @if (session('status'))
-                <div class="alert alert-danger" role="alert" style="font-size:1.5rem;">
+                <div class="alert alert-danger alert-dismissible" role="alert">
                     {{ session('status') }}
                 </div>
             @endif

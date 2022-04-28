@@ -125,4 +125,13 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Logout
     Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
+
+
 });
+
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){ //...
+    });

@@ -76,6 +76,7 @@
                           <button type="submit" class="submit-btn2" style=" margin-top: 1em;">دخول</button>
                         </div>
                       </div>
+                      <p class="small2" style="color: var(--black);font-size: 1.6rem;">اذا كان لديك حساب اضغط  <a href="{{ route('login') }}">دخول</a></p>
                       <p class="small" style="margin-bottom: -2em;color: var(--black);font-size: 1.6rem;margin-top:.5em;">او يمكتك الدخول عبر </p>
                     <div class="share2" style="padding-top: 3rem;" >
 
