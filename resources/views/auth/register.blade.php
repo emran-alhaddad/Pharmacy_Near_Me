@@ -1,116 +1,100 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
 
 <head>
-    <title>Sign Up</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('auth/css/bootstrap.min.css') }}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('auth/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
-    <!--===============================================================================================-->
-
-
-    <link rel="stylesheet" type="text/css" href="{{ asset('auth/css/main.css') }}">
-    <!--===============================================================================================-->
+ 
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ <title>انشاء حساب </title>
+   
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{{ asset('auth/css/contact.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('auth/css/style.css') }}">
 </head>
 
-<body>
+<body style="direction: rtl;">
 
+  <section class="col-xl-10 gradient-form div-center" >
+    <div class="container py-5 h-100" style="height: 2em; ">
+      <div class="row d-flex justify-content-center align-items-center h-100" style="margin-top: -3em;">
+        <div class="col-xl-10">
+          <div class="card rounded-3 text-black">
+            <div class="row g-0" >
+              <div class="col-lg-6 x">
+                <div class="card-body p-md-5 mx-md-4">
+  
+                  <div class="text-center">
+                    <img src="{{ asset('auth/images/1553191-673ab7.svg') }}" 
+                    style="width: 4empx;height: 6em;" alt="logo">
+                 
+                    <h2 class="heading" style=" letter-spacing: 0;">  <span>انشاء الحساب </span></h2>
+                  </div>
+  
+                  <form action="{{ route('register') }}" method="POST" class="contact3-form validate-form">
+                  @csrf
+                    <div class="row">
+                      <div class="input-group input-3">
+                        <input type="email" name="name" placeholder="اسم المستخدم" class="input-control" required>
+                     </div>
+                      <div class="input-group input-3">
+                        <input type="email" name="email" placeholder="الايميل" class="input-control" required>
+                     </div>
+                      <div class="input-group input-3">
+                         <input type="password" name="password" placeholder="كلمة المرور" class="input-control" required>
+                      </div>
+                      <div class="input-group input-3">
+                        <input type="password" name="password_confirmation" placeholder="تاكيد كلمة المرور" class="input-control" required>
+                     </div>
 
-    <div class="blob">
-        <!-- This SVG is from https://codepen.io/Ali_Farooq_/pen/gKOJqx -->
-        <svg width="900" height="700" xmlns="http://www.w3.org/2000/svg" version="1.0" width="1280.000000pt"
-            height="1247.000000pt" viewBox="0 0 1280.000000 1247.000000" preserveAspectRatio="xMidYMid meet">
-
-            <g transform="translate(0.000000,1247.000000) scale(0.100000,-0.100000)" fill="#2196f3" stroke="none">
-                <path
-                    d="M9555 12464 c-461 -45 -793 -138 -1158 -320 -294 -148 -536 -323 -812 -585 -135 -129 -2468 -2359 -3670 -3509 -2487 -2378 -3078 -2946 -3138 -3009 -320 -341 -565 -789 -683 -1249 -213 -831 -55 -1718 434 -2432 197 -289 505 -603 788 -806 410 -293 851 -464 1384 -536 125 -17 555 -17 680 0 389 53 702 147 1023 308 294 148 536 323 812 585 135 129 2468 2359 3670 3509 2487 2378 3078 2946 3138 3009 320 341 565 789 683 1249 213 831 55 1718 -434 2432 -197 289 -505 603 -788 806 -401 286 -838 459 -1344 530 -100 14 -501 26 -585 18z m380 -1064 c354 -34 674 -157 956 -366 122 -91 306 -268 403 -388 420 -518 552 -1202 351 -1813 -74 -226 -175 -410 -326 -598 -37 -46 -634 -624 -1429 -1385 -750 -718 -1653 -1581 -2005 -1917 l-640 -613 -296 298 c-874 879 -2469 2497 -2467 2502 2 4 476 458 1053 1010 578 553 1451 1387 1940 1855 490 468 919 878 955 910 328 294 730 465 1190 509 80 7 212 5 315 -4z" />
-                <path
-                    d="M8135 9461 c-16 -10 -78 -68 -137 -128 -103 -105 -108 -112 -108 -152 0 -23 6 -54 14 -69 8 -15 134 -146 280 -292 l266 -265 -264 -265 c-145 -146 -271 -276 -280 -290 -9 -13 -16 -45 -16 -69 0 -44 2 -47 128 -173 124 -124 129 -128 170 -128 24 0 55 6 70 14 15 8 146 134 292 280 l265 266 265 -264 c146 -145 276 -271 290 -280 13 -9 45 -16 69 -16 44 0 47 2 173 128 l128 128 0 49 0 49 -282 283 -283 283 272 273 c149 149 276 282 282 294 15 30 14 79 -3 111 -16 29 -195 209 -236 236 -31 21 -89 21 -120 0 -14 -9 -145 -136 -293 -283 l-267 -266 -273 272 c-149 149 -282 276 -294 282 -32 16 -74 13 -108 -8z" />
-            </g>
-        </svg>
-    </div>
-
-    <div class="bg-contact3">
-        <div class="container-contact3">
-            <div class="wrap-contact3 " style="height: 606px;">
-                <form action="{{ route('register') }}" method="POST" class="contact3-form validate-form"
-                    style="direction: rtl;">
-                    @csrf
-                    <span class="contact3-form-title">
-                        انشاء حساب
-                    </span>
-
-                    <div class="wrap-contact3-form-radio">
-                        <div class="contact3-form-radio m-r-42">
-                            <input class="input-radio3" id="radio1" type="radio" name="user_type" value="client"
-                                checked="checked" onchange="changeClient()">
-                            <label class="label-radio3" for="radio1">
-                                مستخدم
-                            </label>
-                        </div>
-
-                        <div class="contact3-form-radio "style="margin-right: 2em;">
-                            <input class="input-radio3" id="radio3" type="radio" name="user_type" value="pharmacy"
-                                onchange="changePharmacy()">
-                            <label class="label-radio3" for="radio3">
-                                صيدلي
-                            </label>
-                        </div>
-
-
-                    </div>
-
-                    <div class="wrap-input3 validate-input" data-validate="Name is required">
-                        <input class="input3" type="text" name="name" placeholder=الاسم>
-                        <span class="focus-input3"></span>
-                    </div>
-
-                    <div class="wrap-input3 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        <input class="input3" type="text" name="email" placeholder=" الايميل ">
-                        <span class="focus-input3"></span>
-                    </div>
-
-                    <div class="wrap-input3 validate-input" data-validate="password is required">
-                        <input class="input3" type="password" name="password" placeholder="كلمة السر">
-                        <span class="focus-input3"></span>
-                    </div>
-
-                    <div class="wrap-input3 validate-input" data-validate="conf-password is required">
-                        <input class="input3" type="password" name="password_confirmation"
-                            placeholder="تاكيد كلمة المرور">
-                        <span class="focus-input3"></span>
-                    </div>
-
-
-                    <div class="container-contact3-form-btn">
-                        <button type="submit" class="contact3-form-btn">
-                            تسجيل الحساب
+                     <div class="input-group input-3">
+                      <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" onchange="changeClient()" name="user_type">
+                        مستخدم
                         </button>
-                    </div>
-                </form>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          <li><a class="dropdown-item" href="#"  onchange="changePharmacy()" name="user_type">صيدلي</a></li>
+                         
+                        </ul>
+                      </div>
+                   </div>
 
-                <div class="social">
-                    <div class="social-divider">
-                        <span>او يمكنك إنشاء حساب عن طريق</span>
-                    </div>
+                      </div>
 
-                    <div class="social-images">
-                        <a id="facebook" href="{{ route('facebook-client') }}"><img
-                                src="{{ asset('auth/images/Facebook.png') }}"></a>
-                        <a id="google" href="{{ route('google-client') }}"><img
-                                src="{{ asset('auth/images/Google.png') }}"></a>
+              
+                  
+                    
+                      
+                      
+                      <div class="row">
+                        <div class="input-group" >
+                          <button type="submit" class="submit-btn2" style=" margin-top: 1em;">دخول</button>
+                        </div>
+                      </div>
+                      <p class="small" style="margin-bottom: -2em;color: var(--black);font-size: 1.6rem;margin-top:.5em;">او يمكتك الدخول عبر </p>
+                    <div class="share2" style="padding-top: 3rem;" >
+
+                      <a href="{{ route('facebook-client') }}" class="fa-brands fa-facebook"></a>
+                      <a href="{{ route('google-client') }}" class="fa-brands fa-google"></a>
                     </div>
+                  
+                     
+                  </form>
+  
                 </div>
+              </div>
+              <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+              
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-
-<script>
+  </section>
+  <script>
     function changePharmacy() {
         document.getElementById('facebook').href = "{{ route('facebook-pharmacy') }}";
         document.getElementById('google').href = "{{ route('google-pharmacy') }}";
@@ -121,6 +105,9 @@
         document.getElementById('google').href = "{{ route('google-client') }}";
     }
 </script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
