@@ -18,7 +18,7 @@
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <!-- LOGO -->
         <tr>
-            <td bgcolor="var(--hover-main)" align="center">
+            <td bgcolor="var(--hover-secondary)" align="center">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
                         <td align="center" valign="top" style="padding: 40px 10px 40px 10px;"> </td>
@@ -27,7 +27,7 @@
             </td>
         </tr>
         <tr>
-            <td bgcolor="var(--hover-main)" align="center" style="padding: 0px 10px 0px 10px;">
+            <td bgcolor="var(--hover-secondary)" align="center" style="padding: 0px 10px 0px 10px;">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
                         <td bgcolor="#ffffff" align="center" valign="top"
@@ -60,9 +60,9 @@
                                         <table border="0" cellspacing="0" cellpadding="0">
                                             <tr>
                                                 <td align="center" style="border-radius: 3px;"
-                                                    bgcolor="var(--hover-main)" class="btn"><a
+                                                    bgcolor="var(--hover-secondary)" class="btn"><a
                                                         href="{{ $data['activation_url'] }} " target="_blank"
-                                                        style="font-size: 20px; font-family: Helvetica, Arial, sans-serif;  text-decoration: none;  text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid var(--hover-main); display: inline-block;">تأكيد
+                                                        style="font-size: 20px; font-family: Helvetica, Arial, sans-serif;  text-decoration: none;  text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid var(--hover-secondary); display: inline-block;">تأكيد
                                                         حسابك </a></td>
                                             </tr>
                                         </table>
@@ -81,7 +81,7 @@
                         <td bgcolor="#ffffff" align="right"
                             style="padding: 20px 30px 20px 30px; color: var(--black); font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
                             <p style="margin: 0;"><a href="{{ $data['activation_url'] }}" target="_blank"
-                                    style="color: var(--hover-main);">{{ $data['activation_url'] }}</a></p>
+                                    style="color: var(--hover-secondary);">{{ $data['activation_url'] }}</a></p>
                         </td>
                     </tr>
 
