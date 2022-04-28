@@ -56,7 +56,7 @@ img {
 
 
 .inner {
-    margin-bottom: 29em;
+  margin-bottom: 22em;
     width: 63em;
     height: 25em;
     border-radius: var(--inner-border-rud);
@@ -190,7 +190,7 @@ img {
     box-shadow: 5px 5px 89px rgba(0, 102, 255, 0.21);
     will-change: border-radius, transform, opacity;
     animation-delay: 200ms;
-    background: var(--back-color);
+    background: #543ab7;
 }
 
 .gooey:before {
