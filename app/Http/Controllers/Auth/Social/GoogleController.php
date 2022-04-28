@@ -45,7 +45,7 @@ class GoogleController extends Controller
 
                 $is_pharmacy = Cookie::get('is_pharmacy');
                 $reg = new RegisterController();
-                $data = $reg->createUser(
+                $user = $reg->createUser(
                     [
                         'name' => $user->name,
                         'email' => $user->email,
@@ -56,8 +56,8 @@ class GoogleController extends Controller
                     ]
                 );
 
-                Auth::login($data['user']);
-                return redirect()->route($data['route']);
+                Auth::login($user);
+                return LoginController::checkrole(Auth::user());
             }
         } catch (\Exception $e) {
             dd($e->getMessage());

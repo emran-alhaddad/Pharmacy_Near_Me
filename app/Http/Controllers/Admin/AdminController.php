@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Front;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class adminController extends Controller
+class AdminController extends Controller
 {
-    public function Show_index(){
+    public function index()
+    {
         return view('admin.index');
     }
 }

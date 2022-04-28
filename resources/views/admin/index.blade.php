@@ -2,45 +2,41 @@
 @section('admin_pages')
 
 
-<div class="wrapper">
-    <div class="row ">
+<div class="wrapper bg-white">
+    <div class="row  ">
         <div class="col-12 col-m-12 col-sm-12">
-        <div class="card">
+        <div class="card bg-white">
             <div class="card-header">
-                <h3>Table</h3>
+                <h3>الصيدلية</h3>
                 <i class="fas fa-ellipsis-h"></i>
             </div>
             <div class="card-content">
-                <table class="table no-margin">
+                <table class="table no-margin ">
                     <thead class="success">
                         <tr>
-                            <th>Name</th>
-                            <th>Sales</th>
-                            <th>Actual</th>
-                            <th>Some</th>
-                            <th>Thing</th>
-                            <th>Variance</th>
+                            <th>الاسم</th>
+                            <th>العنوان</th>
+                            <th>المربع</th>
+                            <th>المنطقة</th>
+                            <th>الايميل</th>
+                            <th>الحالة</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><i class="fas fa-user text-primary"></i> Some Name</td>
+                            <td><i class="fas fa-user text-primary"></i> ابولو</td>
                             <td>
                                 <div class="d-flex">
-                                    <span class="pr-2 d-flex align-items-center">85%</span>
+                                    <span class="pr-2 d-flex align-items-center"> الضربة</span>
                                 </div>
                             </td>
-                            <td>32,435</td>
-                            <td>53,462</td>
-                            <td>67,453</td>
-                            <td><div class="progress-wrapper">
-                                    <p>
-                                        More than 6 hours <span class="float-right">20%</span>
-                                    </p>
-                                    <div class="progress">
-                                        <div class="bg-danger" style="width: 20%"></div>
-                                    </div>
-                                </div></td>
+                            <td>المسبح</td>
+                            <td>القاهرة</td>
+                            <td>Apollo@yahoo.com</td>
+                            <td>
+                                <button class="btn btn-success text-white" >مفعل</button>
+
+                            </td>
                         </tr>
 
                     </tbody>

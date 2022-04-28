@@ -8,9 +8,16 @@ use App\Models\Advertising;
 
 class AdvertiseController extends Controller
 {
-    //
+    public function index()
+   {
+     $ads=new Advertising();
+     $ads_data=$ads->get();
+     dd($ads_data);
+    //  return view('welcome');
 
-    public function createAds(Request $request)
+   } 
+
+    public function create(Request $request)
     {
          $ads=new Advertising();
          $ads->admin_id=72;
@@ -23,14 +30,10 @@ class AdvertiseController extends Controller
          
     }
 
-   public function showAds()
+   public function add()
    {
-       return view('welcome');
+    //    return view('welcome');
    }
-   public function retreivAds()
-   {
-     $ads=new Advertising();
-     $ads_data=$ads->get();
-     dd($ads_data);
-   } 
+
+   
 }

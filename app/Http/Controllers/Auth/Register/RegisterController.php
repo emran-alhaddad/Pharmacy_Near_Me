@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth\Register;
 
+use App\Http\Controllers\Auth\Login\LoginController;
 use App\Http\Controllers\Controller;
 use App\Mail\VerifyEmail;
 use App\Models\Admin;
@@ -10,6 +11,7 @@ use App\Models\Pharmacy;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
@@ -19,13 +21,12 @@ class RegisterController extends Controller
 {
     public function index()
     {
-        //return view('auth.register');
-        return view('welcome');
+        if (Auth::check()) return LoginController::checkrole(Auth::user());
+        return view('auth.register');
     }
 
     public function create(Request $request)
     {
-        $res = "";
         $this->validateFields($request);
 
         $user = new User();
@@ -48,20 +49,20 @@ class RegisterController extends Controller
         if ($request->has('user_type')) {
             switch ($request->user_type) {
                 case 'client':
-                    $res =  $this->registerClient($user, $request);
+                    $this->registerClient($user, $request);
                     break;
                 case 'pharmacy':
-                    $res =  $this->registerPharmacy($user, $request);
+                    $this->registerPharmacy($user, $request);
                     break;
                 default:
-                    return "<h1 style='color:red'> Access Denied  Unknown User Type!!!</h1>";
+                    return back()->with('status', "حدث خطأ غير متوقع ... لم نتمكن من تسجيل حسابك !! يرجى المحاولة مرة أخرى");
             }
 
             if (!$request->has('email_verified_at'))
                 Mail::to($request->email)->send(new VerifyEmail($email_data));
-            return $res;
+            return  redirect()->route('login')->with('status', 'لقد تم ارسال رابط تفعيل الحساب الى الايميل الخاص بك ');
         } else
-            return "<h1 style='color:red'>Access Denied !!!</h1>";
+            return back()->with('status', "حدث خطأ غير متوقع ... لم نتمكن من تسجيل حسابك !! يرجى المحاولة مرة أخرى");
     }
 
     public function createUser(array $request)
@@ -71,20 +72,20 @@ class RegisterController extends Controller
         $user->email = $request['email'];
         $user->password = Hash::make($request['password']);
         $user->email_verified_at = Carbon::now()->timestamp;
-        if(isset($request['google_id']))$user->google_id = $request['google_id'];
-        if(isset($request['facebook_id']))$user->facebook_id = $request['facebook_id'];
-        
+        if (isset($request['google_id'])) $user->google_id = $request['google_id'];
+        if (isset($request['facebook_id'])) $user->facebook_id = $request['facebook_id'];
+
         $token = Str::uuid();
         $user->remember_token = $token;
 
-            switch ($request['user_type']) {
-                case 'client':
-                    return ['user'=>$user,'route'=>$this->registerClient($user)];
-                    break;
-                case 'pharmacy':
-                    return ['user'=>$user,'route'=>$this->registerPharmacy($user)];
-                    break;
-            }
+        switch ($request['user_type']) {
+            case 'client':
+                return $this->registerClient($user);
+                break;
+            case 'pharmacy':
+                return $this->registerPharmacy($user);
+                break;
+        }
     }
 
 
@@ -98,7 +99,7 @@ class RegisterController extends Controller
                 'user_id' => $user->id,
             ]);
 
-            return 'client-profile';
+            return $user;
         }
     }
 
@@ -110,8 +111,7 @@ class RegisterController extends Controller
             Pharmacy::create([
                 'user_id' => $user->id,
             ]);
-            return 'pharmacy-profile';
-
+            return $user;
         }
     }
 
@@ -123,7 +123,7 @@ class RegisterController extends Controller
             Admin::create([
                 'user_id' => $user->id,
             ]);
-            return redirect()->route('admin-profile');
+            return redirect()->route('admin-dashboard');
         }
     }
 

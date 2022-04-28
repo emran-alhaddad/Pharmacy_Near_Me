@@ -3,25 +3,16 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\QueryController;
 use App\Models\City;
 use App\Models\zone;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class interfacesController extends Controller
 {
-    public function query()
-    {
-        return DB::table('users')
-            ->join('pharmacies', 'users.id', 'pharmacies.user_id')
-            ->join('zones', 'zones.id','pharmacies.zone_id')
-            ->join('cities', 'cities.id','zones.city_id')
-            ->select('users.*');
-    }
 
-    public function index()
+    public function index($search=null)
     {
-        $pharmacies =  $this->query()->get();
+        $pharmacies =  !$search? QueryController::pharmacies()->get():$search;
 
         return view('front.index',[
             'pharmacies'=>$pharmacies,
@@ -41,16 +32,13 @@ class interfacesController extends Controller
     public function ads()
     {
         return view('front.ads');
-        // return "ads Page";
     }
     public function about()
     {
         return view('front.about');
-        // return "about Page";
     }
     public function confirm()
     {
         return view('email.verify-email');
-        // return "about Page";
     }
 }

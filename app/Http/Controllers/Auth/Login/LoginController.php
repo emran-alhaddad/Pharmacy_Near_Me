@@ -32,7 +32,7 @@ class LoginController extends Controller
 
     public function login()
     {
-        
+        if(Auth::check()) return $this->checkrole(Auth::user());
         return view('auth.login');
     }
 
@@ -41,14 +41,14 @@ class LoginController extends Controller
        
         
         if ($user->hasRole('admin'))
-        return redirect()->route('admin-profile');
+        return redirect()->route('admin-dashboard');
 
     elseif ($user->hasRole('client')) 
-    return redirect()->route('client-profile');
+    return redirect()->route('client-dashboard');
       
 
     elseif ($user->hasRole('pharmacy'))
-        return redirect()->route('pharmacy-profile');
+        return redirect()->route('pharmacy-dashboard');
    
 
         
