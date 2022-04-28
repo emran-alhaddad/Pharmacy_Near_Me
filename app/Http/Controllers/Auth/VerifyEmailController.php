@@ -22,6 +22,6 @@ class VerifyEmailController extends Controller
             return LoginController::checkrole($user);
         }
         else
-        return redirect()->route('forget-password')->with('status','انتهت صلاحية رابط التفعيل هذا ');
+        return redirect()->route('forget-password')->with('error','انتهت صلاحية رابط التفعيل هذا ');
     }
 }

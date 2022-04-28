@@ -28,12 +28,10 @@ class RegisterController extends Controller
     public function create(Request $request)
     {
         $this->validateFields($request);
-
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-
 
         if (!$request->has('email_verified_at')) {
             $token = Str::uuid();
@@ -45,7 +43,6 @@ class RegisterController extends Controller
         }
 
 
-
         if ($request->has('user_type')) {
             switch ($request->user_type) {
                 case 'client':
@@ -55,14 +52,14 @@ class RegisterController extends Controller
                     $this->registerPharmacy($user, $request);
                     break;
                 default:
-                    return back()->with('status', "حدث خطأ غير متوقع ... لم نتمكن من تسجيل حسابك !! يرجى المحاولة مرة أخرى");
+                    return back()->with('error', "حدث خطأ غير متوقع ... لم نتمكن من تسجيل حسابك !! يرجى المحاولة مرة أخرى");
             }
 
             if (!$request->has('email_verified_at'))
                 Mail::to($request->email)->send(new VerifyEmail($email_data));
-            return  redirect()->route('login')->with('status', 'لقد تم ارسال رابط تفعيل الحساب الى الايميل الخاص بك ');
+            return  redirect()->route('login')->with('error', 'لقد تم ارسال رابط تفعيل الحساب الى الايميل الخاص بك ');
         } else
-            return back()->with('status', "حدث خطأ غير متوقع ... لم نتمكن من تسجيل حسابك !! يرجى المحاولة مرة أخرى");
+            return back()->with('error', "حدث خطأ غير متوقع ... لم نتمكن من تسجيل حسابك !! يرجى المحاولة مرة أخرى");
     }
 
     public function createUser(array $request)
@@ -85,6 +82,8 @@ class RegisterController extends Controller
             case 'pharmacy':
                 return $this->registerPharmacy($user);
                 break;
+            default:
+            return back()->with('error', 'عذا ... حدث خطأ غير متوقع .. لم نستطع انشاء حساب جديد لك ... يرجى المحاولة مرة اخرى');
         }
     }
 
@@ -132,7 +131,7 @@ class RegisterController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|max:255|email',
-            'password' => 'required|max:255|confirmed'
+            'password' => 'required|min:8|confirmedd'
         ]);
     }
 }

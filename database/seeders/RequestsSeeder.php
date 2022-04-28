@@ -18,13 +18,13 @@ class RequestsSeeder extends Seeder
      */
     public function run()
     {
-        for ($j = 1; $j <= 5; $j++) {
+        for ($i = 21; $i <=25; $i++) {
 
-            for ($i = 1; $i <= 5; $i++) {
+          
 
                 $order_request = new OrderRequest();
-                $order_request->client_id = $i + 61;
-                $order_request->pharmacy_id = $j;
+                $order_request->client_id = $i;
+                $order_request->pharmacy_id = $i-10;
                 if ($order_request->save()) {
                     DB::table('request__details')->insert([
                         'request_id' => $order_request->id,
@@ -35,7 +35,7 @@ class RequestsSeeder extends Seeder
                         'repeat_until' => Carbon::now()->toDateTime(),
                     ]);
                 }
-            }
+            
         }
     }
 }

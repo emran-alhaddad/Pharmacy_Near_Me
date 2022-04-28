@@ -17,8 +17,17 @@ class CitiesSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 20; $i++) {
-            City::create([ 'name' => Str::random(8) ]);
-        }
+        $filePathName=base_path().'\names\cities.txt';
+       
+        $fileName = fopen($filePathName, "r");
+        
+        
+        $x=0;
+        while (($line = fgets($fileName)) !== false) 
+        {
+       
+            City::create([ 'name' => $line ]);
+            $x++;
+         }
     }
 }

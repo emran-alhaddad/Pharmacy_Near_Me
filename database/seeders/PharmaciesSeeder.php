@@ -19,54 +19,83 @@ class PharmaciesSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 20; $i++) {
 
+        $filePathName=base_path().'\names\phar.txt';
+        $filePathEmail=base_path().'\names\email.txt';
+        $fileName = fopen($filePathName, "r");
+        $fileEmail = fopen($filePathEmail, "r");
+        
+        $x=1;
+        while (($line = fgets($fileName)) !== false ) 
+        {
             $user = new User();
-            $user->name = Str::random(8);
-            $user->email = Str::random(12) . '@gmail.com';
             $user->password = Hash::make('123456789');
+            $user->is_active = 1;
+             $user->name = $line;
+            $user->email =fgets($fileEmail);
             $user->email_verified_at = Carbon::now()->timestamp;
-            $user->is_active = 1;
+            if($x==10)
+            $x=1;      
+
+      
             if ($user->save()) {
-                $user->attachRole('pharmacy');
-                Pharmacy::create([
-                    'user_id' => $user->id,
-                    'zone_id' => $i
-                ]);
-            }
-        }
+                        $user->attachRole('pharmacy');
+                        Pharmacy::create([
+                            'user_id' => $user->id,
+                            'zone_id' => $x
+                        ]);
+                    }
+    }
+  
 
-        for ($i = 1; $i <= 10; $i++) {
+        // for ($i = 1; $i <= 20; $i++) {
 
-            $user = new User();
-            $user->name = Str::random(8);
-            $user->email = Str::random(12) . '@gmail.com';
-            $user->password = Hash::make('123456789');
-            $user->is_active = 1;
-            if ($user->save()) {
-                $user->attachRole('pharmacy');
-                Pharmacy::create([
-                    'user_id' => $user->id,
-                    'zone_id' => $i
-                ]);
-            }
-        }
+        //     $user = new User();
+        //     $user->name = Str::random(8);
+        //     $user->email = Str::random(12) . '@gmail.com';
+        //     $user->password = Hash::make('123456789');
+        //     $user->email_verified_at = Carbon::now()->timestamp;
+        //     $user->is_active = 1;
+        //     if ($user->save()) {
+        //         $user->attachRole('pharmacy');
+        //         Pharmacy::create([
+        //             'user_id' => $user->id,
+        //             'zone_id' => $i
+        //         ]);
+        //     }
+        // }
 
-        for ($i = 20; $i <= 50; $i++) {
+        // for ($i = 1; $i <= 10; $i++) {
 
-            $user = new User();
-            $user->name = Str::random(8);
-            $user->email = Str::random(12) . '@gmail.com';
-            $user->password = Hash::make('123456789');
-            $user->is_active = 1;
-            if ($user->save()) {
-                $user->attachRole('pharmacy');
-                Pharmacy::create([
-                    'user_id' => $user->id,
-                    'zone_id' => $i
-                ]);
-            }
-        }
+        //     $user = new User();
+        //     $user->name = Str::random(8);
+        //     $user->email = Str::random(12) . '@gmail.com';
+        //     $user->password = Hash::make('123456789');
+        //     $user->is_active = 1;
+        //     if ($user->save()) {
+        //         $user->attachRole('pharmacy');
+        //         Pharmacy::create([
+        //             'user_id' => $user->id,
+        //             'zone_id' => $i
+        //         ]);
+        //     }
+        // }
+
+        // for ($i = 20; $i <= 50; $i++) {
+
+        //     $user = new User();
+        //     $user->name = Str::random(8);
+        //     $user->email = Str::random(12) . '@gmail.com';
+        //     $user->password = Hash::make('123456789');
+        //     $user->is_active = 1;
+        //     if ($user->save()) {
+        //         $user->attachRole('pharmacy');
+        //         Pharmacy::create([
+        //             'user_id' => $user->id,
+        //             'zone_id' => $i
+        //         ]);
+        //     }
+        // }
         
 
     }

@@ -17,25 +17,39 @@ class ZonesSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 20; $i++) {
+        $filePathName=base_path().'\names\zones.txt';
+       
+        $fileName = fopen($filePathName, "r");
+        $x=1;
+        while (($line = fgets($fileName)) !== false) 
+        {
+           if($x==3)
+            $x=1;
             zone::create([
-                'city_id' => $i,
-                'name' => Str::random(8)
+                'city_id' => $x,
+                'name' => $line
             ]);
-        }
+            $x++;
+         }
+        // for ($i = 1; $i <= 20; $i++) {
+        //     zone::create([
+        //         'city_id' => $i,
+        //         'name' => Str::random(8)
+        //     ]);
+        // }
 
-        for ($i = 1; $i <= 20; $i++) {
-            zone::create([
-                'city_id' => $i,
-                'name' => Str::random(8)
-            ]);
-        }
+        // for ($i = 1; $i <= 20; $i++) {
+        //     zone::create([
+        //         'city_id' => $i,
+        //         'name' => Str::random(8)
+        //     ]);
+        // }
 
-        for ($i = 1; $i <= 20; $i++) {
-            zone::create([
-                'city_id' => $i,
-                'name' => Str::random(8)
-            ]);
-        }
+        // for ($i = 1; $i <= 20; $i++) {
+        //     zone::create([
+        //         'city_id' => $i,
+        //         'name' => Str::random(8)
+        //     ]);
+        // }
     }
 }
