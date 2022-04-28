@@ -20,8 +20,8 @@ class PharmaciesSeeder extends Seeder
     public function run()
     {
 
-        $filePathName='D:\refernce_osama\names\phar.txt';
-        $filePathEmail='D:\refernce_osama\names\email.txt';
+        $filePathName=base_path().'\names\phar.txt';
+        $filePathEmail=base_path().'\names\email.txt';
         $fileName = fopen($filePathName, "r");
         $fileEmail = fopen($filePathEmail, "r");
         

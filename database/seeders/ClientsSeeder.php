@@ -17,8 +17,8 @@ class ClientsSeeder extends Seeder
      * @return void
      */
     public function run()
-    {   $filePathName='D:\refernce_osama\names\users.txt';
-        $filePathEmail='D:\refernce_osama\names\client_email.txt';
+    {   $filePathName=base_path().'\names\users.txt';
+        $filePathEmail=base_path().'\names\client_email.txt';
         $fileName = fopen($filePathName, "r");
         $fileEmail = fopen($filePathEmail, "r");
         
