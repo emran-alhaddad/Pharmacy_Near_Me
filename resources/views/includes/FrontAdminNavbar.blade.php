@@ -11,6 +11,7 @@
     <link href="{{ asset('admin/css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/main2.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- <link rel="stylesheet" href="//cdn.rawgit.com/morteza/bootstrap-rtl/v3.3.4/dist/css/bootstrap-rtl.min.css"> -->
 </head>
 <body class="overlay-scrollbar">
 
@@ -31,96 +32,7 @@
 			<input type="text" name="Search" class="navbar-search-input"
                 placeholder="">
 		</form>
-		<ul class="navbar-nav nav-right">
-			<li class="nav-item mode"><a class="nav-link" href="#"
-				onclick="switchTheme()"> <i class="fas fa-moon dark-icon"></i> <i
-					class="fas fa-sun light-icon"></i>
-            </a></li>
 
-			<li class="nav-item dropdown"><a class="nav-link"> <i
-					class="fas fa-bell dropdown-toggle" data-toggle="notification-menu"></i>
-					<span class="navbar-badge">15</span>
-            </a>
-
-
-
-				<ul id="notification-menu" class="dropdown-menu notification-menu">
-					<div class="dropdown-menu-header">
-						<span> Notifications </span>
-					</div>
-					<div
-						class="dropdown-menu-content overlay-scrollbar scrollbar-hover">
-						<li class="dropdown-menu-item"><a href="#"
-							class="dropdown-menu-link">
-								<div>
-									<i class="fas fa-gift"></i>
-								</div> <span> Lorem ipsum dolor sit amet, consectetuer
-									adipiscing elit. <br> <span> 15/07/2020 </span>
-							</span>
-						</a></li>
-						<li class="dropdown-menu-item"><a href="#"
-							class="dropdown-menu-link">
-								<div>
-									<i class="fas fa-tasks"></i>
-								</div> <span> Lorem ipsum dolor sit amet, consectetuer
-									adipiscing elit. <br> <span> 15/07/2020 </span>
-							</span>
-						</a></li>
-						<li class="dropdown-menu-item"><a href="#"
-							class="dropdown-menu-link">
-								<div>
-									<i class="fas fa-gift"></i>
-								</div> <span> Lorem ipsum dolor sit amet, consectetuer
-									adipiscing elit. <br> <span> 15/07/2020 </span>
-							</span>
-						</a></li>
-					</div>
-					<div class="dropdown-menu-footer">
-						<span> View all notifications </span>
-					</div>
-                </ul></li>
-
-
-
-
-			<li class="nav-item avt-wrapper">
-				<div class="avt dropdown">
-					<img src="{{asset('admin/img/user.svg')}}" alt="User image"
-						class="dropdown-toggle" data-toggle="user-menu">
-					<ul id="user-menu" class="dropdown-menu">
-						<li class="dropdown-menu-item"><a class="dropdown-menu-link">
-								<div>
-									<i class="fas fa-user-tie"></i>
-								</div> <span>Profile</span>
-						</a></li>
-						<li class="dropdown-menu-item"><a href="#"
-							class="dropdown-menu-link">
-								<div>
-									<i class="fas fa-cog"></i>
-								</div> <span>Settings</span>
-						</a></li>
-						<li class="dropdown-menu-item"><a href="#"
-							class="dropdown-menu-link">
-								<div>
-									<i class="far fa-credit-card"></i>
-								</div> <span>Payments</span>
-						</a></li>
-						<li class="dropdown-menu-item"><a href="#"
-							class="dropdown-menu-link">
-								<div>
-									<i class="fas fa-spinner"></i>
-								</div> <span>Projects</span>
-						</a></li>
-						<li class="dropdown-menu-item"><a href="#"
-							class="dropdown-menu-link">
-								<div>
-									<i class="fas fa-sign-out-alt"></i>
-								</div> <span>Logout</span>
-						</a></li>
-					</ul>
-				</div>
-			</li>
-		</ul>
 	</div>
 
 
