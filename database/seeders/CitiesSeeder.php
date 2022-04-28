@@ -17,7 +17,7 @@ class CitiesSeeder extends Seeder
      */
     public function run()
     {
-        $filePathName='D:\refernce_osama\names\cities.txt';
+        $filePathName=base_path().'\names\cities.txt';
        
         $fileName = fopen($filePathName, "r");
         

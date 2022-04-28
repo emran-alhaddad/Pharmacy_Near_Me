@@ -17,7 +17,7 @@ class ZonesSeeder extends Seeder
      */
     public function run()
     {
-        $filePathName='D:\refernce_osama\names\zones.txt';
+        $filePathName=base_path().'\names\zones.txt';
        
         $fileName = fopen($filePathName, "r");
         $x=1;
