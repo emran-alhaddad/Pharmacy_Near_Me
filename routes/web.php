@@ -115,15 +115,12 @@ Route::group(['middleware' => 'auth'], function () {
         // Admin Dashboard
         Route::get('/_admin/', [AdminController::class,'index'])->name('admin-dashboard');
 
-        Route::get('/phar', [adminController::class, 'Show_phar'])->name('Show_phar');
-        Route::get('/ads', [adminController::class, 'Show_ads'])->name('Show_ads');
-        Route::get('/user', [adminController::class, 'Show_user'])->name('Show_user');
-        Route::get('/complaints', [adminController::class, 'Show_complaints'])->name('Show_complaints');
-        Route::get('/notifications', [adminController::class, 'Show_notifications'])->name('Show_notifications');
-        Route::get('/cities', [adminController::class, 'Show_cities'])->name('Show_cities');
-        Route::get('/zone', [adminController::class, 'Show_zone'])->name('Show_zone');
-
-        Route::get('/_admin/', [AdminController::class, 'index'])->name('admin-dashboard');
+        Route::get('/_admin/pharmacies', [AdminController::class, 'showPharmacies'])->name('admin-pharmacies');
+        Route::get('/_admin/users', [AdminController::class, 'showUsers'])->name('admin-users');
+        Route::get('/_admin/complaints', [AdminController::class, 'showCompliants'])->name('admin-compliants');
+        Route::get('/_admin/notifications', [AdminController::class, 'showNotifications'])->name('admin-notifications');
+        Route::get('/_admin/cities', [AdminController::class, 'showCities'])->name('admin-cities');
+        Route::get('/_admin/zones', [AdminController::class, 'showZones'])->name('admin-zones');
 
         Route::get('/_admin/adds', [AdvertiseController::class, 'index'])->name('admin-adds');
         Route::get('/_admin/adds/create', [AdvertiseController::class, 'add'])->name('admin-adds-create');

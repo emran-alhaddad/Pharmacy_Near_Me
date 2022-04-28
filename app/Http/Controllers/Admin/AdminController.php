@@ -12,31 +12,27 @@ class AdminController extends Controller
         return view('admin.index');
     }
 
-    public function Show_phar(){
+    public function showPharmacies(){
         return view('admin.phar');
     }
 
-    public function Show_ads(){
-        return view('admin.ads');
-    }
-
-    public function Show_user(){
+    public function showUsers(){
         return view('admin.user');
     }
 
-    public function Show_complaints(){
+    public function showCompliants(){
         return view('admin.complaints');
     }
 
-    public function Show_notifications(){
+    public function showNotifications(){
         return view('admin.notifications');
     }
 
-    public function Show_cities(){
+    public function showCities(){
         return view('admin.cities');
     }
 
-    public function Show_zone(){
+    public function showZones(){
         return view('admin.zone');
     }
 }
