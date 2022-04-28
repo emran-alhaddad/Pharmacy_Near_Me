@@ -438,27 +438,32 @@
                     {{ session('status') }}
                 </div>
             @endif
-            <form  action={{ route('pharmacy-reply') }} class="form" method="post">
+            <form  action={{ route('ads_add') }} class="form" method="post">
                 @csrf
                 <input type="hidden" id="data" name="data" value="" class="form-controll">
                 <br>
-                request id:
-                <input type="number" name="id" class="form-controll">
+                <!-- descripe id:
+                <input type="number" name="descripe" class="form-controll">
+                <br> -->
+                descripe:
+                <input type="text" name="descripe" class="form-controll">
                 <br>
-                message:
-                <input type="text" name="message" class="form-controll">
+                owner:
+                <input type="text" name="owner" class="form-controll">
                 <br>
                 <br>
-                Details:
+                image:
+                <input type="text" name="image" class="form-controll">
                 <br>
-                request_details_id:
-                <input type="number" id="request_details_id" class="form-controll">
-                <br>
-                drug_price:
-                <input type="number" id="drug_price" class="form-controll">
-                <br>
-                alt_drug_image:
-                <input type="text" id="alt_drug_image" class="form-controll">
+                <!--
+                image:
+                <input type="number" id="image" class="form-controll">
+                <br> -->
+               
+                <!-- <input type="number" name="url" id="drug_price" class="form-controll">
+                <br> -->
+                url::
+                <input type="text" name="url" id="alt_drug_image" class="form-controll">
                 <br>
                 alt_drug_title:
                 <input type="text" id="alt_drug_title" class="form-controll">

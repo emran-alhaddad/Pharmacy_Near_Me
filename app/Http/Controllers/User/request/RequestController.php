@@ -7,13 +7,20 @@ use Illuminate\Http\Request as requestData;
 use Illuminate\Support\Facades\DB;
 use App\Models\Request as Add;
 use App\Models\Request_Details;
+use App\Http\Controllers\QueryController;
 
 class RequestController extends Controller
 {
     //
     public function index()
     {
+        $user_requests = QueryController::userRequests(Auth::user()->id)->get();
         return "view request Form";
+    }
+
+    public function add()
+    {
+        // return view('add-request');
     }
     public function insert(requestData $request )
     {

@@ -14,6 +14,7 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         //
      'pharmacies',
-     'rquest-add'        
+     'rquest-add',        
+      '/ads_add'
     ];
 }

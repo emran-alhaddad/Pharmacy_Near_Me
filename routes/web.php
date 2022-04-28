@@ -17,7 +17,7 @@ use App\Http\Controllers\User\UserSearchController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\User\request\RequestController;
-
+use App\Http\Controllers\Admin\AdvertiseController;
 
 
 
@@ -85,8 +85,10 @@ Route::group(['middleware' => 'auth'], function () {
         })->name('client-dashboard');
 
         // Client Request
-        Route::get('/client/rquest', [RequestController::class, 'index'])->name('client-request');
+        Route::get('/client/rquests', [RequestController::class, 'index'])->name('client-requests');
+        Route::get('/client/rquest/add',[RequestController::class,'add'])->name('client-request-add');
         Route::post('/client/rquest/add', [RequestController::class, 'create']);
+
 
     });
 
@@ -115,12 +117,19 @@ Route::group(['middleware' => 'auth'], function () {
         
         // Admin Dashboard
         Route::get('/admin/', [AdminController::class,'index'])->name('admin-dashboard');
+        
+        Route::get('/admin/adds',[AdvertiseController::class,'index'])->name('admin-adds');
+        Route::get('/admin/adds/create',[AdvertiseController::class,'add'])->name('admin-adds-create');
+        Route::post('/admin/adds/create',[AdvertiseController::class,'create']);
     
     });
 
     // Logout
     Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 });
+
+
+
 
 
 

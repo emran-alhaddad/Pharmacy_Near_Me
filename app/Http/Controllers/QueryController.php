@@ -15,4 +15,15 @@ class QueryController extends Controller
             ->join('cities', 'cities.id','zones.city_id')
             ->select('users.*');
     }
+
+    public static function userRequests($id)
+    {
+        return DB::table('requests')
+            ->join('pharmacies', 'pharmacies.user_id', '=', 'requests.pharmacy_id')
+            ->join('users', 'pharmacies.user_id', '=', 'users.id')
+            ->join('request__details', 'request__details.request_id', '=', 'requests.id')
+            ->select('users.name', 'request__details.drug_title','request__details.drug_image',
+               'request__details.repeat_every', 'request__details.repeat_until','requests.state')
+            ->where('users.id',$id);
+    }
 }
