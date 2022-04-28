@@ -15,7 +15,7 @@
 
         </select>
 
-        <select id="inputAriae" name='zone' class="input-field box">
+        <select id="inputAriae" multiple name='zone[]' class="input-field">
             <option selected disabled> المنطقة </option>
             @foreach ($zones as $zone)
                 <option value="{{ $zone->id }}">{{ $zone->name }}</option>
