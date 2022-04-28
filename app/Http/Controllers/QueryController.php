@@ -7,13 +7,15 @@ use Illuminate\Support\Facades\DB;
 
 class QueryController extends Controller
 {
-    public static function pharmacies()
+    public static function pharmacies($take=1000)
     {
         return DB::table('users')
             ->join('pharmacies', 'users.id', 'pharmacies.user_id')
             ->join('zones', 'zones.id','pharmacies.zone_id')
             ->join('cities', 'cities.id','zones.city_id')
-            ->select('users.*');
+            ->select('users.*')
+            ->orderByDesc('pharmacies.user_id')
+            ->take($take);
     }
 
     public static function userRequests($id)
