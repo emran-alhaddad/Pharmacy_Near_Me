@@ -12,7 +12,7 @@ class AdvertiseController extends Controller
    {
      $ads=new Advertising();
      $ads_data=$ads->get();
-     dd($ads_data);
+     return view('admin.ads');
     //  return view('welcome');
 
    } 

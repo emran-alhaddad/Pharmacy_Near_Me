@@ -348,25 +348,34 @@ body {
 .sidebar-nav-link:hover{
 	display: flex;
 	align-items: center;
-	color: white;
-	
+    color: white;
+    /* background: #817ecd; */
+
 }
 
 .sidebar-nav-item:hover{
 	display: flex;
 	align-items: center;
 	color: #ffff;
-	background: #2196F3;
-	
+	background: #817ecd;
+
+}
+
+.sidebar-nav-item i:hover{
+    color: white;
 }
 
 .sidebar-nav-link i {
 	font-size: 1.5rem;
-	color: var(--second-color);
+	color: #543ab7;
 	position: absolute;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
+}
+
+.sidebar-nav-link i:hover{
+    color: white;
 }
 
 .sidebar-nav-link div {
@@ -377,7 +386,7 @@ body {
 
 .sidebar-nav-link:hover {
 /* 	background: var(--second-bg-color); */
-	background: #2196F3;
+	/* background: #2196F3; */
 }
 
 .sidebar-nav-link.active {

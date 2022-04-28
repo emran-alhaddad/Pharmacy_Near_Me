@@ -4,11 +4,11 @@
 
         <div class="box">
             <h3>روابط سريعة </h3>
-            <a href="Home"> <i class="fas fa-arrow-left"></i> الرئيسية</a>
-            <a href="Pharmacies"> <i class="fas fa-arrow-left"></i> الصيدليات</a>
-            <a href="Ads"> <i class="fas fa-arrow-left"></i> الإعلانات</a>
-            <a href="contact.html"> <i class="fas fa-arrow-left"></i> تواصل معنا </a>
-            <a href="About Us"> <i class="fas fa-arrow-left"></i> عن الموقع</a>
+            <a href="{{ route('index') }}"> <i class="fas fa-arrow-left"></i> الرئيسية</a>
+            <a href="{{ route('pharmacies') }}"> <i class="fas fa-arrow-left"></i> الصيدليات</a>
+            <a href="{{ route('ads') }}"> <i class="fas fa-arrow-left"></i> الإعلانات</a>
+            <a href="{{ route('contact') }}"> <i class="fas fa-arrow-left"></i> تواصل معنا </a>
+            <a href="{{ route('about') }}"> <i class="fas fa-arrow-left"></i> عن الموقع</a>
 
         </div>
 

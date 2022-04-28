@@ -2,10 +2,6 @@
 
 // use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\User\request\RequestController;
-
-use App\Http\Controllers\User\UserSearchController;
-
 
 /*
 |--------------------------------------------------------------------------

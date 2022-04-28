@@ -10,15 +10,19 @@ use App\Models\zone;
 class interfacesController extends Controller
 {
 
-    public function index($search=null)
+    public function index($search = null)
     {
-        $pharmacies =  !$search? QueryController::pharmacies()->get():$search;
+        $pharmacies =  !$search ? QueryController::pharmacies()->get() : $search;
 
-        return view('front.index',[
-            'pharmacies'=>$pharmacies,
+        return view('front.index', [
+            'pharmacies' => $pharmacies,
             'cities' => City::get(),
             'zones' => zone::get()
         ]);
+    }
+    public function  userProfile()
+    {
+        return view('user.userProfile');
     }
     public function contact()
     {
