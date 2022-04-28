@@ -23,16 +23,16 @@ class LoginController extends Controller
             if ($user->email_verified_at) {
                 if (!$user->is_active) {
                     Auth::logout();
-                    return back()->with('status', 'Your Account Needs Admin Activation');
+                    return back()->with('error', 'حسابك يحتاج تفعيل من مدير الموقع اضغط على الرابط التالي لتقديم طلب الى مدير الموقع');
                 }
 
                 return LoginController::checkrole($user);
             } else {
                 Auth::logout();
-                return back()->with('status', 'Your Account Needs Email Verification');
+                return back()->with('error', 'يجب عليك اولا تأكيد البريد الألكتروني عن طريق الضغط على الرابط المرسل الى بريدك الالكتروني');
             }
         } else {
-            return back()->with('status', 'Invalid Credentials !!!');
+            return back()->with('error', 'بيانات الدخول غير صحيحة !!');
         }
     }
 

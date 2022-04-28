@@ -12,7 +12,7 @@ class interfacesController extends Controller
 
     public function index($search = null)
     {
-        $pharmacies =  !$search ? QueryController::pharmacies()->get() : $search;
+        $pharmacies =  !$search ? QueryController::pharmacies(4)->get() : $search;
 
         return view('front.index', [
             'pharmacies' => $pharmacies,
