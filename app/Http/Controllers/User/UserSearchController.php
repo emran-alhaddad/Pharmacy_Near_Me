@@ -17,10 +17,11 @@ class UserSearchController extends Controller
     {
 
         $qry = QueryController::pharmacies();
+        
 
         if (!empty($request->name_Pharmacy)) $qry->where('users.name', $request->name_Pharmacy);
         if ($request->has('city')) $qry->where('zones.city_id', $request->city);
-        if ($request->has('zone')) $qry->where('pharmacies.zone_id', $request->zone);
+        if ($request->has('zone')) $qry->whereIn('pharmacies.zone_id', $request->zone);
 
         $search = new interfacesController();
         return $search->index($qry->get());
