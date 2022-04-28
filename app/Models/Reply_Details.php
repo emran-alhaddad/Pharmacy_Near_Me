@@ -9,6 +9,8 @@ class Reply_Details extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+    
     protected $fillable = [
         'request_details_id',
         'drug_price',

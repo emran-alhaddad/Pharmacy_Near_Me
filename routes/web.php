@@ -29,7 +29,10 @@ use App\Http\Controllers\User\request\RequestController;
 |
 */
 
-Route::get('/', [interfacesController::class, 'index']);
+// Route::get('/', [interfacesController::class, 'index']);
+Route::get('/', function(){
+    return view('welcome');
+});
 
 // Register
 Route::get('/register', [RegisterController::class, 'index'])->name('register');

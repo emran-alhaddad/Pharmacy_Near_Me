@@ -14,4 +14,9 @@ class Reply extends Model
         'state'
     ];
 
+    public function details()
+    {
+         return $this->hasMany(Reply_Details::class,'reply_id');
+    }
+
 }

@@ -411,7 +411,7 @@
         class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
 
 
-             <div class="container">
+        {{-- <div class="container">
                 <form  @ onsubmit="myFunction()" action={{route('rquest-add');}} class="form" method="post">
                 @csrf
                     <input type="hidden" id="data" name="data" value=""
@@ -430,26 +430,95 @@
                     <br>
                     <input type="submit" value="Save">
                 </form>
-            </div> 
+            </div> --}}
 
-            
-            </div>
+        <div class="container">
+            @if (session('status'))
+                <div class="alert alert-info" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
+            <form  action={{ route('pharmacy-reply') }} class="form" method="post">
+                @csrf
+                <input type="hidden" id="data" name="data" value="" class="form-controll">
+                <br>
+                request id:
+                <input type="number" name="id" class="form-controll">
+                <br>
+                message:
+                <input type="text" name="message" class="form-controll">
+                <br>
+                <br>
+                Details:
+                <br>
+                request_details_id:
+                <input type="number" id="request_details_id" class="form-controll">
+                <br>
+                drug_price:
+                <input type="number" id="drug_price" class="form-controll">
+                <br>
+                alt_drug_image:
+                <input type="text" id="alt_drug_image" class="form-controll">
+                <br>
+                alt_drug_title:
+                <input type="text" id="alt_drug_title" class="form-controll">
+                <br>
+                alt_drug_price:
+                <input type="number" id="alt_drug_price" class="form-controll">
+                <br>
+                <button type='button' onclick="addReply()">Add To Details</button>
+                <br>
+                <input type="submit" value="Save">
+            </form>
         </div>
+
+    </div>
+    </div>
 
 
 
     </div>
     <script>
-    
-function myFunction() {
-    var  durg={"data":
-         [{drug_title:"sprien",drug_image:"drug_image.png",quantity:50 , accept_alternative:0}]
-        };
-    const myJSON = JSON.stringify(durg);
-    document.getElementById("data").value=myJSON;
-  alert(document.getElementById("data").value);
-}
-</script>
+        function myFunction() {
+            var durg = {
+                "data": [{
+                    drug_title: "sprien",
+                    drug_image: "drug_image.png",
+                    quantity: 50,
+                    accept_alternative: 0
+                }]
+            };
+            const myJSON = JSON.stringify(durg);
+            document.getElementById("data").value = myJSON;
+            alert(document.getElementById("data").value);
+        }
+
+           
+var drugs = {'data':[]};
+        function addReply() {
+
+            var data = document.getElementById("data");
+            var request_details_id = document.getElementById("request_details_id");
+            var drug_price = document.getElementById("drug_price");
+            var alt_drug_image = document.getElementById("alt_drug_image");
+            var alt_drug_title = document.getElementById("alt_drug_title");
+            var alt_drug_price = document.getElementById("alt_drug_price");
+
+            var drug = {};
+            drug.request_details_id = request_details_id.value;
+            if (drug_price.value != "") drug.drug_price = drug_price.value;
+            else {
+                if (alt_drug_image.value != "") drug.alt_drug_image = alt_drug_image.value;
+                else drug.alt_drug_title = alt_drug_title.value;
+                drug.alt_drug_price = alt_drug_price.value;
+            }
+
+            if (data.value != "") drugs = JSON.parse(data.value);
+                
+            drugs.data.push({...drug}); 
+            data.value = JSON.stringify(drugs);
+        }
+    </script>
 </body>
 
 </html>
