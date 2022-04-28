@@ -116,11 +116,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => ['role:admin']], function () {
         
         // Admin Dashboard
-        Route::get('/admin/', [AdminController::class,'index'])->name('admin-dashboard');
+        Route::get('/_admin/', [AdminController::class,'index'])->name('admin-dashboard');
         
-        Route::get('/admin/adds',[AdvertiseController::class,'index'])->name('admin-adds');
-        Route::get('/admin/adds/create',[AdvertiseController::class,'add'])->name('admin-adds-create');
-        Route::post('/admin/adds/create',[AdvertiseController::class,'create']);
+        Route::get('/_admin/adds',[AdvertiseController::class,'index'])->name('admin-adds');
+        Route::get('/_admin/adds/create',[AdvertiseController::class,'add'])->name('admin-adds-create');
+        Route::post('/_admin/adds/create',[AdvertiseController::class,'create']);
     
     });
 

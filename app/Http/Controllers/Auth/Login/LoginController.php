@@ -13,44 +13,38 @@ class LoginController extends Controller
 
     public function doLogin(Request  $request)
     {
-        Validator::validate($request->all(),[
-            'email'=>['email','required'],
-            'password'=>['required']
+        Validator::validate($request->all(), [
+            'email' => ['email', 'required'],
+            'password' => ['required']
         ]);
-        $user = User::where('email','=',$request->email)->first();
+        $user = User::where('email', '=', $request->email)->first();
 
-        if(Auth::attempt(['email'=>$request->email ,'password'=>$request->password , 'is_active' => 1]))
-        {  
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'is_active' => 1])) {
             if ($user->email_verified_at)
-            return LoginController::checkrole(Auth::user());
+                return LoginController::checkrole(Auth::user());
             else
-            return back()->with('status','Your Account Needs Email Verification');
-        }
-        else
-          return back()->with('status','Invalid Credentials !!!');
+                return back()->with('status', 'Your Account Needs Email Verification');
+        } else
+            return back()->with('status', 'Invalid Credentials !!!');
     }
 
     public function login()
     {
-        if(Auth::check()) return $this->checkrole(Auth::user());
+        if (Auth::check()) return $this->checkrole(Auth::user());
         return view('auth.login');
     }
 
     public static function checkrole($user)
-    {   
-       
-        
+    {
+
         if ($user->hasRole('admin'))
-        return redirect()->route('admin-dashboard');
+            return redirect()->route('admin-dashboard');
 
-    elseif ($user->hasRole('client')) 
-    return redirect()->route('client-dashboard');
-      
+        elseif ($user->hasRole('client'))
+            return redirect()->route('client-dashboard');
 
-    elseif ($user->hasRole('pharmacy'))
-        return redirect()->route('pharmacy-dashboard');
-   
 
-        
+        elseif ($user->hasRole('pharmacy'))
+            return redirect()->route('pharmacy-dashboard');
     }
 }
