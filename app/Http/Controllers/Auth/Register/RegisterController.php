@@ -28,12 +28,10 @@ class RegisterController extends Controller
     public function create(Request $request)
     {
         $this->validateFields($request);
-
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-
 
         if (!$request->has('email_verified_at')) {
             $token = Str::uuid();
@@ -43,7 +41,6 @@ class RegisterController extends Controller
                 'activation_url' => URL::to('/') . '/auth/verify_email/' . $token
             ];
         }
-
 
 
         if ($request->has('user_type')) {

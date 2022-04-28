@@ -130,7 +130,7 @@
                 <h6 class="mb-0">الاسم الكامل </h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                هديل
+                {{ Auth::user()->name }}
                 </div>
             </div>
             <hr>
@@ -139,7 +139,7 @@
                 <h6 class="mb-0">الايميل </h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                hadeel@gmail.com
+                {{ Auth::user()->email }}
                 </div>
             </div>
             <hr>

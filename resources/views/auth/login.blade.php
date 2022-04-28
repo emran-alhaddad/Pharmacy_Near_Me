@@ -43,7 +43,7 @@
   
                   <form  action="{{ route('login') }}" method="POST" class="contact3-form validate-form">
                   @csrf
-                    <div class="row">
+                    <div class="row"> 
                       <div class="input-group input-3">
                         <input type="email" placeholder="الايميل" class="input-control" name="email" required>
                      </div>

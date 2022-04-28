@@ -18,8 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\User\request\RequestController;
 use App\Http\Controllers\Admin\AdvertiseController;
-
-
+use App\Http\Controllers\User\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,9 +82,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Client Routes
     Route::group(['middleware' => ['role:client']], function () {
-        Route::get('/client/', function () {
-            return "Client Profile Page";
-        })->name('client-dashboard');
+        Route::get('/client/',[ClientController::class,'index'])->name('client-dashboard');
 
         // Client Request
         Route::get('/client/rquests', [RequestController::class, 'index'])->name('client-requests');
