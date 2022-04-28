@@ -9,13 +9,9 @@
 
     --main-color: #543ab7;
     --secondary-color: #00acc1;
-
-    /* --main-color: #478ac9;
-    --secondary-color: #adf6f2; */
-
     --hover-main: #817ecd;
     --hover-secondary: #9bb0dd;
-    --bg-sec: #f2f2fa;
+    --bg-sec: #f6f4fa;
 
     --radius: .5rem;
 }
@@ -58,7 +54,7 @@ section {
 
 }
 
-section:nth-child(even) {
+section:nth-child(odd) {
     background: var(--bg-sec);
 }
 
@@ -103,9 +99,17 @@ section:nth-child(even) {
 }
 
 .log-btn:hover {
-    background-color: var(--hover-main);
+    /* background-color: var(--hover-main); */
     cursor: pointer;
     color: #ffffff;
+}
+
+.search form {
+    display: flex;
+}
+
+.search form .box {
+    margin-left: 2rem;
 }
 
 .search p {
@@ -118,7 +122,7 @@ section:nth-child(even) {
 input, select, .s-btn {
     width: 100%;
     padding: 1rem 1.2rem;
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: 800;
     color: var(--black);
     border: solid 1px var(--main-color);
@@ -149,7 +153,9 @@ select:hover {
 /* select:hover {
     cursor: pointer;
 } */
-
+::placeholder {
+    font-size: 1.5rem;
+}
 
 /* make border in hover */
 .border:hover {
@@ -163,7 +169,7 @@ select:hover {
 }
 
 .header {
-    padding: 2rem 9%;
+    padding: 1rem 3%;
     position: fixed;
     top: 0;
     left: 0;
@@ -194,7 +200,8 @@ select:hover {
 
 .header .navbar a:hover {
     color: var(--main-color);
-    font-size: 2.1rem;
+    border-bottom: var(--border);
+    /* font-size: 2.1rem; */
 }
 
 #menu-btn {
