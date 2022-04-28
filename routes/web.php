@@ -40,7 +40,8 @@ Route::get('/ads', [interfacesController::class, 'ads'])->name('ads');
 Route::get('/about', [interfacesController::class, 'about'])->name('about');
 Route::get('/contact', [interfacesController::class, 'contact'])->name('contact');
 Route::get('/confirm', [interfacesController::class, 'confirm'])->name('confirm');
-//  For test
+
+// route For test
 // Route::get('/userProfile', [interfacesController::class, 'userProfile'])->name('userProfile');
 
 
