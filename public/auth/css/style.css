@@ -19,7 +19,8 @@
 }
 
 * {
-    font-family: var(--font-type) margin: 0;
+    font-family: var(--font-type);
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
     outline: none;
@@ -51,7 +52,8 @@ html::-webkit-scrollbar-thumb {
 }
 
 section {
-    padding: 2rem 9%;
+    padding: 5rem 12%;
+    /* padding: 2rem 1rem%; */
 
 }
 
