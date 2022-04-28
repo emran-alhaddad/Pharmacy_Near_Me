@@ -73,7 +73,7 @@ body {
 
 /*---------------------------------------------*/
 a {
-    font-family: --font-type;
+    font-family: var(--font-type);
     font-size: var(--a-font);
     line-height: 1.7;
     color: var(--a-color);

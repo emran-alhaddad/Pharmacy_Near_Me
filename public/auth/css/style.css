@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@500&family= var(--font-type);:wght@300&display=swap');
 
 :root {
     --black: #444;
@@ -6,6 +7,8 @@
     --box-shadow: .5rem .5rem 0 rgba(22, 160, 133, .2);
     --text-shadow: .4rem .4rem 0 rgba(0, 0, 0, .2);
     --border: .2rem solid var(--main-color);
+
+    --font-type: Tajawal;
 
     --main-color: #543ab7;
     --secondary-color: #00acc1;
@@ -17,8 +20,7 @@
 }
 
 * {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
+    font-family: var(--font-type) margin: 0;
     padding: 0;
     box-sizing: border-box;
     outline: none;

@@ -8,13 +8,6 @@
         <div class="card shadow p-3">
         <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
             <h3 class="fw-bold text-prof">ارسال طلب  </h3>
-            <a role="button" data-bs-toggle="modal"data-bs-target="#edit-info"
-                class="  border color-user rounded d-flex justify-content-center align-items-lg-center rounded-circle"
-                style="bottom: 10%;left: 35%; width: 30px;height: 30px;">
-            <i class="fas fa-edit"></i>
-        </a>
-
-
         </div>
 
         <div class="card-body">
