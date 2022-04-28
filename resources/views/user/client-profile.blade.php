@@ -8,13 +8,6 @@
         <div class="card shadow p-3">
         <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
             <h3 class="fw-bold text-prof">ارسال طلب  </h3>
-            <a role="button" data-bs-toggle="modal"data-bs-target="#edit-info"
-                class="  border color-user rounded d-flex justify-content-center align-items-lg-center rounded-circle"
-                style="bottom: 10%;left: 35%; width: 30px;height: 30px;">
-            <i class="fas fa-edit"></i>
-        </a>
-
-
         </div>
 
         <div class="card-body">
@@ -208,7 +201,7 @@ aria-hidden="true"
     <!-- model footer -->
     <div class="modal-footer">
     <button type="button" class="btn bg-primary text-white">
-        update
+        تعديل
     </button>
     </div>
 </div>
@@ -330,12 +323,12 @@ aria-hidden="true"
 
 <!-- Repeate modal -->
 <div  class="modal fade"
-id="rep"
-tabindex="-1"
-aria-labelledby="exampleModalLabel"
-aria-hidden="true" >
-<div class="modal-dialog modal-dialog-centered">
-<div class="modal-content">
+        id="rep"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true" >
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
     <div class="modal-body fw-bold d-flex justify-content-lg-center align-items-center flex-column">
     <h3 class="fs-4">تكرار الطلبية كل </h3>
     <div class="col">
@@ -344,17 +337,19 @@ aria-hidden="true" >
         <div class="d-inline-block  p-2"> <input type="number" placeholder="0"><h3 class="text-center">أسبوع</h3></div>
         <div class="d-inline-block  p-2"> <input type="number" placeholder="0"><h3 class="text-center">سنه</h3></div>
     </div>
-    <div class="col">
-    <h3 class="fs-4"><input type="number" placeholder="0"> لمدة  </h3>
-    <div class="nav-item dropdown col-3  p-2 d-flex justify-content-end">
-        <ul class="dropdown-menu" aria-labelledby="nav">
-            <li><a class="dropdown-item fs-6 fw-bold " href="#">يوم</a></li>
-            <li><a class="dropdown-item fs-6 fw-bold" href="#"> أسبوع </a></li>
-            <li><a class="dropdown-item fs-6 fw-bold " href="#">شهر</a></li>
-            <li><a class="dropdown-item fs-6 fw-bold" href="#"> سنه </a></li>
-        </ul>
+
+        <div class="row">
+            <h3 class="fs-4 col-6"> حتى تاريخ   </h3>
+        <div class="input-group col-6">
+            <input
+            type="date"
+            aria-describedby="addon-wrapping"
+            required
+            value=""
+            />
         </div>
-        </div>
+
+     </div>
 
     </div>
     <div class="modal-footer">
