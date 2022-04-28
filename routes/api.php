@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\request\RequestController;
 
 use App\Http\Controllers\User\UserSearchController;
+use App\Http\Controllers\Admin\AdvertiseController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,5 +21,3 @@ use App\Http\Controllers\User\UserSearchController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('/pharmacies',[UserSearchController::class,'searchPharmacies'])->name('pharmacies');
-Route::post('/rquest-add',[RequestController::class,'insert'])->name('rquest-add');

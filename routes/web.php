@@ -14,7 +14,7 @@ use App\Http\Controllers\User\UserSearchController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\User\request\RequestController;
-
+use App\Http\Controllers\Admin\AdvertiseController;
 
 
 
@@ -98,3 +98,7 @@ Route::get('auth/google/callback', [GoogleController::class, 'callback']);
 
 Route::get('auth/verify_email/{token}', [VerifyEmailController::class, 'verify']);
 Route::post('/rquest-add', [RequestController::class, 'insert'])->name('rquest-add');
+Route::post('/ads_add',[AdvertiseController::class,'createAds'])->name('ads_add');
+Route::get('/ads_show',[AdvertiseController::class,'showAds'])->name('ads_show');
+Route::get('/ads_index',[AdvertiseController::class,'retreivAds'])->name('ads_index');
+Route::get('/get_request',[RequestController::class,'retrievRequest'])->name('get_request');
