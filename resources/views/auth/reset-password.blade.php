@@ -21,6 +21,12 @@
 
   <section class="h-100 gradient-form div-center" >
     <div class="container py-5 h-100" style="height: 2em; ">
+    @if (session('status'))
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
+
       <div class="row d-flex justify-content-center align-items-center h-100" style="margin-top: -3em;">
         <div class="col-xl-10">
           <div class="card rounded-3 text-black">
