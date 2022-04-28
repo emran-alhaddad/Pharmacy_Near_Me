@@ -3,7 +3,7 @@
 
 
  <div class="wrapper bg-white">
-    <div class="row  ">
+    <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-3">
          <div class="card bg-white m-5">
             <!-- <div class="card-header">
