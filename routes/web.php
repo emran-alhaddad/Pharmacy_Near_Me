@@ -41,6 +41,9 @@ Route::get('/about', [interfacesController::class, 'about'])->name('about');
 Route::get('/contact', [interfacesController::class, 'contact'])->name('contact');
 Route::get('/confirm', [interfacesController::class, 'confirm'])->name('confirm');
 
+// route For test
+// Route::get('/userProfile', [interfacesController::class, 'userProfile'])->name('userProfile');
+
 
 // Register
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
@@ -86,10 +89,8 @@ Route::group(['middleware' => 'auth'], function () {
 
         // Client Request
         Route::get('/client/rquests', [RequestController::class, 'index'])->name('client-requests');
-        Route::get('/client/rquest/add',[RequestController::class,'add'])->name('client-request-add');
+        Route::get('/client/rquest/add', [RequestController::class, 'add'])->name('client-request-add');
         Route::post('/client/rquest/add', [RequestController::class, 'create']);
-
-
     });
 
     // Pharmacy Routes
@@ -97,7 +98,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         // Pharmacy Dashboard
         Route::get('/pharmacy/', [PharmacyController::class, 'index'])->name('pharmacy-dashboard');
-        
+
         // Pharmacy Chat
         Route::get('/pharmacy/chat', [ChatController::class, 'index'])->name('pharmacy-chat');
 
@@ -105,33 +106,23 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/pharmacy/requests', [ReplyController::class, 'index'])->name('pharmacy-requests');
         Route::get('/pharmacy/request/{id}', [ReplyController::class, 'showRequest']);
         Route::post('/pharmacy/request/{id}', [ReplyController::class, 'acceptRequest']);
-        
+
         // Pharmacy Replies
         Route::get('/pharmacy/replies/{id}', [ReplyController::class, 'showReplies'])->name('pharmacy-replies');
         Route::post('/pharmacy/reply', [ReplyController::class, 'create'])->name('pharmacy-reply');
-
     });
 
     // Admin Routes
     Route::group(['middleware' => ['role:admin']], function () {
-        
+
         // Admin Dashboard
-        Route::get('/_admin/', [AdminController::class,'index'])->name('admin-dashboard');
-        
-        Route::get('/_admin/adds',[AdvertiseController::class,'index'])->name('admin-adds');
-        Route::get('/_admin/adds/create',[AdvertiseController::class,'add'])->name('admin-adds-create');
-        Route::post('/_admin/adds/create',[AdvertiseController::class,'create']);
-    
+        Route::get('/_admin/', [AdminController::class, 'index'])->name('admin-dashboard');
+
+        Route::get('/_admin/adds', [AdvertiseController::class, 'index'])->name('admin-adds');
+        Route::get('/_admin/adds/create', [AdvertiseController::class, 'add'])->name('admin-adds-create');
+        Route::post('/_admin/adds/create', [AdvertiseController::class, 'create']);
     });
 
     // Logout
     Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 });
-
-
-
-
-
-
-
-

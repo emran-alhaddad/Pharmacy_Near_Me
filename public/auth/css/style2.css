@@ -7,7 +7,7 @@
     --box-shadow2: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
     --text-shadow: .4rem .4rem 0 rgba(0, 0, 0, .2);
     --border: .2rem solid var(--main-color);
-    --back-color:linear-gradient(#478ac9, #adf6f2);
+    --back-color: linear-gradient(#478ac9, #adf6f2);
     --main-color: #543ab7;
     --secondary-color: #00acc1;
     --hover-main: #817ecd;
@@ -578,5 +578,5 @@ select:hover {
     }
 
 }
-/**/
 
+/**/
