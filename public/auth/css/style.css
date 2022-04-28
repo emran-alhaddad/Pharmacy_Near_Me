@@ -54,7 +54,7 @@ section {
 
 }
 
-section:nth-child(odd) {
+section:nth-child(even) {
     background: var(--bg-sec);
 }
 
@@ -117,6 +117,7 @@ section:nth-child(odd) {
     font-size: 2rem;
     padding: 10px 0;
     font-weight: 800;
+    text-align: center;
 }
 
 input, select, .s-btn {
@@ -224,7 +225,7 @@ select:hover {
     /* align-items: center; */
     /* flex-wrap: wrap; */
     padding: 0;
-    background-color: #fff;
+    /* background-color: #fff; */
     /* padding-inline-start: 1.5rem; */
     /* gap: 1.5rem; */
     padding-top: 9rem;

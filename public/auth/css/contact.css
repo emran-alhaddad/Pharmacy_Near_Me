@@ -33,7 +33,7 @@
     /* min-height: 100vh; */
     display: block;
     width: 100%;
-    background-color: var(--bg-sec);
+    /* background-color: var(--bg-sec); */
     padding: 100px 15px;
 }
 
