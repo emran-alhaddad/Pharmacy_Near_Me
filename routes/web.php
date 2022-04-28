@@ -113,6 +113,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => ['role:admin']], function () {
 
         // Admin Dashboard
+        Route::get('/_admin/', [AdminController::class,'index'])->name('admin-dashboard');
+
+        Route::get('/phar', [adminController::class, 'Show_phar'])->name('Show_phar');
+        Route::get('/ads', [adminController::class, 'Show_ads'])->name('Show_ads');
+        Route::get('/user', [adminController::class, 'Show_user'])->name('Show_user');
+        Route::get('/complaints', [adminController::class, 'Show_complaints'])->name('Show_complaints');
+        Route::get('/notifications', [adminController::class, 'Show_notifications'])->name('Show_notifications');
+        Route::get('/cities', [adminController::class, 'Show_cities'])->name('Show_cities');
+        Route::get('/zone', [adminController::class, 'Show_zone'])->name('Show_zone');
+
         Route::get('/_admin/', [AdminController::class, 'index'])->name('admin-dashboard');
 
         Route::get('/_admin/adds', [AdvertiseController::class, 'index'])->name('admin-adds');
