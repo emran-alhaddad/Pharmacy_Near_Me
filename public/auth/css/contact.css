@@ -110,3 +110,67 @@
         max-width: 100%;
     }
 }
+
+.share2 a{    text-decoration: none;
+    padding-right: -0.5em;
+      height: 5rem;
+                      width: 5rem;
+                      line-height: 4.5rem;
+                      font-size: 2rem;
+                      color: var(--main-color);
+                      border-radius: var(--radius);
+                      border: var(--border);
+                      margin: 0.3rem;
+    }
+  
+  .gradient-custom-2 {
+   
+    
+    background: linear-gradient(60deg, rgba(84, 58, 183, 1) 0%, rgba(0, 172, 193, 1) 100%);
+    }
+    
+    @media (min-width: 768px) {
+    .gradient-form {
+    height: 100vh !important;
+    }
+    }
+    @media (min-width: 769px) {
+    .gradient-custom-2 {
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+    }
+    }
+
+    .submit-btn2{
+
+        height: 50px;
+        background-color: #543ab7;
+        color: #ffffff;
+        font-size: 19px;
+        border: 1px solid transparent;
+        width: 100%;
+        border-radius: .5rem;
+        transition: all 0.5s ease;
+        cursor: pointer;
+    }
+    .submit-btn2:hover {
+        background-color: transparent;
+        color: var(--main-color);
+        border-color: var(--main-color);
+    }
+    .x{ text-align: center;
+        background: #fff;
+        border-radius: var(--radius);
+        border: var(--border);
+        box-shadow: var(--box-shadow);
+        padding: 2rem;}
+
+        .gradient-form {
+            height: 100vh !important;
+            margin: auto;
+        }
+
+        label{    display: inline-block;
+            position: relative;
+            top: 2em;
+            right: 3em;}
