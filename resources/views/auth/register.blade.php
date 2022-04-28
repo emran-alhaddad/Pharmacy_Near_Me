@@ -19,6 +19,12 @@
 
     <section class="col-xl-10 gradient-form div-center">
         <div class="container py-5 h-100" style="height: 2em; ">
+            @if (session('status'))
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
+
             <div class="row d-flex justify-content-center align-items-center h-100" style="margin-top: -3em;">
                 <div class="col-xl-10">
                     <div class="card rounded-3 text-black">
@@ -39,7 +45,7 @@
                                         @csrf
                                         <div class="row">
                                             <div class="input-group input-3">
-                                                <input type="text" name="name" placeholder="اسم المستخدم"
+                                                <input type="email" name="name" placeholder="اسم المستخدم"
                                                     class="input-control" required>
                                             </div>
                                             <div class="input-group input-3">
@@ -55,33 +61,13 @@
                                                     placeholder="تاكيد كلمة المرور" class="input-control" required>
                                             </div>
 
-                                            {{-- <div class="input-group input-3">
-                                                <div class="dropdown">
-                                                    <button class="btn btn-secondary dropdown-toggle" type="button"
-                                                        id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                        aria-expanded="false" onchange="changeClient()"
-                                                        name="user_type">
-                                                        
-                                                    </button>
-                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                        <li><a class="dropdown-item" href="#"
-                                                                onchange="changePharmacy()" name="user_type">صيدلي</a>
-                                                        </li>
-                                                        <li><a class="dropdown-item" href="#"
-                                                                onchange="changeClient()" name="user_type">مستخدم</a>
-                                                        </li>
-
-                                                    </ul>
-                                                </div>
-                                            </div> --}}
-
-                                             <div class="input-group input-3">
+                                            <div class="input-group input-3">
                                                 <div class="dropdown">
                                                     <select name="user_type" onchange="changePharmacy()">
-                                                    <option value="client">مستخدم</option>
-                                                    <option value="pharmacy">صيدلي</option>
+                                                        <option value="client">مستخدم</option>
+                                                        <option value="pharmacy">صيدلي</option>
                                                     </select>
-                                                   
+
                                                 </div>
                                             </div>
 
@@ -101,6 +87,8 @@
                                                     style=" margin-top: 1em;">دخول</button>
                                             </div>
                                         </div>
+                                        <p class="small2" style="color: var(--black);font-size: 1.6rem;">اذا كان
+                                            لديك حساب اضغط <a href="{{ route('login') }}">دخول</a></p>
                                         <p class="small"
                                             style="margin-bottom: -2em;color: var(--black);font-size: 1.6rem;margin-top:.5em;">
                                             او يمكتك الدخول عبر </p>
@@ -110,7 +98,6 @@
                                                 class="fa-brands fa-facebook"></a>
                                             <a href="{{ route('google-client') }}" class="fa-brands fa-google"></a>
                                         </div>
-
 
                                     </form>
 
