@@ -131,8 +131,8 @@
 
 
 
-     <script src="{{ asset('js/bootstrap.bundle.min.js')}}"></script>
-     <script src="{{ asset('js/jquery.min.js')}}"></script>
+     <script src="{{ asset('auth/js/bootstrap.bundle.min.js')}}"></script>
+     <script src="{{ asset('auth/js/jquery.min.js')}}"></script>
      <script>
         // $('personal').click($('pp').hide());
         $(document).ready(function(){

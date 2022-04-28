@@ -4,7 +4,7 @@
 <div class="card shadow p-3 pt-0 bg-opacity-0">
     <!-- user avatar -->
     <div class="col-12 d-flex justify-content-center align-items-center p-4 position-relative">
-    <img src="/images/avatar.png"
+    <img src="{{ asset('auth/images/avatar.png')}}"
         class="user-avatar img-fluid rounded-circle"
         alt="user avatar"style="width: 70%;"/>
     <a role="button" data-bs-toggle="modal"data-bs-target="#avatar-edit-model"
