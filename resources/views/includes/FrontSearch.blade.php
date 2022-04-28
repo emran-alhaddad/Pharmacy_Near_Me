@@ -7,7 +7,7 @@
         @csrf
         <input type="text" name="name_Pharmacy" placeholder="ادخل إسم الصيدلية ">
 
-        <select name='city' class="input-field">
+        <select name='city'  class="input-field">
             <option selected disabled> المديرية </option>
             @foreach ($cities as $city)
                 <option value="{{ $city->id }}">{{ $city->name }}</option>
@@ -15,7 +15,7 @@
 
         </select>
 
-        <select id="inputAriae" name='zone' class="input-field">
+        <select id="inputAriae" multiple name='zone[]' class="input-field">
             <option selected disabled> المنطقة </option>
             @foreach ($zones as $zone)
                 <option value="{{ $zone->id }}">{{ $zone->name }}</option>
