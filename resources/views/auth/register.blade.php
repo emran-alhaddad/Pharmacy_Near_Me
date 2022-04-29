@@ -21,7 +21,7 @@
         <div class="container py-5 h-100" style="height: 2em; ">
             @if (session('status'))
                 <div class="alert alert-danger alert-dismissible" role="alert">
-                    {{ session('status') }}
+                    {{ session('error') }}
                 </div>
             @endif
 
@@ -45,7 +45,7 @@
                                         @csrf
                                         <div class="row">
                                             <div class="input-group input-3">
-                                                <input type="email" name="name" placeholder="اسم المستخدم"
+                                                <input type="name" name="name" placeholder="اسم المستخدم"
                                                     class="input-control" required>
                                             </div>
                                             <div class="input-group input-3">

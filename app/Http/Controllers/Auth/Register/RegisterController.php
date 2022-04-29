@@ -52,6 +52,7 @@ class RegisterController extends Controller
                     $this->registerPharmacy($user, $request);
                     break;
                 default:
+                
                     return back()->with('error', "حدث خطأ غير متوقع ... لم نتمكن من تسجيل حسابك !! يرجى المحاولة مرة أخرى");
             }
 
@@ -59,6 +60,7 @@ class RegisterController extends Controller
                 Mail::to($request->email)->send(new VerifyEmail($email_data));
             return  redirect()->route('login')->with('error', 'لقد تم ارسال رابط تفعيل الحساب الى الايميل الخاص بك ');
         } else
+        
             return back()->with('error', "حدث خطأ غير متوقع ... لم نتمكن من تسجيل حسابك !! يرجى المحاولة مرة أخرى");
     }
 
@@ -131,7 +133,7 @@ class RegisterController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|max:255|email',
-            'password' => 'required|min:8|confirmedd'
+            'password' => 'required|min:8|confirmed'
         ]);
     }
 }

@@ -46,15 +46,15 @@ Route::get('/confirm', [interfacesController::class, 'confirm'])->name('confirm'
 
 // Register
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
-Route::post('/register', [RegisterController::class, 'create']);
+Route::post('/register', [RegisterController::class, 'create'])->name('register');
 
 // Login
 Route::get('/login', [LoginController::class, 'login'])->name('login');
-Route::post('/login', [LoginController::class, 'doLogin']);
+Route::post('/login', [LoginController::class, 'doLogin'])->name('login');
 
 // Forget Password
 Route::get('/forgot-password', [ForgetPasswordController::class, 'index'])->middleware('guest')->name('forget-password');
-Route::post('/forgot-password', [ForgetPasswordController::class, 'create'])->middleware('guest');
+Route::post('/forgot-password', [ForgetPasswordController::class, 'create'])->middleware('guest')->name('forget-password');
 
 // Reset Password
 Route::get('/reset-password/{token}', [ResetPasswordController::class, 'show'])->middleware('guest')->name('reset-password');
@@ -94,7 +94,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => ['role:pharmacy']], function () {
 
         // Pharmacy Dashboard
-        Route::get('/pharmacy/', [PharmacyController::class, 'index'])->name('pharmacy-dashboard');
+        Route::get('/pharmacy', [PharmacyController::class, 'index'])->name('pharmacy-dashboard');
 
         // Pharmacy Chat
         Route::get('/pharmacy/chat', [ChatController::class, 'index'])->name('pharmacy-chat');
@@ -113,7 +113,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => ['role:admin']], function () {
 
         // Admin Dashboard
-        Route::get('/_admin/', [AdminController::class,'index'])->name('admin-dashboard');
+        Route::get('_admin/', [AdminController::class,'index'])->name('admin-dashboard');
 
         Route::get('/_admin/pharmacies', [AdminController::class, 'showPharmacies'])->name('admin-pharmacies');
         Route::get('/_admin/users', [AdminController::class, 'showUsers'])->name('admin-users');
@@ -139,3 +139,4 @@ Route::group(
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
     ], function(){ //...
     });
+    

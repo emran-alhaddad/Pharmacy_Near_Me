@@ -21,8 +21,8 @@
                 <div class="box">
                     <img src="{{ asset('uploads/pharmacy/avater/').'/'.$pharmacy->avater }}" alt="">
                     <h3>{{ $pharmacy->name }}</h3>
-                    <span><i class="fa-solid fa-location-dot"></i> حي المسبح</span>
-                    <p><i class="fa-solid fa-circle-info"></i> بلا بلا بلا </p>
+                    <span><i class="fa-solid fa-location-dot"></i> {{ $pharmacy->Cname }} </span>
+                    <p><i class="fa-solid fa-circle-info"></i> {{ $pharmacy->Zname }} </p>
 
                     <div class="share">
                         <a href="{{ $pharmacy->phone }}" class="fas fa-phone"></a>

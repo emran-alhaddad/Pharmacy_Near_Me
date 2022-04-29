@@ -38,7 +38,7 @@
                   <img src="{{ asset('auth/images/1553191-673ab7.svg') }}" 
                     style="width: 4empx;height: 6em;" alt="logo">
                  
-                    <h2 class="heading" style=" letter-spacing: 0;">  <span>تغيير كلمة المرور </span></h2>
+                    <h2 class="heading" style=" letter-spacing: 0;">  <span> تغيير كلمة المرور </span></h2>
                   </div>
   
                   <form method="POST" action="{{ route('reset-password', $token) }}" class="contact3-form validate-form">

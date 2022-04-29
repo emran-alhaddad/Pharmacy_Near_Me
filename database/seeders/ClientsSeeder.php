@@ -8,6 +8,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class ClientsSeeder extends Seeder
 {
@@ -17,7 +18,22 @@ class ClientsSeeder extends Seeder
      * @return void
      */
     public function run()
-    {   $filePathName=base_path().'\names\users.txt';
+
+    {    $user = new User();
+        $user->name = " اسامة مجفوظ";
+        $user->email = 'client@gmail.com';
+        $user->password = Hash::make('client');
+        $user->email_verified_at = Carbon::now()->timestamp;
+        $user->is_active = 1;
+        if ($user->save()) {
+            $user->attachRole('client');
+            Client::create([
+                'user_id' => $user->id
+            ]); 
+        }
+        
+        
+        $filePathName=base_path().'\names\users.txt';
         $filePathEmail=base_path().'\names\client_email.txt';
         $fileName = fopen($filePathName, "r");
         $fileEmail = fopen($filePathEmail, "r");
