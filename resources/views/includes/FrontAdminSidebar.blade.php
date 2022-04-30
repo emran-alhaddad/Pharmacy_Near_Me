@@ -18,7 +18,7 @@
 						<i class="fab fa-accusoft"></i>
 					</div> <span >ادارة الصيدليات</span>
 			</a></li>
-			<li class="sidebar-nav-item"><a href="/_admin/pharmacies"
+			<li class="sidebar-nav-item"><a href="/_admin/show_ads"
 				class="sidebar-nav-link">
 					<div>
 						<i class="fas fa-star"></i>
@@ -32,7 +32,7 @@
 					</div> <span>ادارة العملاء</span>
 			</a></li>
 
-			<li class="sidebar-nav-item"><a href="/_admin/complaints"
+			<li class="sidebar-nav-item"><a href="/_admin/show_Complaints"
 				class="sidebar-nav-link">
 					<div>
 						<i class="fas fa-bug"></i>
@@ -45,14 +45,14 @@
 					</div> <span>ادارة الاشعارات</span>
 			</a></li>
 
-            		<li class="sidebar-nav-item"><a href="/_admin/cities"
+            		<li class="sidebar-nav-item"><a href="/_admin/show_Cities"
 				class="sidebar-nav-link">
 					<div>
 						<i class="fas fa-car"></i>
 					</div> <span>ادارة المدن</span>
 			</a></li>
 
-            		<li class="sidebar-nav-item"><a href="/_admin/zones"
+            		<li class="sidebar-nav-item"><a href="/_admin/show_Zones"
 				class="sidebar-nav-link">
 					<div>
 						<i class="fas fa-home"></i>

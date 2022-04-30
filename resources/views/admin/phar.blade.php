@@ -7,13 +7,13 @@
         <div class="col-12 col-m-12 col-sm-12">
         <div class="card bg-white m-5">
 
-            <div class="card-header">
+            <div class="card-header d-flex justify-content-between">
+                <a href="/add_phar"><i class="fas fa-plus"></i></a>
                 <h3>الصيدلية</h3>
-                    <a href="/add_phar"><i class="fas fa-plus"></i></a>
             </div>
             <div class="card-content">
-                <table class="table no-margin ">
-                    <thead class="success">
+                <table class="table">
+                    <thead>
                         <tr>
                             <th>الاسم</th>
                             <th>العنوان</th>
@@ -51,6 +51,7 @@
 
                     </tbody>
                 </table>
+
             </div>
         </div>
 </div>

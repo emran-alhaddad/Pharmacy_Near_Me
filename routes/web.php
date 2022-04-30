@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdsController;
+use App\Http\Controllers\Admin\ZonesController;
+use App\Http\Controllers\Admin\ComplaintsController;
+use App\Http\Controllers\Admin\CitiesController;
 use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Http\Controllers\Auth\Register\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
@@ -117,14 +121,40 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/_admin/pharmacies', [AdminController::class, 'showPharmacies'])->name('admin-pharmacies');
         Route::get('/_admin/users', [AdminController::class, 'showUsers'])->name('admin-users');
-        Route::get('/_admin/complaints', [AdminController::class, 'showCompliants'])->name('admin-compliants');
         Route::get('/_admin/notifications', [AdminController::class, 'showNotifications'])->name('admin-notifications');
-        Route::get('/_admin/cities', [AdminController::class, 'showCities'])->name('admin-cities');
+
+
+        Route::get('/_admin/profile', [AdminController::class, 'showProfile'])->name('admin-profile');
+        Route::get('/_admin/edit_profile', [AdminController::class, 'editProfile'])->name('admin-edit_profile');
         Route::get('/_admin/zones', [AdminController::class, 'showZones'])->name('admin-zones');
+
+
+        Route::get('/_admin/show_ads', [AdsController::class, 'showAds'])->name('admin-show_ads');
+        Route::get('/_admin/add_ads', [AdsController::class, 'addAds'])->name('admin-add_ads');
+        Route::get('/_admin/edit_ads', [AdsController::class, 'editAds'])->name('admin-edit_ads');
+
+
+        Route::get('/_admin/show_Complaints', [ComplaintsController::class, 'showComplaints'])->name('admin-show_Complaints');
+        Route::get('/_admin/add_Complaints', [ComplaintsController::class, 'addComplaints'])->name('admin-add_Complaints');
+        Route::get('/_admin/edit_Complaints', [ComplaintsController::class, 'editComplaints'])->name('admin-edit_Complaints');
+
+
+        Route::get('/_admin/show_Zones', [ZonesController::class, 'showZones'])->name('admin-show_Zones');
+        Route::get('/_admin/add_Zones', [ZonesController::class, 'addZones'])->name('admin-add_Zones');
+        Route::get('/_admin/edit_Zones', [ZonesController::class, 'editZones'])->name('admin-edit_Zones');
+
+
+        Route::get('/_admin/show_Cities', [CitiesController::class, 'showCities'])->name('admin-show_Cities');
+        Route::get('/_admin/add_Cities', [CitiesController::class, 'addCities'])->name('admin-add_Cities');
+        Route::get('/_admin/edit_Cities', [CitiesController::class, 'editCities'])->name('admin-edit_Cities');
+
+
 
         Route::get('/_admin/adds', [AdvertiseController::class, 'index'])->name('admin-adds');
         Route::get('/_admin/adds/create', [AdvertiseController::class, 'add'])->name('admin-adds-create');
         Route::post('/_admin/adds/create', [AdvertiseController::class, 'create']);
+
+
     });
 
     // Logout
