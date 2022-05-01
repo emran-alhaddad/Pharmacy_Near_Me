@@ -437,10 +437,11 @@ body {
 		width: 0;
 	}
 	.wrapper {
-		margin-left: 0;
+		margin-right: 0;
 	}
 	.sidebar-expand .wrapper {
-		margin-left: 0;
+        margin-right: 0;
+        /* margin-top: -5px; */
 	}
 	.nav-right .nav-item {
 		display: none;

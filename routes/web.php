@@ -5,6 +5,10 @@ use App\Http\Controllers\Admin\AdsController;
 use App\Http\Controllers\Admin\ZonesController;
 use App\Http\Controllers\Admin\ComplaintsController;
 use App\Http\Controllers\Admin\CitiesController;
+use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\PharController;
+use App\Http\Controllers\Admin\PaymentMethodsCotroller;
+
 use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Http\Controllers\Auth\Register\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
@@ -119,10 +123,6 @@ Route::group(['middleware' => 'auth'], function () {
         // Admin Dashboard
         Route::get('/_admin/', [AdminController::class,'index'])->name('admin-dashboard');
 
-        Route::get('/_admin/pharmacies', [AdminController::class, 'showPharmacies'])->name('admin-pharmacies');
-        Route::get('/_admin/users', [AdminController::class, 'showUsers'])->name('admin-users');
-        Route::get('/_admin/notifications', [AdminController::class, 'showNotifications'])->name('admin-notifications');
-
 
         Route::get('/_admin/profile', [AdminController::class, 'showProfile'])->name('admin-profile');
         Route::get('/_admin/edit_profile', [AdminController::class, 'editProfile'])->name('admin-edit_profile');
@@ -147,6 +147,24 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/_admin/show_Cities', [CitiesController::class, 'showCities'])->name('admin-show_Cities');
         Route::get('/_admin/add_Cities', [CitiesController::class, 'addCities'])->name('admin-add_Cities');
         Route::get('/_admin/edit_Cities', [CitiesController::class, 'editCities'])->name('admin-edit_Cities');
+
+
+        Route::get('/_admin/show_Customers', [CustomerController::class, 'showCustomers'])->name('admin-show_Customer');
+        Route::get('/_admin/add_Customers', [CustomerController::class, 'addCustomers'])->name('admin-add_Customers');
+        Route::get('/_admin/edit_Customers', [CustomerController::class, 'editCustomers'])->name('admin-edit_Customers');
+
+        Route::get('/_admin/show_Phars', [PharController::class, 'showPhars'])->name('admin-show_Phars');
+        Route::get('/_admin/add_Phars', [PharController::class, 'addPhars'])->name('admin-add_Phars');
+        Route::get('/_admin/edit_Phars', [PharController::class, 'editPhars'])->name('admin-edit_Phars');
+
+
+        Route::get('/_admin/show_PaymentMethods', [PaymentMethodsCotroller::class, 'showPaymentMethods'])->name('admin-show_PaymentMethods');
+        Route::get('/_admin/add_PaymentMethods', [PaymentMethodsCotroller::class, 'addPaymentMethods'])->name('admin-add_PaymentMethods');
+        Route::get('/_admin/edit_PaymentMethods', [PaymentMethodsCotroller::class, 'editPaymentMethods'])->name('admin-edit_PaymentMethods');
+
+
+
+
 
 
 
