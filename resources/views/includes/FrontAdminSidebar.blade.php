@@ -38,7 +38,7 @@
 						<i class="fas fa-bug"></i>
 					</div> <span>ادارة الشكاوى</span>
 			</a></li>
-			<li class="sidebar-nav-item"><a href="/_admin/notifications"
+			<li class="sidebar-nav-item"><a href="/_admin/show_Notifications"
 				class="sidebar-nav-link">
 					<div>
 						<i class="fas fa-bell"></i>
@@ -59,7 +59,7 @@
 					</div> <span>ادارة المربعات  السكنية</span>
 			</a></li>
 
-            <li class="sidebar-nav-item"><a href="index.html"
+            <li class="sidebar-nav-item"><a href="/_admin/show_Accounts"
 				class="sidebar-nav-link">
 					<div>
 						<i class="fas fa-check"></i>
@@ -73,14 +73,14 @@
 					</div> <span>ادارة  طرق  الدفع</span>
 			</a></li>
 
-            <li class="sidebar-nav-item"><a href="index.html"
+            <li class="sidebar-nav-item"><a href="/_admin/show_Requests"
 				class="sidebar-nav-link">
 					<div>
 						<i class="fas fa-tasks"></i>
 					</div> <span>ادارة  جدولة الطلبيات</span>
 			</a></li>
 
-            	<li class="sidebar-nav-item"><a href="index.html"
+            	<li class="sidebar-nav-item"><a href="/_admin/show_Permissions"
 				class="sidebar-nav-link">
 					<div>
 						<i class="fas fa-check"></i>
