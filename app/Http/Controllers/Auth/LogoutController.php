@@ -12,6 +12,6 @@ class LogoutController extends Controller
    public function logout()
    {
     Auth::logout();
-    return redirect()->route('login')->with('status','تم تسجيل خروجك بنجاح');
+    return back()->with('status','تم تسجيل خروجك بنجاح');
    }
 }

@@ -52,13 +52,15 @@ class RegisterController extends Controller
                     $this->registerPharmacy($user, $request);
                     break;
                 default:
+                
                     return back()->with('error', "حدث خطأ غير متوقع ... لم نتمكن من تسجيل حسابك !! يرجى المحاولة مرة أخرى");
             }
 
             if (!$request->has('email_verified_at'))
                 Mail::to($request->email)->send(new VerifyEmail($email_data));
-            return  redirect()->route('login')->with('error', 'لقد تم ارسال رابط تفعيل الحساب الى الايميل الخاص بك ');
+            return  redirect()->route('login')->with('status', 'لقد تم ارسال رابط تفعيل الحساب الى الايميل الخاص بك ');
         } else
+        
             return back()->with('error', "حدث خطأ غير متوقع ... لم نتمكن من تسجيل حسابك !! يرجى المحاولة مرة أخرى");
     }
 
@@ -83,7 +85,7 @@ class RegisterController extends Controller
                 return $this->registerPharmacy($user);
                 break;
             default:
-            return back()->with('error', 'عذا ... حدث خطأ غير متوقع .. لم نستطع انشاء حساب جديد لك ... يرجى المحاولة مرة اخرى');
+            return back()->with('error', 'عذرا ... حدث خطأ غير متوقع .. لم نستطع انشاء حساب جديد لك ... يرجى المحاولة مرة اخرى');
         }
     }
 
@@ -129,9 +131,21 @@ class RegisterController extends Controller
     private function validateFields(Request $request)
     {
         $request->validate([
-            'name' => 'required|max:255',
-            'email' => 'required|max:255|email',
-            'password' => 'required|min:8|confirmedd'
+            'name' => 'required|string|min:5|max:100',
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+            'confirmed' => 'same:password'
+        ],[
+            'name.required' => "الأسم يجب ألا يكون فارغا",
+            'email.required' =>"البريد الألكتروني يجب ألا يكون فارغا",
+            'password.required' =>"كلمة المرور يجب ألا تكون فارغة",
+            'name.string' => "الأسم يجب أن يكون نص",
+            'name.min' => "يجب ألا يقل طول الأسم عن 5 احرف  ",
+            'name.max' => "يجب ألا يزيد طول الأسم عن 100 حرف  ",
+            'email.email' => "صيغة البريد الإلكتروني غير صحيحة",
+            'password.min' => "يجب ألا يقل طول كلمة السر عن 8 احرف  ",
+            'confirmed.same' => "يجب أن يتطابق هذا الحقل مع كلمة المرور",
+
         ]);
     }
 }

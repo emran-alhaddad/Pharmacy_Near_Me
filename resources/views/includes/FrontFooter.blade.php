@@ -1,47 +1,23 @@
-<section class="footer">
-
-    <div class="box-container">
-
-        <div class="box">
-            <h3>روابط سريعة </h3>
-            <a href="{{ route('index') }}"> <i class="fas fa-arrow-left"></i> الرئيسية</a>
-            <a href="{{ route('pharmacies') }}"> <i class="fas fa-arrow-left"></i> الصيدليات</a>
-            <a href="{{ route('ads') }}"> <i class="fas fa-arrow-left"></i> الإعلانات</a>
-            <a href="{{ route('contact') }}"> <i class="fas fa-arrow-left"></i> تواصل معنا </a>
-            <a href="{{ route('about') }}"> <i class="fas fa-arrow-left"></i> عن الموقع</a>
-
+<!--====== FOOTER PART START ======-->
+<footer class="footer-area col-12 shadow" style="direction: rtl;">
+    <div class="widget-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12 col-md-12">
+                    <div class="footer-widget about">
+                        <p class="text-center col-12">تم تصميمة بواسطة <a href="#">Taiz Pharmacy Team </a> جميع الحقوق محفوظة &copy; </p>
+                        <ul class="social text-center align-content-center align-self-center">
+                            <li><a href="#"><i class="lni lni-facebook-filled"></i></a></li>
+                            <li><a href="#"><i class="lni lni-twitter-filled"></i></a></li>
+                            <li><a href="#"><i class="lni lni-instagram-filled"></i></a></li>
+                            <li><a href="#"><i class="lni lni-linkedin-original"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="box">
-            <h3> روابط خارجية </h3>
-            <a href="#"> <i class="fas fa-arrow-left"></i>  شروط </a>
-            <a href="#"> <i class="fas fa-arrow-left"></i>  شروط </a>
-            <a href="#"> <i class="fas fa-arrow-left"></i>  شروط </a>
-            <a href="#"> <i class="fas fa-arrow-left"></i>  شروط </a>
-            <a href="#"> <i class="fas fa-arrow-left"></i>  شروط </a>
-        </div>
-
-        <div class="box">
-            <h3>تابعنا على</h3>
-            <a href="#"> <i class="fab fa-facebook-f"></i> فيس بوك  </a>
-            <a href="#"> <i class="fab fa-twitter"></i> تويتر  </a>
-            <a href="#"> <i class="fab fa-instagram"></i>  انستجرام </a>
-            <a href="#"> <i class="fab fa-linkedin"></i>  لينكد ان </a>
-            <a href="#"> <i class="fab fa-linkedin"></i>  لينكد ان </a>
-        </div>
-
-        <div class="box">
-            <h3>نشرة الأخبار</h3>
-            <p> اشترك لمعرفة أخر الأخبار والإشتراكات </p>
-            <form action="">
-                <input type="email" placeholder="ادخل ايميلك هنا ">
-                <input type="submit" value="اشتراك" class="btn">
-            </form>
-            <img src="images/payment.png" class="payment" alt="">
-        </div>
-
     </div>
 
-    <div class="credit"> تم تصميمه بواسطة<span> Taiz Pharmacy Team </span> | &copy; جميع الحقوق محفوظة </div>
 
-</section>
+</footer>
+<!--====== FOOTER PART ENDS ======-->

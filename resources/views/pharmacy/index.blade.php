@@ -6,10 +6,16 @@
         <div class="row">
             <div class="col-md-3 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5"
-                        width="150px"
-                        src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span
-                        class="font-weight-bold">{{ Auth::user()->name }}</span><span class="text-black-50">{{ Auth::user()->email }}</span><span>
-                    </span></div>
+                         src="{{ asset('uploads/avaters/pharmacy/' . Auth::user()->avater) }}"><span
+                        class="font-weight-bold">{{ Auth::user()->name }}</span><span
+                        class="text-black-50">{{ Auth::user()->email }}</span><span>
+                    </span>
+                </div>
+                <div class="d-flex flex-column">
+                <a href="{{ route('logout') }}" class="btn btn-success" >
+                Logout
+                </a>
+                </div>
             </div>
             <div class="col-md-5 border-right">
                 <div class="p-3 py-5">
@@ -17,28 +23,27 @@
                         <h4 class="text-right"> اعدادات الملف الشخصي للصيدلية</h4>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-6"> <label class="f-5 my-4">الاسم</label><input type="text"
-                                class="form-control" placeholder="first name" value=""></div>
+                        <div class="col-md-6"> <label class="f-5 my-4">الاسم</label>
+                        <input type="text" value="{{ Auth::user()->name }}"
+                                class="form-control" placeholder="first name" ></div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-12"><label class="f-5 my-4"> رقم الجوال</label><input type="text"
-                                class="form-control" placeholder="enter phone number" value=""></div>
+                        <div class="col-md-12"><label class="f-5 my-4"> رقم الجوال</label>
+                        <input type="text" value="{{ Auth::user()->phone }}"
+                                class="form-control" placeholder="enter phone number" ></div>
                         <div class="col-md-12"><label class="f-5 my-4"> العنوان 1</label><input type="text"
-                                class="form-control" placeholder="enter address line 1" value=""></div>
+                                class="form-control" placeholder="enter address line 1" ></div>
                         <div class="col-md-12"><label class="f-5 my-4"> العنوان 2</label><input type="text"
-                                class="form-control" placeholder="enter address line 2" value=""></div>
-                        <div class="col-md-12"><label class="f-5 my-4">المديرية</label><input type="text"
-                                class="form-control" placeholder="enter address line 2" value=""></div>
-                        <div class="col-md-12"><label class="f-5 my-4">المربع السكني</label><input type="text"
-                                class="form-control" placeholder="enter address line 2" value=""></div>
-                        <div class="col-md-12"><label class="f-5 my-4"> الايميل</label><input type="text"
-                                class="form-control" placeholder="enter email id" value=""></div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6"><label class="f-5 my-4">الدولة</label><input type="text"
-                                class="form-control" placeholder="country" value=""></div>
-                        <div class="col-md-6"><label class="f-5 my-4">المدينة</label><input type="text"
-                                class="form-control" value="" placeholder="state"></div>
+                                class="form-control" placeholder="enter address line 2" ></div>
+                        <div class="col-md-12"><label class="f-5 my-4">المحافضة</label>
+                        <input type="text" value="{{ $pharmacy->zone->city->name }}"
+                                class="form-control" placeholder="enter address line 2" ></div>
+                        <div class="col-md-12"><label class="f-5 my-4">المربع السكني</label>
+                        <input type="text" value="{{ $pharmacy->zone->name }}"
+                                class="form-control" placeholder="enter address line 2" ></div>
+                        <div class="col-md-12"><label class="f-5 my-4"> الايميل</label>
+                        <input type="text" value="{{ Auth::user()->email }}"
+                                class="form-control" placeholder="enter email id" ></div>
                     </div>
                     <div class="mt-5 text-center"><button class="btn btn-primary profile-button text-dark "
                             type="button">Save Profile</button></div>

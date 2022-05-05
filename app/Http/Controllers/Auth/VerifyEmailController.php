@@ -14,6 +14,7 @@ class VerifyEmailController extends Controller
     public function verify($token)
     {
         $user = User::where('remember_token',$token)->first();
+       
         if($user)
         {
             $user->email_verified_at = Carbon::now()->timestamp;
@@ -22,6 +23,6 @@ class VerifyEmailController extends Controller
             return LoginController::checkrole($user);
         }
         else
-        return redirect()->route('forget-password')->with('error','انتهت صلاحية رابط التفعيل هذا ');
+        return redirect()->route('register')->with('error',' انتهت صلاحية رابط التفعيل هذا اعد انشاء الحساب');
     }
 }

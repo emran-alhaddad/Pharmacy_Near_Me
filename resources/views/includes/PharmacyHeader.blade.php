@@ -88,7 +88,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white p-4">
     <div class="container-fluid">
-            <h6> <a href="#" class="navbar-brand">ابولو</a></h6>
+            <h6> <a href="#" class="navbar-brand">علاجي</a></h6>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>

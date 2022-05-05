@@ -16,7 +16,12 @@ class LoginController extends Controller
         Validator::validate($request->all(), [
             'email' => ['email', 'required'],
             'password' => ['required']
+        ],[
+            'email.required' =>"البريد الألكتروني يجب ألا يكون فارغا",
+            'password.required' =>"كلمة المرور يجب ألا تكون فارغة",
+            'email.email' => "صيغة البريد الإلكتروني غير صحيحة"
         ]);
+        
         $user = User::where('email', '=', $request->email)->first();
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {

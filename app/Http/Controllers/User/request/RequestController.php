@@ -5,9 +5,9 @@ namespace App\Http\Controllers\User\request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request as requestData;
 use Illuminate\Support\Facades\DB;
-use App\Models\Request as Add;
 use App\Models\Request_Details;
 use App\Http\Controllers\QueryController;
+use Illuminate\Support\Facades\Auth;
 
 class RequestController extends Controller
 {
@@ -41,7 +41,6 @@ class RequestController extends Controller
         foreach($allDurg as $durg)
         {
             $Req_Details->request_id=$id;
-            $Req_Details->stats=0;
             $Req_Details->drug_title=$durg->drug_title;
             $Req_Details->drug_image=$durg->drug_image;
             $Req_Details->quantity=$durg->quantity;

@@ -21,8 +21,8 @@ class AdminsSeeder extends Seeder
 
             $user = new User();
             $user->name = "عمران الحداد";
-            $user->email = 'alhaddademran@gmail.com';
-            $user->password = Hash::make('EmranCo');
+            $user->email = 'admin@gmail.com';
+            $user->password = Hash::make('admin');
             $user->email_verified_at = Carbon::now()->timestamp;
             $user->is_active = 1;
             if ($user->save()) {

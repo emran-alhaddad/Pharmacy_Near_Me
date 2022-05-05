@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 
+
 class PharmaciesSeeder extends Seeder
 {
     /**
@@ -18,8 +19,24 @@ class PharmaciesSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {   
 
+        $user = new User();
+        $user->name = "  حنين";
+        $user->email = 'phar@gmail.com';
+        $user->password = Hash::make('phar');
+        $user->email_verified_at = Carbon::now()->timestamp;
+        $user->is_active = 1;
+        if ($user->save()) {
+            $user->attachRole('pharmacy');
+            Pharmacy::create([
+                'user_id' => $user->id,
+                'zone_id' => 1
+            ]);
+        }
+       
+        
+        
         $filePathName=base_path().'\names\phar.txt';
         $filePathEmail=base_path().'\names\email.txt';
         $fileName = fopen($filePathName, "r");
@@ -31,12 +48,12 @@ class PharmaciesSeeder extends Seeder
             $user = new User();
             $user->password = Hash::make('123456789');
             $user->is_active = 1;
-             $user->name = $line;
+             $user->name = trim($line);
             $user->email =fgets($fileEmail);
             $user->email_verified_at = Carbon::now()->timestamp;
-            if($x==10)
+            if($x==20)
             $x=1;      
-
+                   
       
             if ($user->save()) {
                         $user->attachRole('pharmacy');
@@ -45,6 +62,7 @@ class PharmaciesSeeder extends Seeder
                             'zone_id' => $x
                         ]);
                     }
+                    $x++;
     }
   
 

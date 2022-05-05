@@ -7,7 +7,7 @@
         </nav>
         <div class="nav-item dropdown col-6  p-2 d-flex justify-content-end">
             <a class="nav-link dropdown-toggle fs-6 fw-bold color-user" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            هديل جميل
+            {{ Auth::user()->name }}
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item fs-6 fw-bold " href="{{ route('pharmacies') }}">الصيدليات</a></li>
