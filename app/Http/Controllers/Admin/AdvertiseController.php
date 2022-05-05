@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Advertising;
+use Illuminate\Support\Facades\DB;
 
 class AdvertiseController extends Controller
 {
@@ -15,25 +16,71 @@ class AdvertiseController extends Controller
      return view('admin.ads');
     //  return view('welcome');
 
-   } 
+   }
+ 
 
     public function create(Request $request)
     {
          $ads=new Advertising();
-         $ads->admin_id=72;
+         
          $ads->descripe=$request->descripe;
          $ads->owner=$request->owner;
          $ads->image=$request->image;
          $ads->url=$request->url;
+         $ads->position=$request->position;
+         $ads->startAt=$request->startAt;
+         $ads->is_active=$request->is_active;
+         $ads->endAt=$request->endAt;
          $ads->save();
          return "adding";
          
     }
 
+
    public function add()
    {
-    //    return view('welcome');
+     //return view("ads-form");
    }
+   public function delete($id)
+   {
+     $deleted = DB::table('advertisings')->where('id',$id)->delete();
+   }
+
+   public function Activate($id,$status)
+   {
+     $affected = DB::table('advertisings')
+     ->where('id', $id)
+     ->update(['is_active' =>$status ]);
+   }
+
+   public function indexUpdate($id)
+   {
+     $adsDate=DB::table('advertisings')->select("advertisings.*")
+                           ->where('id',$id)
+                           ->get();
+        return $adsDate;                   
+   }
+
+   public function doUpdate(Request $request,$id)
+   { 
+
+
+     $affected = DB::table('advertisings')
+     ->where('id', $id)
+     ->update(['descripe' => $request->descripe,
+               'url' => $request->url,
+               'image' => $request->image,
+               'owner' => $request->owner,
+               'is_active' => $request->is_active,
+               'position' => $request->position,
+               'startAt' => $request->startAt,
+               'endAt' => $request->endAt,
+              ]);
+
+   }
+
+  
+
 
    
 }

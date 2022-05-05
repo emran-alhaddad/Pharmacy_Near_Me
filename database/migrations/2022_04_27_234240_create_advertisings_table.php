@@ -14,15 +14,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('advertisings', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->unsignedBigInteger('admin_id');
+            $table->id();           
             $table->string('descripe');
             $table->string('url');
             $table->string('image');
             $table->string('owner');
-            $table->foreign('admin_id')->references('user_id')->on('admins');
-
+            $table->int('is_active');
+            $table->int('position');
+            $table->timestamp('startAt')->nullable();
+            $table->timestamp('endAt')->nullable();
+            $table->timestamps();
 
 
         });

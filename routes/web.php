@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\request\RequestController;
 use App\Http\Controllers\Admin\AdvertiseController;
 use App\Http\Controllers\User\ClientController;
+use App\Http\Controllers\User\Complaint\ComplaintController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,11 @@ Route::get('/ads', [interfacesController::class, 'ads'])->name('ads');
 Route::get('/about', [interfacesController::class, 'about'])->name('about');
 Route::get('/contact', [interfacesController::class, 'contact'])->name('contact');
 Route::get('/confirm', [interfacesController::class, 'confirm'])->name('confirm');
+
+Route::get('get_all_complaint',[ComplaintController::class, 'getAllComplaint'])->name('get_all_complaint');
+Route::get('index_complaint',[ComplaintController::class, 'index'])->name('index_complaint');
+Route::post('add_complaint',[ComplaintController::class, 'AddComplaint'])->name('add_complaint');
+
 
 // route For test
 // Route::get('/userProfile', [interfacesController::class, 'userProfile'])->name('userProfile');
@@ -79,15 +85,16 @@ Route::get('auth/verify_email/{token}', [VerifyEmailController::class, 'verify']
 
 // Routes That Needs Authentication
 Route::group(['middleware' => 'auth'], function () {
-
-    // Client Routes
+    
+    // Client 
     Route::group(['middleware' => ['role:client']], function () {
         Route::get('/client/',[ClientController::class,'index'])->name('client-dashboard');
-
+        Route::get('get_complaint',[ComplaintController::class, 'getComplaint'])->name('get_complaint');
         // Client Request
         Route::get('/client/rquests', [RequestController::class, 'index'])->name('client-requests');
         Route::get('/client/rquest/add', [RequestController::class, 'add'])->name('client-request-add');
         Route::post('/client/rquest/add', [RequestController::class, 'create']);
+        Route::get('profi', [ClientController::class, 'index'])->name('profi');
     });
 
     // Pharmacy Routes
@@ -123,8 +130,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/_admin/zones', [AdminController::class, 'showZones'])->name('admin-zones');
 
         Route::get('/_admin/adds', [AdvertiseController::class, 'index'])->name('admin-adds');
-        Route::get('/_admin/adds/create', [AdvertiseController::class, 'add'])->name('admin-adds-create');
-        Route::post('/_admin/adds/create', [AdvertiseController::class, 'create']);
+        Route::get('/_admin/adds/delete/{id}', [AdvertiseController::class, 'delete'])->name('admin-adds-delete');
+        Route::get('/_admin/adds/get', [AdvertiseController::class, 'get'])->name('admin-adds-get');
+        Route::get('/_admin/adds/update/{id}', [AdvertiseController::class, 'indexUpdate'])->name('admin-adds-update');
+        Route::post('/_admin/adds/update/{id}', [AdvertiseController::class, 'doUpdate'])->name('admin-adds-doUpdate');
+        
     });
 
     // Logout
@@ -140,3 +150,9 @@ Route::group(
     ], function(){ //...
     });
     
+
+    Route::get('/_admin/adds/create', [AdvertiseController::class, 'add'])->name('admin-adds-create');
+    Route::post('/_admin/adds/create', [AdvertiseController::class, 'create'])->name('admin-adds-create');
+    Route::get('/pharmacy/{id}', [ClientController::class, 'selectPharamcy'])->name('user-select-pharmacy');
+    Route::get('/request', [ClientController::class, 'RequestInWaitAccespt'])->name('request');
+    Route::get('/request2', [ClientController::class, 'request2'])->name('request2');
