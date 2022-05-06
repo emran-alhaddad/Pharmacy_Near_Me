@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use  App\Models\User;
+use App\Utils\ErrorMessages;
 
 class LoginController extends Controller
 {
@@ -28,16 +29,16 @@ class LoginController extends Controller
             if ($user->email_verified_at) {
                 if (!$user->is_active) {
                     Auth::logout();
-                    return back()->with('error', 'حسابك يحتاج تفعيل من مدير الموقع اضغط على الرابط التالي لتقديم طلب الى مدير الموقع');
+                    return back()->with('error', ErrorMessages::EMAIL_ACTIVATE);
                 }
 
                 return LoginController::checkrole($user);
             } else {
                 Auth::logout();
-                return back()->with('error', 'يجب عليك اولا تأكيد البريد الألكتروني عن طريق الضغط على الرابط المرسل الى بريدك الالكتروني');
+                return back()->with('error',ErrorMessages::EMAIL_VERIFY);
             }
         } else {
-            return back()->with('error', 'بيانات الدخول غير صحيحة !!');
+            return back()->with('error', ErrorMessages::LOGIN_FAILD);
         }
     }
 

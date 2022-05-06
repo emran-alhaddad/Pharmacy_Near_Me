@@ -36,10 +36,10 @@
                         <div class="col-md-12"><label class="f-5 my-4"> العنوان 2</label><input type="text"
                                 class="form-control" placeholder="enter address line 2" ></div>
                         <div class="col-md-12"><label class="f-5 my-4">المحافضة</label>
-                        <input type="text" value="{{ $pharmacy->zone->city->name }}"
+                        <input type="text" value="{{ $pharmacy->zone != null ?$pharmacy->zone->city->name:'' }}"
                                 class="form-control" placeholder="enter address line 2" ></div>
                         <div class="col-md-12"><label class="f-5 my-4">المربع السكني</label>
-                        <input type="text" value="{{ $pharmacy->zone->name }}"
+                        <input type="text" value="{{ $pharmacy->zone != null ? $pharmacy->zone->name:'' }}"
                                 class="form-control" placeholder="enter address line 2" ></div>
                         <div class="col-md-12"><label class="f-5 my-4"> الايميل</label>
                         <input type="text" value="{{ Auth::user()->email }}"

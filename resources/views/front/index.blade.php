@@ -14,6 +14,7 @@
                         <p class="wow fadeInUp" data-wow-delay=".4s">نسعى لتحقيق أحلام عملائنا ، من خلال الجمع بين أفكارهم
                             وحاجاتهم تجاربهم وتجربتنا الخاصة.</p><br>
                     </div>
+                    {{-- <img class="img-fluid" src="{{ asset('Front/assets/images/1.png') }}"> --}}
                 </div>
             </div>
         </div>

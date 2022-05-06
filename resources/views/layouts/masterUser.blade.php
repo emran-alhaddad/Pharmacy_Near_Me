@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
-    <link  href="{{ asset('auth/css/bootstrap.min.css')}}" rel="stylesheet">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link href="{{ asset('auth/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
-  <style>
-
+    <style>
         :root {
             --black: #444;
             --light-color: #777;
@@ -56,30 +56,37 @@
         html::-webkit-scrollbar-thumb {
             background: linear-gradient(60deg, rgba(84, 58, 183, 1) 0%, rgba(0, 172, 193, 1) 100%);
         }
-        .btn, .bg-primary  {
+
+        .btn,
+        .bg-primary {
 
             border: var(--border);
             border-radius: var(--radius);
             box-shadow: var(--box-shadow);
-            color:  rgba(84, 58, 183, 1);
+            color: rgba(84, 58, 183, 1);
             cursor: pointer;
             text-align: center;
         }
+
         .btn:hover {
             background: var(--main-color);
             color: #fff;
             cursor: pointer;
         }
-        .color-user{
-        color:  var(--black);
-        padding: .2rem;
-        text-decoration: none;
+
+        .color-user {
+            color: var(--black);
+            padding: .2rem;
+            text-decoration: none;
         }
-        .color-user:hover{
-        color:  var(--main-color);;
+
+        .color-user:hover {
+            color: var(--main-color);
+            ;
         }
-        i{
-        color: var(--main-color);
+
+        i {
+            color: var(--main-color);
         }
 
         .log-btn {
@@ -97,6 +104,7 @@
             cursor: pointer;
             /* color: #ffffff; */
         }
+
         .s-btn {
             width: 100%;
             padding: 1rem 1.2rem;
@@ -108,79 +116,90 @@
             text-transform: none;
             border-radius: var(--radius);
         }
-        input[type="number"]{
-        width: 49px;
-        border: var(--border);
-        text-align: center;
+
+        input[type="number"] {
+            width: 49px;
+            border: var(--border);
+            text-align: center;
         }
+
     </style>
 </head>
+
 <body class="bg-light" style="color: rgb(102, 62, 96);">
     <main class="container">
         <!-- top nav start -->
-         @include('includes.UserTopNav')
+        @include('includes.UserTopNav')
         <!-- top nav end -->
 
         <!-- side Nav Start -->
-         @include('includes.UserSideNav')
+        @include('includes.UserSideNav')
         <!-- side Nav end -->
 
+        @if (session('error'))
+            <div class="alert alert-danger" role="alert">
+                {!! session('error') !!}
+            </div>
+        @endif
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {!! session('status') !!}
+            </div>
+        @endif
 
-
-            @yield('content')
-
-
-
-     <script src="{{ asset('auth/js/bootstrap.bundle.min.js')}}"></script>
-     <script src="{{ asset('auth/js/jquery.min.js')}}"></script>
-     <script>
-        // $('personal').click($('pp').hide());
-        $(document).ready(function(){
-
-        $("#perso,#wrk,#skil,#Edu,#expe,#curs,#Edpers").hide();
-
-
-        });
-
-        $("#personal").click(function(){
-        $("#ord").hide();
-        $("#perso").show();
+        @yield('content')
 
 
 
-        });
-        //
-        $("#order").click(function(){
-        $("#perso").hide();
-        $("#ord").show();
-        });
-        //
-        $("#order-repate").click(function(){
-        // $("#repe").hide();
-        //  $("#wrk,#skil,#Edu,#expe,#curs,#Edpers,#perso").hide();
-        $("#rep").show();
-        });
+        <script src="{{ asset('auth/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('auth/js/jquery.min.js') }}"></script>
+        <script>
+            // $('personal').click($('pp').hide());
+            $(document).ready(function() {
+
+                $("#perso,#wrk,#skil,#Edu,#expe,#curs,#Edpers").hide();
+
+
+            });
+
+            $("#personal").click(function() {
+                $("#ord").hide();
+                $("#perso").show();
 
 
 
-        $("#Edit").click(function(){
-        $("#wrk,#skil,#Edu,#expe,#curs,#Edpers,#perso").hide();
-        $("#Edpers").show();
-        });
-
-        $("#saveEd").click(function(){
-        $("#wrk,#skil,#Edu,#expe,#curs,#Edpers,#Edpers").hide();
-        $("#perso").show();
-        });
-
-        // $("#detelis").click(function(){
-        // $("#wrk,#perso,#Edu,#skil,#curs,#Edpers").hide();
-        // // $("#deteli").show();
-        // });
+            });
+            //
+            $("#order").click(function() {
+                $("#perso").hide();
+                $("#ord").show();
+            });
+            //
+            $("#order-repate").click(function() {
+                // $("#repe").hide();
+                //  $("#wrk,#skil,#Edu,#expe,#curs,#Edpers,#perso").hide();
+                $("#rep").show();
+            });
 
 
-    </script>
+
+            $("#Edit").click(function() {
+                $("#wrk,#skil,#Edu,#expe,#curs,#Edpers,#perso").hide();
+                $("#Edpers").show();
+            });
+
+            $("#saveEd").click(function() {
+                $("#wrk,#skil,#Edu,#expe,#curs,#Edpers,#Edpers").hide();
+                $("#perso").show();
+            });
+
+            // $("#detelis").click(function(){
+            // $("#wrk,#perso,#Edu,#skil,#curs,#Edpers").hide();
+            // // $("#deteli").show();
+            // });
+        </script>
 
 
 </body>
+
 </html>

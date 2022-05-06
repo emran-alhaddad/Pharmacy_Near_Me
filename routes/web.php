@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\AccountsController;
 use App\Http\Controllers\Admin\NotificationsController;
 use App\Http\Controllers\Admin\PermissionsController;
 use App\Http\Controllers\Admin\RequestsController;
+use App\Http\Controllers\Auth\ResendEmailController;
 use App\Http\Controllers\Pharmacy\ChatController;
 use App\Http\Controllers\Pharmacy\PharmacyController;
 use App\Http\Controllers\Pharmacy\ReplyController;
@@ -72,12 +73,15 @@ Route::post('/login', [LoginController::class, 'doLogin']);
 
 // Forget Password
 Route::get('/forgot-password', [ForgetPasswordController::class, 'index'])->middleware('guest')->name('forget-password');
-Route::post('/forgot-password', [ForgetPasswordController::class, 'create'])->middleware('guest');
+Route::post('/forgot-password', [ForgetPasswordController::class, 'create'])->middleware('guest')->name('forget-password');
 
 // Reset Password
 Route::get('/reset-password/{token}', [ResetPasswordController::class, 'show'])->middleware('guest')->name('reset-password');
 Route::post('/reset-password', [ResetPasswordController::class, 'store'])->middleware('guest')->name('reset-password');
 
+// Resend Email Activation
+Route::get('/resend-email-activation', [ResendEmailController::class, 'index'])->middleware('guest')->name('resend-email-activation');
+Route::post('/resend-email-activation', [ResendEmailController::class, 'send'])->middleware('guest')->name('resend-email-activation');
 
 
 // Facebook Auth
@@ -104,7 +108,7 @@ Route::group(['middleware' => 'auth'], function () {
         // Client Request
         Route::get('/client/rquests', [RequestController::class, 'index'])->name('client-requests');
         Route::get('/client/rquest/add', [RequestController::class, 'add'])->name('client-request-add');
-        Route::post('/client/rquest/add', [RequestController::class, 'create']);
+        Route::post('/client/rquest/add', [RequestController::class, 'insert'])->name('client-request-create');
     });
 
     // Pharmacy Routes
@@ -192,7 +196,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/_admin/show_Permissions', [PermissionsController::class, 'showPermissions'])->name('admin-show_[Permissions');
 
         // Route::get('/_admin/adds', [AdvertiseController::class, 'index'])->name('admin-adds');
-        // Route::get('/_admin/adds/create', [AdvertiseController::class, 'add'])->name('admin-adds-create');
+        // Route::get('/_admin/adds/add', [AdvertiseController::class, 'add'])->name('admin-adds-create');
+        // Route::get('/_admin/adds/edit', [AdvertiseController::class, 'edit'])->name('admin-adds-edit');
         // Route::post('/_admin/adds/create', [AdvertiseController::class, 'create']);
     });
 

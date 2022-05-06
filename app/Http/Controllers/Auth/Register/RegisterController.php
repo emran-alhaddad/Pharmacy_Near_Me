@@ -9,6 +9,8 @@ use App\Models\Admin;
 use App\Models\Client;
 use App\Models\Pharmacy;
 use App\Models\User;
+use App\Utils\ErrorMessages;
+use App\Utils\SuccessMessages;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -53,15 +55,15 @@ class RegisterController extends Controller
                     break;
                 default:
                 
-                    return back()->with('error', "حدث خطأ غير متوقع ... لم نتمكن من تسجيل حسابك !! يرجى المحاولة مرة أخرى");
+                    return back()->with('error',ErrorMessages::REGISTER_FAILD);
             }
 
             if (!$request->has('email_verified_at'))
                 Mail::to($request->email)->send(new VerifyEmail($email_data));
-            return  redirect()->route('login')->with('status', 'لقد تم ارسال رابط تفعيل الحساب الى الايميل الخاص بك ');
+            return  redirect()->route('login')->with('status',SuccessMessages::EMAIL_VERIFY_SEND);
         } else
         
-            return back()->with('error', "حدث خطأ غير متوقع ... لم نتمكن من تسجيل حسابك !! يرجى المحاولة مرة أخرى");
+            return back()->with('error', ErrorMessages::REGISTER_FAILD);
     }
 
     public function createUser(array $request)
@@ -85,7 +87,7 @@ class RegisterController extends Controller
                 return $this->registerPharmacy($user);
                 break;
             default:
-            return back()->with('error', 'عذرا ... حدث خطأ غير متوقع .. لم نستطع انشاء حساب جديد لك ... يرجى المحاولة مرة اخرى');
+            return back()->with('error', ErrorMessages::REGISTER_FAILD);
         }
     }
 
@@ -132,7 +134,7 @@ class RegisterController extends Controller
     {
         $request->validate([
             'name' => 'required|string|min:5|max:100',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'password' => 'required|min:8',
             'confirmed' => 'same:password'
         ],[
@@ -143,6 +145,7 @@ class RegisterController extends Controller
             'name.min' => "يجب ألا يقل طول الأسم عن 5 احرف  ",
             'name.max' => "يجب ألا يزيد طول الأسم عن 100 حرف  ",
             'email.email' => "صيغة البريد الإلكتروني غير صحيحة",
+            'email.unique' =>"البريد الألكتروني هذا مسجل لدينا مسبقا ",
             'password.min' => "يجب ألا يقل طول كلمة السر عن 8 احرف  ",
             'confirmed.same' => "يجب أن يتطابق هذا الحقل مع كلمة المرور",
 

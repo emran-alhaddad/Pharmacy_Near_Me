@@ -7,7 +7,7 @@
             <div class=" d-flex justify-content-center">
                 <div class="col-md-4 col-sm-12 shadow-lg p-5 bg-light">
                     <div class="text-center">
-                        <h3 class="heading">نسيت <span>كلمة المرور؟</span></h3>
+                        <h3 class="heading">لم يصلك  <span>رابط تفعيل الحساب ؟</span></h3>
                     </div>
                     @if (session('error'))
                         <div class="alert alert-danger" role="alert">
@@ -19,30 +19,20 @@
                             {!! session('status') !!}
                         </div>
                     @endif
-                    <form action="{{ route('forget-password') }}" method="POST">
+                    <form  action="{{ route('resend-email-activation') }}" method="POST">
                         @csrf
                         <div class="p-4">
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
                                         class="bi bi-envelope-fill text-white"></i></span>
-                                <input value="{{ old('email') }}" type="email" placeholder="example@gmail.com"
-                                    name="email" class="form-control rounded @error('email') border-danger @enderror">
-                                @error('email')
-                                    <div class="invalid-feedback d-block">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                                <input type="email" class="form-control rounded" placeholder="example@gmail.com"  name="email" required>
                             </div>
 
 
                             <button class="btn-submit radius text-center p-2 col-12 mt-2" type="submit">
-                                تغير كلمة المرور
+                                ارسال رابط التفعيل 
                             </button>
-                            <p class="text-center mt-5">هل تذكرت ؟
-
-                                <span class="text-primary"> <a href="{{ route('login') }}"> الدخول للحساب</a></span>
-                            </p>
                         </div>
                     </form>
 
@@ -51,7 +41,7 @@
         </div>
     </div>
 
-@stop
+ @stop
 
 
 
@@ -75,7 +65,8 @@
 
 
 
-{{-- <!DOCTYPE html>
+{{--
+<!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/WebPage">
 
 <head>

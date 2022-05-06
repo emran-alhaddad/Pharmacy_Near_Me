@@ -25,41 +25,42 @@ class RequestController extends Controller
     public function insert(requestData $request )
     {
         
-         
         $allDurg=$request['data'];
         $paramicy=$request['pharmacy_id'];
         $client=$request["client_id"];
         $id = DB::table('requests')->insertGetId(
-            ['client_id' => 2, 'pharmacy_id' => 1,'stats'=>0]
+            ['client_id' => $client, 'pharmacy_id' => $paramicy]
         );
         
         $obj_json_durg=json_decode($allDurg);
         $allDurg=$obj_json_durg->data;
         //return $allDurg;
     
-        $Req_Details=new Request_Details();
+        
         foreach($allDurg as $durg)
         {
-            $Req_Details->request_id=$id;
-            $Req_Details->drug_title=$durg->drug_title;
-            $Req_Details->drug_image=$durg->drug_image;
-            $Req_Details->quantity=$durg->quantity;
-            if($durg->accept_alternative==1)
-            {
-                $Req_Details->repeat_until=$durg->repeat_until;
-                $Req_Details->repeat_every=$durg->repeat_every;
-            }
-            $Req_Details->save();
-            // DB::table('request__details')->insert([
-            //     'request_id' => $id,
-            //     'stats' => 0,
-               
-            //     'drug_title' => $durg->drug_title,
-            //     'drug_image' => $durg->drug_image,
-            //     'quantity' => $durg->quantity,
+            $Req_Details=new Request_Details();
 
-           
+            $Req_Details->request_id=$id;
+            if(isset($durg->drug_title)) $Req_Details->drug_title=$durg->drug_title;
+            if(isset($durg->drug_image)) $Req_Details->drug_image=$durg->drug_image;
+            if(isset($durg->quantity)) $Req_Details->quantity=$durg->quantity;
+
+            if($durg->accept_alternative=="on")
+            {
+            if(isset($durg->repeat_until)) $Req_Details->repeat_until=$durg->repeat_until;
+            if(isset($durg->repeat_every)) $Req_Details->repeat_every=$durg->repeat_every;
+            }
+            
+            if(!$Req_Details->save()){
+                return back()->with('error','لم نتمكن من إضافة طلبيتك !!!');
+                }
+            
+  
         }
+
+        return back()->with('status','تم إضافة الطلبية بنجاح');
+            
     }
 
 }

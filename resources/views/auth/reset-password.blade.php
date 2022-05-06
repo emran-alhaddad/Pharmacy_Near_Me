@@ -9,9 +9,14 @@
                     <div class="text-center">
                         <h3 class="heading">تغيير <span>كلمة المرور</span></h3>
                     </div>
+                    @if (session('error'))
+                        <div class="alert alert-danger" role="alert">
+                            {!! session('error') !!}
+                        </div>
+                    @endif
                     @if (session('status'))
-                        <div class="alert alert-danger alert-dismissible" role="alert">
-                            {{ session('status') }}
+                        <div class="alert alert-success" role="alert">
+                            {!! session('status') !!}
                         </div>
                     @endif
                     <form  action="{{ route('reset-password', $token) }}" method="POST">
@@ -23,19 +28,36 @@
                             <div class="input-group mb-3">
                                 <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
                                         class="bi bi-envelope-fill text-white"></i></span>
-                                <input type="email" class="form-control rounded" placeholder="example@gmail.com"  name="email" required>
+                                <input value="{{ old('email') }}"  type="email"  placeholder="example@gmail.com"  name="email" class="form-control rounded @error('email') border-danger @enderror">
+                                @error('email')
+                                    <div class="invalid-feedback d-block">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="input-group mb-3 rounded">
                                 <span class="input-group-text rounded"style="background-color: var(--main-color)"><i
                                         class="bi bi-key-fill text-white"></i></span>
-                                <input type="password" class=" rounded form-control" placeholder="كلمة المرور" name="password" required>
+                                <input type="password"  placeholder="كلمة المرور" name="password" 
+                                class="form-control rounded @error('password') border-danger @enderror">
+                                @error('password')
+                                    <div class="invalid-feedback d-block">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="input-group mb-3 rounded" id="show_hide_password">
                                 <span class="input-group-text rounded"style="background-color: var(--main-color)"><i
                                         class="bi bi-key-fill text-white"></i></span>
-                                <input type="password" class=" rounded form-control" placeholder="تأكيد كلمة المرور "  name="password_confirmation" required>
+                                <input type="password" placeholder="تأكيد كلمة المرور "  name="password_confirmation" 
+                                class="form-control rounded @error('password_confirmation') border-danger @enderror">
+                                @error('password_confirmation')
+                                    <div class="invalid-feedback d-block">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
 
