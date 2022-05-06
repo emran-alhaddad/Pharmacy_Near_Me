@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('complaints', function (Blueprint $table) {
             $table->id();
-            $table->timestamps()->useCurrent();
+            $table->timestamps();
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('pharmacy_id');
+            $table->string('replay');
             $table->string('message');
             $table->foreign('client_id')->references('user_id')->on('clients');
             $table->foreign('pharmacy_id')->references('user_id')->on('pharmacies');

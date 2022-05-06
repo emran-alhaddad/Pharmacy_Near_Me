@@ -15,7 +15,8 @@ use App\Http\Controllers\Pharmacy\PharmacyController;
 use App\Http\Controllers\Pharmacy\ReplyController;
 use App\Http\Controllers\User\UserSearchController;
 use Illuminate\Support\Facades\Route;
-
+use App\Models\User;
+use App\Models\Request;
 use App\Http\Controllers\User\request\RequestController;
 use App\Http\Controllers\Admin\AdvertiseController;
 use App\Http\Controllers\User\ClientController;
@@ -41,7 +42,7 @@ Route::get('/about', [interfacesController::class, 'about'])->name('about');
 Route::get('/contact', [interfacesController::class, 'contact'])->name('contact');
 Route::get('/confirm', [interfacesController::class, 'confirm'])->name('confirm');
 
-Route::get('get_all_complaint',[ComplaintController::class, 'getAllComplaint'])->name('get_all_complaint');
+//Route::get('get_all_complaint',[ComplaintController::class, 'getAllComplaint'])->name('get_all_complaint');
 Route::get('index_complaint',[ComplaintController::class, 'index'])->name('index_complaint');
 Route::post('add_complaint',[ComplaintController::class, 'AddComplaint'])->name('add_complaint');
 
@@ -89,7 +90,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Client 
     Route::group(['middleware' => ['role:client']], function () {
         Route::get('/client/',[ClientController::class,'index'])->name('client-dashboard');
-        Route::get('get_complaint',[ComplaintController::class, 'getComplaint'])->name('get_complaint');
+        // Route::get('get_complaint',[ComplaintController::class, 'getComplaint'])->name('get_complaint');
         // Client Request
         Route::get('/client/rquests', [RequestController::class, 'index'])->name('client-requests');
         Route::get('/client/rquest/add', [RequestController::class, 'add'])->name('client-request-add');
@@ -149,10 +150,24 @@ Route::group(
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
     ], function(){ //...
     });
+    Route::get('/query',function(){
+        $req=Request::with(['details','replies.detailsReplay','pharmacy.user'])->where('requests.client_id',22)->get();
+        return $req;
+    });
     
-
     Route::get('/_admin/adds/create', [AdvertiseController::class, 'add'])->name('admin-adds-create');
     Route::post('/_admin/adds/create', [AdvertiseController::class, 'create'])->name('admin-adds-create');
     Route::get('/pharmacy/{id}', [ClientController::class, 'selectPharamcy'])->name('user-select-pharmacy');
     Route::get('/request', [ClientController::class, 'RequestInWaitAccespt'])->name('request');
     Route::get('/request2', [ClientController::class, 'request2'])->name('request2');
+    Route::get('/requestIndex', [ClientController::class, 'requestIndex'])->name('requestIndex');
+    Route::post('/updateEmail', [ClientController::class, 'updateEmail'])->name('updateEmail');
+    Route::post('/CheckEmail', [ClientController::class, 'checkUpdateEmail'])->name('CheckEmail');
+    Route::get('update',function(){
+        return view('welcome');
+    });
+    Route::get('checked',function(){
+        return view('welcomecheck');
+    });
+  //  Route::get('get_complaint',[ComplaintController::class, 'getComplaint'])->name('get_complaint');
+    Route::get('get_complaint',[ComplaintController::class, 'getComplaint'])->name('get_complaint');

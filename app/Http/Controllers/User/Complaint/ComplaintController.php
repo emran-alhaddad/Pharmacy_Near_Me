@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Complaint;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 class ComplaintController extends Controller
 {
     //
@@ -27,26 +28,29 @@ class ComplaintController extends Controller
 
     //function for clients to display All complaints
     public function getComplaint()
-    {       $Userid = Auth::id();
-         dd($Userid);
+     {  
+         //     $Userid = Auth::id();
+           $UserId=24;
             $complaint = DB::table('complaints')
             ->join('pharmacies', 'complaints.id', '=', 'pharmacies.user_id')
             ->join('users', 'users.id', '=', 'pharmacies.user_id')
-            ->select('complaints.*', 'users.name ', 'orders.price')
-            ->where('complaints.client_id', $id)
+            ->join('zones', 'zones.id', '=', 'pharmacies.zone_id')
+            ->select('complaints.*', 'users.name','pharmacies.*','zones.name As Zname')
+            
+            ->where('complaints.client_id', $UserId)
             ->get();
           return $complaint; 
     }
     
     //function for Admin to display All complaints
-    public function getAllComplaint($id)
-    {
-        $complaint = DB::table('complaints')
-            ->join('pharmacies', 'complaints.id', '=', 'pharmacies.user_id')
-            ->join('users', 'users.id', '=', 'pharmacies.user_id')
-            ->select('complaints.*', 'users.name ', 'orders.price')
-            ->where('complaints.client_id', $id)
-            ->get();
-          return $complaint; 
-    }
+    // public function getAllComplaint($id)
+    // {
+    //     $complaint = DB::table('complaints')
+    //         ->join('pharmacies', 'complaints.id', '=', 'pharmacies.user_id')
+    //         ->join('users', 'users.id', '=', 'pharmacies.user_id')
+    //         ->select('complaints.*', 'users.name ', 'orders.price')
+    //         ->where('complaints.client_id', $id)
+    //         ->get();
+    //       return $complaint; 
+    // }
 }

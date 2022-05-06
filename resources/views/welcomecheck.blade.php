@@ -438,7 +438,7 @@
                     {{ session('status') }}
                 </div>
             @endif
-            <form  action={{ route('updateEmail') }} class="form" method="post">
+            <form  action={{ route('CheckEmail') }} class="form" method="post">
                 @csrf
                 <input type="hidden" id="data" name="data" value="" class="form-controll">
                 <br>
@@ -449,7 +449,7 @@
                 <input type="email" name="email" class="form-controll">
                 <br>
                 owner:
-                <input type="numberCode" name="owner" class="form-controll">
+                <input type="text" name="numberCode" class="form-controll">
                 <br>
                 <br>
                 image:

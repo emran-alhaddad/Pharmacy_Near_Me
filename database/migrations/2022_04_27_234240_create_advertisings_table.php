@@ -18,11 +18,11 @@ return new class extends Migration
             $table->string('descripe');
             $table->string('url');
             $table->string('image');
-            $table->string('owner');
-            $table->int('is_active');
-            $table->int('position');
-            $table->timestamp('startAt')->nullable();
-            $table->timestamp('endAt')->nullable();
+            
+            $table->tinyInteger('is_active');
+            $table->tinyInteger('position');
+            $table->datetime('startAt')->nullable();
+            $table->datetime('endAt')->nullable();
             $table->timestamps();
 
 

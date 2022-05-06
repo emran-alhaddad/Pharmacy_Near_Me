@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\UpdateEmail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 
 class ClientController extends Controller
-{
+{  
     public function index()
     {   
         $id = Auth::id();
@@ -95,8 +98,14 @@ class ClientController extends Controller
   }
 
   public function requestIndex()
-  {
-    //return view('request.index');
+  { 
+    // $request=[];
+    // //$request['requestWaitAccespt']=ClientController::RequestInWaitAccespt();
+    // $request['requestPaymentReject']=ClientController::request2();
+    // return response($request);
+
+      
+    // return view('request.index');
   }
   
   // public function RequestInWaitAccespt()
@@ -133,14 +142,41 @@ class ClientController extends Controller
   //       ->select('users.name', 'requests.*','request__details.*','replies.*','reply__details.*')
        
   //       ->where('requests.client_id',$userID)
+       
   //       ->whereColumn('request__details.id','=','reply__details.request_details_id')
   //       ->get();
-  //     dd($user);
+  //       return $user;
+      
   // }
 
-  public function updateEmail()
+  public function updateEmail(Request $request)
   {
+    $number=rand ( 10000 , 99999 );
     
+    $email_data = [
+      'name' => 'Osama',
+      'activation_code' => $number
+  ];
+  $Userid = 24;
+  $affected = DB::table('users')
+     ->where('id', $Userid)
+     ->update([
+               'remember_token' => $number]); 
+  Mail::to($request->email)->send(new UpdateEmail($email_data));
+  }
+  public function checkUpdateEmail(Request $request)
+  {
+    // $id = Auth::id();
+    $id=24;
+    if (DB::table('users')->where([['remember_token',$request['numberCode']], ['id', $id]] )->exists()) {
+      $userDate = DB::table('users')
+      ->where('users.id',$id)
+      ->update(['email' =>$request['email']]);
+     
+  }
+  else{
+    return back()->with('  رمز التحقق خطاء ');
+  }    
   }
 
 }
