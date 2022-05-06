@@ -19,14 +19,4 @@ class Pharmacy extends Model
         'updated_at'
 
     ];
-
-
-    public function zone()
-    {
-        return $this->hasMany(zone::class, 'zone_id');
-    }
-    public function user()
-    {
-        return $this->belongsTo(User::class,'user_id');
-    }
 }

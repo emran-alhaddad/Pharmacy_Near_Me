@@ -1,3 +1,6 @@
+
+@import url('http://fonts.cdnfonts.com/css/tajawal?styles=19782,19779,19780,19781,19777,19778,19776');
+
 :root {
 	--primary-color: #4834d4;
 	--success-color: #6ab04c;
@@ -42,7 +45,7 @@
 }
 
 .bg-primary {
-  background: var(--primary-color);
+    background: var(--primary-color);
 }
 
 .text-primary {
@@ -357,7 +360,7 @@ body {
 	display: flex;
 	align-items: center;
 	color: #ffff;
-	background: #817ecd;
+	background: #4688C7;
 
 }
 
@@ -367,7 +370,7 @@ body {
 
 .sidebar-nav-link i {
 	font-size: 1.5rem;
-	color: #543ab7;
+	color: #2B547A;;
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -434,10 +437,11 @@ body {
 		width: 0;
 	}
 	.wrapper {
-		margin-left: 0;
+		margin-right: 0;
 	}
 	.sidebar-expand .wrapper {
-		margin-left: 0;
+        margin-right: 0;
+        /* margin-top: -5px; */
 	}
 	.nav-right .nav-item {
 		display: none;
@@ -574,14 +578,15 @@ table {
 
 table td {
 	border-top: 1px solid var(--second-bg-color);
-/* 	padding: 10px; */
+	/* padding: 10px; */
 }
 
 table th {
 /* 	border-top: 1px solid var(--second-bg-color); */
 	border-bottom: 1px solid var(--second-bg-color);
-	padding: 5px 5px 12px 2px;
-	text-align: left;
+	/* padding: 5px 5px 12px 2px; */
+    /* text-align: left; */
+
 }
 
 .dot i {
@@ -707,4 +712,10 @@ table th {
 .widget-tiles .tile p {
 	color: #666;
 	font-weight: normal;
+}
+
+
+
+#edit_button:hover{
+background-color: #4688C7;
 }

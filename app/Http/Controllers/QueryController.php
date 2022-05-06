@@ -13,7 +13,7 @@ class QueryController extends Controller
             ->join('pharmacies', 'users.id', 'pharmacies.user_id')
             ->join('zones', 'zones.id','pharmacies.zone_id')
             ->join('cities', 'cities.id','zones.city_id')
-            ->select('users.*','zones.name AS Zname','cities.name AS Cname')
+            ->select('users.*')
             ->orderByDesc('pharmacies.user_id')
             ->take($take);
     }

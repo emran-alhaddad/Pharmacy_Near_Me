@@ -13,10 +13,6 @@ class Advertising extends Model
         'owner',
         'image',
         'url',
-        'is_active',
-        'position',
-        'startAt',
-        'endAt',
         
     ];
 }
