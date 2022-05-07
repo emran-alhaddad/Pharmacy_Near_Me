@@ -13,5 +13,9 @@ class SuccessMessages
   CONST EMAIL_RESEND_SUCCESS = 'لقد تم ارسال رابط تفعيل الحساب الى الايميل الخاص بك ';
   CONST PASSWORD_RESET_SUCCESS = "لقد تم تغيير كلمة المرور الخاصة بك بنجاح";
   CONST EMAIL_ACTIVATION_SUCCESS = "لقد تم التحقق من بريدك الإلكتروني بنجاح";
+  CONST PASSWORD_UPDATE_SUCCESS = "لقد تم تغيير كلمة المرور بنجاح";
+  CONST PROFILE_UPDATED_SUCCESS = "لقد تم تحديث البروفايل بنجاح";
+  CONST EMAIL_CODE_SEND_SUCCESS = "لقد تم إرسال رمز تأكيد تعديل البريد الإلكتروني بنجاح";
+  CONST EMAIL_UPDATED_SUCCESS = "لقد تم تحديث البريد الإلكتروني بنجاح";
 
 }

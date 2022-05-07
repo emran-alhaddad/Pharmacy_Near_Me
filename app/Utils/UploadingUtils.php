@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Utils;
+use Illuminate\Support\Str;
 
 class UploadingUtils
 {
@@ -18,6 +19,7 @@ class UploadingUtils
   public static function updateImage($dataImage, $pathImage, $oldName): bool|string
   {
     if (file_exists($oldName)) {
+      if(!Str::endsWith($oldName, UserUtils::AVATER_IMAGE_DEFAULT))
       @unlink($oldName);
     }
     if ($dataImage != null) {

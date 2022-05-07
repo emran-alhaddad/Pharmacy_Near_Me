@@ -8,8 +8,9 @@
     <title>User Profile</title>
     <link href="{{ asset('auth/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
-    <style>
+        <script src="{{ asset('auth/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('auth/js/jquery.min.js') }}"></script>
+        <style>
         :root {
             --black: #444;
             --light-color: #777;
@@ -136,23 +137,46 @@
         @include('includes.UserSideNav')
         <!-- side Nav end -->
 
-        @if (session('error'))
-            <div class="alert alert-danger" role="alert">
-                {!! session('error') !!}
-            </div>
-        @endif
-        @if (session('status'))
-            <div class="alert alert-success" role="alert">
-                {!! session('status') !!}
-            </div>
-        @endif
-
         @yield('content')
 
 
+        <!-- Edit user avater image model -->
+        <div class="modal fade" id="avater-edit-model" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content p-3">
+                    <!-- model header -->
+                    <div class="modal-headerd-flex justify-content-between align-items-center">
+                        <h4 class="modal-title fw-bold text-center" id="exampleModalLabel">
+                            تعديل صورة البروفايل
+                        </h4>
 
-        <script src="{{ asset('auth/js/bootstrap.bundle.min.js') }}"></script>
-        <script src="{{ asset('auth/js/jquery.min.js') }}"></script>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <!-- model body -->
+                    <div class="modal-body">
+                        <form action="{{ route('client-avater-update') }}" method="POST" class="g-3" enctype="multipart/form-data">
+                        @csrf
+                        @method('put')
+                            <div class="input-group mb-3">
+                                <input type="file" name='avater' class="form-control" id="inputGroupFile02" />
+                            </div>
+                            <button type="submit" class="btn bg-primary text-white">
+                            تعديل
+                        </button>
+                        </form>
+                    </div>
+
+                    <!-- model footer -->
+                    <div class="modal-footer">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <script>
             // $('personal').click($('pp').hide());
             $(document).ready(function() {

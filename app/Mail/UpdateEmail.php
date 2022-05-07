@@ -30,6 +30,6 @@ class UpdateEmail extends Mailable
     public function build()
     {
         return $this->view('email.update-email',['data'=>$this->data])
-        ->subject("تعديل البريد الإلكتروني");
+        ->subject("تعديل البريد الالكتروني");
     }
 }

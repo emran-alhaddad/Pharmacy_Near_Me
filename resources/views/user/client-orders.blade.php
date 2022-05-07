@@ -168,6 +168,10 @@
     </section>
 
 
+    </div>
+
+    </main>
+
     <!-- Edit user avatar image model -->
     <div class="modal fade" id="avatar-edit-model" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">

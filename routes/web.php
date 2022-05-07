@@ -27,11 +27,12 @@ use App\Http\Controllers\Pharmacy\ChatController;
 use App\Http\Controllers\Pharmacy\PharmacyController;
 use App\Http\Controllers\Pharmacy\ReplyController;
 use App\Http\Controllers\User\ClientController;
-use App\Http\Controllers\User\request\RequestController;
+use App\Http\Controllers\User\RequestController;
 use App\Models\Client;
 use App\Models\Pharmacy;
 use App\Models\Request;
 use App\Models\User;
+use App\Utils\SystemUtils;
 use Illuminate\Support\Facades\Route;
 
 
@@ -104,6 +105,13 @@ Route::group(['middleware' => 'auth'], function () {
     // Client Routes
     Route::group(['middleware' => ['role:client']], function () {
         Route::get('/client/',[ClientController::class,'index'])->name('client-dashboard');
+        Route::get('/client/edit',[ClientController::class,'edit'])->name('client-dashboard-edit');
+        Route::put('/client/update',[ClientController::class,'update'])->name('client-dashboard-update');
+        Route::put('/client/password/update',[ClientController::class,'updatePassword'])->name('client-password-update');
+        Route::post('/client/email/sendCode',[ClientController::class,'sendEmailCode'])->name('client-email-code');
+        Route::put('/client/email/update',[ClientController::class,'updateEmail'])->name('client-email-update');
+        Route::put('/client/avater/update',[SystemUtils::class,'updateAvatar'])->name('client-avater-update');
+
 
         // Client Request
         Route::get('/client/rquests', [RequestController::class, 'index'])->name('client-requests');
