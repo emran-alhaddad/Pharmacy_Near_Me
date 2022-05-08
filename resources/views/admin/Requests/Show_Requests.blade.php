@@ -19,7 +19,7 @@
                             <th> مستقبل الطلب</th>
                             <th>عرض التفاصيل</th>
                             <th>الحالة</th>
-                            <th>العمليات</th>
+                            <!-- <th>العمليات</th> -->
                         </tr>
                     </thead>
 
@@ -37,7 +37,7 @@
                             <td>
                                 <button class="btn btn-success text-white" >مفعل</button>
 
-                            </td>
+                            <!-- </td>
                             <td>
                             <a href="/_admin/edit_Requests">  <button class="btn btn-primary text-white" >تعديل</button></a>
                                 <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button>
@@ -58,7 +58,7 @@
                                         </div>
                                     </div>
 
-                            </td>
+                            </td> -->
 
 
                         </tr>

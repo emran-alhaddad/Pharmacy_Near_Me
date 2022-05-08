@@ -19,4 +19,9 @@ class Reply extends Model
          return $this->hasMany(Reply_Details::class,'reply_id');
     }
 
+    public function request()
+    {
+        $this->belongsTo(Request::class,'request_id');
+    }
+
 }

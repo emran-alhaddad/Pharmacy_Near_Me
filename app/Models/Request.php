@@ -17,7 +17,7 @@ class Request extends Model
 
     public function replies()
     {
-         return $this->hasMany(Reply::class,'request_id');
+         return $this->hasOne(Reply::class,'request_id');
     }
 
     public function pharmacy()

@@ -1,3 +1,5 @@
+
+
 @extends('layouts.masterAdmin')
 @section('admin_pages')
 
@@ -19,40 +21,37 @@
         <div class="card mb-4">
         <div class="card-body">
 
-    <form method="POST" enctype="multipart/form-data"  action="{{ route('admin-edit_profile-image') }}">
-        @csrf 
-        <div class="mb-3">
+    <form>
+                <div class="mb-3">
                 <label for="exampleInputName" class="form-label">الاسم الكامل</label>
-                <input type="text" name="name" class="form-control" id="exampleInputName">
+                <input type="text" class="form-control" id="exampleInputName">
                 </div>
             <div class="mb-3">
-                <label for="exampleInputLink" class="form-label"> كلمة السر</label>
-                <input type="text" name="password" class="form-control" id="exampleInputName">
+                <label for="exampleInputLink" class="form-label"> التخصص</label>
+                <input type="text" class="form-control" id="exampleInputName">
             </div>
 
             <div class="mb-3">
-                <label for="exampleInputLink"  class="form-label"> الموبايل</label>
-                <input type="text" name="phone"class="form-control" id="exampleInputName">
+                <label for="exampleInputLink" class="form-label"> الموبايل</label>
+                <input type="number" class="form-control" id="exampleInputName">
             </div>
 
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">الايميل</label>
-                <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="haneen@example.com">
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="haneen@example.com">
             </div>
 
-            {{-- <div class="mb-3">
+            <div class="mb-3">
                 <label for="exampleInputLink" class="form-label"> العنوان</label>
-                <input type="text"  class="form-control" id="exampleInputName">
-            </div> --}}
+                <input type="text" class="form-control" id="exampleInputName">
+            </div>
 
             <div class="mb-3">
             <label for="formFile" class="form-label">صورة شخصية</label>
-            <input name="avatar" class="form-control" type="file" id="formFile">
+            <input class="form-control" type="file" id="formFile">
             </div>
-            @error('image')
-            <div class="alert alert-danger mt-1 mb-1">{{ $success }}</div>
-        @enderror
-            <button id="edit_button"  type="submit" class="btn btn-outline-dark m-3">حفظ التغيرات</button>
+
+            <button id="edit_button" type="button" class="btn btn-outline-dark m-3">حفظ التغيرات</button>
     </form>
 
     </div>

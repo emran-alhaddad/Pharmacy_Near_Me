@@ -13,4 +13,13 @@ class ErrorMessages
   CONST EMAIL_NOT_FOUND = "البريد الإلكتروني الذي أدخلته غير متوفر ";
   CONST TOKEN_NOT_FOUND = "أن البريد الإلكتروني الذي أدخلتة ليس بريدك";
   CONST TOKEN_EXPIRED = "لقد أنتهت صلاحية هذا الرابط";
+  CONST WRONG_PASSWORD = 'كلمة المرور التي أدخلتها غير صحيحة';
+  CONST PASSWORD_UPDATE_FAILED = "لم نتمكن من تغيير كلمة المرور ";
+  CONST PROFILE_UPDATED_FAILED = "لم نتمكن من تحديث البروفايل ";
+  CONST EMAIL_CODE_SEND_FAILED = "حدث خطأ عند إرسال رمز تأكيد تعديل البريد الإلكتروني ... حاول مرة أخرى";
+  CONST INVALID_EMAIL_CODE = "رمز التحقق غير صحيح";
+  CONST EMAIL_SAME = "أدخل بريد إلكتروني مختلف";
+
+
+
 }
