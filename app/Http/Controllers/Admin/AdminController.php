@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Utils\SystemUtils;
+use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
 {
     public function index()
@@ -60,22 +61,25 @@ class AdminController extends Controller
     {   
        
         $userAvater= SystemUtils::updateAvatar($request);
+        
+        User::where('id', '=', 1)->update(['avater' => $userAvater]);
        
     }
 
     public function updatePassword(Resquest $requset)
     {
-      $id = Auth::id();
-      if (DB::table('users')->where([['password',Hash::make($request['password'])], ['id', $id]] )->exists()) 
-      {
-        $userDate = DB::table('users') 
-        ->where('id',$id)
-        ->update(['password' =>Hash::make($request['new-password'])]);
+        if(Hash::check($requset['password'],Auth::user()->password))
+        {
        
+       $userDate = DB::table('users') 
+       ->where('id',1)
+       ->update(['password' =>Hash::make($requset['new-password'])]);
+       return (Hash::make($requset['new-password']));
+      
+     }
+     else{
+       return '  كلمة السر خطا  ';
       }
-      else{
-        return back()->with('كلمة السر خطا ');
-       }
 }
 
 public function updateEmail(Request $request)

@@ -27,7 +27,7 @@
                             <th>العمليات</th>
                         </tr>
                     </thead>
- @foreach ($collection as $item)
+ 
      
 
                     <tbody>

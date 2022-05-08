@@ -438,22 +438,37 @@
                     {{ session('status') }}
                 </div>
             @endif
-            <form  action={{ route('ads_add') }} class="form" method="post">
+
+           
+            @foreach ($errors->all() as $error)
+                <div>{{ $error }}</div>
+            @endforeach
+       
+            <form  action={{ route('create-zone',[1]) }} class="form" method="post" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" id="data" name="data" value="" class="form-controll">
+                <input type="hidden" id="data" name="user_type" value="pharmacy" class="form-controll">
                 <br>
                 <!-- descripe id:
                 <input type="number" name="descripe" class="form-controll">
                 <br> -->
-                descripe:
-                <input type="text" name="descripe" class="form-controll">
+                name:
+                <input type="text" name="name" class="form-controll">
                 <br>
-                owner:
-                <input type="text" name="owner" class="form-controll">
+                <select name="position">
+                    <option disabled selected value="">  </option>
+                    <option value=1> taiz </option>
+
+                    <option value=2> sana </option>
+                </select>    
+                url:
+                <input type="text" name="url" class="form-controll">
                 <br>
                 <br>
-                image:
-                <input type="text" name="image" class="form-controll">
+                Sdate:
+                <input type="date" name="startAt" class="form-controll">
+                <br>
+                edate:
+                <input type="date" name="endAt" class="form-controll">
                 <br>
                 <!--
                 image:
@@ -462,14 +477,14 @@
                
                 <!-- <input type="number" name="url" id="drug_price" class="form-controll">
                 <br> -->
-                url::
-                <input type="text" name="url" id="alt_drug_image" class="form-controll">
+                email::
+                <input type="text" name="email" id="alt_drug_image" class="form-controll">
                 <br>
-                alt_drug_title:
-                <input type="text" id="alt_drug_title" class="form-controll">
+                image:
+                <input type="file" id="" name='facebook' class="form-controll">
                 <br>
-                alt_drug_price:
-                <input type="number" id="alt_drug_price" class="form-controll">
+                ImageUpload:
+                <input type="text" id="alt_drug_price"  name="address" class="form-controll">
                 <br>
                 <button type='button' onclick="addReply()">Add To Details</button>
                 <br>

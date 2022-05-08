@@ -3,8 +3,10 @@
 namespace App\Utils;
 
 use App\Models\User;
+use App\Models\Pharmacy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class SystemUtils extends UploadingUtils
 {
@@ -13,18 +15,47 @@ class SystemUtils extends UploadingUtils
 
   public static function  updateAvatar(Request $request)
   {
+    
     $request->validate(['avatar' => 'required|image|mimes:png,jpg']);
     
-    $avatar = self::updateImage(
-      $request->avatar,
-      self::AVATER_PATH,
-      self::AVATER_PATH.'avater.png'
-    );
+    return SystemUtils::returnPath($request->avatar);
+  }
    
-    User::where('id', '=', 1)->update(['avater' => $avatar]);
-   
-    return redirect()->back()
-      ->with('success', 'تم التعديل بنجاح');
+  public static function  updateImages(Request $request,$path)
+  {
+    
+
+    $request->validate(['image' => 'required|mimes:png,jpg'],
+    [
+      'image.mimes'=>'يجب ان تكون الصورة بصيغة ',
+      'image.image'=>'يجب ان تكون الملف  الصوره '
+    ]);
+  
+  
+    
+    return SystemUtils::returnPath($request->image,$path);
   }
 
+  public static function  insertLicense(Request $request)
+  {
+
+    $request->validate(['license' => 'required|image|mimes:png,jpg'],[
+      'license.mimes'=>'يجب ان تكون الصورة بصيغة ',
+       'license.image'=>'يجب ان تكون الملف  الصوره '
+    ]);
+
+    return SystemUtils::returnPath($request->license);
+  }
+
+  public static function returnPath($img,$path)
+  { 
+    $avatar = UploadingUtils::updateImage(
+      $img,
+      self::AVATER_PATH,
+      self::AVATER_PATH.$path
+    );
+    
+    return $avatar;
+    
+  }
 }

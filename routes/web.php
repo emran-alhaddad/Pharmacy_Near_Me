@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\AdsController;
+use App\Http\Controllers\Admin\AdvertiseController;
 use App\Http\Controllers\Admin\ZonesController;
 use App\Http\Controllers\Admin\ComplaintsController;
 use App\Http\Controllers\Admin\CitiesController;
@@ -28,6 +28,12 @@ use App\Http\Controllers\Admin\RequestsController;
     
 
         // Admin Dashboard
+        
+        Route::get('/create',function(){
+          return view('welcome');
+        });
+        Route::get('/_admin-createe/{id}', [PharController::class,'delete'])->name('admin-create');
+        Route::post('/_admin/create-zone/', [AdvertiseController::class,'create'])->name('create-zone'); 
         Route::get('/_admin/', [AdminController::class,'index'])->name('admin-dashboard');
 
 
@@ -80,6 +86,7 @@ use App\Http\Controllers\Admin\RequestsController;
         Route::get('/_admin/add_Requests', [RequestsController::class, 'addRequests'])->name('admin-add_Requests');
         Route::get('/_admin/edit_Requests', [RequestsController::class, 'editRequests'])->name('admin-edit_Requests');
         Route::get('/_admin/show_RequestDetails', [RequestsController::class, 'showRequestDetails'])->name('admin-show_RequestDetails');
+        Route::post('/_admin/updatePassword', [PharController::class, 'updatePassword'])->name('admin-updatePassword');
 
 
         Route::get('/_admin/show_Notifications', [NotificationsController::class, 'showNotifications'])->name('admin-show_[Notifications');
@@ -93,6 +100,10 @@ use App\Http\Controllers\Admin\RequestsController;
 
     // Logout
     Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
+    Route::get('/delete/{id}', [ZonesController::class, 'delete'])->name('delete');
+
+
+
 
 
 
