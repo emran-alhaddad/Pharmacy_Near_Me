@@ -27,12 +27,8 @@ use App\Http\Controllers\Pharmacy\ChatController;
 use App\Http\Controllers\Pharmacy\PharmacyController;
 use App\Http\Controllers\Pharmacy\ReplyController;
 use App\Http\Controllers\User\ClientController;
+use App\Http\Controllers\User\ComplaintController;
 use App\Http\Controllers\User\OrderController;
-use App\Http\Controllers\User\RequestController;
-use App\Models\Client;
-use App\Models\Pharmacy;
-use App\Models\Request;
-use App\Models\User;
 use App\Utils\SystemUtils;
 use Illuminate\Support\Facades\Route;
 
@@ -118,6 +114,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/client/orders/create', [OrderController::class, 'create'])->name('client-orders-create');
         Route::post('/client/orders/store', [OrderController::class, 'store'])->name('client-orders-store');
         Route::get('/client/order/{id}/reject', [OrderController::class, 'reject'])->name('client-orders-reject');
+
+        // Client Compliants
+        Route::get('/client/compliants',[ComplaintController::class,'index'])->name('client-compliants');
+        Route::get('/client/compliants/create', [ComplaintController::class, 'create'])->name('client-compliants-create');
+        Route::post('/client/compliants/store', [ComplaintController::class, 'store'])->name('client-compliants-store');
+        Route::get('/client/compliant/{id}/delete', [ComplaintController::class, 'delete'])->name('client-compliants-delete');
 
     });
 

@@ -19,10 +19,8 @@ return new class extends Migration
         $table->string('license')->nullable();
         $table->string('description')->nullable();
         $table->unsignedBigInteger('zone_id')->nullable();
-        $table->timestamps();
         $table->foreign('user_id')->references('id')->on('users');
         $table->foreign('zone_id')->references('id')->on('zones');
-
         $table->primary('user_id');
     });
 

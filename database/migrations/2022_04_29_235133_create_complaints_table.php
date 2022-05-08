@@ -13,13 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('zones', function (Blueprint $table) {
+        Schema::create('complaints', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->unsignedBigInteger('city_id');
+            $table->unsignedBigInteger('client_id');
+            $table->unsignedBigInteger('pharmacy_id');
+            $table->string('message');
+            $table->string('replay')->nullable();
             $table->integer('is_active')->default(1);
             $table->timestamps();
-            $table->foreign('city_id')->references('id')->on('cities');
+            $table->foreign('client_id')->references('user_id')->on('clients');
+            $table->foreign('pharmacy_id')->references('user_id')->on('pharmacies');
         });
     }
 
@@ -30,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('zones');
+        Schema::dropIfExists('complaints');
     }
 };
