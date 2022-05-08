@@ -3,7 +3,7 @@
 @section('content')
 
     <!-- order Section -->
-    <section class="col-lg-8 col-md-8 col-12" id="ord">
+    <section class="col-lg-9 col-md-8 col-12" id="ord">
         <div id="alert_msg" class="alert alert-danger hide" role="alert">
 
         </div>

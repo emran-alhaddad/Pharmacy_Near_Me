@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('gender')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->primary('user_id');
-            $table->timestamps();
 
         });
     }
