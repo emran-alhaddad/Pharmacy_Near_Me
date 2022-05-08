@@ -89,7 +89,7 @@
   <body style="direction: rtl;">
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
-        <div class="layout-container">
+      <div class="layout-container mx-sm-5">
             <!-- Menu -->
                 @include('includes.pharmacy.PharmacyAside')
             <!-- / Menu -->

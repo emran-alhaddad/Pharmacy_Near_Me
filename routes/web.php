@@ -105,25 +105,24 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Client Routes
     Route::group(['middleware' => ['role:client']], function () {
-        Route::get('/client/',[ClientController::class,'index'])->name('client-dashboard');
-        Route::get('/client/edit',[ClientController::class,'edit'])->name('client-dashboard-edit');
-        Route::put('/client/update',[ClientController::class,'update'])->name('client-dashboard-update');
-        Route::put('/client/password/update',[ClientController::class,'updatePassword'])->name('client-password-update');
-        Route::post('/client/email/sendCode',[ClientController::class,'sendEmailCode'])->name('client-email-code');
-        Route::put('/client/email/update',[ClientController::class,'updateEmail'])->name('client-email-update');
-        Route::put('/client/avater/update',[SystemUtils::class,'updateAvatar'])->name('client-avater-update');
+        Route::get('/client/', [ClientController::class, 'index'])->name('client-dashboard');
+        Route::get('/client/edit', [ClientController::class, 'edit'])->name('client-dashboard-edit');
+        Route::put('/client/update', [ClientController::class, 'update'])->name('client-dashboard-update');
+        Route::put('/client/password/update', [ClientController::class, 'updatePassword'])->name('client-password-update');
+        Route::post('/client/email/sendCode', [ClientController::class, 'sendEmailCode'])->name('client-email-code');
+        Route::put('/client/email/update', [ClientController::class, 'updateEmail'])->name('client-email-update');
+        Route::put('/client/avater/update', [SystemUtils::class, 'updateAvatar'])->name('client-avater-update');
 
         // Client Orders
-        Route::get('/client/orders',[OrderController::class,'index'])->name('client-orders');
+        Route::get('/client/orders', [OrderController::class, 'index'])->name('client-orders');
         Route::get('/client/orders/create', [OrderController::class, 'create'])->name('client-orders-create');
         Route::post('/client/orders/store', [OrderController::class, 'store'])->name('client-orders-store');
         Route::get('/client/order/{id}/reject', [OrderController::class, 'reject'])->name('client-orders-reject');
-
     });
 
     // Pharmacy Routes
     Route::group(['middleware' => ['role:pharmacy']], function () {
-        
+
         // Pharmacy Dashboard
         Route::get('/pharmacy/', [PharmacyController::class, 'index'])->name('pharmacy-dashboard');
 
@@ -144,9 +143,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => ['role:admin']], function () {
 
         // Admin Dashboard
-        Route::get('/_admin/', [AdminController::class,'index'])->name('admin-dashboard');
+        Route::get('/_admin/', [AdminController::class, 'index'])->name('admin-dashboard');
 
-        Route::get('/_admin/', [AdminController::class,'index'])->name('admin-dashboard');
+        Route::get('/_admin/', [AdminController::class, 'index'])->name('admin-dashboard');
 
 
         Route::get('/_admin/profile', [AdminController::class, 'showProfile'])->name('admin-profile');
@@ -213,7 +212,4 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Logout
     Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
-
-
 });
-
