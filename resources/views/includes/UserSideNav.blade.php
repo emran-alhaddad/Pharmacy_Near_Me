@@ -13,7 +13,7 @@
             <div class="col-12 d-flex justify-content-center align-items-center p-4 position-relative">
                 <img src="{{ asset('uploads/avaters/client/' . $user->avater) }}"
                     class="user-avatar img-fluid rounded-circle" alt="user avatar" style="width: 70%;" />
-                <a role="button" data-bs-toggle="modal" data-bs-target="#avater-edit-model"
+                <a role="button" data-toggle="modal" data-target="#avater-edit-model"
                     class="position-absolute bg-white border rounded d-flex justify-content-center align-items-lg-center rounded-circle"
                     style="bottom: 10%;left: 35%; width: 30px;height: 30px;">
                     <i class="fas fa-edit"></i>
@@ -38,7 +38,7 @@
                 </a>
 
                 <!-- order -->
-                <a href="#" id="order"
+                <a href="{{ route('client-orders') }}" id="order"
                     class="text-prof d-flex align-items-center d-inline-block ms-3 border-bottom pb-2 color-user">
                     <i class="fa-solid fa-cart-plus"></i>
                     <span class="fs-6 fw-bold px-1"> طلبيـــــاتي </span>

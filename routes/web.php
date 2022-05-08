@@ -14,11 +14,6 @@ use App\Http\Controllers\Pharmacy;
 use App\Http\Controllers\Front;
 use App\Http\Controllers\User;
 use App\Http\Controllers\Admin;
-
-
-
-
-
 use App\Utils\SystemUtils;
 use Illuminate\Support\Facades\Route;
 
@@ -99,11 +94,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/client/email/update',[User\ClientController::class,'updateEmail'])->name('client-email-update');
         Route::put('/client/avater/update',[SystemUtils::class,'updateAvatar'])->name('client-avater-update');
 
+        // Client Orders
+        Route::get('/client/orders',[User\OrderController::class,'index'])->name('client-orders');
+        Route::get('/client/orders/create', [User\OrderController::class, 'create'])->name('client-orders-create');
+        Route::post('/client/orders/store', [User\OrderController::class, 'store'])->name('client-orders-store');
+        Route::get('/client/order/{id}/reject', [User\OrderController::class, 'reject'])->name('client-orders-reject');
 
-        // Client Request
-        Route::get('/client/rquests', [User\RequestController::class, 'index'])->name('client-requests');
-        Route::get('/client/rquest/add', [User\RequestController::class, 'add'])->name('client-request-add');
-        Route::post('/client/rquest/add', [User\RequestController::class, 'insert'])->name('client-request-create');
     });
 
     // Pharmacy Routes

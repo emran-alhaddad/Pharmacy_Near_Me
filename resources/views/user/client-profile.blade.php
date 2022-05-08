@@ -108,8 +108,6 @@
         </form>
     </section>
 
-
-
     <!-- info Section -->
     <section class="col-lg-8 col-md-8 col-12" id="perso">
         <div class="card shadow p-3">

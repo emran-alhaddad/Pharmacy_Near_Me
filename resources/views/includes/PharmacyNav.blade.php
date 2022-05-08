@@ -53,7 +53,7 @@ id="layout-navbar">
             <div class="dropdown-divider"></div>
         </li>
         <li>
-            <a class="dropdown-item" href="auth-login-basic.html">
+            <a class="dropdown-item" href="{{ route('logout') }}">
             <i class="bx bx-power-off ms-2"></i>
             <span class="align-middle">تسجيل خروج </span>
             </a>
