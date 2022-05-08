@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdvertiseController;
+use App\Http\Controllers\Admin\AdsController;
 use App\Http\Controllers\Admin\ZonesController;
 use App\Http\Controllers\Admin\ComplaintsController;
 use App\Http\Controllers\Admin\CitiesController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Admin\AccountsController;
 use App\Http\Controllers\Admin\NotificationsController;
 use App\Http\Controllers\Admin\PermissionsController;
 use App\Http\Controllers\Admin\RequestsController;
+use App\Http\Controllers\Admin\WebSiteSettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +36,9 @@ use App\Http\Controllers\Admin\RequestsController;
         });
         Route::get('/_admin-createe/{id}', [PharController::class,'delete'])->name('admin-create');
         Route::post('/_admin/create-zone/', [AdvertiseController::class,'create'])->name('create-zone'); 
+    // Route::group(['middleware' => ['role:admin']], function () {
+
+        // Admin Dashboard
         Route::get('/_admin/', [AdminController::class,'index'])->name('admin-dashboard');
 
 
@@ -83,20 +88,20 @@ use App\Http\Controllers\Admin\RequestsController;
 
 
         Route::get('/_admin/show_Requests', [RequestsController::class, 'showRequests'])->name('admin-show_Requests');
-        Route::get('/_admin/add_Requests', [RequestsController::class, 'addRequests'])->name('admin-add_Requests');
-        Route::get('/_admin/edit_Requests', [RequestsController::class, 'editRequests'])->name('admin-edit_Requests');
         Route::get('/_admin/show_RequestDetails', [RequestsController::class, 'showRequestDetails'])->name('admin-show_RequestDetails');
-        Route::post('/_admin/updatePassword', [PharController::class, 'updatePassword'])->name('admin-updatePassword');
 
 
-        Route::get('/_admin/show_Notifications', [NotificationsController::class, 'showNotifications'])->name('admin-show_[Notifications');
-        Route::get('/_admin/add_Notifications', [NotificationsController::class, 'addNotifications'])->name('admin-add_[Notifications');
-        Route::get('/_admin/edit_Notifications', [NotificationsController::class, 'editNotifications'])->name('admin-edit_[Notificati0ns');
+        Route::get('/_admin/show_Notifications', [NotificationsController::class, 'showNotifications'])->name('admin-show_Notifications');
+        Route::get('/_admin/add_Notifications', [NotificationsController::class, 'addNotifications'])->name('admin-add_Notifications');
+        Route::get('/_admin/edit_Notifications', [NotificationsController::class, 'editNotifications'])->name('admin-edit_Notificati0ns');
 
         Route::get('/_admin/show_Permissions', [PermissionsController::class, 'showPermissions'])->name('admin-show_[Permissions');
 
 
-    
+        Route::get('/_admin/show_WebSiteSetting', [WebSiteSettingController::class, 'showWebSiteSetting'])->name('admin-show_WebSiteSetting');
+        Route::get('/_admin/Add_Service', [WebSiteSettingController::class, 'AddService'])->name('admin-Add_Service');
+
+    // });
 
     // Logout
     Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');

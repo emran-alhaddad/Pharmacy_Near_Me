@@ -1,5 +1,3 @@
-# Pharmacy_Near_Me
-
 # Project and code roles
 
 ## branch's name
@@ -8,9 +6,9 @@
 
 example
 
-
+```
 `v-1.1/login`
-
+```
 
 ## Github/git roles
 
@@ -57,12 +55,26 @@ The commit type can include the following:
 
 example
 
-php
+```php
 Route::get('/users', [UserController::class, 'index']);
 Route::post('/users', [UserController::class, 'store']);
 Route::put('/users/{id}', [UserController::class, 'update']);
 Route::delete('/users/{id}', [UserController::class, 'destroy']);
+```
 
+---
+
+---
+
+## upload folders
+
+```
+/upload/user
+/upload/pharmacy
+/upload/ads
+/upload/service
+/upload/order
+```
 
 ---
 
@@ -89,3 +101,18 @@ Route::delete('/users/{id}', [UserController::class, 'destroy']);
 `build` – changes that affect the build system or external dependencies
 
 ---
+
+### Validation roles
+
+```php
+# title
+'required|min:5|max:100|alpha'
+#phone
+# link
+ 'required|min:5|max:255|url'
+# email
+# image
+'required|image|mimes:png,jpg'
+# date
+'required|date'
+```
