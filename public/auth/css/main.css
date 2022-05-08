@@ -1,6 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@500&family= var(--font-type);:wght@300&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@500&family= var(--font-type);:wght@300&display=swap'); */
+@import url('http://fonts.cdnfonts.com/css/tajawal?styles=19782,19779,19780,19781,19777,19778,19776');
 
 :root {
+    --black: #333;
+    --light-black: #777;
+
+    --main-color: #2B547A;
+    --hover-main: #4688C7;
+    --secondary-color: #57ABFA;
+    --hover-secondary: #A3D0FB;
+
+    --bg-sec: #f6f4fa;
+    --border: .2rem solid var(--main-color);
+    --radius: .5rem;
+
+    --font-type: 'Tajawal', sans-serif;
+    --fs-p: 1.7rem;
+    --fs-span: 1rem;
+
 
     --a-color: rgb(252, 248, 248);
     --font-type: Tajawal;
@@ -9,6 +26,37 @@
     --input-color: rgba(255, 255, 255, 0.8);
 
 }
+
+.btn-submit {
+    border: var(--border);
+    border-radius: var(--radius);
+    background-color: #ffffff;
+    color: var(--main-color);
+}
+
+.btn-submit :hover {
+    background-color: var(--main-color);
+    color: #ffffff;
+}
+
+.heading {
+    text-align: center;
+    padding-bottom: 2rem;
+    color: var(--black);
+    font-size: 3.5rem;
+    letter-spacing: .4rem;
+}
+
+.heading span {
+    color: var(--main-color);
+}
+
+/* icon */
+i {
+
+    color: var(--main-color);
+}
+
 
 
 * {

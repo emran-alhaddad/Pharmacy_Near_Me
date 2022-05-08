@@ -1,22 +1,49 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap'); */
+@import url('http://fonts.cdnfonts.com/css/tajawal?styles=19782,19779,19780,19781,19777,19778,19776');
 
 :root {
-    --black: #444;
-    --light-color: #777;
-    --box-shadow: .5rem .5rem 0 rgba(22, 160, 133, .2);
-    --text-shadow: .4rem .4rem 0 rgba(0, 0, 0, .2);
-    --border: .2rem solid var(--main-color);
+    --black: #333;
+    --light-black: #777;
 
-    --font-type: Tajawal;
+    --main-color: #2B547A;
+    --hover-main: #4688C7;
+    --secondary-color: #57ABFA;
+    --hover-secondary: #A3D0FB;
 
-    --main-color: #543ab7;
-    --secondary-color: #00acc1;
-    --hover-main: #817ecd;
-    --hover-secondary: #9bb0dd;
     --bg-sec: #f6f4fa;
-
+    --border: .2rem solid var(--main-color);
     --radius: .5rem;
+
+    --font-type: 'Tajawal', sans-serif;
+    --fs-p: 1.7rem;
+    --fs-span: 1rem;
+
 }
+
+.btn-submit {
+    border: var(--border);
+    border-radius: var(--radius);
+    background-color: #ffffff;
+    color: var(--main-color);
+}
+
+.btn-submit :hover {
+    background-color: var(--main-color);
+    color: #ffffff;
+}
+
+.heading {
+    text-align: center;
+    padding-bottom: 2rem;
+    color: var(--black);
+    font-size: 3.5rem;
+    letter-spacing: .4rem;
+}
+
+.heading span {
+    color: var(--main-color);
+}
+
+
 
 * {
     font-family: var(--font-type);
@@ -60,7 +87,7 @@ section:nth-child(even) {
     background: var(--bg-sec);
 }
 
-.heading {
+/* .heading {
     text-align: center;
     padding-bottom: 2rem;
     text-shadow: var(--text-shadow);
@@ -73,7 +100,7 @@ section:nth-child(even) {
 .heading span {
     text-transform: uppercase;
     color: var(--main-color);
-}
+} */
 
 .btn {
     display: inline-block;
@@ -481,6 +508,8 @@ select:hover {
     padding-left: .5rem;
     color: var(--main-color);
 }
+
+
 
 .footer .box-container .box a:hover i {
     padding-left: 2rem;

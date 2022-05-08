@@ -9,11 +9,7 @@ class Request_Details extends Model
 {
     use HasFactory;
 
-    public function details()
-    {
-        $this->belongsTo(Request::class,'id');
-    }
-
+    
     public $timestamps = false;
     
     protected $fillable = [
@@ -28,4 +24,10 @@ class Request_Details extends Model
        
 
     ];
+
+    public function request()
+    {
+        $this->belongsTo(Request::class,'request_id');
+    }
+
 }

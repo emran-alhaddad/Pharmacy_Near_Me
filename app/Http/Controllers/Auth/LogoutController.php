@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Utils\SuccessMessages;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -12,6 +13,6 @@ class LogoutController extends Controller
    public function logout()
    {
     Auth::logout();
-    return redirect()->route('login')->with('status','تم تسجيل خروجك بنجاح');
+    return back()->with('status',SuccessMessages::LOGOUT_SUCCESS);
    }
 }

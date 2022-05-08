@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Auth\Login\LoginController;
+use App\Utils\ErrorMessages;
+use App\Utils\SuccessMessages;
 
 class FacebookController extends Controller
 {
@@ -38,9 +40,14 @@ class FacebookController extends Controller
 
             if ($userCheck) {
                
-                 Auth::login($userCheck, $remember = true);
-                  $user=Auth::user();
-              return LoginController::checkrole($user);
+                if(!$userCheck->email_verified_at)
+                return redirect()->route('login')->with('error', ErrorMessages::EMAIL_VERIFY);
+                
+                if(!$userCheck->is_active)
+                return redirect()->route('login')->with('error',ErrorMessages::EMAIL_ACTIVATE);
+                
+                Auth::login($userCheck, $remember = true);
+                return LoginController::checkrole(Auth::user());
                
             } else {
 
@@ -56,12 +63,17 @@ class FacebookController extends Controller
                         'user_type' => $is_pharmacy ? "pharmacy" : "client"
                     ]
                 );
-
+                if (!$user->is_active)
+                return redirect()->route('login')->with([
+                    'error' => ErrorMessages::EMAIL_ACTIVATE,
+                    'status' => SuccessMessages::REGISTER_SUCCESS
+                ]);
                 Auth::login($user);
                 return LoginController::checkrole(Auth::user());
             }
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            return redirect()->route('login')->with('error', $e->getMessage());
+
         }
     }
 

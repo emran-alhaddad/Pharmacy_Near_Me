@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Auth\Login\LoginController;
+use App\Utils\ErrorMessages;
+use App\Utils\SuccessMessages;
 
 class GoogleController extends Controller
 {
@@ -35,12 +37,16 @@ class GoogleController extends Controller
                 $query->where('google_id', $user->id)
                     ->orWhere('email', $user->email);
             })->first();
-            
+
             if ($userCheck) {
+                if (!$userCheck->email_verified_at)
+                    return redirect()->route('login')->with('error', ErrorMessages::EMAIL_VERIFY);
+
+                if (!$userCheck->is_active)
+                    return redirect()->route('login')->with('error', ErrorMessages::EMAIL_ACTIVATE);
 
                 Auth::login($userCheck, $remember = true);
-                $user = Auth::user();
-                return LoginController::checkrole($user);
+                return LoginController::checkrole(Auth::user());
             } else {
 
                 $is_pharmacy = Cookie::get('is_pharmacy');
@@ -55,12 +61,16 @@ class GoogleController extends Controller
                         'user_type' => $is_pharmacy ? "pharmacy" : "client"
                     ]
                 );
-
+                if (!$user->is_active)
+                    return redirect()->route('login')->with([
+                        'error' => ErrorMessages::EMAIL_ACTIVATE,
+                        'status' => SuccessMessages::REGISTER_SUCCESS
+                    ]);
                 Auth::login($user);
                 return LoginController::checkrole(Auth::user());
             }
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            return redirect()->route('login')->with('error', $e->getMessage());
         }
     }
 }
