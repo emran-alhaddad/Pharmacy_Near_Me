@@ -81,7 +81,7 @@
 }
 
 body {
-	font-family: 'Roboto', sans-serif;
+	/* font-family: 'Roboto', sans-serif; */
 	background: var(--main-bg-color);
 	color: var(--main-color);
 	margin: 0;
@@ -158,9 +158,12 @@ body {
 
 .logo {
 	height: 60px;
-	padding: 10px;
+    padding: 10px;
 }
-
+#logo{
+    /* width: 100px; */
+    /* height: 300px; */
+}
 .avt img {
 	width: 39px;
 	height: 39px;
@@ -324,7 +327,7 @@ body {
 }
 
 .sidebar:hover {
-	width: 250px;
+	/* width: 250px; */
 }
 
 .sidebar-nav {
@@ -414,7 +417,7 @@ body {
 }
 
 .sidebar-expand .wrapper {
-	margin-left: 250px;
+    /* margin-left: -50px; */
 }
 
 .row {
@@ -438,10 +441,11 @@ body {
 	}
 	.wrapper {
 		margin-right: 0;
-	}
+    }
+
 	.sidebar-expand .wrapper {
         margin-right: 0;
-        /* margin-top: -5px; */
+        display: none;
 	}
 	.nav-right .nav-item {
 		display: none;
@@ -457,7 +461,26 @@ body {
 	}
 	[class*="col-"] {
 		width: 100%
-	}
+    }
+    .sidebar{
+        margin-top: 63px;
+    }
+    .card{
+        width: 100%;
+    }
+    .sidebar-expand .sidebar {
+        width: 250px;
+    }
+    th{
+        font-size: .8rem;
+    }
+    td{
+        font-size: .7rem;
+    }
+    .btn{
+        font-size: .7rem;
+        width: 3.5rem;
+    }
 }
 
 /* Small devices >= 600px */
@@ -547,15 +570,19 @@ body {
 .card-header {
 	padding: 15px 30px;
 	border-bottom: 1px solid var(--second-bg-color);
-	position: relative;
+    position: relative;
+    color: white;
+    background-color: #2B547A;
 }
 
 .card-header i {
-	color: var(--main-color);
+	/* color: var(--main-color); */
 	position: absolute;
 	right: 30px;
 	top: 50%;
-	transform: translateY(-50%);
+    transform: translateY(-50%);
+    color: white
+
 }
 
 .card-header i:hover {

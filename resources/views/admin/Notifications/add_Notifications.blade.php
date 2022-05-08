@@ -12,34 +12,40 @@
             </div>
             <div class="card-content">
     <form>
-            <div class="mb-3">
+
+    <div class="row g-3">
+        <div class="mb-3 col-4">
                 <label for="exampleInputName" class="form-label">المرسل</label>
                 <input type="text" class="form-control" id="exampleInputName">
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 col-4">
                 <label for="exampleInputLink" class="form-label"> المستقبل</label>
                 <input type="text" class="form-control" id="exampleInputName">
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 col-4">
                 <label for="exampleInputLink" class="form-label"> عنوان الاشعار</label>
                 <input type="text" class="form-control" id="exampleInputName">
             </div>
+    </div>
 
-            <div class="mb-3">
+    <div class="row g-3">
+        <div class="mb-3 col-8">
                 <label for="exampleInputLink" class="form-label"> محتوى الاشعار</label>
-                <input type="text" class="form-control" id="exampleInputName">
+                <textarea type="text" name = "desc" class = "form-control"></textarea>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 col-4">
                 <label for="exampleInputDate" class="form-label">تاريخ ارسال الاشعار</label>
                 <input type="date" class="form-control" id="exampleInputName">
             </div>
+    </div>
 
 
-            <button  id="edit_button"  type="submit" class="btn btn-primary">Submit</button>
+            <button  id="edit_button"  type="submit" class="btn btn-primary">اضافة</button>
     </form>
+
 
             </div>
         </div>
