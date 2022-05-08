@@ -46,13 +46,14 @@
                                     class="rounded-circle img-fluid" style="width: 50px;">
                             </td>
                             <td>
-                                <button class="btn btn-success text-white" >مفعل</button>
+                            <button class="btn badge bg-success">مفعل</button>
 
                             </td>
 
                             <td>
-                            <a href="/_admin/edit_Phars">  <button class="btn btn-primary text-white" >تعديل</button></a>
-                                <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button>
+                            <a href="/_admin/edit_Phars">  <button class="btn badge bg-primary">تعديل</button></a>
+                            <button class="btn badge bg-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button>
+                                <!-- <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button> -->
 
 
                                 <div class="modal"  id="exampleModal"  tabindex="-1">

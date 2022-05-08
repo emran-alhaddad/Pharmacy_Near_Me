@@ -1,6 +1,4 @@
 
-
-
 <div class="sidebar float-right" >
 		<ul class="sidebar-nav">
 			<li class="sidebar-nav-item"><a href="/_admin/"
@@ -51,14 +49,14 @@
 					</div> <span>ادارة الاشعارات</span>
 			</a></li>
 
-            		<li class="sidebar-nav-item"><a href="/_admin/show_Cities"
+            <li class="sidebar-nav-item"><a href="/_admin/show_Cities"
 				class="sidebar-nav-link">
 					<div>
 						<i class="fas fa-car"></i>
 					</div> <span>ادارة المدن</span>
 			</a></li>
 
-            		<li class="sidebar-nav-item"><a href="/_admin/show_Zones"
+            <li class="sidebar-nav-item"><a href="/_admin/show_Zones"
 				class="sidebar-nav-link">
 					<div>
 						<i class="fas fa-home"></i>
@@ -72,7 +70,7 @@
 					</div> <span>ادارة الحسابات</span>
 			</a></li>
 
-            	<li class="sidebar-nav-item"><a href="/_admin/show_PaymentMethods"
+            <li class="sidebar-nav-item"><a href="/_admin/show_PaymentMethods"
 				class="sidebar-nav-link">
 					<div>
 						<i class="fas fa-coins"></i>
@@ -86,7 +84,7 @@
 					</div> <span>ادارة  جدولة الطلبيات</span>
 			</a></li>
 
-            	<li class="sidebar-nav-item"><a href="/_admin/show_Permissions"
+            <li class="sidebar-nav-item"><a href="/_admin/show_Permissions"
 				class="sidebar-nav-link">
 					<div>
 						<i class="fas fa-check"></i>
