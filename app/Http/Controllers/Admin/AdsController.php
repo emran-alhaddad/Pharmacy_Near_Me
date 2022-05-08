@@ -36,7 +36,7 @@ class AdsController extends Controller
          
         $ads=SystemUtils::updateImages($request,'Advertising');
         
-        Pharmacy::where('id', '=', $id)->update(array('image' =>$ads ));
+        Advertising::where('id', '=', $id)->update(array('image' =>$ads ));
 
      }
       // $ads->image= SystemUtils::updateImages($request,'Advertising');
