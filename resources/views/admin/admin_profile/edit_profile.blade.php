@@ -1,3 +1,5 @@
+
+
 @extends('layouts.masterAdmin')
 @section('admin_pages')
 
@@ -8,10 +10,10 @@
     <div class="col-lg-4">
     <div class="card mb-4">
         <div class="card-body text-center">
-        <img src="{{ asset('uploads/avaters/admin/'.Auth::user()->avater) }}" alt="avatar"
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
             class="rounded-circle img-fluid" style="width: 150px;">
-        <h5 class="my-3">{{ Auth::user()->name }}</h5>
-        <p class="text-muted mb-1">{{ Auth::user()->email }}</p>
+        <h5 class="my-3">حنين عبد الجليل</h5>
+        <p class="text-muted mb-1">Full Stack Developer</p>
         </div>
     </div>
     </div>
@@ -22,7 +24,7 @@
     <form>
                 <div class="mb-3">
                 <label for="exampleInputName" class="form-label">الاسم الكامل</label>
-                <input value="{{ Auth::user()->name }}" type="text" class="form-control" id="exampleInputName">
+                <input type="text" class="form-control" id="exampleInputName">
                 </div>
             <div class="mb-3">
                 <label for="exampleInputLink" class="form-label"> التخصص</label>
@@ -31,12 +33,12 @@
 
             <div class="mb-3">
                 <label for="exampleInputLink" class="form-label"> الموبايل</label>
-                <input value="{{ Auth::user()->phone }}" type="tel" class="form-control" id="exampleInputName">
+                <input type="number" class="form-control" id="exampleInputName">
             </div>
 
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">الايميل</label>
-                <input value="{{ Auth::user()->email }}" type="email" class="form-control" id="exampleFormControlInput1" placeholder="haneen@example.com">
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="haneen@example.com">
             </div>
 
             <div class="mb-3">

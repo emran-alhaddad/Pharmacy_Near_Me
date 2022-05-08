@@ -17,13 +17,6 @@ class RequestsController extends Controller
         return view('admin.Requests.show_RequestDetails');
     }
 
-    public function addRequests(){
-        return view('admin.Requests.add_Requests');
-    }
-
-    public function editRequests(){
-        return view('admin.Requests.edit_Requests');
-    }
 
 
 }

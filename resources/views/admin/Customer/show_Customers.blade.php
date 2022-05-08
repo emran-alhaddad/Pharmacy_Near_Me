@@ -4,7 +4,7 @@
 
 <div class="wrapper bg-white">
     <div class="row  ">
-        <div class="col-12 ">
+        <div class="col-8 ">
         <div class="card bg-white m-5">
 
             <div class="card-header d-flex justify-content-between">
@@ -17,8 +17,7 @@
                         <tr>
                             <th> اسم العميل</th>
                             <th> العنوان</th>
-                            <th>  الصورة</th>
-                            <th>  الايميل</th>
+                            <th>  رقم الهاتف</th>
                             <th>الحالة</th>
                             <th>العمليات</th>
                         </tr>
@@ -29,11 +28,8 @@
                         <tr>
                             <td>ابولو</td>
                             <td>تعز</td>
-                            <td>  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                                    class="rounded-circle img-fluid" style="width: 50px;">
-                            </td>
 
-                            <td> haneen@yahoo.com</td>
+                            <td> 7777777777777</td>
 
 
 
