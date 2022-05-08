@@ -25,28 +25,27 @@ class AdsController extends Controller
     public function create(Request $request)
     {
       
-      // $ads->admin_id=72;
-      $this->checkAds($request);
-      // $ads->descripe=$request->descripe;
+     
+      $this->checkAds($request); 
       $id = DB::table('advertisings')->insertGetId(
         ['endAt' => $request->endAt, 'startAt' => $request->startAt,'is_active'=>1,'position'=>$request->position]
     );
-      // $ads->owner=$request->owner;
       if($request->hasFile('image')){
-         
-        $ads=SystemUtils::updateImages($request,'Advertising');
-        
+        $ads=SystemUtils::updateImages($request,'Advertising');  
         Advertising::where('id', '=', $id)->update(array('image' =>$ads ));
-
      }
-      // $ads->image= SystemUtils::updateImages($request,'Advertising');
-      $this->validationUrl($request,$id);
-      $ads->url=$request->url;
-      // $ads->position=$request->position;
-      // $ads->startAt=$request->startAt;
-      // $ads->is_active=1;
-      // $ads->endAt=$request->endAt;
-     if( $ads->save())
+     
+      if($request->filled('url'))
+        {   
+            $this->validationUrl($request,$id);
+        }
+        if($request->filled('descripe'))
+        {   
+            $this->validationUrl($request,$id);
+        }
+     
+   
+     if( $id>0)
      {
          return 'تم اضافة الاعلان ';
      }
@@ -74,27 +73,36 @@ class AdsController extends Controller
     public function doUpdate(Request $request,$id)
    { 
 
-
+    $this->checkAds($request); 
      $affected = DB::table('advertisings')
      ->where('id', $id)
-     ->update(['descripe' => $request->descripe,
-               'url' => $request->url,
+     ->update([//'descripe' => $request->descripe,
+               //'url' => $request->url,
               //  'image' => $request->image,
-              //  'owner' => $request->owner,
+              //  'name' => $request->name,
               //  'is_active' => $request->is_active,
                'position' => $request->position,
                'startAt' => $request->startAt,
                'endAt' => $request->endAt,
               ]);
 
+              if($request->filled('url'))
+              {   
+                  $this->validationUrl($request,$id);
+              }
+              if($request->filled('descripe'))
+              {   
+                  $this->validationUrl($request,$id);
+              }      
+
    }
 
    public function doUpdataImage(Request $request)
 {   
    
-    $userAvater=  SystemUtils::updateImages($request,'Advertising');
+    $Advertising=  SystemUtils::updateImages($request,'Advertising');
     
-    Advertising::where('id', '=', 1)->update(['image' => $userAvater]);
+    Advertising::where('id', '=', 1)->update(['image' => $Advertising]);
    
 }
     
@@ -106,7 +114,7 @@ class AdsController extends Controller
 
 public function checkAds($request)
 {
-  $ads=new Advertising();
+  
             $request->validate(
                 [
                     'name' => 'required|min:3',
@@ -135,14 +143,15 @@ public function checkAds($request)
     ['url' => ['url'] ],
 
    ['url.url'=>'يجب ادخال رابط  بطريقة صحيحة']); 
+   Advertising::where('id', '=', $id)->update(array('url' => $request->url));
   }
 
-  public function checkdescrip($request,$id=null)
+  public function checkdescrip($request,$id)
  {
-  $request->validate(['address' => 'min:4'],[
-    'address.min'=>'يجب ان يكون  العنوان اربع احرف او اكثر'
+  $request->validate(['descripe' => 'min:4'],[
+    'descripe.min'=>'يجب ان يكون  العنوان اربع احرف او اكثر'
  ]);
- Pharmacy::where('user_id', '=', $id)->update(array('address' => $request->address));
+ Advertising::where('id', '=', $id)->update(array('descripe' => $request->descripe));
 }
 
 }

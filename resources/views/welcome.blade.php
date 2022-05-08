@@ -481,7 +481,7 @@
                 <input type="text" name="email" id="alt_drug_image" class="form-controll">
                 <br>
                 image:
-                <input type="file" id="" name='facebook' class="form-controll">
+                <input type="file" id="" name='image' class="form-controll">
                 <br>
                 ImageUpload:
                 <input type="text" id="alt_drug_price"  name="address" class="form-controll">
