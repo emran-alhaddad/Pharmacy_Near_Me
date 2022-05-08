@@ -7,7 +7,7 @@
                         </div>
                     @enderror
                 </div>
-    <div class="col-lg-4 col-md-4 col-12 mb-3">
+    <div class="col-lg-3 col-md-3 col-12 mb-3">
         <div class="card shadow p-3 pt-0 bg-opacity-0">
             <!-- user avater -->
             <div class="col-12 d-flex justify-content-center align-items-center p-4 position-relative">
@@ -44,7 +44,7 @@
                     <span class="fs-6 fw-bold px-1"> طلبيـــــاتي </span>
                 </a>
                 <!-- sended Orders -->
-                <a href="#" id="sended"
+                <a href="{{ route('client-compliants') }}" id="sended"
                     class="text-secondary d-flex align-items-center d-inline-block ms-3 border-bottom pb-2 color-user">
                     <i class="fa-solid fa-address-card"></i>
                     <span class="fs-6 fw-bold px-1">الشكـــــاوي </span>

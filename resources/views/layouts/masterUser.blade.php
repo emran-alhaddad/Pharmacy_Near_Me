@@ -179,6 +179,33 @@
             </div>
         </div>
 
+        <!-- show compliant reply model -->
+        <div class="modal fade" id="compliant-reply" tabindex="-1" aria-labelledby="exampleModalLabel2"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content p-3">
+                    <!-- model header -->
+                    <div class="modal-headerd-flex justify-content-between align-items-center">
+                        <h4 class="modal-title fw-bold text-center" id="exampleModalLabel2">
+                            الرد على الشكوى
+                        </h4>
+                        <button type="button" class="btn-close" data-dismiss="modal" ></button>
+                    </div>
+
+                    <!-- model body -->
+                    <div class="modal-body">
+                        
+                        <p id="reply-text"></p>
+                    </div>
+
+                    <!-- model footer -->
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-primary text-light" data-bs-dismiss="modal">تـــم</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <script>
             // $('personal').click($('pp').hide());

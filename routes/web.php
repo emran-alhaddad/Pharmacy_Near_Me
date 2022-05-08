@@ -100,6 +100,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/client/orders/store', [User\OrderController::class, 'store'])->name('client-orders-store');
         Route::get('/client/order/{id}/reject', [User\OrderController::class, 'reject'])->name('client-orders-reject');
 
+        // Client Compliants
+        Route::get('/client/compliants',[User\ComplaintController::class,'index'])->name('client-compliants');
+        Route::get('/client/compliants/create', [User\ComplaintController::class, 'create'])->name('client-compliants-create');
+        Route::post('/client/compliants/store', [User\ComplaintController::class, 'store'])->name('client-compliants-store');
+        Route::get('/client/compliant/{id}/delete', [User\ComplaintController::class, 'delete'])->name('client-compliants-delete');
+
     });
 
     // Pharmacy Routes
