@@ -110,7 +110,7 @@
                         </div>
                     </div>
                     <form id="formAccountDeactivation" onsubmit="return false">
-                        <div class="form-check mb-3">
+                        {{-- <div class="form-check mb-3">
                                 <label class="form-check-label" for="accountActivation"
                             >أوافق على إلغاء تفعيل حسابي </label
                             >
@@ -122,7 +122,7 @@
                             style="font-size: 2px;"
                             />
 
-                        </div>
+                        </div> --}}
                         <button type="submit" class="btn btn-danger deactivate-account">تعطيل حسابي</button>
                     </form>
                 </div>
