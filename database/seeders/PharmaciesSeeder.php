@@ -36,7 +36,7 @@ class PharmaciesSeeder extends Seeder
         }
        
         
-        
+
         $filePathName=base_path().'\names\phar.txt';
         $filePathEmail=base_path().'\names\email.txt';
         $fileName = fopen($filePathName, "r");

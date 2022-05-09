@@ -3,40 +3,59 @@
 namespace App\Utils;
 
 use App\Models\User;
+use App\Models\Pharmacy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class SystemUtils extends UploadingUtils
 {
-  CONST AVATER_PATH = 'uploads/avaters';
-  CONST LOGO_PATH = 'uploads/logo';
+  CONST AVATER_PATH = 'uploading/avater/';
+  CONST LOGO_PATH = 'uploading/logo/';
 
-  public function updateAvatar(Request $request)
+  public static function  updateAvatar(Request $request)
   {
-    $request->validate(
-      ['avater' => 'required|image|mimes:png,jpg'],
-    [
-      'avater.required' => "يجب عليك إدخال الصورة بالأول",
-      'avater.image' => "الملف الذي قمت برفعه ليس صورة",
-      'avater.mimes' => "نوع الصورة المقبول هو png , jpg فقط",
-    ]);
-    $path = null;
-    if(Auth::user()->hasRole('client')) $path = UserUtils::CLIENT_AVATER_PATH;
-    if(Auth::user()->hasRole('pharmacy')) $path = UserUtils::PHARMACY_AVATER_PATH;
-    if(Auth::user()->hasRole('admin')) $path = UserUtils::ADMIN_AVATER_PATH;
     
-    if(!$path) return back()->with('error', 'حصل خطأ');
+    $request->validate(['avatar' => 'required|image|mimes:png,jpg']);
+    
+    return SystemUtils::returnPath($request->avatar);
+  }
+   
+  public static function  updateImages(Request $request,$path)
+  {
+    
 
-    $avater = self::updateImage(
-      $request->avater,
-      $path,
-      $path. Auth::user()->avater
-    );
-
-    User::find(Auth::id())->update(['avater' => $avater]);
-
-    return back()->with('status', 'تم التعديل بنجاح');
+    $request->validate(['image' => 'required|mimes:png,jpg'],
+    [
+      'image.mimes'=>'يجب ان تكون الصورة بصيغة ',
+      'image.image'=>'يجب ان تكون الملف  الصوره '
+    ]);
+  
+  
+    
+    return SystemUtils::returnPath($request->image,$path);
   }
 
-}
+  public static function  insertLicense(Request $request)
+  {
 
+    $request->validate(['license' => 'required|image|mimes:png,jpg'],[
+      'license.mimes'=>'يجب ان تكون الصورة بصيغة ',
+       'license.image'=>'يجب ان تكون الملف  الصوره '
+    ]);
+
+    return SystemUtils::returnPath($request->license);
+  }
+
+  public static function returnPath($img,$path)
+  { 
+    $avatar = UploadingUtils::updateImage(
+      $img,
+      self::AVATER_PATH,
+      self::AVATER_PATH.$path
+    );
+    
+    return $avatar;
+    
+  }
+}

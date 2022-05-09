@@ -20,8 +20,9 @@
                             <th> المدينة</th>
                             <th>  المربع السكني</th>
                             <th>  العنوان</th>
+                            <th> البريد الالكتروني</th>
+                            <th>رقم الهاتف</th>
                             <th> الصورة</th>
-                            <th> الايميل</th>
                             <th> الرخصة</th>
                             <th>الحالة</th>
                             <th>العمليات</th>
@@ -34,24 +35,28 @@
                             <td>تعز</td>
                             <td>المسبح</td>
                             <td> شارع جمال</td>
-                            <td>  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                                    class="rounded-circle img-fluid" style="width: 50px;">
-                            </td>
-
                             <td>apolo@yahoo.com</td>
+                            <td>77777777777</td>
+                            <td>  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                                    class="rounded-circle img-fluid" style="width: 50px;">
+                            </td>
+
 
                             <td>  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
                                     class="rounded-circle img-fluid" style="width: 50px;">
                             </td>
                             <td>
-                                <button class="btn btn-success text-white" >مفعل</button>
+                            <button class="btn badge bg-success">مفعل</button>
 
                             </td>
 
                             <td>
-                            <a href="/_admin/edit_Phars">  <button class="btn btn-primary text-white" >تعديل</button></a>
-                                <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button>
-                                    <div class="modal"  id="exampleModal"  tabindex="-1">
+                            <a href="/_admin/edit_Phars">  <button class="btn badge bg-primary">تعديل</button></a>
+                            <button class="btn badge bg-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button>
+                                <!-- <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button> -->
+
+
+                                <div class="modal"  id="exampleModal"  tabindex="-1">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                             <div class="modal-header">
@@ -66,7 +71,7 @@
                                             </div>
                                             </div>
                                         </div>
-                                    </div>
+                                </div>
 
                             </td>
 
