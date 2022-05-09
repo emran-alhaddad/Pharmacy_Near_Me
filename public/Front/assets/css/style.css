@@ -1,4 +1,5 @@
 @import url('http://fonts.cdnfonts.com/css/tajawal?styles=19782,19779,19780,19781,19777,19778,19776');
+
 html {
     scroll-behavior: smooth;
 }
@@ -19,7 +20,7 @@ body {
     font-family: "Tajawal", sans-serif;
     font-weight: normal;
     font-style: normal;
-    color: #7C869A;
+    /* color: #7C869A; */
 }
 
 * {
@@ -411,24 +412,31 @@ textarea:focus {
     12.5% {
         transform: rotate(135deg);
     }
+
     25% {
         transform: rotate(270deg);
     }
+
     37.5% {
         transform: rotate(405deg);
     }
+
     50% {
         transform: rotate(540deg);
     }
+
     62.5% {
         transform: rotate(675deg);
     }
+
     75% {
         transform: rotate(810deg);
     }
+
     87.5% {
         transform: rotate(945deg);
     }
+
     to {
         transform: rotate(1080deg);
     }
@@ -438,9 +446,11 @@ textarea:focus {
     0% {
         transform: rotate(130deg);
     }
+
     50% {
         transform: rotate(-5deg);
     }
+
     to {
         transform: rotate(130deg);
     }
@@ -450,9 +460,11 @@ textarea:focus {
     0% {
         transform: rotate(-130deg);
     }
+
     50% {
         transform: rotate(5deg);
     }
+
     to {
         transform: rotate(-130deg);
     }
@@ -1588,6 +1600,7 @@ textarea:focus {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
+
     .navbar-nav .nav-item .sub-menu li a.active,
     .navbar-nav .nav-item .sub-menu li a:hover {
         padding-left: 0;
@@ -1595,6 +1608,7 @@ textarea:focus {
 }
 
 @media (max-width: 767px) {
+
     .navbar-nav .nav-item .sub-menu li a.active,
     .navbar-nav .nav-item .sub-menu li a:hover {
         padding-left: 0;
@@ -1737,12 +1751,14 @@ textarea:focus {
     .header-btn .main-btn.account-btn {
         padding: 5px 11px;
     }
+
     .header-btn .main-btn {
         font-size: 16px;
         padding: 10px 30px;
         font-weight: 400;
         margin-top: 1px;
     }
+
     .header-btn .main-btn.account-btn::after {
         content: '';
         position: absolute;
@@ -3035,9 +3051,11 @@ video css
     0% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.5);
     }
+
     100% {
         transform: scale(1);
     }

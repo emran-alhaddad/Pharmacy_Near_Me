@@ -45,6 +45,16 @@ Route::get('/pharmacy/{id}', [Front\interfacesController::class, 'detailes'])->n
 Route::post('/pharmacies/search', [Front\interfacesController::class, 'searchPharmacies'])->name('search-pharmacies');
 
 
+// PHARMACY TEST ROUTES
+Route::get('/account', [PharmacyController::class, 'account'])->name('profile');
+Route::get('/settings', [PharmacyController::class, 'settings'])->name('editProfile');
+Route::get('/detail', [PharmacyController::class, 'detailes'])->name('orderData');
+Route::get('/order', [PharmacyController::class, 'order'])->name('order');
+
+
+
+
+
 
 // Register
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
@@ -110,7 +120,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Pharmacy Routes
     Route::group(['middleware' => ['role:pharmacy']], function () {
-        
+
         // Pharmacy Dashboard
         Route::get('/_pharmacy/', [Pharmacy\PharmacyController::class, 'index'])->name('pharmacy-dashboard');
 
@@ -214,7 +224,4 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Logout
     Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
-
-
 });
-

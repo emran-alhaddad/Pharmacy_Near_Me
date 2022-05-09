@@ -2,69 +2,112 @@
 
     @section('content')
 
-    <!--====== BANNER PART START ======-->
-	{{-- <section class="banner-area bg_cover">
-		<div class="container">
+<style>
+    .card {
+        margin-top: 12em;
+        position: relative;
+        right: 50%;
+        left: 30%;
+        padding: 1.5em 0.5em 0.5em;
+        border-radius: 2em;
+        text-align: center;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 
-		</div>
-	</section> --}}
 
-	<!--====== BANNER PART END ======-->
-<section class="mt-5 shadow" style="direction: rtl">
-  <div class="container py-5 mt-5">
-    <div class="row d-flex justify-content-center align-items-center mt-5">
-      <div class="col col-lg-9 col-xl-7 mt-5">
-        <div class="card mt-5">
-          <div class="rounded-top search-area text-white d-flex flex-row  banner-area bg_cover" style=" height:470px;">
-            <div class="ms-4 d-flex flex-column " style="width: 150px; z-index: 1000000;">
-              <img src="{{ asset('uploads/avaters/pharmacy/'.$pharmacy->avater)}}"
-                alt="Generic placeholder image" class="img-fluid img-thumbnail  mb-2"
-                style="width: 150px; z-index: 100000; background-color: var(--main-color);">
-              <button type="button" class="btn btn-outline-light" data-mdb-ripple-color="dark"
-                style="z-index: 1000;">
-                تقديم طلب
-              </button>
-            </div>
+        }
+        @media  (max-width: 991px){
+            .card {
+            position: relative;
+                right: 1rem;
+                left: 1rem;
+        padding: .5em 0 0;
 
-            <div class="ms-3 text-white" style="margin-top:2px;">
-              <h5 style="color: #f8f9fa">{{ $pharmacy->name }}</h5>
-              <p style="color: #f8f9fa">
-                <i class="lni lni-map-marker"></i>
-                  {{ $pharmacy->Cname }} - {{ $pharmacy->Zname }}
-              </p>
-               <div class="">
-                    <div class="d-flex justify-content-end text-center flex-wrap">
-                    <div class="social">
-                        <!-- <p class="mb-1 h5">253</p> -->
-                        <p class="small text-muted mb-0"><a href="javascript:void(0)"><i class="lni lni-facebook-filled pr-2"></i></a></p>
+
+            }
+        }
+        .card img {
+        width: 50%;
+        height:  60%;
+        border-radius: 50%;
+        margin: .5rem auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .card .card-title {
+        font-weight: 700;
+        font-size: 1.5em;
+        }
+        .card .btn {
+        border-radius: var(--radius);
+        background-color: var(--main-color);
+        color: #ffffff;
+        padding: 0.5em 1.5em;
+        }
+        .card .btn:hover {
+        background-color:var(--main-color);
+        color: #ffffff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .banner-area{
+            height: 50%;
+        }
+</style>
+
+<div>
+    <div class="card" style="width: 55rem; max-width: 100%;">
+        <div class="banner-area rounded-3 ">
+            <img src="{{ asset('Front/assets/images/pharmacy/pharma.jpg') }}" class="card-img-top" alt="">
+        </div>
+    <div class="card-body">
+        <h5 class="card-title">صيدلية الحياة </h5>
+        <p class="card-text"> أهلا بك في صيدلية الحياة, نوفر جميع مستلزماتك الطبية والحياتية</p>
+        <ul class="social text-center d-flex align-content-center justify-content-center align-self-center col-12">
+                    <li><a href="javascript:void(0)"><i class="lni lni-facebook-filled pr-3"></i></a></li>
+                    <li><a href="javascript:void(0)"><i class="lni lni-twitter-filled pr-3"></i></a></li>
+                    <li><a href="javascript:void(0)"><i class="lni lni-instagram-filled pr-3"></i></a></li>
+                    <li><a href="javascript:void(0)"><i class="lni lni-linkedin-original pr-3"></i></a></li>
+                </ul>
+        <a href="#" class="btn">تقديم طلب</a>
+    </div>
+    </div>
+</div>
+
+@stop
+
+ <!--====== BANNER PART START ======-->
+
+    {{-- <section class="align-content-center"  style="width: 100%; margin-inline-start: ;">
+
+            <div class="col-lg-12 d-flex justify-center">
+                <div class="single-pharmacylist-view px-5">
+                    <div class="pharmacy-img banner-area bg_cover">
+                        <img src="Front/assets/images/pharmacy/pharma.jpg" alt="" class="rounded-circle px-5">
                     </div>
-                    <div class="px-3 social">
-                    <a href="javascript:void(0)"><i class="lni lni-whatsapp pr-2"></i></a>
 
+                  <div class="pharmacy-content p-5">
+                    <ul class="address">
+                        <h3 class="name py-2" style="text-align: right;">
+                        <a href="">صيدلية الحياة
+                            <i class="lni lni-user  p-2"></i>  </a></h3>
+                        <li style="text-align: right;" class="">
+                            <a href="javascript:void(0)" > تعز المسبح
+                                <i class="lni lni-map-marker p-2"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <p class="p-2">  أهلا بك في صيدلية الحياة, نوفر جميع مستلزماتك الطبية والحياتية </p>
+                        </li>
+                    </ul>
+                    <ul class="social text-center d-flex align-content-center justify-content-center align-self-center col-6">
+                        <li><a href="javascript:void(0)"><i class="lni lni-facebook-filled pr-2"></i></a></li>
+                        <li><a href="javascript:void(0)"><i class="lni lni-twitter-filled pr-2"></i></a></li>
+                        <li><a href="javascript:void(0)"><i class="lni lni-instagram-filled pr-2"></i></a></li>
+                        <li><a href="javascript:void(0)"><i class="lni lni-linkedin-original pr-2"></i></a></li>
+                    </ul>
+                    <div class="pharmacy-bottom">
+                        <a href="javascript:void(0)" class="main-btn col-12 p-2"><i class="lni lni-checkmark-circle"></i> تقديم طلب</a>
                     </div>
-                    <div class="social">
-
-                    <a href="javascript:void(0)"><i class="lni lni-phone pr-2"></i></a>
-                    </div>
-                    </div>
+                </div>
                 </div>
             </div>
 
-          </div>
-
-          <div class="card-body p-4 text-black">
-            <div class="mb-5">
-              <p class="lead fw-normal mb-1"> أهلا بك في {{ $pharmacy->name }} نوفر جميع مستلزماتك الطبية والحياتية </p>
-              <div class="p-4" style="background-color: #f8f9fa;">
-                <p class="font-italic mb-1">عن الصيدليـــة </p>
-                <p class="font-italic mb-1">{{ $pharmacy->description }}</p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-@stop
+	</section> --}}
