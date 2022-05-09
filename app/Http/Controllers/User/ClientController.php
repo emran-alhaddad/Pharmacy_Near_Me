@@ -193,10 +193,9 @@ class ClientController extends Controller
 
     private function validateClient(Request $request)
     {
-        $now = Carbon::now()->timestamp;
         $request->validate([
             'name' => 'required|string|min:5|max:100',
-            'dob' => 'date|before:' . $now,
+            'dob' => 'date' ,
             'phone' => 'alpha_num',
             'address' => 'min:3|max:100',
         ], [

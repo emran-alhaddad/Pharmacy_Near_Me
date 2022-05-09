@@ -10,7 +10,7 @@
     </style>
 
     <!-- info Section -->
-    <section class="col-lg-8 col-md-8 col-12">
+    <section class="col-lg-9 col-md-8 col-12">
         @if (session('error'))
             <div class="alert alert-danger" role="alert">
                 {{ session('error') }}
