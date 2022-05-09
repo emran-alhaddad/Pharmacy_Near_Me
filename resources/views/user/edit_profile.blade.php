@@ -70,6 +70,136 @@
         <hr class="my-0" />
         <div class="card-body">
             <form  method="POST" action="{{ route('client-dashboard-update') }}"  class="card-body">
+                <!-- Button trigger modal -->
+<button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+تغيير كلمة المرور
+</button>
+
+<button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+تغيير  البريد
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+     
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    
+
+
+      <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-3">
+                <div class="modal-header">
+                    <h4 class="modal-title fw-bold text-center col-10" id="exampleModalLabel">
+                        تغيير كلمة المرور
+                    </h4>
+                   
+                </div>
+
+                <div class="modal-body">
+                    @error('error')
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
+                    @error('status')
+                        <div class="alert alert-success" role="alert">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
+                    <form action="{{ route('client-password-update') }}" method="POST" class="g-3">
+                        @csrf
+                        @method('put')
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">كلمة المرور القديمة</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
+                                            class="bi bi-person-plus-fill text-white"></i></span>
+                                    <input value="{{ old('password') }}" type="password"
+                                        placeholder="كلمة المرور القديمة" name="password"
+                                        class="form-control rounded @error('password') border-danger @enderror">
+                                    @error('password')
+                                        <div class="invalid-feedback d-block">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">كلمة المرور الجديدة</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
+                                            class="bi bi-person-plus-fill text-white"></i></span>
+                                    <input type="password" placeholder="كلمة المرور الجديدة" name="new_password"
+                                        class="form-control rounded @error('new_password') border-danger @enderror">
+                                    @error('new_password')
+                                        <div class="invalid-feedback d-block">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">تأكيد كلمة المرور الجديدة</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
+                                            class="bi bi-person-plus-fill text-white"></i></span>
+                                    <input type="password" placeholder="تأكيد كلمة المرور الجديدة"
+                                        name="new_password_confirmed"
+                                        class="form-control rounded @error('new_password_confirmed') border-danger @enderror">
+                                    @error('new_password_confirmed')
+                                        <div class="invalid-feedback d-block">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                            <button class="btn-submit radius text-center p-2 col-12 mt-2" type="submit">
+                                تعديل
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+   
+    </div>
+  </div>
+</div>
             @csrf
                 @method('put')
 
@@ -161,8 +291,10 @@
                 <button type="submit" class="btn btn-primary me-2">حفظ التغيرات</button>
                 <button type="reset" class="btn btn-outline-secondary">الغاء</button>
             </div>
+            
             </form>
         </div>
+        
         <!-- /Account -->
         </div>
     </div>
