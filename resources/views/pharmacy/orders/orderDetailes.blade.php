@@ -98,7 +98,7 @@
                                                         <li class="nav-item">
                                                         <button
                                                             type="button"
-                                                            class="nav-link active"
+                                                            class="nav-link active btn-submit"
                                                             role="tab"
                                                             data-bs-toggle="tab"
                                                             data-bs-target="#navs-pills-top-home"
@@ -157,7 +157,7 @@
                                                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                                                     الغاء
                                                     </button>
-                                                    <button type="button" class="btn btn-primary">تثبيت الرد </button>
+                                                    <button type="button" class="btn btn-submit">تثبيت الرد </button>
                                                 </div>
                                                 </div>
                                             </div>
