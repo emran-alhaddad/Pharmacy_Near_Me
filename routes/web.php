@@ -36,6 +36,8 @@ use App\Http\Controllers\Admin\WebSiteSettingController;
         });
         Route::get('/_admin-createe/{id}', [PharController::class,'delete'])->name('admin-create');
         Route::post('/_admin/create-zone/', [AdvertiseController::class,'create'])->name('create-zone'); 
+        Route::post('/_admin/updatePassword/{id}', [CustomerController::class,'updatePassword'])->name('_admin-updatePassword'); 
+        Route::post('/_admin/updateEmail', [CustomerController::class,'updateEmail'])->name('_admin-updateEmail'); 
     // Route::group(['middleware' => ['role:admin']], function () {
 
         // Admin Dashboard
@@ -71,6 +73,7 @@ use App\Http\Controllers\Admin\WebSiteSettingController;
         Route::get('/_admin/show_Customers', [CustomerController::class, 'showCustomers'])->name('admin-show_Customer');
         Route::get('/_admin/add_Customers', [CustomerController::class, 'addCustomers'])->name('admin-add_Customers');
         Route::get('/_admin/edit_Customers/{id}', [CustomerController::class, 'editCustomers'])->name('admin-edit_Customers');
+        Route::post('/_admin/update_Customers/{id}', [CustomerController::class, 'doUpdate'])->name('admin-update_Customers');
 
         Route::get('/_admin/show_Phars', [PharController::class, 'showPhars'])->name('admin-show_Phars');
         Route::get('/_admin/add_Phars', [PharController::class, 'addPhars'])->name('admin-add_Phars');

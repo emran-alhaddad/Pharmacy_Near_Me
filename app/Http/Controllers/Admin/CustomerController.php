@@ -13,12 +13,12 @@ class CustomerController extends Controller
 {
     //
     public function showCustomers(){
-        $users = DB::table('clients')
+        $customers = DB::table('clients')
         ->join('users', 'users.id', '=', 'clients.user_id')
         ->select('users.*', 'clients.*')
         ->get();
-       
-        return view('admin.Customer.show_Customers');
+      
+        return view('admin.Customer.show_Customers')->with('customers',$customers);
     }
 
     public function activity($id,$state)
@@ -46,11 +46,15 @@ class CustomerController extends Controller
     }
 
     public function editCustomers($id){
-        $users = DB::table('clients')
+        $customer = DB::table('clients')
         ->join('users', 'users.id', '=', 'clients.user_id')
         ->select('users.*', 'clients.*')
         ->where('clients.user_id',$id)
-        ->get();
+        ->first();
+        // return  $customer;
+
+
+        return view('admin.Customer.edit_Customers')->with('customer',$customer);
         //dd($users);
 
 
@@ -58,7 +62,7 @@ class CustomerController extends Controller
     }
     public function doUpdate(Request $request,$id)
     {   
-
+          return $request->getContent();
       $request->validate(['name' => 'required|min:3'],[
     
             'name.required'=>'يجب ادخال اسم الصيدلية ',
@@ -162,7 +166,7 @@ public function doUpdataImage(Request $request)
     User::where('id', '=', 1)->update(['avater' => $userAvater]);
    
 }
-public function updatePassword(Resquest $requset)
+public function updatePassword(Resquest $requset,$id)
 {   
     $requset->validate(['new-password' => 'required|min:9'],[
         'new-password.required'=>'يجب ادخال  كلمة السر  ',
