@@ -22,25 +22,41 @@
                             <th>العمليات</th>
                         </tr>
                     </thead>
-
-
+                    
+             
                     <tbody>
-                        <tr>
-                            <td>ابولو</td>
-                            <td>تعز</td>
+                        @foreach ($customers as $customer)
+                           
+                         <tr>
+                         
+                        
+                            <td>{{ $customer->name }}</td>
+                         <td>{{  $customer->address }}</td>
+                         <td>{{  $customer->phone}}</td>
+                        
 
-                            <td> 7777777777777</td>
+                          @if ($customer->is_active==1)
+                        
+                        <td>   <button class="btn btn-success text-white" >مفعل</button></td>
+                         
+                              
+                          @else
+                        
+                            <td> <button class="btn btn-danger text-white" >موقف</button></td>
+                       
+                          @endif
+                            
+                               
 
-
+                            
 
                             <td>
-                                <button class="btn btn-success text-white" >مفعل</button>
-
-                            </td>
-
-                            <td>
-                            <a href="/_admin/edit_Customers">  <button class="btn btn-primary text-white" >تعديل</button></a>
+                            <a href={{route('admin-edit_Customers', ['id' => $customer->id]);}} >  <button class="btn btn-primary text-white" >تعديل</button></a>
                                 <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button>
+                           
+                            </td>
+                        
+                               
                                     <div class="modal"  id="exampleModal"  tabindex="-1">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -58,11 +74,12 @@
                                         </div>
                                     </div>
 
-                            </td>
+                           
 
 
                         </tr>
-
+                        @endforeach    
+                        
                     </tbody>
 
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdvertiseController;
 use App\Http\Controllers\Admin\AdsController;
 use App\Http\Controllers\Admin\ZonesController;
 use App\Http\Controllers\Admin\ComplaintsController;
@@ -26,6 +27,17 @@ use App\Http\Controllers\Admin\WebSiteSettingController;
 */
 
     // Admin Routes
+    
+
+        // Admin Dashboard
+        
+        Route::get('/create',function(){
+          return view('welcome');
+        });
+        Route::get('/_admin-createe/{id}', [PharController::class,'delete'])->name('admin-create');
+        Route::post('/_admin/create-zone/', [AdvertiseController::class,'create'])->name('create-zone'); 
+        Route::post('/_admin/updatePassword/{id}', [CustomerController::class,'updatePassword'])->name('_admin-updatePassword'); 
+        Route::post('/_admin/updateEmail', [CustomerController::class,'updateEmail'])->name('_admin-updateEmail'); 
     // Route::group(['middleware' => ['role:admin']], function () {
 
         // Admin Dashboard
@@ -34,6 +46,8 @@ use App\Http\Controllers\Admin\WebSiteSettingController;
 
         Route::get('/_admin/profile', [AdminController::class, 'showProfile'])->name('admin-profile');
         Route::get('/_admin/edit_profile', [AdminController::class, 'editProfile'])->name('admin-edit_profile');
+        Route::post('/_admin/edit_profile/image', [AdminController::class, 'doUpdataImage'])->name('admin-edit_profile-image');
+        Route::get('/_admin/zones', [AdminController::class, 'showZones'])->name('admin-zones');
 
 
         Route::get('/_admin/show_ads', [AdsController::class, 'showAds'])->name('admin-show_ads');
@@ -53,16 +67,17 @@ use App\Http\Controllers\Admin\WebSiteSettingController;
 
         Route::get('/_admin/show_Cities', [CitiesController::class, 'showCities'])->name('admin-show_Cities');
         Route::get('/_admin/add_Cities', [CitiesController::class, 'addCities'])->name('admin-add_Cities');
-        Route::get('/_admin/edit_Cities', [CitiesController::class, 'editCities'])->name('admin-edit_Cities');
+        Route::get('/_admin/edit_Cities/{id}', [CitiesController::class, 'editCities'])->name('admin-edit_Cities');
 
 
         Route::get('/_admin/show_Customers', [CustomerController::class, 'showCustomers'])->name('admin-show_Customer');
         Route::get('/_admin/add_Customers', [CustomerController::class, 'addCustomers'])->name('admin-add_Customers');
-        Route::get('/_admin/edit_Customers', [CustomerController::class, 'editCustomers'])->name('admin-edit_Customers');
+        Route::get('/_admin/edit_Customers/{id}', [CustomerController::class, 'editCustomers'])->name('admin-edit_Customers');
+        Route::post('/_admin/update_Customers/{id}', [CustomerController::class, 'doUpdate'])->name('admin-update_Customers');
 
         Route::get('/_admin/show_Phars', [PharController::class, 'showPhars'])->name('admin-show_Phars');
         Route::get('/_admin/add_Phars', [PharController::class, 'addPhars'])->name('admin-add_Phars');
-        Route::get('/_admin/edit_Phars', [PharController::class, 'editPhars'])->name('admin-edit_Phars');
+        Route::get('/_admin/edit_Phars/{id}', [PharController::class, 'editPhars'])->name('admin-edit_Phars');
 
 
         Route::get('/_admin/show_PaymentMethods', [PaymentMethodsCotroller::class, 'showPaymentMethods'])->name('admin-show_PaymentMethods');
@@ -93,6 +108,10 @@ use App\Http\Controllers\Admin\WebSiteSettingController;
 
     // Logout
     Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
+    Route::get('/delete/{id}', [ZonesController::class, 'delete'])->name('delete');
+
+
+
 
 
 
