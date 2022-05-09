@@ -60,6 +60,12 @@ class interfacesController extends Controller
     {
         return view('front.404');
     }
+
+
+    public function add_order()
+    {
+        return view('front.add_order');
+    }
     public function detailes($id)
     {
         $pharmacy = QueryController::pharmacies()->where('users.id',$id)->first();
