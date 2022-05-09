@@ -67,34 +67,26 @@
   <div class="row">
                 <div class="mx-auto col-xl-6 col-lg-7 col-md-10">
                     <div class="text-center section-title mb-60">
-                    <div class="checkbox">
-  <label><input type="checkbox" value=""> اقبل بديل في حالة عدم توفره</label>
 </div>
-<div class="checkbox">
-  <label><input type="checkbox" value=""> اريد تكرار هذا لطلب بشكل تلقائي كل</label>
-</div>
-<button type="submit" class="main-btn btn-hover">  ارسال الطلبية بالكامل  </button>
-<button type="submit" class="main-btn btn-hover">اضافة المنتج الى الطلبية </button>
-<!--form-->
 
-<div class="row">
-    <!-- Dashboard Nav Section -->
-    <div class="row">
-                                    </div>
-    <div class="col-lg-4 col-md-4 col-12 mb-3">
-      
-    </div>
-        <!-- side Nav end -->
+<div class="box-style sidebar-pharmacy">
+                               
+                                    <li class="list-group-item">
+                                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                                        اقبل بديل في حالة عدم توفره 
+                                    </li>
+                                    <li class="list-group-item">
+                                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                                        المديرية
+                                    </li>
+                                 
 
-        
-    <style>
-        .modal.show .modal-dialog {
-            max-width: fit-content
-        }
 
-    </style>
+                                </ul>
+                            </div>
 
     <!-- info Section -->
+    <div class="row justify-content-center">
     <section class="col-lg-8 col-md-8 col-12">
                         <div class="card shadow p-3">
      
@@ -103,8 +95,24 @@
                   
                    
                 </div>
+             
+
+               
                 <hr>
 
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">التكرار كل </h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <div class="input-group mb-3">
+                           
+                            <input value="" type="number" placeholder=" اليوم" name="phone" class="form-control rounded ">
+                            <input value="" type="number" placeholder=" الشهر" name="phone" class="form-control rounded ">
+                            <input value="" type="number" placeholder=" السنة" name="phone" class="form-control rounded ">
+                                                    </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col">
                         <div class="row">
@@ -122,21 +130,7 @@
 
                 
                 </div>
-                <hr>
-
-                <div class="row">
-                    <div class="col-sm-3">
-                        <h6 class="mb-0">التكرار كل </h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                        <div class="input-group mb-3">
-                           
-                            <input value="" type="number" placeholder=" اليوم" name="phone" class="form-control rounded ">
-                            <input value="" type="number" placeholder=" الشهر" name="phone" class="form-control rounded ">
-                            <input value="" type="number" placeholder=" السنة" name="phone" class="form-control rounded ">
-                                                    </div>
-                    </div>
-                </div>
+                
                 <hr>
 
           
@@ -144,6 +138,13 @@
             </form>
         </div>
     </section>
+            </div>
+            <div class="p-5">
+<button type="submit" class="main-btn btn-hover">  ارسال الطلبية بالكامل  </button>
+<button type="submit" class="main-btn btn-hover">اضافة المنتج الى الطلبية </button>
+<!--form-->
+
+
 
   
 

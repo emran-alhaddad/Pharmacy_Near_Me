@@ -14,7 +14,7 @@
 
     <ul class="menu-inner py-1">
     <li class="menu-item">
-    <a href="{{ route('pharmacy-messages') }}" class="menu-link">
+    <a href="{{ route('chat') }}" class="menu-link">
         <div data-i18n="Account">الرسائل</div>
     </a>
     </li>

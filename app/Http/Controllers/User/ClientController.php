@@ -29,6 +29,20 @@ class ClientController extends Controller
         return view('user.chat', ['user' => $client]);
     }
 
+    
+
+    public function settings()
+    {
+        $client = User::with('client')->where('id', Auth::id())->firstOrFail();
+        return view('user.settings', ['user' => $client]);
+    }
+
+    public function problems()
+    {
+        $client = User::with('client')->where('id', Auth::id())->firstOrFail();
+        return view('user.problems', ['user' => $client]);
+    }
+
 
     // Show Edit Client Profile page
     public function edit()
