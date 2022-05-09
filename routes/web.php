@@ -1,24 +1,15 @@
 <?php
 
-use App\Http\Controllers\Auth\ForgetPasswordController;
-use App\Http\Controllers\Auth\Register\RegisterController;
-use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\Auth\login\LoginController;
-use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\Auth\Social\FacebookController;
-use App\Http\Controllers\Auth\Social\GoogleController;
-use App\Http\Controllers\Auth\VerifyEmailController;
-use App\Http\Controllers\Auth\ResendEmailController;
-
-use App\Http\Controllers\Pharmacy;
-use App\Http\Controllers\Front;
 use App\Http\Controllers\User;
 use App\Http\Controllers\Admin;
+use App\Http\Controllers\Pharmacy;
+use App\Http\Controllers\Front;
+use App\Http\Controllers\Auth\Login;
+use App\Http\Controllers\Auth\Register;
+use App\Http\Controllers\Auth\Social;
+use App\Http\Controllers\Auth as CustomAuth;
 use App\Utils\SystemUtils;
 use Illuminate\Support\Facades\Route;
-
-
-use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,38 +48,38 @@ Route::get('/order', [PharmacyController::class, 'order'])->name('order');
 
 
 // Register
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
-Route::post('/register', [RegisterController::class, 'create']);
+Route::get('/register', [Register\RegisterController::class, 'index'])->name('register');
+Route::post('/register', [Register\RegisterController::class, 'create']);
 
 // Login
-Route::get('/login', [LoginController::class, 'login'])->name('login');
-Route::post('/login', [LoginController::class, 'doLogin']);
+Route::get('/login', [Login\LoginController::class, 'login'])->name('login');
+Route::post('/login', [Login\LoginController::class, 'doLogin']);
 
 // Forget Password
-Route::get('/forgot-password', [ForgetPasswordController::class, 'index'])->middleware('guest')->name('forget-password');
-Route::post('/forgot-password', [ForgetPasswordController::class, 'create'])->middleware('guest')->name('forget-password');
+Route::get('/forgot-password', [CustomAuth\ForgetPasswordController::class, 'index'])->middleware('guest')->name('forget-password');
+Route::post('/forgot-password', [CustomAuth\ForgetPasswordController::class, 'create'])->middleware('guest')->name('forget-password');
 
 // Reset Password
-Route::get('/reset-password/{token}', [ResetPasswordController::class, 'show'])->middleware('guest')->name('reset-password');
-Route::post('/reset-password', [ResetPasswordController::class, 'store'])->middleware('guest')->name('reset-password');
+Route::get('/reset-password/{token}', [CustomAuth\ResetPasswordController::class, 'show'])->middleware('guest')->name('reset-password');
+Route::post('/reset-password', [CustomAuth\ResetPasswordController::class, 'store'])->middleware('guest')->name('reset-password');
 
 // Resend Email Activation
-Route::get('/resend-email-activation', [ResendEmailController::class, 'index'])->middleware('guest')->name('resend-email-activation');
-Route::post('/resend-email-activation', [ResendEmailController::class, 'send'])->middleware('guest')->name('resend-email-activation');
+Route::get('/resend-email-activation', [CustomAuth\ResendEmailController::class, 'index'])->middleware('guest')->name('resend-email-activation');
+Route::post('/resend-email-activation', [CustomAuth\ResendEmailController::class, 'send'])->middleware('guest')->name('resend-email-activation');
 
 
 // Facebook Auth
-Route::get('auth/facebook', [FacebookController::class, 'redirect'])->name('facebook-client');
-Route::get('auth/facebook/pharmacy', [FacebookController::class, 'redirectPharmacy'])->name('facebook-pharmacy');
-Route::get('auth/facebook/callback', [FacebookController::class, 'callback']);
+Route::get('auth/facebook', [Social\FacebookController::class, 'redirect'])->name('facebook-client');
+Route::get('auth/facebook/pharmacy', [Social\FacebookController::class, 'redirectPharmacy'])->name('facebook-pharmacy');
+Route::get('auth/facebook/callback', [Social\FacebookController::class, 'callback']);
 
 // Google Auth
-Route::get('auth/google', [GoogleController::class, 'redirect'])->name('google-client');
-Route::get('auth/google/pharmacy', [GoogleController::class, 'redirectPharmacy'])->name('google-pharmacy');
-Route::get('auth/google/callback', [GoogleController::class, 'callback']);
+Route::get('auth/google', [Social\GoogleController::class, 'redirect'])->name('google-client');
+Route::get('auth/google/pharmacy', [Social\GoogleController::class, 'redirectPharmacy'])->name('google-pharmacy');
+Route::get('auth/google/callback', [Social\GoogleController::class, 'callback']);
 
 // Email Verification
-Route::get('auth/verify_email/{token}', [VerifyEmailController::class, 'verify']);
+Route::get('auth/verify_email/{token}', [CustomAuth\VerifyEmailController::class, 'verify']);
 
 
 // Routes That Needs Authentication
@@ -127,23 +118,6 @@ Route::group(['middleware' => 'auth'], function () {
         // Pharmacy Chat
         Route::get('/_pharmacy/chat', [Pharmacy\ChatController::class, 'index'])->name('pharmacy-chat');
 
-         // Pharmacy Notifications
-         Route::get('/_pharmacy/notifications', [Pharmacy\NotificationController::class, 'index'])->name('pharmacy-notifications');
-
-         // Pharmacy Compliants
-         Route::get('/_pharmacy/compliants', [Pharmacy\CompliantController::class, 'index'])->name('pharmacy-compliants');
-         
-         // Pharmacy Messages
-         Route::get('/_pharmacy/messages', [Pharmacy\MessageController::class, 'index'])->name('pharmacy-messages');
-         
-         // Pharmacy Orders
-         Route::get('/_pharmacy/orders', [Pharmacy\OrderController::class, 'index'])->name('pharmacy-orders');
-         
-         // Pharmacy Settings
-         Route::get('/_pharmacy/settings', [Pharmacy\SettingsController::class, 'index'])->name('pharmacy-settings');
-         
-
-
         // Pharmacy Requests
         Route::get('/_pharmacy/requests', [Pharmacy\ReplyController::class, 'index'])->name('pharmacy-requests');
         Route::get('/_pharmacy/request/{id}', [Pharmacy\ReplyController::class, 'showRequest']);
@@ -159,6 +133,9 @@ Route::group(['middleware' => 'auth'], function () {
 
         // Admin Dashboard
         Route::get('/_admin/', [Admin\AdminController::class,'index'])->name('admin-dashboard');
+
+        Route::get('/_admin/', [Admin\AdminController::class,'index'])->name('admin-dashboard');
+
 
         Route::get('/_admin/profile', [Admin\AdminController::class, 'showProfile'])->name('admin-profile');
         Route::get('/_admin/edit_profile', [Admin\AdminController::class, 'editProfile'])->name('admin-edit_profile');
@@ -223,5 +200,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     // Logout
-    Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
+    Route::get('/logout', [CustomAuth\LogoutController::class, 'logout'])->name('logout');
+
+
 });

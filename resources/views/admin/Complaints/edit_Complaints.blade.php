@@ -12,26 +12,36 @@
             </div>
             <div class="card-content">
     <form>
-                <div class="mb-3">
-                <label for="exampleInputName" class="form-label">مقدم الشكوى</label>
-                <input type="text" class="form-control" id="exampleInputName">
-                </div>
-            <div class="mb-3">
-                <label for="exampleInputLink" class="form-label">على من الشكوى</label>
-                <input type="text" class="form-control" id="exampleInputName">
+                <div class="row g-3">
+
+            <div class="mb-3 col-6">
+                    <label for="exampleInputName" class="form-label">مقدم الشكوى</label>
+                    <input type="text" class="form-control" id="exampleInputName">
             </div>
-            <div class="mb-3">
-                <label for="exampleInputDate" class="form-label">تاريخ تقديم الشكوى</label>
-                <input type="date" class="form-control" id="exampleInputName">
+            <div class="mb-3 col-6">
+                    <label for="exampleInputLink" class="form-label">على من الشكوى</label>
+                    <input type="text" class="form-control" id="exampleInputName">
             </div>
-            <div class="mb-3">
-                <label for="exampleInputLink" class="form-label">محتوى الشكوى</label>
-                <input type="text" class="form-control" id="exampleInputName">
+
             </div>
 
 
-            <button  id="edit_button"  type="submit" class="btn btn-primary">Submit</button>
+            <div class="row g-3">
+            <div class="mb-3 col-8">
+                    <label for="exampleInputLink" class="form-label">محتوى الشكوى</label>
+                    <textarea type="text" name = "desc" class = "form-control"></textarea>
+            </div>
+            <div class="mb-3 col-4">
+                    <label for="exampleInputDate" class="form-label">تاريخ تقديم الشكوى</label>
+                    <input type="date" class="form-control" id="exampleInputName">
+            </div>
+            </div>
+
+
+            <button  id="edit_button"  type="submit" class="btn btn-primary">تعديل</button>
     </form>
+
+
 
             </div>
         </div>
