@@ -42,7 +42,6 @@
                             </td>
 
 
-
                             <td>  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
                                     class="rounded-circle img-fluid" style="width: 50px;">
                             </td>
