@@ -20,21 +20,17 @@
     </li>
     <li class="menu-item">
     <a href="{{ route('pharmacy-orders') }}" class="menu-link">
-        <div data-i18n="Account">ادارة الطلبات</div>
+        <div data-i18n="Account"> طلبياتي</div>
     </a>
     </li>
-    <li class="menu-item">
-    <a href="{{ route('pharmacy-notifications') }}" class="menu-link">
-        <div data-i18n="Account">الاشعارات</div>
-    </a>
-    </li>
+
     <li class="menu-item">
     <a href="{{ route('pharmacy-compliants') }}" class="menu-link">
         <div data-i18n="Account">الشكاوي</div>
     </a>
     </li>
     <li class="menu-item">
-    <a href="{{ route('pharmacy-dashboard') }}" class="menu-link">
+    <a href="{{ route('client') }}" class="menu-link">
         <div data-i18n="Account">البروفايل</div>
     </a>
     </li>

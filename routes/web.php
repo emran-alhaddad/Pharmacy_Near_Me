@@ -87,7 +87,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Client Routes
     Route::group(['middleware' => ['role:client']], function () {
-        Route::get('/client/',[User\ClientController::class,'index'])->name('client-dashboard');
+        Route::get('/client/',[User\ClientController::class,'index'])->name('client');
         Route::get('/chat/',[User\ClientController::class,'chat'])->name('chat');
         Route::get('/problems/',[User\ClientController::class,'problems'])->name('problems');
         Route::get('/settings/',[User\ClientController::class,'settings'])->name('settings');

@@ -60,6 +60,7 @@
          <h6 class="">اختر صورة </h6>
 
     </div>
+    
     <div class="form-group" style="direction:rtl;">
   <label for="usr">او اضف اسم العلاج</label>
   <input type="text" class="form-control" id="usr">
@@ -87,6 +88,8 @@
 
     <!-- info Section -->
     <div class="row justify-content-center">
+
+    
     <section class="col-lg-8 col-md-8 col-12">
                         <div class="card shadow p-3">
      
