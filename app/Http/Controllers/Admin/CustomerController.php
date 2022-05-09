@@ -70,7 +70,12 @@ class CustomerController extends Controller
             
          ]);
 
+
+
+
+
         if($request->has('gender'))
+        
         {   
             Client::where('user_id', '=', $id)->update(array('gender' => $request->gender));
         }
