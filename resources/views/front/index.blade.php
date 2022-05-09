@@ -58,7 +58,7 @@
                                         </li>
                                     </ul>
                                     <div class="pharmacy-bottom">
-                                        <a href="{{ route('add_order') }}" class="main-btn col-12"><i
+                                        <a href="{{ route('add-order',$pharmacy->id) }}" class="main-btn col-12"><i
                                                 class="lni lni-checkmark-circle"></i> تقديم طلب</a>
                                     </div>
                                 </div>

@@ -55,18 +55,19 @@
 <div>
     <div class="card" style="width: 55rem; max-width: 100%;">
         <div class="banner-area rounded-3 ">
-            <img src="{{ asset('Front/assets/images/pharmacy/pharma.jpg') }}" class="card-img-top" alt="">
+            <img src="{{ asset('uploads/avaters/pharmacy/'.$pharmacy->avater)}}" class="card-img-top" alt="">
         </div>
     <div class="card-body">
-        <h5 class="card-title">صيدلية الحياة </h5>
-        <p class="card-text"> أهلا بك في صيدلية الحياة, نوفر جميع مستلزماتك الطبية والحياتية</p>
+        <h5 class="card-title">{{ $pharmacy->name }}</h5>
+        <p class="card-text"> أهلا بك في {{ $pharmacy->name }}, نوفر جميع مستلزماتك الطبية والحياتية</p>
         <ul class="social text-center d-flex align-content-center justify-content-center align-self-center col-12">
                     <li><a href="javascript:void(0)"><i class="lni lni-facebook-filled pr-3"></i></a></li>
                     <li><a href="javascript:void(0)"><i class="lni lni-twitter-filled pr-3"></i></a></li>
                     <li><a href="javascript:void(0)"><i class="lni lni-instagram-filled pr-3"></i></a></li>
                     <li><a href="javascript:void(0)"><i class="lni lni-linkedin-original pr-3"></i></a></li>
                 </ul>
-        <a href="#" class="btn">تقديم طلب</a>
+        <a href="{{ route('add-order',$pharmacy->id) }}" class="btn">تقديم طلب</a>
+        
     </div>
     </div>
 </div>

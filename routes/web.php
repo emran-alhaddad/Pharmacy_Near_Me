@@ -34,7 +34,7 @@ Route::get('/404', [Front\interfacesController::class, 'notFound'])->name('404')
 Route::get('/pharmacy/{id}', [Front\interfacesController::class, 'detailes'])->name('detailes');
 // Search For Pharmacy
 Route::post('/pharmacies/search', [Front\interfacesController::class, 'searchPharmacies'])->name('search-pharmacies');
-Route::get('/add_order', [Front\interfacesController::class, 'add_order'])->name('add_order');
+Route::get('/pharmacy/{id}/add-order', [Front\interfacesController::class, 'add_order'])->name('add-order');
 
 
 // PHARMACY TEST ROUTES
