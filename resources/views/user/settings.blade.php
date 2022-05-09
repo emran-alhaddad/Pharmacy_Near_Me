@@ -10,7 +10,7 @@
     <div class="col-md-12">
         <ul class="nav nav-pills flex-column flex-md-row mb-3">
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('pharmacy-dashboard') }}"><i class="bx bx-user me-1"></i> البروفايل</a>
+            <a class="nav-link" href="{{ route('client') }}"><i class="bx bx-user me-1"></i> البروفايل</a>
         </li>
         <li class="nav-item">
             <a class="nav-link active" href="{{ route('pharmacy-settings') }}"

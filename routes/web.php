@@ -88,6 +88,8 @@ Route::group(['middleware' => 'auth'], function () {
     // Client Routes
     Route::group(['middleware' => ['role:client']], function () {
         Route::get('/client/',[User\ClientController::class,'index'])->name('client');
+        Route::get('/edit_profile/',[User\ClientController::class,'edit_profile'])->name('edit_profile');
+
         Route::get('/chat/',[User\ClientController::class,'chat'])->name('chat');
         Route::get('/problems/',[User\ClientController::class,'problems'])->name('problems');
         Route::get('/myorder/',[User\ClientController::class,'myorder'])->name('myorder');

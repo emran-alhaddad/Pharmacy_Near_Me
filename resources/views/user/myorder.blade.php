@@ -5,6 +5,9 @@
 
 
 <div class="layout-wrapper layout-content-navbar">
+
+
+
       <div class="layout-container">
         <!-- Menu -->
 
@@ -12,11 +15,7 @@
 
         <!-- Layout container -->
         <div class="layout-page">
-          <!-- Navbar -->
-
-      
-
-          <!-- / Navbar -->
+    
 
           <!-- Content wrapper -->
           <div class="content-wrapper">
