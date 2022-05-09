@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Client;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Register\RegisterController;
 use Illuminate\Support\Facades\Validator;
 class CustomerController extends Controller
@@ -62,7 +64,7 @@ class CustomerController extends Controller
     }
     public function doUpdate(Request $request,$id)
     {   
-          return $request->getContent();
+          //return $request;
       $request->validate(['name' => 'required|min:3'],[
     
             'name.required'=>'يجب ادخال اسم الصيدلية ',
@@ -70,7 +72,7 @@ class CustomerController extends Controller
             
          ]);
 
-
+         User::where('id', '=', $id)->update(array('name' => $request->name));
 
 
 
@@ -171,18 +173,20 @@ public function doUpdataImage(Request $request)
     User::where('id', '=', 1)->update(['avater' => $userAvater]);
    
 }
-public function updatePassword(Resquest $requset,$id)
+public function updatePassword(Request $requset,$id)
 {   
     $requset->validate(['new-password' => 'required|min:9'],[
         'new-password.required'=>'يجب ادخال  كلمة السر  ',
         'new-password.min'=>'يجب ادخال كلمة السر طولها   '
      ]); 
+    // return $requset;
+     //Auth::user()->password
 
-    if(Hash::check($requset['password'],Auth::user()->password))
+    if(Hash::check($requset['password'],'$2y$10$ZLx3i0MhudO9aPHLV1lgg.fDhgHsWgmpyuahcqTuwIIykoOE94Qzy'))
     {
    
    $userDate = DB::table('users') 
-   ->where('id',1)
+   ->where('id',$id)
    ->update(['password' =>Hash::make($requset['new-password'])]);
    return (Hash::make($requset['new-password']));
   
@@ -215,7 +219,7 @@ public function checkPhone($request,$id)
         'phone.min'=>'يجب ان يكون رقم الهاتف 9',
         'phone.numeric'=>'يجب ان يكون رقم الهاتف  ارقام'
      ]);
-Client::where('user_id', '=', $id)->update(array('phone' => $request->phone));
+User::where('id', '=', $id)->update(array('phone' => $request->phone));
 } 
 
 

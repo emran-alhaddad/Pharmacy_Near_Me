@@ -38,6 +38,7 @@ use App\Http\Controllers\Admin\WebSiteSettingController;
         Route::post('/_admin/create-zone/', [AdvertiseController::class,'create'])->name('create-zone'); 
         Route::post('/_admin/updatePassword/{id}', [CustomerController::class,'updatePassword'])->name('_admin-updatePassword'); 
         Route::post('/_admin/updateEmail', [CustomerController::class,'updateEmail'])->name('_admin-updateEmail'); 
+        Route::post('/_admin/create-customer', [CustomerController::class,'create'])->name('_admin-create-customer'); 
     // Route::group(['middleware' => ['role:admin']], function () {
 
         // Admin Dashboard

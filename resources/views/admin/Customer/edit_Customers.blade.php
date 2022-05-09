@@ -21,12 +21,12 @@
     <div class="row g-3">
         <div class="mb-3 col-6">
                     <label for="exampleInputName" class="form-label">اسم العميل</label>
-                    <input type="text" class="form-control" value= {{$customer->name}} id="exampleInputName">
+                    <input type="text" name='name' class="form-control" value= {{$customer->name}} id="exampleInputName">
                 </div>
 
             <div class="mb-3 col-6">
                 <label for="exampleInputLink" class="form-label">تتاريخ الميلاد</label>
-                <input type="date" class="form-control" value={{$customer->dob}} id="exampleInputName">
+                <input type="date" name='dob' class="form-control" value={{$customer->dob}} id="exampleInputName">
             </div>
 
     </div>
@@ -35,16 +35,16 @@
 
             <div class="mb-3 col-6">
                 <label for="exampleFormControlInput1" class="form-label">رقم الهاتف</label>
-                <input type="text" class="form-control" value={{$customer->phone}} id="exampleFormControlInput1">
+                <input type="text" name='phone' class="form-control" value={{$customer->phone}} id="exampleFormControlInput1">
             </div>
 
             <div class="mb-3 col-4">
                 <label for="exampleInputLink" class="form-label"> الجنس</label>
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" name='gender' aria-label="Default select example">
                         @if ($customer->gender=='ذكر')
-                        <option selected> ذكر </option>
+                        <option selected value="ذكر"> ذكر </option>
                         @else
-                        <option selected value="1">انثى</option>
+                        <option selected value="انثى">انثى</option>
                         @endif
                        
                         
@@ -116,7 +116,8 @@
 
 
                                 <form action={{route('_admin-updatePassword',['id'=>$customer->id])}}  method="POST" class="modal"  id="addpassword"  tabindex="-1">
-                                        <div class="modal-dialog">
+                                    @csrf   
+                                    <div class="modal-dialog">
                                             <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title">تعديل كلمة المرور   </h5>
