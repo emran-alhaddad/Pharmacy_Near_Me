@@ -10,8 +10,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('profile') }}"><i class="bx bx-user me-1"></i> البروفايل</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('editProfile') }}"><i class="bx bx-cog me-1"></i> الاعدادات</a>
+                <li class="nav-item btn-submit">
+                    <a class="nav-link text-white"href="{{ route('editProfile') }}"><i class="bx bx-cog me-1"></i> الاعدادات</a>
                 </li>
             </ul>
             <!-- email -->
@@ -41,7 +41,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary input-group">حفظ التعيرات</button>
+                    <button type="submit" class="btn input-group btn-submit">حفظ التعيرات</button>
                 </form>
             </div>
             </div>
@@ -95,7 +95,7 @@
                         </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary input-group">حفظ التعيرات</button>
+                    <button type="submit" class="btn btn-submit input-group">حفظ التعيرات</button>
                     </form>
                 </div>
             </div>
@@ -119,6 +119,7 @@
                             type="checkbox"
                             name="accountActivation"
                             id="accountActivation"
+                            style="font-size: 2px;"
                             />
 
                         </div>

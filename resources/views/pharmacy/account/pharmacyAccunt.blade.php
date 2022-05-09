@@ -7,8 +7,8 @@
     <div class="row">
     <div class="col-md-12 ">
         <ul class="nav nav-pills flex-column flex-md-row mb-3">
-        <li class="nav-item">
-            <a class="nav-link active" href="{{ route('profile') }}"><i class="bx bx-user me-1"></i> البروفايل</a>
+        <li class="nav-item btn-submit ">
+            <a class="nav-link text-white" href="{{ route('profile') }}"><i class="bx bx-user me-1"></i> البروفايل</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('editProfile') }}"
@@ -30,7 +30,7 @@
                 id="uploadedAvatar"
             />
             <div class="button-wrapper">
-                <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+                <label for="upload" class="btn-submit p-2 me-2 mb-4" tabindex="0">
                 <span class="d-none d-sm-block">تغيير صورة البروفايل </span>
                 <i class="bx bx-upload d-block d-sm-none"></i>
                 <input
@@ -119,7 +119,7 @@
 
             </div>
             <div class="mt-2">
-                <button type="submit" class="btn btn-primary me-2">حفظ التغيرات</button>
+                <button type="submit" class="btn btn-submit me-2">حفظ التغيرات</button>
                 <button type="reset" class="btn btn-outline-secondary">الغاء</button>
             </div>
             </form>

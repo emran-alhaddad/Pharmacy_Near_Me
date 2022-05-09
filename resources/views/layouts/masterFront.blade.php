@@ -54,7 +54,7 @@
 
         .heading {
             text-align: center;
-            padding-bottom: 2rem;
+            padding-bottom: 1.5rem;
             color: var(--black);
             font-size: 3.5rem;
             /* letter-spacing: .4rem; */
@@ -87,7 +87,7 @@
     <!--====== HEADER PART ENDS ======-->
 
 
-    
+
     @yield('content')
 
 

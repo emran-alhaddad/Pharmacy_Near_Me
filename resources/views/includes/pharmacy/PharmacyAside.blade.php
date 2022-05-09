@@ -15,32 +15,32 @@
 
     <ul class="menu-inner py-1">
     <li class="menu-item">
-    <a href="#" class="menu-link">
+    <a href="#" class="menu-link"><i class="bx bx-message-alt me-1"></i>
         <div data-i18n="Account">الرسائل</div>
     </a>
     </li>
     <li class="menu-item">
-    <a href="{{ route('order') }}" class="menu-link">
+    <a href="{{ route('order') }}" class="menu-link"><i class="bx bx-shopping-bag me-1"></i>
         <div data-i18n="Account">ادارة الطلبات</div>
     </a>
     </li>
     <li class="menu-item">
-    <a href="{{ route('order') }}" class="menu-link">
+    <a href="{{ route('order') }}" class="menu-link"><i class="bx bx-notification  me-1"></i>
         <div data-i18n="Account">الاشعارات</div>
     </a>
     </li>
     <li class="menu-item">
-    <a href="#" class="menu-link">
+    <a href="#" class="menu-link"><i class="bx bx-chat me-1"></i>
         <div data-i18n="Account">الشكاوي</div>
     </a>
     </li>
     <li class="menu-item">
-    <a href="{{ route('profile') }}" class="menu-link">
+    <a href="{{ route('profile') }}" class="menu-link"><i class="bx bx-user me-1"></i>
         <div data-i18n="Account">البروفايل</div>
     </a>
     </li>
     <li class="menu-item">
-    <a href="pharmacy-accunt.html" class="menu-link">
+    <a href="{{ route('logout') }}" class="menu-link"><i class="bx bx-power-off me-1"></i>
         <div data-i18n="Account">تسجيل خروج</div>
     </a>
     </li>

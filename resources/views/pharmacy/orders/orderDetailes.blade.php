@@ -20,8 +20,7 @@
                                 data-bs-placement="top"
                                 class="avatar pull-up"
                                 title="بروفايل العميل"
-                                style="list-style-type: none;"
-                                >
+                                style="list-style-type: none;">
                                 <img src="{{ asset('Front/assets/images/pharmacy/pharma.jpg') }}" alt="Avatar" class="rounded-circle" />
                             </li>
 
@@ -281,7 +280,7 @@
                                     <td colspan="7">
                                     <div class="d-flex justify-content-center">
 
-                                    <button class="btn btn-primary  col-3" type="button">ارسال الردود</button>
+                                    <button class="btn btn-submit col-3" type="button">ارسال الردود</button>
                                     </div>
 
                                     </td>
