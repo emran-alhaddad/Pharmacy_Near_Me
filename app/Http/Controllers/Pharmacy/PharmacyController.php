@@ -24,7 +24,7 @@ class PharmacyController extends Controller
     {
         return view('pharmacy.account.pharmacySettings');
     }
-    public function order()
+    public function orders()
     {
         return view('pharmacy.orders.manageOrders');
     }

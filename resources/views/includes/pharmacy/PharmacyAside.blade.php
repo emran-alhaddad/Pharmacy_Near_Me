@@ -12,8 +12,8 @@
     </div>
 
     <div class="card-body text-center mt-2">
-        <a href="/_admin/edit_profile">
-            <img src="{{ asset('Front/assets/images/pharmacy/pharma.jpg')}}" alt="avatar"
+        <a href="{{ route('pharmacy-account') }}">
+            <img src="{{ asset('uploads/avaters/pharmacy/'.Auth::user()->avater)}}" alt="avatar"
                 class="rounded-circle img-fluid" style="width: 150px;">
                 <span style="margin-top: -50px;">
                     <div class="d-flex justify-content-center mb-2">
@@ -21,7 +21,7 @@
                     </div>
                 </span>
             </a>
-        <h5 class="my-3">صيدلية الخير </h5>
+        <h5 class="my-3">{{ Auth::user()->name }}</h5>
     </div>
 
     <div class="menu-inner-shadow"></div>
@@ -32,12 +32,12 @@
         </a>
         </li>
         <li class="menu-item">
-        <a href="{{ route('order') }}" class="menu-link"><i class="bx bx-shopping-bag me-1"></i>
+        <a href="{{ route('pharmacy-orders') }}" class="menu-link"><i class="bx bx-shopping-bag me-1"></i>
             <div data-i18n="Account">ادارة الطلبات</div>
         </a>
         </li>
         <li class="menu-item">
-        <a href="{{ route('order') }}" class="menu-link"><i class="bx bx-notification  me-1"></i>
+        <a href="#" class="menu-link"><i class="bx bx-notification  me-1"></i>
             <div data-i18n="Account">الاشعارات</div>
         </a>
         </li>
@@ -47,7 +47,7 @@
         </a>
         </li>
         <li class="menu-item">
-        <a href="{{ route('profile') }}" class="menu-link"><i class="bx bx-user me-1"></i>
+        <a href="{{ route('pharmacy-account') }}" class="menu-link"><i class="bx bx-user me-1"></i>
             <div data-i18n="Account">البروفايل</div>
         </a>
         </li>

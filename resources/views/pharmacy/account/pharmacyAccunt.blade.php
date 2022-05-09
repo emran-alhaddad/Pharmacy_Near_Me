@@ -8,10 +8,10 @@
     <div class="col-md-12 ">
         <ul class="nav nav-pills flex-column flex-md-row mb-3">
         <li class="nav-item btn-submit ">
-            <a class="nav-link text-white" href="{{ route('profile') }}"><i class="bx bx-user me-1"></i> البروفايل</a>
+            <a class="nav-link text-white" href="{{ route('pharmacy-account') }}"><i class="bx bx-user me-1"></i> البروفايل</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('editProfile') }}"
+            <a class="nav-link" href="{{ route('pharmacy-settings') }}"
             ><i class="bx bx-cog me-1"></i> الاعدادات</a
             >
         </li>
@@ -22,7 +22,7 @@
         <div class="card-body p-4">
             <div class="d-flex align-items-start align-items-sm-center gap-4">
             <img
-                src="{{ asset('Front/assets/images/pharmacy/pharma.jpg') }}"
+                src="{{ asset('uploads/avaters/pharmacy/'.Auth::user()->avater) }}"
                 alt="user-avatar"
                 class="d-block rounded"
                 height="100"

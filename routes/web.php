@@ -116,16 +116,27 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/_pharmacy/', [Pharmacy\PharmacyController::class, 'index'])->name('pharmacy-dashboard');
 
         // Pharmacy Chat
-        Route::get('/_pharmacy/chat', [Pharmacy\ChatController::class, 'index'])->name('pharmacy-chat');
+        Route::get('/_pharmacy/account', [Pharmacy\PharmacyController::class, 'account'])->name('pharmacy-account');
 
-        // Pharmacy Requests
-        Route::get('/_pharmacy/requests', [Pharmacy\ReplyController::class, 'index'])->name('pharmacy-requests');
-        Route::get('/_pharmacy/request/{id}', [Pharmacy\ReplyController::class, 'showRequest']);
-        Route::post('/_pharmacy/request/{id}', [Pharmacy\ReplyController::class, 'acceptRequest']);
+         // Pharmacy Orders
+         Route::get('/_pharmacy/orders', [Pharmacy\PharmacyController::class, 'orders'])->name('pharmacy-orders');
+         
+         // Pharmacy Order Details
+         Route::get('/_pharmacy/order/{id}', [Pharmacy\PharmacyController::class, 'detailes'])->name('pharmacy-order-details');
+         
+         // Pharmacy Settings
+         Route::get('/_pharmacy/settings', [Pharmacy\PharmacyController::class, 'settings'])->name('pharmacy-settings');
+         
 
-        // Pharmacy Replies
-        Route::get('/_pharmacy/replies/{id}', [Pharmacy\ReplyController::class, 'showReplies'])->name('pharmacy-replies');
-        Route::post('/_pharmacy/reply', [Pharmacy\ReplyController::class, 'create'])->name('pharmacy-reply');
+
+        // // Pharmacy Requests
+        // Route::get('/_pharmacy/requests', [Pharmacy\ReplyController::class, 'index'])->name('pharmacy-requests');
+        // Route::get('/_pharmacy/request/{id}', [Pharmacy\ReplyController::class, 'showRequest']);
+        // Route::post('/_pharmacy/request/{id}', [Pharmacy\ReplyController::class, 'acceptRequest']);
+
+        // // Pharmacy Replies
+        // Route::get('/_pharmacy/replies/{id}', [Pharmacy\ReplyController::class, 'showReplies'])->name('pharmacy-replies');
+        // Route::post('/_pharmacy/reply', [Pharmacy\ReplyController::class, 'create'])->name('pharmacy-reply');
     });
 
     // Admin Routes

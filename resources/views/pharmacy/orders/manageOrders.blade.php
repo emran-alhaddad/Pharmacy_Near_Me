@@ -97,7 +97,7 @@
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>2022-5-3</strong></td>
                                     <td><span class="badge bg-label-secondary me-1">في انتظار القبول</span></td>
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>100</strong></td>
-                                    <td> <a  class="demo-inline-spacing" href="{{ route('orderData') }}"
+                                    <td> <a  class="demo-inline-spacing" href="{{ route('pharmacy-order-details',1) }}"
 
                                     role="button"> تفاصيل الطلبية</a></td>
                                     <td>
@@ -110,7 +110,7 @@
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>2022-5-3</strong></td>
                                     <td><span class="badge bg-label-secondary me-1">في انتظار القبول</span></td>
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>100</strong></td>
-                                    <td> <a  class="demo-inline-spacing" href="{{ route('orderData') }}"
+                                    <td> <a  class="demo-inline-spacing" href="{{ route('pharmacy-order-details',3) }}"
                                     data-bs-toggle="collapse"
                                     role="button"
                                     aria-expanded="false"
@@ -147,7 +147,7 @@
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>2022-5-3</strong></td>
                                     <td><span class="badge bg-label-warning me-1">في انتظار الدفع</span></td>
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>100</strong></td>
-                                    <td> <a  class="demo-inline-spacing" href="{{ route('orderData') }}"
+                                    <td> <a  class="demo-inline-spacing" href="{{ route('pharmacy-order-details',4) }}"
                                     data-bs-toggle="collapse"
                                     role="button"
                                     aria-expanded="false"
@@ -162,7 +162,7 @@
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>2022-5-3</strong></td>
                                     <td><span class="badge bg-label-warning me-1">في انتظار الدفع</span></td>
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>100</strong></td>
-                                    <td> <a  class="demo-inline-spacing" href="{{ route('orderData') }}"
+                                    <td> <a  class="demo-inline-spacing" href="{{ route('pharmacy-order-details',5) }}"
                                     data-bs-toggle="collapse"
                                     role="button"
                                     aria-expanded="false"
@@ -197,7 +197,7 @@
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>2022-5-3</strong></td>
                                     <td><span class="badge bg-label-info me-1">في انتظار التوصيل</span></td>
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>100</strong></td>
-                                    <td> <a  class="demo-inline-spacing" href="{{ route('orderData') }}"
+                                    <td> <a  class="demo-inline-spacing" href="{{ route('pharmacy-order-details',6) }}"
                                     data-bs-toggle="collapse"
                                     role="button"
                                     aria-expanded="false"
@@ -212,7 +212,7 @@
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>2022-5-3</strong></td>
                                     <td><span class="badge bg-label-info me-1">في انتظار التوصيل</span></td>
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>100</strong></td>
-                                    <td> <a  class="demo-inline-spacing" href="{{ route('orderData') }}"
+                                    <td> <a  class="demo-inline-spacing" href="{{ route('pharmacy-order-details',3) }}"
                                     data-bs-toggle="collapse"
                                     role="button"
                                     aria-expanded="false"
@@ -249,7 +249,7 @@
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>2022-5-3</strong></td>
                                     <td><span class="badge bg-label-success me-1">مكتملة</span></td>
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>100</strong></td>
-                                    <td> <a  class="demo-inline-spacing" href="{{ route('orderData') }}"
+                                    <td> <a  class="demo-inline-spacing" href="{{ route('pharmacy-order-details',3) }}"
                                     data-bs-toggle="collapse"
                                     role="button"
                                     aria-expanded="false"
@@ -264,7 +264,7 @@
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>2022-5-3</strong></td>
                                     <td><span class="badge bg-label-success me-1">مكتملة</span></td>
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>100</strong></td>
-                                    <td> <a  class="demo-inline-spacing" href="{{ route('orderData') }}"
+                                    <td> <a  class="demo-inline-spacing" href="{{ route('pharmacy-order-details',3) }}"
                                     data-bs-toggle="collapse"
                                     role="button"
                                     aria-expanded="false"
@@ -301,7 +301,7 @@
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>2022-5-3</strong></td>
                                     <td><span class="badge bg-label-success me-1">مكتملة</span></td>
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>100</strong></td>
-                                    <td> <a  class="demo-inline-spacing" href="{{ route('orderData') }}"
+                                    <td> <a  class="demo-inline-spacing" href="{{ route('pharmacy-order-details',3) }}"
                                     data-bs-toggle="collapse"
                                     role="button"
                                     aria-expanded="false"
@@ -316,7 +316,7 @@
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>2022-5-3</strong></td>
                                     <td><span class="badge bg-label-success me-1">مكتملة</span></td>
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>100</strong></td>
-                                    <td> <a  class="demo-inline-spacing" href="{{ route('orderData') }}"
+                                    <td> <a  class="demo-inline-spacing" href="{{ route('pharmacy-order-details',3) }}"
                                     data-bs-toggle="collapse"
                                     role="button"
                                     aria-expanded="false"
@@ -352,7 +352,7 @@
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>2022-5-3</strong></td>
                                     <td><span class="badge bg-label-danger me-1">غير متوفرة</span></td>
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>100</strong></td>
-                                    <td> <a  class="demo-inline-spacing" href="{{ route('orderData') }}"
+                                    <td> <a  class="demo-inline-spacing" href="{{ route('pharmacy-order-details',3) }}"
                                     data-bs-toggle="collapse"
                                     role="button"
                                     aria-expanded="false"
@@ -367,7 +367,7 @@
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>2022-5-3</strong></td>
                                     <td><span class="badge bg-label-danger me-1">غير متوفرة</span></td>
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>100</strong></td>
-                                    <td> <a  class="demo-inline-spacing" href="{{ route('orderData') }}"
+                                    <td> <a  class="demo-inline-spacing" href="{{ route('pharmacy-order-details',3) }}"
                                     data-bs-toggle="collapse"
                                     role="button"
                                     aria-expanded="false"
