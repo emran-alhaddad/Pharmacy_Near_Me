@@ -76,6 +76,7 @@ class AdsController extends Controller
         return back()->with('status', 'لقد تم حذف الإعلان بنجاح');
     }
 
+    
     public function toggle($id, $status)
     {
         $affected = DB::table('advertisings')
