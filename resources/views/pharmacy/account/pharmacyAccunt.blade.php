@@ -8,10 +8,10 @@
     <div class="col-md-12 ">
         <ul class="nav nav-pills flex-column flex-md-row mb-3">
         <li class="nav-item">
-            <a class="nav-link active" href="javascript:void(0);"><i class="bx bx-user me-1"></i> البروفايل</a>
+            <a class="nav-link active" href="{{ route('profile') }}"><i class="bx bx-user me-1"></i> البروفايل</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="pharmacy-settings.html"
+            <a class="nav-link" href="{{ route('editProfile') }}"
             ><i class="bx bx-cog me-1"></i> الاعدادات</a
             >
         </li>
@@ -19,10 +19,10 @@
         <div class="card mb-4 shadow">
         <h5 class="card-header">تفاصيل البروفايل</h5>
         <!-- Account -->
-        <div class="card-body ">
+        <div class="card-body p-4">
             <div class="d-flex align-items-start align-items-sm-center gap-4">
             <img
-                src="../assets/img/avatars/1.png"
+                src="{{ asset('Front/assets/images/pharmacy/pharma.jpg') }}"
                 alt="user-avatar"
                 class="d-block rounded"
                 height="100"
@@ -130,7 +130,5 @@
     </div>
 </div>
 <!-- / Content -->
-
-<div class="content-backdrop fade"></div>
 
 @stop

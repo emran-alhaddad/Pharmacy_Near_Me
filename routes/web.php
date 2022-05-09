@@ -64,6 +64,16 @@ Route::get('/pharmacy/{id}', [interfacesController::class, 'detailes'])->name('d
 Route::post('/pharmacies/search', [interfacesController::class, 'searchPharmacies'])->name('search-pharmacies');
 
 
+// PHARMACY TEST ROUTES
+Route::get('/account', [PharmacyController::class, 'account'])->name('profile');
+Route::get('/settings', [PharmacyController::class, 'settings'])->name('editProfile');
+Route::get('/detail', [PharmacyController::class, 'detailes'])->name('orderData');
+Route::get('/order', [PharmacyController::class, 'order'])->name('order');
+
+
+
+
+
 
 // Register
 Route::get('/register', [RegisterController::class, 'index'])->name('register');

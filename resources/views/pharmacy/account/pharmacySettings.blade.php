@@ -8,10 +8,10 @@
         <div class="col-md-12">
             <ul class="nav nav-pills flex-column flex-md-row mb-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="pharmacy-accunt.html"><i class="bx bx-user me-1"></i> البروفايل</a>
+                    <a class="nav-link" href="{{ route('profile') }}"><i class="bx bx-user me-1"></i> البروفايل</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="pharmacy-settings.html"><i class="bx bx-cog me-1"></i> الاعدادات</a>
+                    <a class="nav-link active" href="{{ route('editProfile') }}"><i class="bx bx-cog me-1"></i> الاعدادات</a>
                 </li>
             </ul>
             <!-- email -->
