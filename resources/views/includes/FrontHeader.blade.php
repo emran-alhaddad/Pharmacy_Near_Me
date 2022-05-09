@@ -41,7 +41,7 @@
                                     @elseif (auth()->user()->hasRole('pharmacy'))
                                         <li><a href="{{ route('pharmacy-dashboard') }}">لوحة التحكم</a></li>                                        
                                     @else
-                                        <li><a href="{{ route('client-dashboard') }}">لوحة التحكم</a></li>
+                                        <li><a href="{{ route('client') }}">لوحة التحكم</a></li>
                                     @endif
 
                                         <li><a href="{{ route('logout') }}">تسجيل خروج</a></li>

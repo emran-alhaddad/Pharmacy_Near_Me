@@ -29,7 +29,11 @@ class ClientController extends Controller
         return view('user.chat', ['user' => $client]);
     }
 
-    
+    public function myorder()
+    {
+        $client = User::with('client')->where('id', Auth::id())->firstOrFail();
+        return view('user.myorder', ['user' => $client]);
+    }
 
     public function settings()
     {

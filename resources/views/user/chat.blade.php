@@ -81,7 +81,7 @@
                         <div class="flex-grow-0 py-3 px-4 border-top">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="  اكتب هنا">
-                                <button class="btn btn-primary">ارسال</button>
+                                <button type="submit" class="main-btn btn-hover">ارسال <i class="lni lni-search-alt"></i></button>
                             </div>
                         </div>
     

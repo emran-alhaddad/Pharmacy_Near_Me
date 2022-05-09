@@ -11,11 +11,11 @@
     <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/fonts/boxicons.css')}}" />
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/css/core.css')}}" class="template-customizer-core-css"/>
-    <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/css/theme-default.css')}}" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/css/theme-default.css')}}" />
     <link rel="stylesheet" href="{{ asset('pharmacy/assets/css/demo.css')}}" />
     <script src="{{ asset('pharmacy/assets/js/config.js')}}"></script>
-    lt.css')}}" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{ asset('pharmacy/assets/css/chat.css')}}" />
+    
     
 
   </head>

@@ -142,9 +142,10 @@
         </div>
     </section>
             </div>
-            <div class="p-5">
+            <div class="row justify-content-center gy-2 m-5">
 <button type="submit" class="main-btn btn-hover">  ارسال الطلبية بالكامل  </button>
 <button type="submit" class="main-btn btn-hover">اضافة المنتج الى الطلبية </button>
+            </div>
 <!--form-->
 
 

@@ -19,13 +19,13 @@
     </a>
     </li>
     <li class="menu-item">
-    <a href="{{ route('pharmacy-orders') }}" class="menu-link">
+    <a href="{{ route('myorder') }}" class="menu-link">
         <div data-i18n="Account"> طلبياتي</div>
     </a>
     </li>
 
     <li class="menu-item">
-    <a href="{{ route('pharmacy-compliants') }}" class="menu-link">
+    <a href="{{ route('problems') }}" class="menu-link">
         <div data-i18n="Account">الشكاوي</div>
     </a>
     </li>

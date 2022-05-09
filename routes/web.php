@@ -90,6 +90,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/client/',[User\ClientController::class,'index'])->name('client');
         Route::get('/chat/',[User\ClientController::class,'chat'])->name('chat');
         Route::get('/problems/',[User\ClientController::class,'problems'])->name('problems');
+        Route::get('/myorder/',[User\ClientController::class,'myorder'])->name('myorder');
         Route::get('/settings/',[User\ClientController::class,'settings'])->name('settings');
         Route::get('/client/edit',[User\ClientController::class,'edit'])->name('client-dashboard-edit');
         Route::put('/client/update',[User\ClientController::class,'update'])->name('client-dashboard-update');
