@@ -31,7 +31,7 @@
             <nav class="card px-3 py-4 mt-3 d-flex gap-3">
 
                 <!-- info -->
-                <a href="{{ route('client-dashboard') }}"
+                <a href="{{ route('client') }}"
                     class="text-secondary  d-flex align-items-center d-inline-block ms-3 border-bottom pb-2 color-user">
                     <i class="fas fa-user-circle"></i>
                     <span class="fs-6 fw-bold px-1"> البروفايل الشخصي </span>

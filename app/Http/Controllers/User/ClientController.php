@@ -21,7 +21,35 @@ class ClientController extends Controller
     public function index()
     {
         $client = User::with('client')->where('id', Auth::id())->firstOrFail();
-        return view('user.profile.index', ['user' => $client]);
+        return view('user.index', ['user' => $client]);
+    }
+    public function edit_profile()
+    {
+        $client = User::with('client')->where('id', Auth::id())->firstOrFail();
+        return view('user.edit_profile', ['user' => $client]);
+    }
+    public function chat()
+    {
+        $client = User::with('client')->where('id', Auth::id())->firstOrFail();
+        return view('user.chat', ['user' => $client]);
+    }
+
+    public function myorder()
+    {
+        $client = User::with('client')->where('id', Auth::id())->firstOrFail();
+        return view('user.myorder', ['user' => $client]);
+    }
+
+    public function settings()
+    {
+        $client = User::with('client')->where('id', Auth::id())->firstOrFail();
+        return view('user.settings', ['user' => $client]);
+    }
+
+    public function problems()
+    {
+        $client = User::with('client')->where('id', Auth::id())->firstOrFail();
+        return view('user.problems', ['user' => $client]);
     }
 
 

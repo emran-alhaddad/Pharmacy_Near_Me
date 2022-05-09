@@ -34,6 +34,7 @@ Route::get('/404', [Front\interfacesController::class, 'notFound'])->name('404')
 Route::get('/pharmacy/{id}', [Front\interfacesController::class, 'detailes'])->name('detailes');
 // Search For Pharmacy
 Route::post('/pharmacies/search', [Front\interfacesController::class, 'searchPharmacies'])->name('search-pharmacies');
+Route::get('/add_order', [Front\interfacesController::class, 'add_order'])->name('add_order');
 
 
 // PHARMACY TEST ROUTES
@@ -87,7 +88,13 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Client Routes
     Route::group(['middleware' => ['role:client']], function () {
-        Route::get('/client/',[User\ClientController::class,'index'])->name('client-dashboard');
+        Route::get('/client/',[User\ClientController::class,'index'])->name('client');
+        Route::get('/edit_profile/',[User\ClientController::class,'edit_profile'])->name('edit_profile');
+
+        Route::get('/chat/',[User\ClientController::class,'chat'])->name('chat');
+        Route::get('/problems/',[User\ClientController::class,'problems'])->name('problems');
+        Route::get('/myorder/',[User\ClientController::class,'myorder'])->name('myorder');
+        Route::get('/settings/',[User\ClientController::class,'settings'])->name('settings');
         Route::get('/client/edit',[User\ClientController::class,'edit'])->name('client-dashboard-edit');
         Route::put('/client/update',[User\ClientController::class,'update'])->name('client-dashboard-update');
         Route::put('/client/password/update',[User\ClientController::class,'updatePassword'])->name('client-password-update');
