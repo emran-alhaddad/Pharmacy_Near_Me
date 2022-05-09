@@ -200,7 +200,7 @@
 
                     <!-- model footer -->
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-primary text-light" data-bs-dismiss="modal">تـــم</button>
+                    <button type="button" class="btn btn-primary text-light" data-dismiss="modal">تـــم</button>
                     </div>
                 </div>
             </div>
