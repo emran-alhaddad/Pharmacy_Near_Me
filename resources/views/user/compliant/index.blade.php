@@ -1,4 +1,4 @@
-@extends('layouts.masterUser')
+@extends('layouts.masterUser2')
 
 @section('content')
     <style>
@@ -28,8 +28,8 @@
         }
 
     </style>
-    <section class="col-lg-9 col-md-8 col-12">
-        <div class="row mb-2 mt-2">
+    <section class="col-lg-9 col-md-8 col-12 ">
+        <div class="row mb-2 mt-2 ">
             @if (session('error'))
                 <div class="alert alert-danger" role="alert">
                     {{ session('error') }}

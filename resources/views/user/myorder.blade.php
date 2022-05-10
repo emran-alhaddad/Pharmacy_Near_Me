@@ -415,6 +415,7 @@
                           <th>صورةالدواء</th>
                           <th>الكمية</th>
                           <th>قبول البدائل</th>
+                        >
                          
                         </tr>
                       </thead>
@@ -436,6 +437,11 @@
                           </td>
                           <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>2</strong></td>
                           <td><span class="badge bg-label-danger me-1">لا</span></td>
+                          <td> <a  class="demo-inline-spacing" href="#collapseExample"
+                                            data-bs-toggle="collapse"
+                                            role="button"
+                                            aria-expanded="false"
+                                            aria-controls="collapseExample">  عرض الرد</a></td
                          
                             <!--modal  -->
                             <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
@@ -537,15 +543,23 @@
                           <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>1</strong></td>
                           <td><span class="badge bg-label-success me-1">نعم</span></td>
                           <
-                          <td>
-                        
-                          </td>
+                          <td> <a  class="demo-inline-spacing" href="#collapseExample"
+                                            data-bs-toggle="collapse"
+                                            role="button"
+                                            aria-expanded="false"
+                                            aria-controls="collapseExample">  عرض الرد</a></td>
                         </tr>
                       </tbody>
                     </table>
                   </div>
                 </div>
               </div>
+
+
+
+
+
+
               <!-- Order Details  -->
 
                     </div>

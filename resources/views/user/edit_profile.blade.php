@@ -20,7 +20,7 @@
     <div class="col-md-12">
         <ul class="nav nav-pills flex-column flex-md-row mb-3">
         <li class="nav-item">
-            <a class="nav-link active" href="{{ route('client') }}"><i class="bx bx-user me-1"></i> البروفايل</a>
+        <button type="submit" class="btn btn-submit me-2">    <a  href="{{ route('client') }}" style="color:#fff;"><i class="bx bx-user me-1"></i> البروفايل</a></button>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('settings') }}"
@@ -48,7 +48,8 @@
             />
             <div class="button-wrapper">
                 <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                <span class="d-none d-sm-block">تغيير صورة البروفايل </span>
+                <span class="d-none d-sm-block ">تغيير صورة البروفايل </span>
+       
                 <i class="bx bx-upload d-block d-sm-none"></i>
                 <input
                     type="file"
@@ -75,7 +76,7 @@
 تغيير كلمة المرور
 </button>
 
-<button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
 تغيير  البريد
 </button>
 
@@ -200,6 +201,108 @@
     </div>
   </div>
 </div>
+
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+      <h4 class="modal-title fw-bold text-center col-10" id="exampleModalLabel">
+                        تبديل البريد الالكتروني
+                    </h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    
+
+
+      <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-3">
+         
+
+                <div class="modal-body">
+                    
+                    <form id="sendEmailCode" action="{{ route('client-email-code') }}" method="POST" class="row">
+                        @csrf
+                        <div class="col">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <h6 class="mb-0">البريد الإلكتروني</h6>
+                                </div>
+                                <div class="col-sm-6 text-secondary">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text rounded"
+                                            style="background-color: var(--main-color)"><i
+                                                class="bi bi-person-plus-fill text-white"></i></span>
+                                        <input value="{{ $user->email }}" id='currentEmail' type="email"
+                                            placeholder="البريد الإلكتروني" name="email"
+                                            class="form-control rounded @error('email') border-danger @enderror">
+                                        @error('email')
+                                            <div class="invalid-feedback d-block">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <button class="btn-submit radius text-center p-2 col-12 mt-2">
+                                        ارسال رمز التحقق
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                    <hr>
+                    <form action="{{ route('client-email-update') }}" method="POST" class="g-3">
+
+                        @csrf
+                        @method('put')
+
+                        <input id="hiddenEmail" type="hidden" name="email">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">رمز التحقق</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
+                                            class="bi bi-person-plus-fill text-white"></i></span>
+                                    <input type="text" placeholder="رمز التحقق" name="code"
+                                        class="form-control rounded @error('code') border-danger @enderror">
+                                    @error('code')
+                                        <div class="invalid-feedback d-block">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+
+
+                        <div class="row">
+                            <button class="btn-submit radius text-center p-2 col-12 mt-2" type="submit">
+                                تعديل
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+   
+    </div>
+  </div>
+</div>
             @csrf
                 @method('put')
 
@@ -288,7 +391,8 @@
 
             </div>
             <div class="mt-2">
-                <button type="submit" class="btn btn-primary me-2">حفظ التغيرات</button>
+           
+                <button type="submit" class="btn btn btn-submit me-2 ">حفظ التغيرات</button>
                 <button type="reset" class="btn btn-outline-secondary">الغاء</button>
             </div>
             

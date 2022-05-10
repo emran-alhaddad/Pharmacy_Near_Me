@@ -20,7 +20,7 @@
     <div class="col-md-12">
         <ul class="nav nav-pills flex-column flex-md-row mb-3">
         <li class="nav-item">
-            <a class="nav-link active" href="{{ route('client') }}"><i class="bx bx-user me-1"></i> البروفايل</a>
+        <button type="submit" class="btn btn-submit me-2">    <a  href="{{ route('client') }}" style="color:#fff;"><i class="bx bx-user me-1"></i> البروفايل</a></button>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('settings') }}"
@@ -86,7 +86,7 @@
 
             </div>
             <div class="mt-2">
-            <a href="{{ route('edit_profile') }}"> <button type="submit" class="btn btn-primary me-2"> تعديل</button></a>
+          <button type="submit" class="btn btn-submit me-2">   <a href="{{ route('edit_profile') }}" style=color:#fff;>تعديل</a> </button>
              
             </div>
             </form>
