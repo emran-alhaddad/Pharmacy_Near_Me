@@ -17,12 +17,12 @@
 
     <form>
                 <div class="mb-3">
-                <label for="exampleInputName" class="form-label">اسم الاعلان</label>
-                <input type="text" class="form-control" id="exampleInputName">
+                <label for="exampleInputName" class="form-label">وصف الاعلان</label>
+                <input type="text" class="form-control" id="exampleInputName" name="descripe">
                 </div>
             <div class="mb-3">
                 <label for="exampleInputLink" class="form-label">رابط الموقع</label>
-                <input type="text" class="form-control" id="exampleInputName">
+                <input type="text" class="form-control" id="exampleInputName" name="url">
             </div>
 
             <div class="row g-3">
@@ -40,7 +40,7 @@
 
             <div class="mb-3 ">
                 <label for="exampleInputLink" class="form-label"> مكان الاعلان</label>
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" name="position">
                         <option selected> يسار </option>
                         <option value="1">يمين</option>
                         <option value="2">فوق</option>
@@ -57,7 +57,7 @@
 
                     <div class="mb-3">
                     <label for="formFile" class="form-label">صورة الاعلان</label>
-                    <input class="form-control" type="file" id="formFile">
+                    <input class="form-control" type="file" id="formFile" name="image">
                     </div>
 
                 </div>

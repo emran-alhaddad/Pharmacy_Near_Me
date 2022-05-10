@@ -10,6 +10,9 @@ use App\Http\Controllers\Auth\Social;
 use App\Http\Controllers\Auth as CustomAuth;
 use Illuminate\Support\Facades\Route;
 
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -101,7 +104,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/client/email/sendCode', [User\ClientController::class, 'sendEmailCode'])->name('client-email-code');
         Route::put('/client/email/update', [User\ClientController::class, 'updateEmail'])->name('client-email-update');
         Route::put('/client/avater/update', [User\ClientController::class, 'updateAvater'])->name('client-avater-update');
-        
+
         // Client Orders
         Route::get('/client/orders', [User\OrderController::class, 'index'])->name('client-orders');
         Route::get('/client/orders/create', [User\OrderController::class, 'create'])->name('client-orders-create');
@@ -160,6 +163,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/_admin/zones', [Admin\AdminController::class, 'showZones'])->name('admin-zones');
 
 
+        // Route::get('/_admin/show_ads', [Admin\AdsController::class, 'showAds'])->name('admin-show_ads');
+        // Route::get('/_admin/add_ads', [Admin\AdsController::class, 'addAds'])->name('admin-add_ads');
+        // Route::get('/_admin/edit_ads', [Admin\AdsController::class, 'editAds'])->name('admin-edit_ads');
+
+
         Route::get('/_admin/show_ads', [Admin\AdsController::class, 'showAds'])->name('admin-show_ads');
         Route::get('/_admin/add_ads', [Admin\AdsController::class, 'addAds'])->name('admin-add_ads');
         Route::get('/_admin/edit_ads', [Admin\AdsController::class, 'editAds'])->name('admin-edit_ads');
@@ -210,6 +218,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/_admin/edit_Notifications', [Admin\NotificationsController::class, 'editNotifications'])->name('admin-edit_[Notificati0ns');
 
         Route::get('/_admin/show_Permissions', [Admin\PermissionsController::class, 'showPermissions'])->name('admin-show_[Permissions');
+
+
+        Route::get('/_admin/show_WebSiteSetting', [Admin\WebSiteSettingController::class, 'showWebSiteSetting'])->name('admin-show_WebSiteSetting');
+        Route::get('/_admin/Add_Service', [Admin\WebSiteSettingController::class, 'AddService'])->name('admin-Add_Service');
+        Route::get('/_admin/edit_Service', [Admin\WebSiteSettingController::class, 'editService'])->name('admin-edit_Service');
 
         // Route::get('/_admin/adds', [AdvertiseController::class, 'index'])->name('admin-adds');
         // Route::get('/_admin/adds/add', [AdvertiseController::class, 'add'])->name('admin-adds-create');
