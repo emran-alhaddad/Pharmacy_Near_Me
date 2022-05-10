@@ -16,7 +16,7 @@
     <div class="row g-3">
         <div class="mb-3 col-4">
                 <label for="exampleInputName" class="form-label">اسم الحساب</label>
-                <input type="text" class="form-control" id="exampleInputName">
+                <input type="text" class="form-control" id="exampleInputName" name="name">
                 </div>
         <div class="mb-3 col-8">
                 <label for="exampleInputLink" class="form-label">وصف الحساب</label>

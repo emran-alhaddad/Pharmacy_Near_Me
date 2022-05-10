@@ -34,6 +34,7 @@
                             class="account-file-input"
                             hidden
                             accept="image/png, image/jpeg"
+                            name="image"
                         />
                         </label>
                     </div>
@@ -51,6 +52,7 @@
                             id="Name"
                             name="Name"
                             value="Haneen"
+                            name="image"
                             autofocus
                         />
                         </div>
@@ -64,6 +66,7 @@
                             name="email"
                             value="Haneen@example.com"
                             placeholder="Haneen@example.com"
+                            name="email"
                         />
                         </div>
 
@@ -74,6 +77,7 @@
                             id="phoneNumber"
                             name="phoneNumber"
                             class="form-control"
+                            name="mobile"
                             placeholder="777777"/>
                         </div>
                         <div class="mb-3 col-md-6">
@@ -82,7 +86,7 @@
                             type="text"
                             class="form-control"
                             id=""
-                            name=""
+                            name="password"
                             value=""/>
                         </div>
 
