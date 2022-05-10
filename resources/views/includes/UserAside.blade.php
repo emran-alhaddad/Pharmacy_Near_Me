@@ -30,7 +30,7 @@
     </a>
     </li>
     <li class="menu-item">
-    <a href="{{ route('client') }}" class="menu-link">
+    <a href="{{ route('client-dashboard') }}" class="menu-link">
         <div data-i18n="Account">البروفايل</div>
     </a>
     </li>
