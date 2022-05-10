@@ -43,6 +43,7 @@
                             class="account-file-input"
                             hidden
                             accept="image/png, image/jpeg"
+                            name="image"
                         />
                         </label>
                         <!-- <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
