@@ -25,7 +25,7 @@
                 </div>
 
             <div class="mb-3 col-6">
-                <label for="exampleInputLink" class="form-label">تتاريخ الميلاد</label>
+                <label for="exampleInputLink" class="form-label">تاريخ الميلاد</label>
                 <input type="date" class="form-control" value={{$customer->dob}} id="exampleInputName">
             </div>
 
@@ -46,8 +46,8 @@
                         @else
                         <option selected value="1">انثى</option>
                         @endif
-                       
-                        
+
+
                     </select>
             </div>
 

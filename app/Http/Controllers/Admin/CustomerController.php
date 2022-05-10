@@ -17,7 +17,7 @@ class CustomerController extends Controller
         ->join('users', 'users.id', '=', 'clients.user_id')
         ->select('users.*', 'clients.*')
         ->get();
-      
+
         return view('admin.Customer.show_Customers')->with('customers',$customers);
     }
 
@@ -37,107 +37,107 @@ class CustomerController extends Controller
             return back()->with('secuss','تم حذف المستخدم ');
         }
         return back()->with('secuss',' لم يتم حذف المستخدم ');
-        
-    
+
+
     }
 
     public function addCustomers(){
         return view('admin.Customer.add_Customers');
     }
 
-    public function editCustomers($id){
-        $customer = DB::table('clients')
-        ->join('users', 'users.id', '=', 'clients.user_id')
-        ->select('users.*', 'clients.*')
-        ->where('clients.user_id',$id)
-        ->first();
+    public function editCustomers(){
+        // $customer = DB::table('clients')
+        // ->join('users', 'users.id', '=', 'clients.user_id')
+        // ->select('users.*', 'clients.*')
+        // ->where('clients.user_id',$id)
+        // ->first();
         // return  $customer;
 
 
-        return view('admin.Customer.edit_Customers')->with('customer',$customer);
+        // return view('admin.Customer.edit_Customers')->with('customer',$customer);
         //dd($users);
 
 
         return view('admin.Customer.edit_Customers');
     }
     public function doUpdate(Request $request,$id)
-    {   
-          return $request->getContent();
-      $request->validate(['name' => 'required|min:3'],[
-    
+    {
+        return $request->getContent();
+        $request->validate(['name' => 'required|min:3'],[
+
             'name.required'=>'يجب ادخال اسم الصيدلية ',
             'name.min'=>'يجب ان يكون الاسم 3 احرف',
-            
-         ]);
+
+        ]);
 
 
 
 
 
         if($request->has('gender'))
-        
-        {   
+
+        {
             Client::where('user_id', '=', $id)->update(array('gender' => $request->gender));
         }
         if($request->filled('address'))
-        {   
+        {
             $this->checkAddress($request,$id);
         }
-        
+
         if($request->filled('dob'))
-        {   
+        {
             $this->checkDob($request,$id);
         }
-        
+
         if($request->filled('phone'))
-        {   
+        {
             $this->checkPhone($request,$id);
-        }  
-        
-        
-              
-    } 
+        }
+
+
+
+    }
 
     public function create(Request $request)
     {
         $user=new RegisterController();
         $user=$user->createUser($request->all());
         if($request->filled('address'))
-        {   
+        {
             $this->checkAddress($request,$user->id);
         }
 
         if($request->has('gender'))
-        {   
+        {
             Client::where('user_id', '=', $user->id)->update(array('gender' => $request->gender));
         }
         if($request->filled('dob'))
-        {   
+        {
             $this->checkDob($request,$user->id);
         }
-        
+
         if($request->filled('phone'))
-        {   
+        {
             $this->checkPhone($request,$user->id);
-        }  
-       
+        }
+
 
     }
 
 
     public function updateEmail(Request $request)
-{   
+{
     $request->validate(['email' => 'required|email'],[
         'email.required'=>'يجب ادخال الايميل ',
         'email.email'=>'يجب ادخال الايميل بشكل الصحيح '
-     ]);   
+     ]);
 
     if (DB::table('users')->where('email', $request->email)->exists())
     {
         return back()->with("الايميل موجود بالفعل");
     }
   $number=rand ( 10000 , 99999 );
-  
+
   $email_data = [
     'name' => Auth::user()->name,
     'activation_code' => $number
@@ -146,7 +146,7 @@ $Userid = 24;
 $affected = DB::table('users')
    ->where('id', $Userid)
    ->update([
-             'remember_token' => $number]); 
+             'remember_token' => $number]);
 Mail::to($request->email)->send(new UpdateEmail($email_data));
 }
 public function checkUpdateEmail(Request $request)
@@ -157,35 +157,35 @@ public function checkUpdateEmail(Request $request)
     $userDate = DB::table('users')
     ->where('users.id',$id)
     ->update(['email' =>$request['email']]);
-   
+
 }
 else{
   return back()->with('  رمز التحقق خطاء ');
-}    
+}
 }
 public function doUpdataImage(Request $request)
-{   
-   
+{
+
     $userAvater= SystemUtils::updateAvatar($request);
-    
+
     User::where('id', '=', 1)->update(['avater' => $userAvater]);
-   
+
 }
 public function updatePassword(Resquest $requset,$id)
-{   
+{
     $requset->validate(['new-password' => 'required|min:9'],[
         'new-password.required'=>'يجب ادخال  كلمة السر  ',
         'new-password.min'=>'يجب ادخال كلمة السر طولها   '
-     ]); 
+     ]);
 
     if(Hash::check($requset['password'],Auth::user()->password))
     {
-   
-   $userDate = DB::table('users') 
+
+   $userDate = DB::table('users')
    ->where('id',1)
    ->update(['password' =>Hash::make($requset['new-password'])]);
    return (Hash::make($requset['new-password']));
-  
+
  }
  else{
    return '  كلمة السر خطا  ';
@@ -199,7 +199,7 @@ public function checkAddress($request,$id)
    'address.min'=>'يجب ان يكون  العنوان اربع احرف او اكثر'
 ]);
 Client::where('user_id', '=', $id)->update(array('address' => $request->address));
-} 
+}
 
 public function checkDob($request,$id)
 {
@@ -207,7 +207,7 @@ public function checkDob($request,$id)
    'dob.before'=>'يجب ادخال تاريخ الصحيح'
 ]);
 Client::where('user_id', '=', $id)->update(array('dob' => $request->dob));
-} 
+}
 
 public function checkPhone($request,$id)
 {
@@ -216,7 +216,7 @@ public function checkPhone($request,$id)
         'phone.numeric'=>'يجب ان يكون رقم الهاتف  ارقام'
      ]);
 Client::where('user_id', '=', $id)->update(array('phone' => $request->phone));
-} 
+}
 
 
 }

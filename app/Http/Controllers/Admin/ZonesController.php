@@ -15,27 +15,28 @@ class ZonesController extends Controller
     $id=5;
     $user= DB::table('zones')
         ->join('cities', 'cities.id', '=', 'zones.city_id')
-       
+
         ->select('cities.name As Cname', 'zones.*')
         // ->where('id',$id)
         ->first();
-        dd($user);
-        
+        // dd($user);
+        return view('admin.Zones.show_Zones');
+
     }
 
     public function addZones(){
         return view('admin.Zones.add_Zones');
     }
 
-    public function editZones($id){
-       
-        $id=5;
-    $user= DB::table('zones')
-        ->join('cities', 'cities.id', '=', 'zones.city_id')
-       
-        ->select('cities.name As Cname', 'zones.*')
-         ->where('id',$id)
-        ->first();
+    public function editZones(){
+
+    //     $id=5;
+    // $user= DB::table('zones')
+    //     ->join('cities', 'cities.id', '=', 'zones.city_id')
+
+    //     ->select('cities.name As Cname', 'zones.*')
+    //     ->where('id',$id)
+    //     ->first();
         // dd($user);
         return view('admin.Zones.edit_Zones');
     }
@@ -46,7 +47,7 @@ class ZonesController extends Controller
         $this->checkName($request);
         $this->checkCity($request);
         $affectedRows = zone::where('id', $id)->update(['name' => $request->name,'city_id'=>$request->city_id]);
-   
+
         if($affectedRows>0)
         {
             return back()->with('secuss','تم تعديل منطقة  ');
@@ -55,7 +56,7 @@ class ZonesController extends Controller
 
     }
     public function create( Request $request)
-    {    
+    {
         $this->checkName($request);
         $this->checkCity($request);
         $id=DB::table('zones')->insertGetId([ 'name' => $request->name,'city_id'=>$request->city_id,]);
@@ -64,7 +65,7 @@ class ZonesController extends Controller
             return back()->with('secuss','تم اضافة منطقة  ');
         }
         return back()->with('secuss',' لم تم اضافة منطقة ');
-    
+
     }
     public function delete($id)
     {
@@ -75,19 +76,19 @@ class ZonesController extends Controller
         }
         return back()->with('secuss',' لم يتم حذف منطقة ');
     }
-    
+
     public function checkName(Request $request)
    {
     $request->validate(['name' => 'required|min:2'],[
-    
+
         'name.required'=>'يجب ادخال اسم المنطقة  '
      ]);
    }
 
    public function checkCity(Request $request)
-   { 
+   {
     $request->validate(['city_id' => 'required'],[
-    
+
         'city_id.required'=>'يجب ادخال المدينة التي ينتمي اليها المنطفة'
      ]);
    }

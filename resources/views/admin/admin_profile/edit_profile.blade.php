@@ -34,18 +34,13 @@
                             class="account-file-input"
                             hidden
                             accept="image/png, image/jpeg"
+                            name="image"
                         />
                         </label>
-                        <!-- <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
-                        <i class="bx bx-reset d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Reset</span>
-                        </button> -->
-
-                        <!-- <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p> -->
                     </div>
                     </div>
-                </div>
-                <hr class="my-0" />
+            </div>
+            <hr class="my-0" />
                 <div class="card-body">
                     <form id="formAccountSettings" method="POST" onsubmit="return false">
                     <div class="row">
@@ -57,6 +52,7 @@
                             id="Name"
                             name="Name"
                             value="Haneen"
+                            name="image"
                             autofocus
                         />
                         </div>
@@ -70,6 +66,7 @@
                             name="email"
                             value="Haneen@example.com"
                             placeholder="Haneen@example.com"
+                            name="email"
                         />
                         </div>
 
@@ -80,6 +77,7 @@
                             id="phoneNumber"
                             name="phoneNumber"
                             class="form-control"
+                            name="mobile"
                             placeholder="777777"/>
                         </div>
                         <div class="mb-3 col-md-6">
@@ -88,7 +86,7 @@
                             type="text"
                             class="form-control"
                             id=""
-                            name=""
+                            name="password"
                             value=""/>
                         </div>
 
