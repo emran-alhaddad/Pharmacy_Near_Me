@@ -1,11 +1,11 @@
 <!--====== SEARCH PART START ======-->
 <div class="search-area" style="direction: rtl;">
     <div class="container">
-        <div class="search-wrapper">
+        <div class="search-wrapper shadow">
             <form action="{{ route('search-pharmacies') }}" method="POST">
             @csrf
-                <div class="row justify-content-center">
-                    
+                <div class="row justify-content-center ">
+
 
                     <div class="col-lg-2 col-sm-5 col-10">
                         <div class="search-input">
