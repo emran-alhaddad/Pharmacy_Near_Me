@@ -44,8 +44,8 @@
                         <!-- <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p> -->
                     </div>
                     </div>
-                </div>
-                <hr class="my-0" />
+            </div>
+            <hr class="my-0" />
                 <div class="card-body">
                     <form id="formAccountSettings" method="POST" onsubmit="return false">
                     <div class="row">

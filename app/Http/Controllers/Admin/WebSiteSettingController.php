@@ -16,4 +16,8 @@ class WebSiteSettingController extends Controller
     public function AddService(){
         return view('admin.WebSiteSetting.Add_Service');
     }
+
+    public function editService(){
+        return view('admin.WebSiteSetting.edit_Service');
+    }
 }

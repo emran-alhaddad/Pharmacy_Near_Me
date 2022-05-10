@@ -7,19 +7,16 @@
         <div class="col-12 col-m-12 col-sm-12">
         <div class="card bg-white m-5">
 
-            <div class="card-header d-flex justify-content-between">
-                <h3>تعديل طريقة الدفع</h3>
-            </div>
-            <div class="card-content">
-    <form>
+        <div class="card-header d-flex justify-content-between">
+                    <h3>تعديل الخدمة</h3>
+        </div>
 
-    <div class="row g-">
+        <div class="card-content">
+                <form>
 
-            <div class="mb-3 col-4">
-                <!-- <label for="formFile" class="form-label">صورة طريقة الدفع</label>
-                <input class="form-control" type="file" id="formFile"> -->
+            <div class="row g-3">
 
-                            <div class="d-flex align-items-start align-items-sm-center gap-4">
+                <div class="d-flex align-items-start align-items-sm-center gap-4">
                     <img
                         src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                         alt="user-avatar"
@@ -29,15 +26,14 @@
                         id="uploadedAvatar"/>
                     <div class="button-wrapper">
                         <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                        <span class="d-none d-sm-block">تعديل صورة طريقة الدفع</span>
+                        <span class="d-none d-sm-block">تعديل صورة الخدمة</span>
                         <i class="bx bx-upload d-block d-sm-none"></i>
                         <input
                             type="file"
                             id="upload"
                             class="account-file-input"
                             hidden
-                            accept="image/png, image/jpeg"
-                        />
+                            accept="image/png, image/jpeg"/>
                         </label>
                         <!-- <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
                         <i class="bx bx-reset d-block d-sm-none"></i>
@@ -46,31 +42,43 @@
 
                         <!-- <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p> -->
                     </div>
-                    </div>
+                </div>
+
+                <div class="row g-3">
+
+                    <div class="mb-3 col-4">
+                                    <label for="exampleInputName" class="form-label">عنوان الخدمة</label>
+                                    <input type="text" class="form-control" id="exampleInputName">
+                                </div>
 
 
+
+                                <div class="mb-3 col-8">
+                                    <label for="formFile" class="form-label">وصف الخدمة</label>
+                                    <input class="form-control" type="textarea" id="formFile" rows="5" cols="50">
+                                </div>
+
+                </div>
+
+
+
+
+
+                        </div>
+
+
+
+                        <button  id="edit_button"  type="submit" class="btn btn-primary">اضافة</button>
+                </form>
 
             </div>
 
-            <div class="mb-3 col-8">
-                <label for="exampleInputName" class="form-label">اسم طريقة الدفع</label>
-                <input type="text" class="form-control" id="exampleInputName">
-            </div>
 
-
-
-
-    </div>
-
-
-
-            <button  id="edit_button"  type="submit" class="btn btn-primary">تعديل</button>
-    </form>
-
-            </div>
-        </div>
+</div>
+</div>
+</div>
 </div>
 
 
 
-@stop
+@endsection
