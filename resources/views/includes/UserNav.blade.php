@@ -30,7 +30,7 @@
                     </div>
                     <div class="flex-grow-1">
                     <span class="fw-semibold d-block">{{ Auth::user()->name }}</span>
-                    <small class="text-muted">صيدلية</small>
+                    <small class="text-muted">عميل</small>
                     </div>
                 </div>
                 </a>
@@ -39,7 +39,7 @@
                 <div class="dropdown-divider"></div>
             </li>
             <li>
-                <a class="dropdown-item" href="{{ route('client') }}">
+                <a class="dropdown-item" href="{{ route('client-dashboard') }}">
                 <i class="bx bx-user ms-1"></i>
                 <span class="align-middle">حسابي</span>
                 </a>

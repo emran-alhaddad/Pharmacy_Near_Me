@@ -44,7 +44,7 @@
                             <div class="d-flex justify-content-center">
                             
                            <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button type="button" class="btn btn-submit me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
   اضافة شكوى
 </button>
 
@@ -83,7 +83,7 @@
                                     <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
                                             class="bi bi-person-plus-fill text-white"></i></span>
                                     <input value="{{ old('password') }}" type="password"
-                                        placeholder="كلمة المرور القديمة" name="password"
+                                      name="password"
                                         class="form-control rounded @error('password') border-danger @enderror">
                                     @error('password')
                                         <div class="invalid-feedback d-block">
@@ -97,13 +97,13 @@
 
                         <div class="row">
                             <div class="col-sm-3">
-                                <h6 class="mb-0">المشتكى  </h6>
+                                <h6 class="mb-0"> المشتكى عليه  </h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
                                             class="bi bi-person-plus-fill text-white"></i></span>
-                                    <input type="password" placeholder="كلمة المرور الجديدة" name="new_password"
+                                    <input type="password"  name="new_password"
                                         class="form-control rounded @error('new_password') border-danger @enderror">
                                     @error('new_password')
                                         <div class="invalid-feedback d-block">
@@ -123,7 +123,7 @@
                                 <div class="input-group mb-3">
                                     <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
                                             class="bi bi-person-plus-fill text-white"></i></span>
-                                    <input type="password" placeholder="تأكيد كلمة المرور الجديدة"
+                                    <input type="password" 
                                         name="new_password_confirmed"
                                         class="form-control rounded @error('new_password_confirmed') border-danger @enderror">
                                     @error('new_password_confirmed')

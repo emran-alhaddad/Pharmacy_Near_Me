@@ -20,7 +20,10 @@
     <div class="col-md-12">
         <ul class="nav nav-pills flex-column flex-md-row mb-3">
         <li class="nav-item">
-        <button type="submit" class="btn btn-submit me-2">    <a  href="{{ route('client') }}" style="color:#fff;"><i class="bx bx-user me-1"></i> البروفايل</a></button>
+
+        <button type="submit" class="btn btn-submit me-2">    <a  href="{{ route('client-dashboard') }}" style="color:#fff;"><i class="bx bx-user me-1"></i> البروفايل</a></button>
+
+         
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('settings') }}"

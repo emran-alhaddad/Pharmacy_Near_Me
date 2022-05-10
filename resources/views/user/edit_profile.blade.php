@@ -20,7 +20,11 @@
     <div class="col-md-12">
         <ul class="nav nav-pills flex-column flex-md-row mb-3">
         <li class="nav-item">
-        <button type="submit" class="btn btn-submit me-2">    <a  href="{{ route('client') }}" style="color:#fff;"><i class="bx bx-user me-1"></i> البروفايل</a></button>
+
+        <button type="submit" class="btn btn-submit me-2">    <a  href="{{ route('client-dashboard') }}" style="color:#fff;"><i class="bx bx-user me-1"></i> البروفايل</a></button>
+
+        
+
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('settings') }}"
@@ -322,20 +326,7 @@
                             @enderror
                 </div>
 
-                <div class="mb-3 col-md-6">
-                <label for="address" class="form-label">وصف العنوان </label>
-                <input
-                    class="form-control rounded @error('name') border-danger @enderror"
-                    value="{{ $user->client->address }}" type="text" placeholder="العنــوان" name="address"
-                   
-                    autofocus
-                />
-                @error('address')
-                                <div class="invalid-feedback d-block">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                </div>
+           
                 <div class="mb-3 col-md-6">
                 <label class="form-label" for="country">تاريخ الميلاد</label>
                 <input
@@ -376,17 +367,7 @@
                             @enderror
                 </div>
                 </div>
-                <div class="mb-3 col-md-6">
-                <label for="email" class="form-label">الايميل</label>
-                <input
-                    class="form-control"
-                    type="text"
-                    id="email"
-                    name="email"
-                    value="user@example.com"
-                    placeholder="user@example.com"
-                />
-                </div>
+              
              
 
             </div>
@@ -407,5 +388,45 @@
 <!-- / Content -->
 
 <div class="content-backdrop fade"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script>
+
+$("#sendEmailCode").on('submit',function(e){
+    e.preventDefault();
+    var token = $($("[name='_token']")[0]).val();
+        var email = $("#currentEmail").val();
+        $.ajax({
+            method: 'post',
+            data: {
+                _token: token,
+                email: email
+            },
+            url: "{{ route('client-email-code') }}",
+            success: function(data) {
+                $("#hiddenEmail").val($("#currentEmail").val());
+                if(data['type']!='danger')
+                $("#currentEmail").attr('disabled','disabled');
+                $("#sendEmailCode").html(
+                    "<div class='alert alert-"+data['type']+"' role='alert'>"+
+                       data['data']+
+                    "</div>"+
+                    $("#sendEmailCode").html()
+                );
+                
+            }
+
+            
+        })
+})
+
+@error('modal')
+$("#{{ $message }}").toggleClass('show');
+$("#{{ $message }}").attr('style',"padding-left: 15px; display: block;");
+$("#{{ $message }}").attr('aria-modal',"true");
+$("#{{ $message }}").attr('role',"dialog");
+@enderror
+</script>
 
 @stop

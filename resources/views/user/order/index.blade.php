@@ -1,4 +1,4 @@
-@extends('layouts.masterUser')
+@extends('layouts.masterUser2')
 
 @section('content')
     <style>
@@ -40,13 +40,6 @@
                     {{ session('status') }}
                 </div>
             @endif
-        </div>
-        <div class="row mb-2 mt-2">
-            <div class="col-6">
-                <a class="btn btn-primary text-light" href="{{ route('client-orders-create') }}" role="button">
-                    إضافة طلب جديد
-                </a>
-            </div>
         </div>
 
         <ul class="nav nav-tabs">

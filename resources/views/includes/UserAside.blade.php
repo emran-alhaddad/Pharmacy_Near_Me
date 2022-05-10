@@ -54,7 +54,7 @@
         </a>
         </li>
         <li class="menu-item">
-        <a href="{{ route('client') }}" class="menu-link"><i class="bx bx-user me-1"></i>
+        <a href="{{ route('client-dashboard') }}" class="menu-link"><i class="bx bx-user me-1"></i>
             <div data-i18n="Account">البروفايل</div>
         </a>
         </li>
