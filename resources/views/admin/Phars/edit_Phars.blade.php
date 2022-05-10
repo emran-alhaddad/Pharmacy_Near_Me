@@ -22,8 +22,6 @@
 
 
             <div class="mb-3 col-4">
-            <!-- <label for="formFile" class="form-label">صورة الصيدلية</label>
-            <input class="form-control" type="file" id="formFile"> -->
 
                     <div class="d-flex align-items-start align-items-sm-center gap-4">
                     <img
