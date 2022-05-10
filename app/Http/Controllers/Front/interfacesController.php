@@ -41,13 +41,6 @@ class interfacesController extends Controller
         ]);
     }
 
-    public function ads()
-    {
-        return view('front.ads', [
-            'cities' => City::get(),
-            'zones' => zone::get()
-        ]);
-    }
     public function about()
     {
         return view('front.about', [
@@ -60,6 +53,8 @@ class interfacesController extends Controller
     {
         return view('front.404');
     }
+
+
     public function detailes($id)
     {
         $pharmacy = QueryController::pharmacies()->where('users.id',$id)->first();
@@ -81,5 +76,14 @@ class interfacesController extends Controller
 
         $search = new interfacesController();
         return $search->pharmacy($qry->get());
+    }
+
+
+    public function add_order($id)
+    {
+        $pharmacy = QueryController::pharmacies()->where('users.id',$id)->first();
+        return view('front.add_order', [
+            'pharmacy' => $pharmacy,
+        ]);
     }
 }

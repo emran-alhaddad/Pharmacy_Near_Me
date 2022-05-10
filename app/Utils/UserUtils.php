@@ -2,11 +2,12 @@
 
 namespace App\Utils;
 
-class UserUtils extends SystemUtils
+class UserUtils 
 {
+  CONST AVATER_PATH = 'uploads/avaters/';
+  CONST CLIENT_AVATER_PATH = self::AVATER_PATH.'/client';
+  CONST CLIENT_AVATER_DEFAULT = self::CLIENT_AVATER_PATH.'/avater.png';
   CONST AVATER_IMAGE_DEFAULT = 'avater.png';
-  CONST CLIENT_AVATER_PATH = self::AVATER_PATH.'/client/';
-  CONST CLIENT_AVATER_DEFAULT = self::CLIENT_AVATER_PATH. self::AVATER_IMAGE_DEFAULT;
   CONST PHARMACY_AVATER_PATH = self::AVATER_PATH.'/pharmacy/';
   CONST PHARMACY_AVATER_DEFAULT = self::PHARMACY_AVATER_PATH. self::AVATER_IMAGE_DEFAULT;
   CONST ADMIN_AVATER_PATH = self::AVATER_PATH.'/admin/';

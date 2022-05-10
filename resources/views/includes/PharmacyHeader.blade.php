@@ -88,14 +88,14 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white p-4">
     <div class="container-fluid">
-            <h6> <a href="#" class="navbar-brand">علاجي</a></h6>
+            <h6> <a href="{{ route('index') }}" class="navbar-brand">علاجي</a></h6>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
         <div class="collapse navbar-collapse" id="navbarCollapse" >
             <div class="navbar-nav mx-5 " style=" align-items: center;">
-                <a href="/chat" class="nav-item nav-link active"><i class="bi bi-chat"></i></a>
+                <a href="#" class="nav-item nav-link active"><i class="bi bi-chat"></i></a>
                 <a href="#" class="nav-item nav-link active"><i class="bi bi-gear"></i></a>
                 <a href="#" class="nav-item nav-link active"><i class="bi bi-bell"></i></a>
 

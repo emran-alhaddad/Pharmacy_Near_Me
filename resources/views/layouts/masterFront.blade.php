@@ -7,6 +7,20 @@
     <!--====== Title ======-->
     <title>Pharmacy Near Me</title>
 
+
+    <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/fonts/boxicons.css')}}" />
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/css/core.css')}}" class="template-customizer-core-css"/>
+    <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/css/theme-default.css')}}" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{{ asset('pharmacy/assets/css/demo.css')}}" />
+    <script src="{{ asset('pharmacy/assets/js/config.js')}}"></script>
+
+
+
+
+
+
+
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -54,7 +68,7 @@
 
         .heading {
             text-align: center;
-            padding-bottom: 2rem;
+            padding-bottom: 1.5rem;
             color: var(--black);
             font-size: 3.5rem;
             /* letter-spacing: .4rem; */
@@ -87,7 +101,7 @@
     <!--====== HEADER PART ENDS ======-->
 
 
-    
+
     @yield('content')
 
 

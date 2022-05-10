@@ -58,7 +58,7 @@
                                         </li>
                                     </ul>
                                     <div class="pharmacy-bottom">
-                                        <a href="javascript:void(0)" class="main-btn col-12"><i
+                                        <a href="{{ route('add-order',$pharmacy->id) }}" class="main-btn col-12"><i
                                                 class="lni lni-checkmark-circle"></i> تقديم طلب</a>
                                     </div>
                                 </div>
@@ -167,16 +167,22 @@
 
     {{-- Forms --}}
     <section>
-        <h3 class="heading">احرص على متابعة كل جديد على منصتنا للاستفادة من خدماتنا</h3>
-        <div class="d-flex justify-content-center">
+        <div class="mx-auto col-xl-6 col-lg-7 col-md-10">
+            <div class="text-center section-title mb-60">
+                <h3 class="heading"><span>الان</span> انضم </h3>
+                <p>احرص على متابعة كل جديد على منصتنا للاستفادة من خدماتنا</p>
+            </div>
+        </div>
 
-            <div class="container-fluid radius " style=" margin-block-end: 50px;direction: rtl">
+        <div class="d-flex align-items-center ">
+
+            <div class="container-fluid radius flex-wrap " style=" margin-block-end: 50px;direction: rtl">
                 <div class="" style=" ">
                     <div class="radius d-flex justify-content-center">
                         <div class="col-md-6 col-sm-12 shadow-lg p-3 bg-light">
                             <div class="text-center">
-                                <h3 class="heading fs-1">قدم طلب لنشر اعلانك في المنصة
-                                </h3>
+                                <h5 class="heading fs-1">قدم طلب لنشر اعلانك في المنصة
+                                </h5>
                             </div>
                             <form action="">
                                 <div class="p-3">
@@ -213,13 +219,13 @@
                 </div>
             </div>
 
-            <div class="container-fluid radius " style=" margin-block-end: 50px;direction: rtl">
+            <div class="container-fluid radius flex-wrap" style=" margin-block-end: 50px;direction: rtl">
 
                 <div class="" style="">
                     <div class="radius d-flex justify-content-center">
                         <div class="col-md-6 col-sm-12 shadow-lg p-3 bg-light">
                             <div class="text-center">
-                                <h3 class="heading fs-1">ادخل بياناتك للإشتراك في<span> اخبار المنصة</span></h3>
+                                <h5 class="heading fs-1">ادخل بياناتك للإشتراك في<span> اخبار المنصة</span></h5>
                             </div>
                             <form action="">
                                 <div class="p-5">

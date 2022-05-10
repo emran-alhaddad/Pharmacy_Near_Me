@@ -4,7 +4,7 @@
 
 <div class="wrapper bg-white">
     <div class="row  ">
-        <div class="col-12 ">
+        <div class="col-8 ">
         <div class="card bg-white m-5">
 
             <div class="card-header d-flex justify-content-between">
@@ -17,34 +17,46 @@
                         <tr>
                             <th> اسم العميل</th>
                             <th> العنوان</th>
-                            <th>  الصورة</th>
-                            <th>  الايميل</th>
+                            <th>  رقم الهاتف</th>
                             <th>الحالة</th>
                             <th>العمليات</th>
                         </tr>
                     </thead>
-
-
+                    
+             
                     <tbody>
-                        <tr>
-                            <td>ابولو</td>
-                            <td>تعز</td>
-                            <td>  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                                    class="rounded-circle img-fluid" style="width: 50px;">
-                            </td>
+                        @foreach ($customers as $customer)
+                           
+                         <tr>
+                         
+                        
+                            <td>{{ $customer->name }}</td>
+                         <td>{{  $customer->address }}</td>
+                         <td>{{  $customer->phone}}</td>
+                        
 
-                            <td> haneen@yahoo.com</td>
+                          @if ($customer->is_active==1)
+                        
+                        <td>   <button class="btn btn-success text-white" >مفعل</button></td>
+                         
+                              
+                          @else
+                        
+                            <td> <button class="btn btn-danger text-white" >موقف</button></td>
+                       
+                          @endif
+                            
+                               
 
-
+                            
 
                             <td>
-                                <button class="btn btn-success text-white" >مفعل</button>
-
-                            </td>
-
-                            <td>
-                            <a href="/_admin/edit_Customers">  <button class="btn btn-primary text-white" >تعديل</button></a>
+                            <a href={{route('admin-edit_Customers', ['id' => $customer->id]);}} >  <button class="btn btn-primary text-white" >تعديل</button></a>
                                 <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button>
+                           
+                            </td>
+                        
+                               
                                     <div class="modal"  id="exampleModal"  tabindex="-1">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -62,11 +74,12 @@
                                         </div>
                                     </div>
 
-                            </td>
+                           
 
 
                         </tr>
-
+                        @endforeach    
+                        
                     </tbody>
 
 
