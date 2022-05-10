@@ -117,6 +117,7 @@
                             class="account-file-input"
                             hidden
                             accept="image/png, image/jpeg"
+                            name="image"
                         />
                         </label>
                     </div>
