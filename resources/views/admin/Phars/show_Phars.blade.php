@@ -15,6 +15,7 @@
                 <table class="table">
 
                         <thead>
+                           
                         <tr>
                             <th> اسم الصيدلية</th>
                             <th> المدينة</th>
@@ -30,13 +31,32 @@
                     </thead>
 
                     <tbody>
+                        @foreach ($phars as $phar)
+                           
+                        
                         <tr>
-                            <td>ابولو</td>
-                            <td>تعز</td>
-                            <td>المسبح</td>
-                            <td> شارع جمال</td>
-                            <td>apolo@yahoo.com</td>
-                            <td>77777777777</td>
+
+                          
+                         
+                        
+                            <td>{{ $phar->name }}</td>
+                         <td>{{  $phar->Cname }}</td>
+                         <td>{{  $phar->Zname}}</td>
+                         <td>{{  $phar->address}}</td>
+                         <td>{{  $phar->email}}</td>
+                         <td>{{  $phar->phone}}</td>
+                         {{-- <td>{{  $phar->$phone}}</td>
+                         <td>{{  $phar->$phone}}</td> --}}
+                         
+                        
+
+                            
+                               
+
+                            
+
+
+                           
                             <td>  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
                                     class="rounded-circle img-fluid" style="width: 50px;">
                             </td>
@@ -45,10 +65,17 @@
                             <td>  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
                                     class="rounded-circle img-fluid" style="width: 50px;">
                             </td>
-                            <td>
-                            <button class="btn badge bg-success">مفعل</button>
-
-                            </td>
+                           
+                          @if ($phar->is_active==1)
+                        
+                          <td>   <button class="btn btn-success text-white" >مفعل</button></td>
+                           
+                                
+                            @else
+                          
+                              <td> <button class="btn btn-danger text-white" >موقف</button></td>
+                         
+                            @endif
 
                             <td>
                             <a href="/_admin/edit_Phars">  <button class="btn badge bg-primary">تعديل</button></a>
@@ -77,6 +104,7 @@
 
 
                         </tr>
+                        @endforeach
 
                     </tbody>
                 </table>

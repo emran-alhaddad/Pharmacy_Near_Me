@@ -20,10 +20,10 @@ class PharController extends Controller
         ->join('users', 'users.id', '=', 'pharmacies.user_id')
         ->join('zones', 'zones.id', '=', 'pharmacies.zone_id')
         ->join('cities', 'cities.id', '=', 'zones.city_id')
-        ->select('users.*', 'zones.name AS Zname', 'cities.name AS Cname')
+        ->select('users.*', 'zones.name AS Zname','pharmacies.*' ,'cities.name AS Cname')
         ->get();
-         dd( $phar);
-        //return view('admin.Phars.show_Phars');
+         //dd( $phar);
+        return view('admin.Phars.show_Phars')->with('phars',$phar);
     } 
 
     public function addPhars(){

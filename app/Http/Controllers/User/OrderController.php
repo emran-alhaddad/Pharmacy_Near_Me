@@ -11,14 +11,14 @@ use App\Utils\ReplyState;
 use App\Utils\RequestState;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
     public function index()
     {
+        
         $requests = OrderRequest::with(['details','pharmacy.user','replies.details'])
-        ->where('client_id',Auth::id())->get();
+        ->where('client_id',Auth::id())->orderByDesc('id')->get();
         $client = User::with('client')->where('id', Auth::id())->firstOrFail();
         return view('user.order.index',[
             'requests' => $requests,
@@ -81,7 +81,7 @@ class OrderController extends Controller
   
         }
 
-        return back()->with('status','تم إضافة الطلبية بنجاح');
+        return redirect()->route('client-orders')->with('status','تم إرسال الطلبية الى الصيدلية بنجاح');
             
     }
 
@@ -94,7 +94,7 @@ class OrderController extends Controller
         $order->state = RequestState::NOT_COMPLETED;
         $reply->update();
         $order->update();
-
+        
         return back()->with('status','لقد تم رفض الطلبية '.$id.' بنجاح');
     }
 

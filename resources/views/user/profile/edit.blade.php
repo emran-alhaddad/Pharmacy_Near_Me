@@ -10,7 +10,7 @@
     </style>
 
     <!-- info Section -->
-    <section class="col-lg-8 col-md-8 col-12">
+    <section class="col-lg-9 col-md-8 col-12">
         @if (session('error'))
             <div class="alert alert-danger" role="alert">
                 {{ session('error') }}
@@ -138,7 +138,7 @@
                 <div class="row">
                     <div class="col">
                         <h6 class="mb-0">
-                            <a role="button" id="edit_email_btn" data-bs-toggle="modal" data-bs-target="#edit-email">
+                            <a role="button" id="edit_email_btn" data-toggle="modal" data-target="#edit-email">
                                 تبديل البريد الالكتروني
                             </a>
                         </h6>
@@ -146,7 +146,7 @@
 
                     <div class="col">
                         <h6 class="mb-0">
-                            <a role="button" id="edit_password_btn" data-bs-toggle="modal" data-bs-target="#edit-password">
+                            <a role="button" id="edit_password_btn" data-toggle="modal" data-target="#edit-password">
                                 تغيير كلمة السر
                             </a>
                         </h6>
@@ -174,7 +174,7 @@
                     <h4 class="modal-title fw-bold text-center col-10" id="exampleModalLabel">
                         تغيير كلمة المرور
                     </h4>
-                    <button type="button" class="btn-close col-2" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close col-2" data-dismiss="modal" aria-label="Close"></button>
                 </div>
 
                 <div class="modal-body">
@@ -276,7 +276,7 @@
                     <h4 class="modal-title fw-bold text-center col-10" id="exampleModalLabel">
                         تبديل البريد الالكتروني
                     </h4>
-                    <button type="button" class="btn-close col-2" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close col-2" data-dismiss="modal" aria-label="Close"></button>
                 </div>
 
                 <div class="modal-body">

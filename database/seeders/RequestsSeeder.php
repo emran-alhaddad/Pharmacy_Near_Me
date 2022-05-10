@@ -18,24 +18,27 @@ class RequestsSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 22; $i <=27; $i++) {
+        for ($i = 22; $i <= 27; $i++) {
 
-          
 
+
+            for ($j = 0; $j < 10; $j++) {
                 $order_request = new OrderRequest();
                 $order_request->client_id = $i;
-                $order_request->pharmacy_id = $i-10;
+                $order_request->pharmacy_id = $i - 10;
                 if ($order_request->save()) {
-                    DB::table('request__details')->insert([
-                        'request_id' => $order_request->id,
-                        'drug_title' => Str::random(15),
-                        'quantity' => $i * $i,
-                        'accept_alternative' => true,
-                        'repeat_every' => $i * $i,
-                        'repeat_until' => Carbon::now()->toDateTime(),
-                    ]);
+                    for ($k = 1; $k < 3; $k++) {
+                        DB::table('request__details')->insert([
+                            'request_id' => $order_request->id,
+                            'drug_title' => Str::random(15),
+                            'quantity' => $i * $i,
+                            'accept_alternative' => true,
+                            'repeat_every' => $i * $i,
+                            'repeat_until' => Carbon::now()->toDateTime(),
+                        ]);
+                    }
                 }
-            
+            }
         }
     }
 }

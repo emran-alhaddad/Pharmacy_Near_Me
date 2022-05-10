@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('site_admines', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->integer('is_active')->default(1);
             $table->timestamps();
         });
     }
