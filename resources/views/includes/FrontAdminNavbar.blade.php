@@ -28,9 +28,6 @@
 				class="logo logo-light " id="logo"> <img src="{{ asset('admin/img/logo.jpg') }}"
 				alt="logo" class="logo logo-dark" id="logo"></li>
 		</ul>
-		<!-- <h2>
-			<a href="index.html" class="no-decor mx-5" style = "color:#2B547A; ">ابولو</a>
-		</h2> -->
 		<form class="navbar-search" autocomplete="off">
             <i class="fas fa-search"></i>
 			<input type="text" name="Search" class="navbar-search-input"
