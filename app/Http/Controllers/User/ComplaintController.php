@@ -21,7 +21,7 @@ class ComplaintController extends Controller
       ->where('client_id', Auth::id())->orderByDesc('id')->get();
     $client = User::with('client')->where('id', Auth::id())->firstOrFail();
 
-    return view('user.compliant.index', [
+    return view('user.problems', [
       'compliants' => $complaint,
       'user' => $client
     ]);

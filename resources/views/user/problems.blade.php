@@ -29,12 +29,37 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>1</strong></td>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>صيدلية الحياة</strong></td>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>22/2/2022</strong></td>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>تاخر في التسليم</strong></td>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>اضافة رد</strong></td>
+                            
+                        @foreach ($compliants as $compliant)
+                    @if ($compliant->is_active == 1)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $compliant->pharmacy->user->name }}</td>
+                            <td>{{ $compliant->created_at->diffForHumans() }}</td>
+                            <td>{{ $compliant->message }}</td>
+                            <td>
+                                <div class="row">
+                                    @if ($compliant->replay)
+                                        <div class="col"><a class="btn btn-primary text-light"
+                                                data-toggle="collapse" href="#compliant-reply" role="button"
+                                                onclick="$('#reply-text').text('{{ $compliant->replay }}');">
+                                                عرض الرد
+                                            </a></div>
+                                    @endif
+                                    <div class="col">
+                                        <a class="btn btn-danger text-light"
+                                            href="{{ route('client-compliants-delete', $compliant->id) }}" role="button">
+                                            حــذف
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                            </td>
+                        </tr>
+                    @endif
+                @endforeach
+</button></td>
                          
                            
 
@@ -53,7 +78,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel"> اضافة شكوى</h5>
 
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -139,6 +164,68 @@
                         <div class="row">
                             <button class="btn-submit radius text-center p-2 col-12 mt-2" type="submit">
                                 اضافة
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">  عرض الرد</h5>
+
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <div class="modal-body">
+                    @error('error')
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
+                    @error('status')
+                        <div class="alert alert-success" role="alert">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
+                    <form action="{{ route('client-password-update') }}" method="POST" class="g-3">
+                        @csrf
+                        @method('put')
+                        <div class="row">
+                            <div class="col-sm-3">
+                              
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
+                                            class="bi bi-person-plus-fill text-white"></i></span>
+                                    <textarea >
+</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+
+                     
+                    
+
+                
+                        <hr>
+
+                        <div class="row">
+                            <button class="btn-submit radius text-center p-2 col-12 mt-2" type="submit">
+                                تم
                             </button>
                         </div>
                     </form>
