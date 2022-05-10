@@ -41,13 +41,6 @@
                 </div>
             @endif
         </div>
-        <div class="row mb-2 mt-2">
-            <div class="col-6">
-                <a class="btn btn-primary text-light" href="{{ route('client-orders-create') }}" role="button">
-                    إضافة طلب جديد
-                </a>
-            </div>
-        </div>
 
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#wait-accept">في انتضار القبول</a></li>

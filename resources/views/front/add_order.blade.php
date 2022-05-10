@@ -12,7 +12,9 @@
             margin-top: 10px;
             margin-bottom: 30px;
         }
-
+        html{
+            direction:rtl;
+        }
     </style>
     <script>
 
@@ -41,10 +43,9 @@
 
                     <thead>
                         <tr>
-                            <th>الرقم</th>
                             <th>اسم /صورة العلاج</th>
                             <th>الكمية </th>
-                            <th>اقبل به </th>
+                            <th>اقبل بديل </th>
                             <th>كرر الطلبية كل</th>
                             <th>حتى تاريخ </th>
                             <!-- <th>تقديم عرض</th> -->
@@ -179,7 +180,7 @@
         </div>
     </div>
 
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
       
       var drugs = {
@@ -189,7 +190,7 @@
         function addRequestDetail() {
 
             var data = $("#data");
-            var drug_image = $("#drug_image");
+            var drug_image = $(".drug_image");
             var drug_title = $("#drug_title");
             var quantity = $("#quantity");
             var accept_alternative = $("#accept_alternative");
@@ -201,8 +202,13 @@
 
             var drug = {};
             var repeat_every = 0;
+            var drug_title_image = "";
+             drug_title_image = "";
 
-            if (drug_image.val() != "") drug.drug_image = drug_image.val();
+            if (drug_image.val() != "")  {
+                drug.drug_image = drug_image.val();  
+                drug_title_image = "<img src='"+drug.drug_image+"' >";
+            }
             else {
                 if (drug_title.val() == "") {
                     $("#alert_msg").html("يجب عليك إدخال اسم العلاج أو صورة الروشتة");
@@ -210,7 +216,7 @@
                     $("#success_msg").css("display","none");
                     return;
                 }
-                drug.drug_title = drug_title.val();
+                drug.drug_title = drug_title_image = drug_title.val();
             }
 
             if (quantity.val() < 1) {
@@ -252,10 +258,10 @@
             $("#alert_msg").css("display","none");
 
             accept_alt = drug.accept_alternative == 1 ? "نعم" : "لا";
+            
             order_details_table.html(order_details_table.html() +
                         "<tr>"+
-                            "<td><i class='fab fa-angular fa-lg text-danger me-3'></i> <strong>1</strong></td>"+
-                            "<td><i class='fab fa-angular fa-lg text-danger me-3'></i> <strong> " + drug_title.val() + " </strong></td>"+
+                            "<td><i class='fab fa-angular fa-lg text-danger me-3'></i> <strong> " + drug_title_image + " </strong></td>"+
                             "<td><i class='fab fa-angular fa-lg text-danger me-3'></i> <strong>" + quantity.val() + "</strong></td>"+
                             "<td><span class='badge bg-label-warning me-1'>" + accept_alt + " </span></td>"+
                             "<td><i class='fab fa-angular fa-lg text-danger me-3'></i> <strong>" + repeat_every + " يوم</strong></td>"+
@@ -266,13 +272,27 @@
                 $("#send_request_btn").css("visibility","visible");
             else
             $("#send_request_btn").css("visibility","hidden");
+
+            $(".drug_image").val("");
+            $("#drug_title").val("");
+            $("#quantity").val("");
+            $("#accept_alternative").prop('checked', false);
+            $("#day").val("");
+            $("#month").val("");
+            $("#year").val("");
+            $("#repeat_until").val("");
+            $("#accept_repeate").prop('checked', false);
+            $("#repeate_form").css("display","none");
+
         }
-        
+
         $(".drug_image").on('change', function(e) {
             var ext = this.value.match(/\.([^\.]+)$/)[1];
             switch (ext) {
                 case 'jpg':
                 case 'png':
+                $("#alert_msg").css("display","none");
+                    $("#success_msg").css("display","none");
                     break;
                 default:
                     $("#alert_msg").html("يجب أن تكون صورة الروشتة بأحد الصيغ التالية png او jpg فقط");

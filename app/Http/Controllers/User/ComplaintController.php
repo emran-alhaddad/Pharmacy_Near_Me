@@ -19,10 +19,8 @@ class ComplaintController extends Controller
 
     $complaint = Complaint::with(['pharmacy.user'])
       ->where('client_id', Auth::id())->orderByDesc('id')->get();
-
     $client = User::with('client')->where('id', Auth::id())->firstOrFail();
 
-    // return $complaint;
     return view('user.compliant.index', [
       'compliants' => $complaint,
       'user' => $client

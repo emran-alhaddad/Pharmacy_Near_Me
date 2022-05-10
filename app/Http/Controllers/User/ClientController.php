@@ -7,7 +7,8 @@ use App\Mail\UpdateEmail;
 use App\Models\User;
 use App\Utils\ErrorMessages;
 use App\Utils\SuccessMessages;
-use Carbon\Carbon;
+use App\Utils\UploadingUtils;
+use App\Utils\UserUtils;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -21,37 +22,62 @@ class ClientController extends Controller
     public function index()
     {
         $client = User::with('client')->where('id', Auth::id())->firstOrFail();
-        return view('user.index', ['user' => $client]);
+        return view('user.profile.index', ['user' => $client]);
     }
-    public function edit_profile()
-    {
-        $client = User::with('client')->where('id', Auth::id())->firstOrFail();
-        return view('user.edit_profile', ['user' => $client]);
-    }
-    public function chat()
-    {
-        $client = User::with('client')->where('id', Auth::id())->firstOrFail();
-        return view('user.chat', ['user' => $client]);
-    }
+    // public function edit_profile()
+    // {
+    //     $client = User::with('client')->where('id', Auth::id())->firstOrFail();
+    //     return view('user.edit_profile', ['user' => $client]);
+    // }
 
-    public function myorder()
-    {
-        $client = User::with('client')->where('id', Auth::id())->firstOrFail();
-        return view('user.myorder', ['user' => $client]);
-    }
+    // public function chat()
+    // {
+    //     $client = User::with('client')->where('id', Auth::id())->firstOrFail();
+    //     return view('user.chat', ['user' => $client]);
+    // }
 
-    public function settings()
-    {
-        $client = User::with('client')->where('id', Auth::id())->firstOrFail();
-        return view('user.settings', ['user' => $client]);
-    }
+    // public function myorder()
+    // {
+    //     $client = User::with('client')->where('id', Auth::id())->firstOrFail();
+    //     return view('user.myorder', ['user' => $client]);
+    // }
 
-    public function problems()
-    {
-        $client = User::with('client')->where('id', Auth::id())->firstOrFail();
-        return view('user.problems', ['user' => $client]);
-    }
+    // public function settings()
+    // {
+    //     $client = User::with('client')->where('id', Auth::id())->firstOrFail();
+    //     return view('user.settings', ['user' => $client]);
+    // }
 
+    // public function problems()
+    // {
+    //     $client = User::with('client')->where('id', Auth::id())->firstOrFail();
+    //     return view('user.problems', ['user' => $client]);
+    // }
+
+    public function updateAvater(Request $request)
+    {
+        $request->validate(
+            ['avater' => 'required|image|mimes:png,jpg'],
+            [
+                'avater.required' => "يجب عليك إدخال الصورة بالأول",
+                'avater.image' => "الملف الذي قمت برفعه ليس صورة",
+                'avater.mimes' => "نوع الصورة المقبول هو png , jpg فقط",
+            ]
+        );
+        $path = UserUtils::CLIENT_AVATER_PATH;
+
+        if (!$path) return back()->with('error', 'حصل خطأ');
+
+        $avater = UploadingUtils::updateImage(
+            $request->avater,
+            $path,
+            $path . Auth::user()->avater
+        );
+
+        User::find(Auth::id())->update(['avater' => $avater]);
+
+        return back()->with('status', 'تم التعديل بنجاح');
+    }
 
     // Show Edit Client Profile page
     public function edit()
@@ -102,7 +128,7 @@ class ClientController extends Controller
                 'password' => ErrorMessages::WRONG_PASSWORD,
                 'modal' => 'edit-password'
             ]);
-        
+
 
         DB::table('users')
             ->where('id', Auth::id())
@@ -113,11 +139,11 @@ class ClientController extends Controller
 
     public function updateEmail(Request $request)
     {
-        if(!$this->validateEmail($request))
-        return back()->withErrors([
-            'email' => ErrorMessages::EMAIL_SAME,
-            'modal' => 'edit-email'
-        ]);
+        if (!$this->validateEmail($request))
+            return back()->withErrors([
+                'email' => ErrorMessages::EMAIL_SAME,
+                'modal' => 'edit-email'
+            ]);
         $id = Auth::id();
         if (DB::table('users')->where([['remember_token', $request['code']], ['id', $id]])->exists()) {
             DB::table('users')
@@ -136,8 +162,8 @@ class ClientController extends Controller
     public function sendEmailCode(Request $request)
     {
         try {
-            if($request->email == Auth::user()->email)
-            return ['type'=>'danger','data'=>ErrorMessages::EMAIL_SAME];
+            if ($request->email == Auth::user()->email)
+                return ['type' => 'danger', 'data' => ErrorMessages::EMAIL_SAME];
 
             $number = rand(11111, 99999);
             $email_data = [
@@ -152,14 +178,11 @@ class ClientController extends Controller
                 ]);
             if ($update) {
                 Mail::to($request->email)->send(new UpdateEmail($email_data));
-                return ['type'=>'success','data'=>SuccessMessages::EMAIL_CODE_SEND_SUCCESS];
-
+                return ['type' => 'success', 'data' => SuccessMessages::EMAIL_CODE_SEND_SUCCESS];
             } else
-            return ['type'=>'danger','data'=>ErrorMessages::EMAIL_CODE_SEND_FAILED];
-
+                return ['type' => 'danger', 'data' => ErrorMessages::EMAIL_CODE_SEND_FAILED];
         } catch (\Exception $th) {
-            return ['type'=>'danger','data'=>ErrorMessages::EMAIL_CODE_SEND_FAILED];
-
+            return ['type' => 'danger', 'data' => ErrorMessages::EMAIL_CODE_SEND_FAILED];
         }
     }
 
@@ -204,7 +227,7 @@ class ClientController extends Controller
     {
         $request->validate([
             'name' => 'required|string|min:5|max:100',
-            'dob' => 'date' ,
+            'dob' => 'date',
             'phone' => 'alpha_num',
             'address' => 'min:3|max:100',
         ], [
@@ -218,5 +241,26 @@ class ClientController extends Controller
             'address.min' => "يجب ألا يقل طول العنوان عن 3 احرف  ",
             'address.max' => "يجب ألا يزيد طول العنوان عن 100 حرف  ",
         ]);
+
+        if (!empty($request->dob))
+            $request->validate(
+                ['dob' => 'date'],
+                ['dob.date' => "صيغة تاريخ الميلاد غير صحيحة"]
+            );
+
+        if (!empty($request->phone))
+            $request->validate(
+                ['phone' => 'alpha_num'],
+                ['phone.alpha_num' => "رقم الهاتف يتكون من أرقام فقط"]
+            );
+
+        if (!empty($request->address))
+            $request->validate(
+                ['address' => 'min:3|max:100'],
+                [
+                    'address.min' => "يجب ألا يقل طول العنوان عن 3 احرف  ",
+                    'address.max' => "يجب ألا يزيد طول العنوان عن 100 حرف  "
+                ]
+            );
     }
 }

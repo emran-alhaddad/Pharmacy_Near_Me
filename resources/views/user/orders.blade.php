@@ -1,9 +1,19 @@
 
-@extends('layouts.masterPharmacy')
+@extends('layouts.masterUser2')
 
 @section('content')
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
+        @if (session('error'))
+            <div class="alert alert-danger" role="alert">
+                {{ session('error') }}
+            </div>
+        @endif
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
             <!-- Order  -->
             <div class="card">
                 <h5 class="card-header"> الطلبات</h5>
