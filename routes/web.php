@@ -90,9 +90,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/client/', [User\ClientController::class, 'index'])->name('client-dashboard');
         Route::get('/chat/', [User\ClientController::class, 'chat'])->name('chat');
         Route::get('/settings/', [User\ClientController::class, 'settings'])->name('settings');
-        Route::get('/myorder/', [User\ClientController::class, 'myorder'])->name('myorder');
+        Route::get('/myorder/', [User\OrderController::class, 'index'])->name('myorder');
+        
         Route::get('/edit_profile/', [User\ClientController::class, 'edit_profile'])->name('edit_profile');
-        Route::get('/problems/', [User\ClientController::class, 'problems'])->name('problems');
+   
+     
         Route::get('/client/edit', [User\ClientController::class, 'edit'])->name('client-dashboard-edit');
         Route::put('/client/update', [User\ClientController::class, 'update'])->name('client-dashboard-update');
         Route::put('/client/password/update', [User\ClientController::class, 'updatePassword'])->name('client-password-update');
@@ -107,8 +109,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/client/order/{id}/reject', [User\OrderController::class, 'reject'])->name('client-orders-reject');
 
         // Client Compliants
-        Route::get('/client/compliants', [User\ComplaintController::class, 'index'])->name('client-compliants');
-        Route::get('/client/compliants/create', [User\ComplaintController::class, 'create'])->name('client-compliants-create');
+        Route::get('/problems/', [User\ComplaintController::class, 'index'])->name('problems');
+       // Route::get('/client/compliants', [User\ComplaintController::class, 'index'])->name('client-compliants');
+      //  Route::get('/client/compliants/create', [User\ComplaintController::class, 'create'])->name('client-compliants-create');
         Route::post('/client/compliants/store', [User\ComplaintController::class, 'store'])->name('client-compliants-store');
         Route::get('/client/compliant/{id}/delete', [User\ComplaintController::class, 'delete'])->name('client-compliants-delete');
     });

@@ -20,7 +20,7 @@ class OrderController extends Controller
         $requests = OrderRequest::with(['details','pharmacy.user','replies.details'])
         ->where('client_id',Auth::id())->orderByDesc('id')->get();
         $client = User::with('client')->where('id', Auth::id())->firstOrFail();
-        return view('user.order.index',[
+        return view('user.myorder',[
             'requests' => $requests,
             'user' => $client
         ]);
