@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Request as OrderRequest;
 use Illuminate\Http\Request;
 
 class RequestsController extends Controller
@@ -10,6 +11,7 @@ class RequestsController extends Controller
     //
 
     public function showRequests(){
+        return  OrderRequest::with(['details','pharmacy.user','client.user','replies.details'])->first();
         return view('admin.Requests.show_Requests');
     }
 

@@ -68,12 +68,12 @@
                            
                           @if ($phar->is_active==1)
                         
-                          <td>   <button class="btn btn-success text-white" >مفعل</button></td>
+                          <td> <a href={{route('admin-edit_Customers', ['id' => $phar->id,'state'=>0]);}} >   <button class="btn btn-success text-white" >مفعل</button></a></td>
                            
                                 
-                            @else
+                            @else 
                           
-                              <td> <button class="btn btn-danger text-white" >موقف</button></td>
+                              <td><a href={{route('admin-activity', ['id' => $phar->id,'state'=>1]);}} > <button class="btn btn-danger text-white" >موقف</button></a></td>
                          
                             @endif
 

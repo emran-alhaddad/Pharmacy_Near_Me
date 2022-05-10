@@ -193,7 +193,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/_admin/show_Phars', [Admin\PharController::class, 'showPhars'])->name('admin-show_Phars');
         Route::get('/_admin/add_Phars', [Admin\PharController::class, 'addPhars'])->name('admin-add_Phars');
         Route::get('/_admin/edit_Phars', [Admin\PharController::class, 'editPhars'])->name('admin-edit_Phars');
-        Route::get('/_admin/activity/{id}/{stats}', [Admin\PharController::class, 'editPhars'])->name('admin-edit_Phars');
+        Route::get('/_admin/activity/{id}/{stats}', [Admin\PharController::class, 'activity'])->name('admin-activity');
+
 
 
         Route::get('/_admin/show_PaymentMethods', [Admin\PaymentMethodsCotroller::class, 'showPaymentMethods'])->name('admin-show_PaymentMethods');

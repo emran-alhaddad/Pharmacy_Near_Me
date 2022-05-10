@@ -12,6 +12,8 @@ use App\Http\Controllers\Register\RegisterController;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Pharmacy;
 use App\Models\User;
+use App\Models\Complaint;
+
 class PharController extends Controller
 {
     //
@@ -27,6 +29,7 @@ class PharController extends Controller
     } 
 
     public function addPhars(){
+      
         return view('admin.Phars.add_Phars');
     }
 
@@ -36,6 +39,7 @@ class PharController extends Controller
         DB::table('users')
         ->where('id', $id)
         ->update(['is_active'=>$state]);
+        
     }
     public function editPhars($id){
         
@@ -169,44 +173,44 @@ class PharController extends Controller
     }
 
     public function updateEmail(Request $request)
-{   
-    $request->validate(['email' => 'required|email'],[
+     {   
+       $request->validate(['email' => 'required|email'],[
         'email.required'=>'يجب ادخال الايميل ',
         'email.email'=>'يجب ادخال الايميل بشكل الصحيح '
      ]);   
-
-    if (DB::table('users')->where('email', $request->email)->exists())
-    {
+   
+      if (DB::table('users')->where('email', $request->email)->exists())
+      {
         return back()->with("الايميل موجود بالفعل");
-    }
-  $number=rand ( 10000 , 99999 );
+     }
+      $number=rand ( 10000 , 99999 );
   
-  $email_data = [
-    'name' => Auth::user()->name,
-    'activation_code' => $number
-];
-$Userid = 24;
-$affected = DB::table('users')
-   ->where('id', $Userid)
-   ->update([
+      $email_data = [
+     'name' => Auth::user()->name,
+     'activation_code' => $number
+       ];
+     $Userid = 24;
+         $affected = DB::table('users')
+       ->where('id', $Userid)
+       ->update([
              'remember_token' => $number]); 
-Mail::to($request->email)->send(new UpdateEmail($email_data));
-return 'لقد تم ارسال رمز التحقق الى البريد المدخل';
+       Mail::to($request->email)->send(new UpdateEmail($email_data));
+       return 'لقد تم ارسال رمز التحقق الى البريد المدخل';
 }
 public function checkUpdateEmail(Request $request)
-{
+  {
   // $id = Auth::id();
-  $id=24;
+   $id=24;
   if (DB::table('users')->where([['remember_token',$request['numberCode']], ['id', $id]] )->exists()) {
     $userDate = DB::table('users')
     ->where('users.id',$id)
     ->update(['email' =>$request['email']]);
    
-}
-else{
+  }
+  else{
   return back()->with('  رمز التحقق خطاء ');
-}    
-} 
+  }    
+  } 
 
    public function checkSocialMieda($request,$id)
    { 
