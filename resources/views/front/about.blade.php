@@ -5,7 +5,7 @@
 
 
     <!--====== HERO PART START ======-->
-	<section class="banner-area bg_cover" style="direction: rtl;">
+	<section class="banner-area bg_cover shadow" style="direction: rtl;">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6">
@@ -53,7 +53,7 @@
                             <!--/ End Nav Tab -->
                             <div class="tab-content" id="myTabContent">
                                 <!-- Tab 1 -->
-                                <div class="tab-pane fade show active" id="t-tab1" role="tabpanel">
+                                <div class="tab-pane fade show active shadow  p-3" id="t-tab1" role="tabpanel">
                                     <div class="tab-content">
                                         <p>أهلا بك معنا , عزيزي المستخدم بصفتك زائر لنا في الموقع بامكانك تصفح الصيدليات المشتركة لدينا في الموقع وتصفح الصفحات المتاحه , كما يمكنك اضافة اعلان أو التواصل معنا وللمزيد من الصلاحيات قم بالتسجيل الان و ابدأ بلا بل بلا</p>
                                         <ul>
@@ -65,7 +65,7 @@
                                 </div>
                                 <!--/ End Tab 1 -->
                                 <!-- Tab 2 -->
-                                <div class="tab-pane fade" id="t-tab2" role="tabpanel">
+                                <div class="tab-pane fade shadow  p-3" id="t-tab2" role="tabpanel">
                                     <div class="tab-content">
                                         <p>هل أنت صاحب صيدلية ؟! ماذا تنتظر انضم لنا وكن من الرواد في عملك بامكانك تحقيق ربح أكبر و بلا بلا بلا</p>
 
@@ -73,7 +73,7 @@
                                 </div>
                                 <!--/ End Tab 2 -->
                                 <!-- Tab 3 -->
-                                <div class="tab-pane fade" id="t-tab3" role="tabpanel">
+                                <div class="tab-pane fade shadow p-3" id="t-tab3" role="tabpanel">
                                     <div class="tab-content">
                                        <p>أهلا بك معنا , عزيزي المستخدم بصفتك زائر لنا في الموقع بامكانك تصفح الصيدليات المشتركة لدينا في الموقع وتصفح الصفحات المتاحه , كما يمكنك اضافة اعلان أو التواصل معنا وللمزيد من الصلاحيات قم بالتسجيل الان و ابدأ بلا بل بلا</p>
 
@@ -91,11 +91,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-lg-6 col-12">
+                <div class="col-lg-6 col-12 pt-5 mt-5 ">
                     <div class="about-right wow fadeInRight" data-wow-delay=".4s">
-                        <img src="assets/images/pharmacy/pharma.jpg" alt="#">
+                        <img src="{{ asset('Front/assets/images/about/علاجي-01-3.svg') }}" alt="#">
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
     </section>

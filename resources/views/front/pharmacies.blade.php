@@ -3,7 +3,7 @@
 
 @section('content')
     <!--====== BANNER PART START ======-->
-    <section class="banner-area bg_cover" style="direction: rtl;">
+    <section class="banner-area bg_cover shadow" style="direction: rtl;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
@@ -30,112 +30,54 @@
     <!--====== PHARMACIES PART START ======-->
     <section class="pharmacy-area mt-5" style="direction: rtl;">
         <div class="container">
-            <!-- <div class="pharmacy-top box-style">
-        <div class="row align-items-center">
-        </div>
-       </div> -->
-
             <!-- pharmacy wrapper -->
             <div class="pharmacy-wrapper">
                 <div class="row">
-
                     <!-- left-wrapper  -->
                     <div class="col-lg-8">
                         <div class="left-wrapper">
-
-
                             <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade" id="list" role="tabpanel" aria-labelledby="list-tab">
-
+                                <div class="tab-pane fade show active" id="grid" role="tabpanel" aria-labelledby="grid-tab">
                                     <div class="row">
-
                                         @foreach ($pharmacies as $pharmacy)
-                                            <div class="col-lg-12">
-                                                <div class="single-pharmacylist-view">
-                                                    <div class="pharmacy-img ">
+                                            <div class="col-lg-6 col-md-6 ">
+                                                <div class="single-pharmacy col-12 shadow p-3 bg-white radius">
+                                                    <div class="pharmacy-img p-2 col-12 ">
                                                         <a href="{{ route('detailes', $pharmacy->id) }}">
                                                             <img src="{{ asset('uploads/avaters/pharmacy/'.$pharmacy->avater)}}"
-                                                                alt="{{ $pharmacy->name }}">
+                                                                alt="{{ $pharmacy->name }}" class="radius col-12 ">
                                                         </a>
                                                     </div>
 
-                                                    <div class="pharmacy-content p-5">
-                                                        <h3 class="name p-5"><a href="{{ route('detailes', $pharmacy->id) }}">
-                                                                <i class="lni lni-user"></i> {{ $pharmacy->name }} </a>
-                                                        </h3>
-                                                        <ul class="address ">
+                                                    <div class="pharmacy-content ">
+                                                        <h3 class="name p-1 pr-4"><a href="{{ route('detailes', $pharmacy->id) }}">
+                                                                {{ $pharmacy->name }} </a></h3>
+                                                        <ul class="address p-2 pr-4">
                                                             <li>
                                                                 <a href="javascript:void(0)"><i
-                                                                        class="lni lni-map-marker"></i>{{ $pharmacy->Cname }}
-                                                                    -
-                                                                    {{ $pharmacy->Zname }}</a>
+                                                                            class="lni lni-map-marker"></i> {{ $pharmacy->Cname }}
+                                                                      -  {{ $pharmacy->Zname }}</a>
                                                             </li>
                                                         </ul>
-                                                        <div class="pharmacy-bottom">
-                                                            <a href="{{ route('add-order',$pharmacy->id) }}" class="main-btn col-12"><i
-                                                                    class="lni lni-checkmark-circle"></i> تقديم طلب</a>
+                                                        <div class="pharmacy-bottom m-1">
+                                                            <a href="{{ route('add-order',$pharmacy->id) }}" class="main-btn col-12 p-2 btn-hover shadow"> تقديم طلب
+
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         @endforeach
-
-
-                                    </div>
-
-                                </div>
-
-                                <div class="tab-pane fade show active" id="grid" role="tabpanel" aria-labelledby="grid-tab">
-
-                                    <div class="row">
-
-                            @foreach ($pharmacies as $pharmacy)
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="single-pharmacy">
-                                        <div class="pharmacy-img">
-                                                <a href="{{ route('detailes', $pharmacy->id) }}">
-                                                    <img src="{{ asset('uploads/avaters/pharmacy/'.$pharmacy->avater)}}"
-                                                        alt="{{ $pharmacy->name }}">
-                                                </a>
-                                        </div>
-
-                                        <div class="pharmacy-content">
-                                            <h3 class="name"><a href="{{ route('detailes', $pharmacy->id) }}">
-                                                    <i class="lni lni-user"></i>{{ $pharmacy->name }} </a></h3>
-                                            <ul class="address">
-                                                <li>
-                                                    <a href="javascript:void(0)"><i
-                                                                class="lni lni-map-marker"></i>{{ $pharmacy->Cname }}
-                                                            -
-                                                            {{ $pharmacy->Zname }}</a>
-                                                </li>
-                                            </ul>
-                                            <div class="pharmacy-bottom">
-                                                <a href="{{ route('add-order',$pharmacy->id) }}" class="main-btn col-12"><i
-                                                        class="lni lni-checkmark-circle"></i> تقديم طلب</a>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
-                            @endforeach
-                                    </div>
-
-                                </div>
-
-
-
                             </div>
-
-
-
                         </div>
                     </div>
-
                     <!-- sidebar wrapper  -->
                     <div class="col-lg-4">
                         <div class="sidebar-wrapper">
                          <!-- adds box -->
-                            <div class="box-style add-box">
+                            <div class="box-style add-box shadow">
                                 <h3 class="mb-30">اعلانات</h3>
                                 <div class="image">
                                     <a href="javascript:void(0)" class="d-block">
@@ -143,15 +85,8 @@
                                     </a>
                                 </div>
                             </div>
-                               <!-- Style Cards -->
-                            {{-- <div class=" col-md-12">
-                                <div class="right-wrapper">
 
-
-                                </div>
-                            </div> --}}
-
-                              <div class="box-style social-box">
+                              <div class="box-style social-box shadow">
                                 <h3 class="mb-30">عرض المزيد </h3>
 
                                 <ul class="">
@@ -191,21 +126,8 @@
                                     </div></ul>
                             </div>
 
-                            <!-- social box -->
-                            {{-- <div class="box-style social-box">
-                                <h3 class="mb-30">Follow Us</h3>
-
-                                <ul class="social">
-                                <li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="lni lni-twitter-filled"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="lni lni-instagram-filled"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="lni lni-linkedin-original"></i></a></li>
-                                </ul>
-                            </div> --}}
-
                         </div>
                     </div>
-
                 </div>
             </div>
 

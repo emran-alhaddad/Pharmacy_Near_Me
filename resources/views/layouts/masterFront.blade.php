@@ -7,20 +7,6 @@
     <!--====== Title ======-->
     <title>Pharmacy Near Me</title>
 
-
-    <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/fonts/boxicons.css')}}" />
-    <!-- Core CSS -->
-    <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/css/core.css')}}" class="template-customizer-core-css"/>
-    <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/css/theme-default.css')}}" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="{{ asset('pharmacy/assets/css/demo.css')}}" />
-    <script src="{{ asset('pharmacy/assets/js/config.js')}}"></script>
-
-
-
-
-
-
-
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -89,6 +75,14 @@
             color: var(--main-color);
             background-color: #ffffff;
         }
+        .tns-controls{
+            display: none;
+        }
+        @media  (max-width: 991px){
+            input::placeholder{
+            font-size: .7rem;
+        }
+      }
 
     </style>
 </head>
@@ -110,7 +104,7 @@
     <!--====== FOOTER PART ENDS ======-->
 
     <!--====== BACK TOP TOP PART START ======-->
-    <a href="#" class="back-to-top btn-hover"><i class="lni lni-chevron-up"></i></a>
+    <a href="#" class="back-to-top btn-hover shadow"><i class="lni lni-chevron-up"></i></a>
     <!--====== BACK TOP TOP PART ENDS ======-->
 
 
@@ -151,7 +145,7 @@
             container: ".feature-pharmacy-carousel",
             items: 1,
             center: false,
-            autoplayTimeout: 5000,
+            autoplayTimeout: 500,
             swipeAngle: false,
             speed: 400,
             responsive: {
@@ -180,7 +174,7 @@
             container: ".testimonial-carousel",
             items: 1,
             center: false,
-            autoplayTimeout: 5000,
+            autoplayTimeout: 500,
             swipeAngle: false,
             speed: 400,
             responsive: {
