@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Mail\UpdateEmail;
 use App\Models\User;
+use App\Models\Complaint;
 use App\Utils\ErrorMessages;
 use App\Utils\SuccessMessages;
 use App\Utils\UploadingUtils;
@@ -38,7 +39,11 @@ class ClientController extends Controller
     public function myorder()
     {
         $client = User::with('client')->where('id', Auth::id())->firstOrFail();
-        return view('user.myorder', ['user' => $client]);
+      
+        return view('user.myorder',[
+            'requests' => $requests,
+            'user' => $client
+        ]);
     }
 
     public function settings()
@@ -49,8 +54,17 @@ class ClientController extends Controller
 
     public function problems()
     {
-        $client = User::with('client')->where('id', Auth::id())->firstOrFail();
-        return view('user.problems', ['user' => $client]);
+        
+    $UserId = Auth::id();
+
+    $complaint = Complaint::with(['pharmacy.user'])
+      ->where('client_id', Auth::id())->orderByDesc('id')->get();
+    $client = User::with('client')->where('id', Auth::id())->firstOrFail();
+
+    return view('user.problems', [
+      'compliants' => $complaint,
+      'user' => $client
+    ]);
     }
 
     public function updateAvater(Request $request)

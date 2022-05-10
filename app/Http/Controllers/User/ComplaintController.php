@@ -15,27 +15,21 @@ class ComplaintController extends Controller
   //
   public function index()
   {
-    $UserId = Auth::id();
-
-    $complaint = Complaint::with(['pharmacy.user'])
-      ->where('client_id', Auth::id())->orderByDesc('id')->get();
     $client = User::with('client')->where('id', Auth::id())->firstOrFail();
 
-    return view('user.compliant.index', [
+    $complaint = Complaint::with(['pharmacy.user'])
+    ->where('client_id', Auth::id())->orderByDesc('id')->get();
+
+    $pharmacies = Pharmacy::with('user')->get();
+    return view('user.problems', [
+      'pharmacies' => $pharmacies,
       'compliants' => $complaint,
       'user' => $client
     ]);
+
   }
 
-  public function create()
-  {
-    $client = User::with('client')->where('id', Auth::id())->firstOrFail();
-    $pharmacies = Pharmacy::with('user')->get();
-    return view('user.compliant.add', [
-      'pharmacies' => $pharmacies,
-      'user' => $client
-    ]);
-  }
+
 
   public function store(Request $request)
   {

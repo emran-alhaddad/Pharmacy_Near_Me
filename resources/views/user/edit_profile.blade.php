@@ -51,7 +51,7 @@
                 id="uploadedAvatar"
             />
             <div class="button-wrapper">
-                <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+                <label for="upload" class=" btn btn-submit mb-4 .text-white " tabindex="0">
                 <span class="d-none d-sm-block ">تغيير صورة البروفايل </span>
        
                 <i class="bx bx-upload d-block d-sm-none"></i>
@@ -86,22 +86,18 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-     
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-    
+ 
 
 
       <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content p-3">
                 <div class="modal-header">
+                    
+      
                     <h4 class="modal-title fw-bold text-center col-10" id="exampleModalLabel">
                         تغيير كلمة المرور
                     </h4>
-                   
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
                 <div class="modal-body">
@@ -208,20 +204,18 @@
 
 
 <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-      <h4 class="modal-title fw-bold text-center col-10" id="exampleModalLabel">
-                        تبديل البريد الالكتروني
-                    </h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+
     
 
 
       <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content p-3">
-         
+            <div class="modal-header">
+      <h4 class="modal-title fw-bold text-center col-10" id="exampleModalLabel">
+                        تبديل البريد الالكتروني
+                    </h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
 
                 <div class="modal-body">
                     

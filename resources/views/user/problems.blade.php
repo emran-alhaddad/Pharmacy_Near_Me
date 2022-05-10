@@ -3,6 +3,16 @@
 @section('content')
 
 <div class="content-wrapper">
+@if (session('error'))
+            <div class="alert alert-danger" role="alert">
+                {{ session('error') }}
+            </div>
+        @endif
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
@@ -29,36 +39,62 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>1</strong></td>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>صيدلية الحياة</strong></td>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>22/2/2022</strong></td>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>تاخر في التسليم</strong></td>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>اضافة رد</strong></td>
-                         
-                           
+                        @foreach ($compliants as $compliant)
+                    @if ($compliant->is_active == 1)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $compliant->pharmacy->user->name }}</td>
+                            <td>{{ $compliant->created_at->diffForHumans() }}</td>
+                            <td>{{ $compliant->message }}</td>
+                            <td>
+                                <div class="row">
+                                   
+                                    <div class="col">
+                                        <a class="btn btn-outline-danger text-secondary"
+                                            href="{{ route('client-compliants-delete', $compliant->id) }}" role="button">
+                                            حــذف
+                                        </a>
+                                    </div>
+                                    
 
-                         
-                          <tr>
+                                </div>
+
+                            </td>
+                            
+                            @if ($compliant->replay)
+                            <td>
+                            <i class="fab fa-angular fa-lg text-danger me-3"></i> 
+        <button type="button" class="btn btn-submit " data-bs-toggle="modal" data-bs-target="#exampleModal2"
+        onclick="$('#replay_massage').text('{{ $compliant->replay }}');">
+
+
+   عرض الرد
+       </button></td>
+                                       @endif    
+                            
+       
+                        </tr>
+                    @endif
+                @endforeach
                           <td colspan="5">
                             <div class="d-flex justify-content-center">
                             
                            <!-- Button trigger modal -->
-<button type="button" class="btn btn-submit me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button type="button" class="btn btn-submit " data-bs-toggle="modal" data-bs-target="#exampleModal">
   اضافة شكوى
-</button>
-
+</tbody>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel"> اضافة شكوى</h5>
 
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+    
       <div class="modal-body">
-          <div class="modal-body">
+        
                     @error('error')
                         <div class="alert alert-danger" role="alert">
                             {{ $message }}
@@ -71,29 +107,10 @@
                         </div>
                     @enderror
 
-                    <form action="{{ route('client-password-update') }}" method="POST" class="g-3">
+                    <form action="{{ route('client-compliants-store') }}" method="POST" class="g-3">
                         @csrf
-                        @method('put')
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">  المشتكى</h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
-                                            class="bi bi-person-plus-fill text-white"></i></span>
-                                    <input value="{{ old('password') }}" type="password"
-                                      name="password"
-                                        class="form-control rounded @error('password') border-danger @enderror">
-                                    @error('password')
-                                        <div class="invalid-feedback d-block">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
+                        
+                      
 
                         <div class="row">
                             <div class="col-sm-3">
@@ -103,13 +120,14 @@
                                 <div class="input-group mb-3">
                                     <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
                                             class="bi bi-person-plus-fill text-white"></i></span>
-                                    <input type="password"  name="new_password"
-                                        class="form-control rounded @error('new_password') border-danger @enderror">
-                                    @error('new_password')
-                                        <div class="invalid-feedback d-block">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
+                                            <div class="dropdown col-12">
+                                    <select name="pharmacy_id"  class=" rounded form-control">
+                                    @foreach ($pharmacies as $pharmacy)
+                                        <option value="{{ $pharmacy->user_id }}">{{ $pharmacy->user->name  }}</option>
+                                    @endforeach
+                                        
+                                    </select>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -117,21 +135,21 @@
 
                         <div class="row">
                             <div class="col-sm-3">
-                                <h6 class="mb-0">تاريخ الشكوى   </h6>
+                                <h6 class="mb-0">نص الشكوى   </h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
-                                            class="bi bi-person-plus-fill text-white"></i></span>
-                                    <input type="password" 
-                                        name="new_password_confirmed"
-                                        class="form-control rounded @error('new_password_confirmed') border-danger @enderror">
-                                    @error('new_password_confirmed')
-                                        <div class="invalid-feedback d-block">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
+                            <div class="input-group mb-3 rounded">
+                            <textarea value="{{ old('message') }}" name="message" 
+                            class="form-control rounded @error('name') border-danger @enderror">
+                            
+                            </textarea>
+                            @error('message')
+                                    <div class="invalid-feedback d-block">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                                
+                            </div>
                             </div>
                         </div>
                         <hr>
@@ -139,6 +157,39 @@
                         <div class="row">
                             <button class="btn-submit radius text-center p-2 col-12 mt-2" type="submit">
                                 اضافة
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">  عرض الرد</h5>
+
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         <div class="row"><p id="replay_massage">
+
+
+         </p></div>
+          
+
+                   
+
+                        <div class="row">
+                            <button class="btn-submit radius text-center p-2 col-12 mt-2" type="submit">
+                                تم
                             </button>
                         </div>
                     </form>
