@@ -11,6 +11,16 @@
                                     <h3>اضافة عميل</h3>
                                 </div>
                                 <div class="card-content">
+                                @if (session('error'))
+                                    <div class="alert alert-danger" role="alert">
+                                        {!! session('error') !!}
+                                    </div>
+                                @endif
+                                @if (session('status'))
+                                    <div class="alert alert-success" role="alert">
+                                        {!! session('status') !!}
+                                    </div>
+                                @endif
                         <form>
 
                         <div class="row g-3">
@@ -86,7 +96,7 @@
 
                                 </div>
 
-                                <button  id="edit_button"  type="submit" class="btn btn-primary">اضافة</button>
+                                <button  id="submit_button"  type="submit" class="btn btn-primary">اضافة</button>
                         </form>
 
             </div>
@@ -101,20 +111,27 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">اضافة بريد الكتروني جديد </h5>
+                                            <h5 class="modal-title ps-5 ms-5">اضافة بريد الكتروني جديد </h5>
+                                            <button type="button" class="btn-close pe-5 me-5" data-bs-dismiss="modal" aria-label="Close"></button>
+
                                             </div>
                                             <div class="modal-body">
                                             <div class="mb-3 col-12">
-                                                <label for="exampleFormControlInput1" class="form-label"> البريد الالكتروني</label>
-                                                <input type="email" class="form-control" id="exampleFormControlInput1">
+                                            <label for="exampleFormControlInput1" class="form-label"> البريد الالكتروني</label>
+                                            <div class="input-group mb-3">
+                                            <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                            <button class="btn btn-primary" type="button" id="button-addon1">ارسال</button>
+
                                             </div>
+                                            </div>
+
                                             <div class="mb-3 col-12">
                                                 <label for="exampleFormControlInput1" class="form-label">  ادخل رقم التأكيد</label>
                                                 <input type="text" class="form-control" id="exampleFormControlInput1">
                                             </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary">اضافة الايميل</button>
+                                                <button type="button" class="btn btn-primary" id="submit_button">اضافة الايميل</button>
                                             </div>
                                             </div>
                                         </div>
@@ -125,11 +142,12 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">اضافة كلمة مرور  جديدة </h5>
+                                            <h5 class="modal-title ps-5 ms-5">اضافة كلمة المرور </h5>
+                                            <button type="button" class="btn-close pe-5 me-5" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
                                             <div class="mb-3 col-12">
-                                                <label for="exampleFormControlInput1" class="form-label">  كلمة المرور الجديدة</label>
+                                                <label for="exampleFormControlInput1" class="form-label">  كلمة المرور </label>
                                                 <input type="text" class="form-control" id="exampleFormControlInput1">
                                             </div>
                                             <div class="mb-3 col-12">
@@ -138,7 +156,7 @@
                                             </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary">اضافة</button>
+                                                <button type="button" class="btn btn-primary" id="submit_button">اضافة</button>
                                             </div>
                                             </div>
                                         </div>

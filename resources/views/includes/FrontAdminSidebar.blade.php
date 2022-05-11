@@ -13,7 +13,7 @@
         <li class="sidebar-nav-item "><a href="/_admin/show_WebSiteSetting"
 				class="sidebar-nav-link">
 					<div>
-						<i class="fab fa-setting"></i>
+                    <i class="fas fa-gear"></i>
 					</div> <span >ادارة الموقع</span>
 			</a></li>
 			<li class="sidebar-nav-item "><a href="/_admin/show_Phars"

@@ -51,9 +51,8 @@
                             </td>
 
                             <td>
-                            <a href="/_admin/edit_Phars">  <button class="btn badge bg-primary">تعديل</button></a>
-                            <button class="btn badge bg-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button>
-                                <!-- <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button> -->
+                            <a href="/_admin/edit_Phars"> <button class="btn " ><i class="fas fa-pen" id="edit"></i></button></a>
+                            <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" id="delete"><i class="fas fa-trash"></i></button>
 
 
                                 <div class="modal"  id="exampleModal"  tabindex="-1">

@@ -27,13 +27,14 @@
                             <td>ابولو</td>
                             <td>تعز</td>
                             <td>
-                                <button class="btn btn-success text-white" >مفعل</button>
+                                <button class="btn badge btn-success text-white" >مفعل</button>
 
                             </td>
 
                             <td>
-                            <a href="/_admin/edit_Zones">  <button class="btn btn-primary text-white" >تعديل</button></a>
-                                <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button>
+                            <a href="/_admin/edit_Zones">  <button class="btn " ><i class="fas fa-pen" id="edit"></i></button></a>
+                            <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" id="delete"><i class="fas fa-trash"></i></button>
+
                                     <div class="modal"  id="exampleModal"  tabindex="-1">
                                         <div class="modal-dialog">
                                             <div class="modal-content">

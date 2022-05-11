@@ -11,6 +11,16 @@
                 <h3>اضافة صيدلية</h3>
             </div>
             <div class="card-content px-5">
+            @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {!! session('error') !!}
+                </div>
+            @endif
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {!! session('status') !!}
+                </div>
+            @endif
     <form>
 
 
@@ -128,7 +138,7 @@
         </div>
 
 
-            <button  id="edit_button"  type="submit" class="btn btn-primary">اضافة</button>
+            <button  id="submit_button"  type="submit" class="btn btn-primary">اضافة</button>
     </form>
 
             </div>
