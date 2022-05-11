@@ -102,6 +102,7 @@ class ClientController extends Controller
     // Update Client Data
     public function  update(Request $request)
     {
+
         $this->validateClient($request);
         $id = Auth::id();
         $userData = DB::table('users')
