@@ -77,7 +77,7 @@
                                 height="100"
                                 width="100"
                                 id="uploadedAvatar"/>
-                            <!-- <div class="button-wrapper">
+                            <div class="button-wrapper">
                                 <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
                                 <span class="d-none d-sm-block">تعديل صورة الملف الشخصي</span>
                                 <i class="bx bx-upload d-block d-sm-none"></i>
@@ -90,7 +90,7 @@
                                     name="image"
                                 />
                                 </label>
-                            </div> -->
+                            </div>
                             </div>
                             </div>
                             </div>
