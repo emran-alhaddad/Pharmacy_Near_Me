@@ -155,9 +155,6 @@ Route::group(['middleware' => 'auth'], function () {
         // Admin Dashboard
         Route::get('/_admin/', [Admin\AdminController::class, 'index'])->name('admin-dashboard');
 
-        Route::get('/_admin/', [Admin\AdminController::class, 'index'])->name('admin-dashboard');
-
-
         Route::get('/_admin/profile', [Admin\AdminController::class, 'showProfile'])->name('admin-profile');
         Route::get('/_admin/edit_profile', [Admin\AdminController::class, 'editProfile'])->name('admin-edit_profile');
         Route::get('/_admin/zones', [Admin\AdminController::class, 'showZones'])->name('admin-zones');

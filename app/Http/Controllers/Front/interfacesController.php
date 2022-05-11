@@ -7,6 +7,7 @@ use App\Http\Controllers\QueryController;
 use App\Models\City;
 use App\Models\zone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class interfacesController extends Controller
 {
@@ -81,6 +82,7 @@ class interfacesController extends Controller
 
     public function add_order($id)
     {
+        if (!Auth::check()) return back()->with('error','يجب عليك تسجيل الدخول أولا'); 
         $pharmacy = QueryController::pharmacies()->where('users.id',$id)->first();
         return view('front.add_order', [
             'pharmacy' => $pharmacy,

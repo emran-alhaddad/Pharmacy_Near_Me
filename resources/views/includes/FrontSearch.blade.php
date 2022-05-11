@@ -3,7 +3,7 @@
     <div class="container">
         <div class="search-wrapper shadow">
             <form action="{{ route('search-pharmacies') }}" method="POST">
-            @csrf
+                @csrf
                 <div class="row justify-content-center ">
 
 
@@ -51,5 +51,17 @@
             </form>
         </div>
     </div>
+</div>
+<div class="container-md mt-3">
+@if (session('error'))
+    <div class="alert alert-danger" style="direction: rtl;" role="alert">
+        {{ session('error') }}
+    </div>
+@endif
+@if (session('status'))
+    <div class="alert alert-success" style="direction: rtl;" role="alert">
+        {{ session('status') }}
+    </div>
+@endif
 </div>
 <!--====== SEARCH PART END ======-->
