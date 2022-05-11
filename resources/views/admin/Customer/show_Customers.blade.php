@@ -4,7 +4,7 @@
 
 <div class="wrapper bg-white">
     <div class="row  ">
-        <div class="col-8 ">
+        <div class="col-12 ">
         <div class="card bg-white m-5">
 
             <div class="card-header d-flex justify-content-between">
@@ -12,6 +12,19 @@
                 <h3>العملاء</h3>
             </div>
             <div class="card-content">
+                @foreach ($errors->all() as $error)
+                <div class="alert alert-danger" role="alert">{{ $error }}</div>
+              @endforeach
+                @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{session('error') }}
+                </div>
+            @endif
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
                 <table class="table">
                     <thead>
                         <tr>
@@ -22,41 +35,41 @@
                             <th>العمليات</th>
                         </tr>
                     </thead>
-                    
-             
+
+
                     <tbody>
                         @foreach ($customers as $customer)
-                           
+
                          <tr>
-                         
-                        
+
+
                             <td>{{ $customer->name }}</td>
                          <td>{{  $customer->address }}</td>
                          <td>{{  $customer->phone}}</td>
-                        
+
 
                           @if ($customer->is_active==1)
-                        
-                        <td>   <button class="btn btn-success text-white" >مفعل</button></td>
-                         
-                              
-                          @else
-                        
-                            <td> <button class="btn btn-danger text-white" >موقف</button></td>
-                       
-                          @endif
-                            
-                               
 
-                            
+                        <td>  <a href={{route('admin-activity', ['id' => $customer->id , 'stats'=>0])}}>   <button class="btn btn-success text-white" >مفعل</button></a></td>
+
+
+                          @else
+
+                            <td>  <a href={{route('admin-activity', ['id' => $customer->id ,'stats'=>1])}}> <button class="btn btn-danger text-white" >موقف</button></a></td>
+
+                          @endif
+
+
+
+
 
                             <td>
                             <a href={{route('admin-edit_Customers', ['id' => $customer->id]);}} >  <button class="btn btn-primary text-white" >تعديل</button></a>
-                                <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button>
-                           
+                             <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button>
+
                             </td>
-                        
-                               
+
+
                                     <div class="modal"  id="exampleModal"  tabindex="-1">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -68,18 +81,18 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">لا</button>
-                                                <button type="button" class="btn btn-primary">نعم</button>
+                                                <a href={{route('admin-activity', ['id' => $customer->id,'stats'=>0])}}  >    <button type="button" class="btn btn-primary">نعم</button></a>
                                             </div>
                                             </div>
                                         </div>
                                     </div>
 
-                           
+
 
 
                         </tr>
-                        @endforeach    
-                        
+                        @endforeach
+
                     </tbody>
 
 

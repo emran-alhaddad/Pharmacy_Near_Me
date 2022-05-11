@@ -4,7 +4,7 @@
 
 <div class="wrapper bg-white">
     <div class="row  ">
-        <div class="col-8 col-m-8 col-sm-8">
+        <div class="col-12 col-m-12 col-sm-12">
         <div class="card bg-white m-5">
 
             <div class="card-header d-flex justify-content-between">

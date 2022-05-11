@@ -4,7 +4,7 @@
 
 <div class="wrapper bg-white">
     <div class="row  ">
-        <div class="col-6 col-m-12 col-sm-12">
+        <div class="col-12 col-m-12 col-sm-12">
         <div class="card bg-white m-5">
 
             <div class="card-header d-flex justify-content-between">
@@ -12,6 +12,16 @@
                 <h3>المدن</h3>
             </div>
             <div class="card-content">
+                @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{session('error') }}
+                </div>
+            @endif
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
                 <table class="table">
                     <thead>
                         <tr>
@@ -22,15 +32,23 @@
                     </thead>
 
                     <tbody>
+                        @foreach ($cities as $city)
+                        
                         <tr>
-                            <td>ابولو</td>
-                            <td>
-                                <button class="btn btn-success text-white" >مفعل</button>
+                        <td>{{$city->name}}</td> 
+                        @if ($city->is_active==1)
 
-                            </td>
+                        <td>  <a href={{route('admin-activity_Cities', ['id' => $city->id , 'state'=>0])}}>   <button class="btn btn-success text-white" >مفعل</button></a></td>
+
+
+                          @else
+
+                            <td>  <a href={{route('admin-activity_Cities', ['id' => $city->id ,'state'=>1])}}> <button class="btn btn-danger text-white" >موقف</button></a></td>
+
+                          @endif
 
                             <td>
-                            <a href="/_admin/edit_Cities">  <button class="btn btn-primary text-white" >تعديل</button></a>
+                                <a href={{route('admin-edit_Cities', ['id' => $city->id]);}} >  <button class="btn btn-primary text-white" >تعديل</button></a>
                                 <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button>
                                     <div class="modal"  id="exampleModal"  tabindex="-1">
                                         <div class="modal-dialog">
@@ -53,6 +71,7 @@
 
 
                         </tr>
+                        @endforeach
 
                     </tbody>
 

@@ -12,6 +12,17 @@
                 <h3>الاعلانات</h3>
             </div>
             <div class="card-content">
+                @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{session('error') }}
+                </div>
+            @endif
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
+
                 <table class="table">
                     <thead>
                         <tr>
@@ -27,23 +38,33 @@
                     </thead>
 
                     <tbody>
+                        @foreach ($ads as $ad)
                         <tr>
-                            <td>ابولو</td>
-                            <td> https://haneen.com</td>
-                            <td>23/4/2022</td>
-                            <td>23/4/2023</td>
-                            <td>يسار</td>
+                        <td>{{$ad->name}}</td>
+                        <td>{{$ad->url}}</td>
+                        <td>{{$ad->startAt}}</td>
+                        <td>{{$ad->endAt}}</td>
+                        <td>{{$ad->position}}</td>
                             <td>  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
                                     class="rounded-circle img-fluid" style="width: 50px;"></td>
-                            <td>
-                                <button class="btn btn-success text-white" >مفعل</button>
+                        
 
-                            </td>
+                                    @if ($ad->is_active==1)
+
+                                    <td>  <a href={{route('admin-ads_activity', ['id' => $ad->id , 'stats'=>0])}}>   <button class="btn btn-success text-white" >مفعل</button></a></td>
+            
+            
+                                      @else
+            
+                                        <td>  <a href={{route('admin-ads_activity', ['id' => $ad->id ,'stats'=>1])}}> <button class="btn btn-danger text-white" >موقف</button></a></td>
+            
+                                      @endif
+                    
 
                             <td>
-                            <a href="/_admin/edit_ads">  <button class="btn btn-primary text-white" >تعديل</button></a>
-                                <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button>
-                                    <div class="modal"  id="exampleModal"  tabindex="-1">
+                                <a href={{route('admin-edit_ads', ['id' => $ad->id]);}} >   <button class="btn btn-primary text-white" >تعديل</button></a>
+                            <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal{{$ad->id}}">حذف</button>
+                                    <div class="modal"  id="exampleModal{{$ad->id}}"  tabindex="-1">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                             <div class="modal-header">
@@ -54,7 +75,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">لا</button>
-                                                <button type="button" class="btn btn-primary">نعم</button>
+                                                <a href={{route('admin-ads_activity', ['id' => $ad->id,'stats'=>0])}}  >        <button type="button" class="btn btn-primary">نعم</button></a>
                                             </div>
                                             </div>
                                         </div>
@@ -64,7 +85,7 @@
 
 
                         </tr>
-
+                @endforeach
                     </tbody>
 
                 </table>

@@ -5,14 +5,17 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Utils\SystemUtils; 
+use App\Utils\SystemUtils;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\Register\RegisterController;
+// use App\Http\Controllers\Register\RegisterController;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Pharmacy;
 use App\Models\User;
 use App\Models\Complaint;
+use App\Http\Controllers\Admin\CitiesController;
+use App\Http\Controllers\Auth\Register\RegisterController;
+use App\Http\Controllers\Admin\ZonesController;
 
 class PharController extends Controller
 {
@@ -24,7 +27,7 @@ class PharController extends Controller
         ->join('cities', 'cities.id', '=', 'zones.city_id')
         ->select('users.*', 'zones.name AS Zname','pharmacies.*' ,'cities.name AS Cname')
         ->get();
-         //dd( $phar);
+         
         return view('admin.Phars.show_Phars')->with('phars',$phar);
     } 
 
@@ -36,37 +39,42 @@ class PharController extends Controller
 
     public function activity($id,$state)
     {
-        DB::table('users')
+        $affected=DB::table('users')
         ->where('id', $id)
         ->update(['is_active'=>$state]);
+        if($affected && $state==0)
+        return back()->with('status','تم تعطيل حساب الصيدلية');
+        else 
+        return back()->with('status','تم تفعيل حساب الصيدلية');
+        return back()->with('error','حدث  خطاء اثناء تعطيل حساب الصيدلية');
         
     }
     public function editPhars($id){
-        
+
         $phar = DB::table('pharmacies')
         ->join('users', 'users.id', '=', 'pharmacies.user_id')
         ->join('zones', 'zones.id', '=', 'pharmacies.zone_id')
         ->join('cities', 'cities.id', '=', 'zones.city_id')
-        ->select('users.*', 'zones.name AS Zname','pharmacies.license', 'cities.name AS Cname')
+        ->select('users.*', 'zones.id AS Zid','pharmacies.*', 'cities.id AS Cid')
         ->where('pharmacies.user_id',$id)
-        ->get();
-        dd( $phar); 
-     
+        ->first();
 
-        return view('admin.Phars.edit_Phars');
+
+
+        return view('admin.Phars.edit_Phars')->with(['phar'=>$phar,'city'=>CitiesController::getCity(),'zone'=>ZonesController::getZone()]);
 
     }
-  
+
     public function delete($id)
     {
         $deleted = DB::table('pharmacies')->where('pharmacies.user_id',$id)->delete();
         DB::table('users')->where('id',$id)->delete();
         if($deleted>0)
         {
-            return back()->with('secuss','تم حذف الصيدلية ');
+            return back()->with('status','تم حذف الصيدلية ');
         }
-        return back()->with('secuss',' لم يتم حذف الصيدلية ');
-        
+        return back()->with('error',' لم يتم حذف الصيدلية ');
+
     }
     // public function Doupdate(Request $request,$id)
     // {
@@ -82,64 +90,67 @@ class PharController extends Controller
     //           'license' => $request->license,
     //           // 'address' =>$request->address,
     //           ]
-    //           );      
+    //           );
 
     // }
 
 
     public function doUpdata(Request $request,$id)
-    {  
+    {
+
+     
         $request->validate(['name' => 'required|min:3'],[
-    
+
             'name.required'=>'يجب ادخال اسم الصيدلية '
          ]);
+         
          $this->checkPhone($request,$id);
          User::where('id', '=', $id)->update(['name' =>$request->name]);
         $this->checkSocialMieda($request,$id);
         if($request->filled('address'))
-        {   
+        {
         $this->checkAddress($request,$id);
         }
+         return back()->with('status','تم تعديل الصيدلية بنجاح');
 
-      
     }
     public function doUpdataImage(Request $request)
-    {   
-       
+    {
+
         $userAvater= SystemUtils::updateAvatar($request);
-        
+
         User::where('id', '=', 1)->update(['avater' => $userAvater]);
-       
+
     }
 
     public function doUpdataLicense(Request $request)
-    {   
-       
+    {
+
         $pharLicense= SystemUtils::insertLicense($request);
-        
+
         Pharmacy::where('id', '=', 1)->update(['license' => $pharLicense]);
-       
+
     }
 
     public function updatePassword(Request $requset)
     {
-      
+
         // $requset->validate(['password' => 'required|min:9'],[
         //     'password.required'=>'يجب ادخال  كلمة السر  ',
         //     'password.min'=>'يجب ادخال كلمة السر طولها   '
-        //  ]); 
+        //  ]);
 
-        
+
         if(Hash::check($requset['password'],Auth::user()->password))
-         {  
-            
-           
-        
-        $userDate = DB::table('users') 
+         {
+
+
+
+        $userDate = DB::table('users')
         ->where('id',1)
         ->update(['password' =>Hash::make($requset['new-password'])]);
         return (Hash::make($requset['new-password']));
-       
+
       }
       else{
         return '  كلمة السر خطا  ';
@@ -149,27 +160,40 @@ class PharController extends Controller
 
     public function create(Request $request)
     {
-        
-        $user=new RegisterController();
-        $user=$user->createUser($request->all());
+
+         $user=new RegisterController();
+        // $user=$user->createUser($request->all());
+        // $this->validateFields($request);
+        // $user = new User();
+        // $user->name = $request->name;
+        // $user->email = $request->email;
+        // $user->password = Hash::make($request->password);
+        // $user=new RegisterController();
+         $user=$user->createUser($request->all());
         $this->checkSocialMieda($request,$user->id);
-        
+
         if($request->has('zone'))
          {
             Pharmacy::where('user_id', '=', $user->id)->update(array('zone_id' => $request->zone));
          }
-        
+
         if($request->hasFile('license')){
-         
+
             $name=SystemUtils::insertLicense($request);
-            
+
             Pharmacy::where('user_id', '=', $user->id)->update(array('license' =>$name ));
 
          }
          if($request->filled('address'))
-        {   
+        {
             $this->checkAddress($request,$user->id);
         }
+
+        if($request->filled('description'))
+        {
+            $this->checkDescription($request,$user->id);
+        }
+        return back()->with('status','تم انشاء الصيدلية بنجاح');
     }
 
     public function updateEmail(Request $request)
@@ -213,23 +237,23 @@ public function checkUpdateEmail(Request $request)
   } 
 
    public function checkSocialMieda($request,$id)
-   { 
+   {
 
     if($request->filled('facebook'))
     {    $this->validationFacebook($request,$id);
-  
-   } 
+
+   }
 
    if($request->filled('twitter'))
-   {   
-      
+   {
+
     $this->validationTwitter($request,$id);
    }
    if($request->filled('google'))
-   {   
+   {
        $this->validationGoogle($request,$id);
-   }  
-   
+   }
+
 }
   public function validationFacebook($request,$id)
   {
@@ -266,19 +290,31 @@ Pharmacy::where('user_id', '=', $id)->update(array('google' => $request->google)
 
   }
  public function checkAddress($request,$id)
- {
+ { if($request->filled('address')){
   $request->validate(['address' => 'min:4'],[
     'address.min'=>'يجب ان يكون  العنوان اربع احرف او اكثر'
  ]);
  Pharmacy::where('user_id', '=', $id)->update(array('address' => $request->address));
-} 
+  }
+}
 public function checkPhone($request,$id)
-{
+{ if($request->filled('phone')){
  $request->validate(['phone' => 'numeric|min:9'],[
    'phone.min'=>'يجب ان يكون رقم الهاتف 9',
    'phone.numeric'=>'يجب ان يكون رقم الهاتف  ارقام'
 ]);
 User::where('id', '=', $id)->update(array('phone' => $request->phone));
-} 
-  
+}
+}
+  public function checkDescription()
+  {
+    if($request->filled('description')){
+      $request->validate(['description' => 'min:10'],[
+        'description.min'=>'يجب ان يكون رقم الهاتف 9',
+        'description.numeric'=>'يجب ان يكون رقم الهاتف  ارقام'
+     ]);
+     User::where('id', '=', $id)->update(array('description' => $request->description));
+     }
+  }
+
 }

@@ -13,19 +13,23 @@ class ComplaintsController extends Controller
 
     public function showComplaints(){
         $complaint = Complaint::with(['pharmacy.user','client.user'])->get();
-        return  $complaint;
+      //  return  $complaint;
 
-        // return view('admin.Complaints.show_Complaints');
+         return view('admin.Complaints.show_Complaints')->with('coms',$complaint);
     }
+    // public function createComplaints(Request $request)
+    // {
 
-    public function addComplaints(){
-        return view('admin.Complaints.add_Complaints');
+    // }
+    public function addComplaints($id){
+        return view('admin.Complaints.add_Complaints')->with('id',$id);;
     }
     public function relpay(Request $request,$id){
-        $affectedRows = User::where('id', $id)->update(array('replay' => $request->relpay));
+      
+        $affectedRows = Complaint::where('id', $id)->update(array('replay' => $request->replay));
         if($affectedRows>0)
         {
-            return back()->with('secuss','تم الرد على المستخدم');
+            return back()->with('status','تم الرد على المستخدم');
         }
         return back()->with('error',' لم تم الرد على المستخدم  ');
         
@@ -34,7 +38,7 @@ class ComplaintsController extends Controller
     }
 
     public function editComplaints(){
-        return view('admin.Complaints.edit_Complaints');
+        return view('admin.Complaints.edit_Complaints')->with($id);;
     }
     
     

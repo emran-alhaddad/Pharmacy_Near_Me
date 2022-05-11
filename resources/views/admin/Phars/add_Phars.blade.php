@@ -11,19 +11,37 @@
                 <h3>اضافة صيدلية</h3>
             </div>
             <div class="card-content px-5">
-    <form>
+                @foreach ($errors->all() as $error)
+                <div class="alert alert-danger" role="alert">{{ $error }}</div>
+              @endforeach
+                @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{session('error') }}
+                </div>
+            @endif
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
+
+                @foreach ($errors->all() as $error)
+                <div class="alert alert-danger" role="alert">{{ $error }}</div>
+              @endforeach
+    <form   method="POST" action={{route('_admin-phar_create')}}>
 
 
         <div class="row g-3">
             <div class="mb-3 col-8">
                     <label for="exampleInputName" class="form-label">اسم الصيدلية</label>
-                    <input type="text" class="form-control" id="exampleInputName">
+                    <input type="text" class="form-control" id="exampleInputName" name="name">
+                    <input type="hidden" name="user_type" value="pharmacy">
             </div>
 
 
             <div class="mb-3 col-4">
             <label for="formFile" class="form-label">صورة الصيدلية</label>
-            <input class="form-control" type="file" id="formFile">
+            <input class="form-control" type="file" id="formFile" name="image">
 
         </div>
 
@@ -34,7 +52,7 @@
 
             <div class="mb-3 col-3 col-4">
                 <label for="exampleInputLink" class="form-label">المدينة</label>
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" name="cities">
                         <option selected> تعز </option>
                         <option value="1">عدن</option>
                         <option value="2">صنعاء</option>
@@ -44,7 +62,7 @@
 
             <div class="mb-3 col-4">
                 <label for="exampleInputLink" class="form-label">المنطقة السكنية</label>
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" name="zones">
                         <option selected> الروضة </option>
                         <option value="1">المسبح</option>
                         <option value="2">بيرباشا</option>
@@ -53,7 +71,7 @@
             </div>
             <div class="mb-3 col-4">
                     <label for="exampleInputLink" class="form-label">رقم المرور</label>
-                    <input type="password" class="form-control" id="exampleInputName">
+                    <input type="password" class="form-control" id="exampleInputName" name="password">
             </div>
 
         </div>
@@ -63,14 +81,14 @@
 
             <div class="mb-3 col-8">
                     <label for="exampleInputLink" class="form-label">العنوان</label>
-                    <input type="text" class="form-control" id="exampleInputName">
+                    <input type="text" class="form-control" id="exampleInputName" name="address">
             </div>
 
 
 
         <div class="mb-3 col-4">
             <label for="formFile" class="form-label">صورة الرخصة</label>
-            <input class="form-control" type="file" id="formFile">
+            <input class="form-control" type="file" id="formFile" name="license">
 
         </div>
 
@@ -86,7 +104,7 @@
 
         <div class="mb-3 col-4">
             <label for="formFile" class="form-label">  اوقات الدوام</label>
-            <input class="form-control " type="text" id="formFile" >
+            <input class="form-control " type="time" id="formFile" >
 
         </div>
         </div>
@@ -95,16 +113,16 @@
         <div class="row g-3">
             <div class="mb-3 col-4">
                     <label for="exampleFormControlInput1" class="form-label"> البريد الالكتروني</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1">
+                    <input type="email" class="form-control" id="exampleFormControlInput1" name="email">
                 </div>
                 <div class="mb-3 col-4">
                     <label for="exampleFormControlInput1" class="form-label">  رقم الهاتف</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" >
+                    <input type="text" class="form-control" id="exampleFormControlInput1" name="mopile" >
                 </div>
 
                     <div class="mb-3 col-4">
                     <label for="exampleFormControlInput1" class="form-label">الموقع الالكتروني</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" >
+                    <input type="text" class="form-control" id="exampleFormControlInput1" name="url" >
                 </div>
 
 

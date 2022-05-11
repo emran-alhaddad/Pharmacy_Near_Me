@@ -12,5 +12,6 @@ class City extends Model
     public function zones()
     {
         return $this->hasMany(zone::class,'city_id');
+        
     }
 }

@@ -4,33 +4,63 @@
 
 <div class="wrapper bg-white">
     <div class="row  ">
-        <div class="col-8 col-m-8 col-sm-8">
+        <div class="col-12 col-m-12 col-sm-12">
 <div class="card bg-white m-5">
 
                                 <div class="card-header d-flex justify-content-between">
                                     <h3>اضافة عميل</h3>
-                                    @foreach ($errors->all() as $error)
-                                    <div>{{ $error }}</div>
-                                @endforeach
+                               
                                 </div>
                                 <div class="card-content">
+                                    @foreach ($errors->all() as $error)
+                                    <div class="alert alert-danger" role="alert">{{ $error }}</div>
+                                  @endforeach
+                                    @if (session('error'))
+                                    <div class="alert alert-danger" role="alert">
+                                        {{session('error') }}
+                                    </div>
+                                @endif
+                                @if (session('status'))
+                                    <div class="alert alert-success" role="alert">
+                                        {{ session('status') }}
+                                    </div>
+                                @endif
                         <form action={{route('_admin-create-customer')}} method="POST" >
                             @csrf
-                        <div class="mb-3">
+                       
+                        
+                        <div class="row g-3">
+
+                        <div class="mb-3 col-6">
                                         <label for="exampleInputName" class="form-label">صورة العميل</label>
                                         <input type="file" name="avater"  class="form-control" id="exampleInputName">
+                                        <input type="hidden" name="user_type" value="client">
                         </div>
 
-
-                        <div class="row g-3">
-                            <div class="mb-3 col-6">
+                        <div class="mb-3 col-6">
                                         <label for="exampleInputName" class="form-label">اسم العميل</label>
                                         <input type="text" name='name' class="form-control" id="exampleInputName">
                                     </div>
 
+                        </div>
+
+
+
+                        <div class="row g-3">
+
+
                                 <div class="mb-3 col-6">
-                                    <label for="exampleInputLink" class="form-label">تتاريخ الميلاد</label>
-                                    <input type="date" name='dob' class="form-control" id="exampleInputName">
+                                    <label for="exampleInputLink" class="form-label">تاريخ الميلاد</label>
+                                    <input type="date" class="form-control" id="exampleInputName">
+                                </div>
+
+
+                                <div class="mb-3 col-6">
+                                    <label for="exampleInputLink" class="form-label"> الجنس</label>
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected> ذكر </option>
+                                            <option value="1">انثى</option>
+                                        </select>
                                 </div>
 
                         </div>
@@ -56,6 +86,10 @@
                                     <label for="exampleInputLink" class="form-label">العنوان</label>
                                     <input type="text" name="address"  class="form-control" id="exampleInputName">
                                 </div>
+
+                        </div>
+
+
 
                                 <div class="row g-3">
 

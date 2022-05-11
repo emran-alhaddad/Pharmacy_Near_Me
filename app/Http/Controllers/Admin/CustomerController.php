@@ -8,8 +8,13 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Client;
 use App\Models\User;
+use App\Mail\UpdateEmail;
+
 use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\Register\RegisterController;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
+
+use App\Http\Controllers\Auth\Register\RegisterController;
 use Illuminate\Support\Facades\Validator;
 class CustomerController extends Controller
 {
@@ -19,15 +24,23 @@ class CustomerController extends Controller
         ->join('users', 'users.id', '=', 'clients.user_id')
         ->select('users.*', 'clients.*')
         ->get();
-      
+
         return view('admin.Customer.show_Customers')->with('customers',$customers);
     }
 
     public function activity($id,$state)
     {
-        DB::table('users')
+        $affected=DB::table('users')
         ->where('id', $id)
         ->update(['is_active'=>$state]);
+        if($affected>0 && $state==0)
+        {
+            return back()->with('status','تم توقيف المستخدم ');
+        }
+        elseif($affected>0 && $state==1)
+        return back()->with('status','  تم تفعيل المستخدم ');
+        else  return back()->with('error','  حدث خطاء الرجاء اعادة المحاولة');
+
     }
 
     public function delete($id)
@@ -39,8 +52,8 @@ class CustomerController extends Controller
             return back()->with('secuss','تم حذف المستخدم ');
         }
         return back()->with('secuss',' لم يتم حذف المستخدم ');
-        
-    
+
+
     }
 
     public function addCustomers(){
@@ -57,7 +70,7 @@ class CustomerController extends Controller
 
 
         return view('admin.Customer.edit_Customers')->with('customer',$customer);
-        //dd($users);
+       
 
 
         return view('admin.Customer.edit_Customers');
@@ -69,109 +82,115 @@ class CustomerController extends Controller
     
             'name.required'=>'يجب ادخال اسم الصيدلية ',
             'name.min'=>'يجب ان يكون الاسم 3 احرف',
-            
-         ]);
+
+        ]);
 
          User::where('id', '=', $id)->update(array('name' => $request->name));
 
 
 
         if($request->has('gender'))
-        
-        {   
+
+        {
             Client::where('user_id', '=', $id)->update(array('gender' => $request->gender));
         }
         if($request->filled('address'))
-        {   
+        {
             $this->checkAddress($request,$id);
         }
-        
+
         if($request->filled('dob'))
-        {   
+        {
             $this->checkDob($request,$id);
         }
-        
+
         if($request->filled('phone'))
-        {   
+        {
             $this->checkPhone($request,$id);
-        }  
-        
-        
-              
-    } 
+        }
+      
+        return back()->with('status', 'لقد تم تعديل المستحدم بنجاح');
+
+    }
 
     public function create(Request $request)
-    {
+    {  
         $user=new RegisterController();
         $user=$user->createUser($request->all());
         if($request->filled('address'))
-        {   
+        {
             $this->checkAddress($request,$user->id);
         }
 
         if($request->has('gender'))
-        {   
+        {
             Client::where('user_id', '=', $user->id)->update(array('gender' => $request->gender));
         }
         if($request->filled('dob'))
-        {   
+        {
             $this->checkDob($request,$user->id);
         }
-        
+
         if($request->filled('phone'))
-        {   
+        {
             $this->checkPhone($request,$user->id);
-        }  
-       
+        }
+
 
     }
 
 
-    public function updateEmail(Request $request)
-{   
+    public function updateEmail(Request $request,$id)
+{
     $request->validate(['email' => 'required|email'],[
         'email.required'=>'يجب ادخال الايميل ',
         'email.email'=>'يجب ادخال الايميل بشكل الصحيح '
-     ]);   
+     ]);
 
     if (DB::table('users')->where('email', $request->email)->exists())
     {
-        return back()->with("الايميل موجود بالفعل");
+        return back()->with('error',"الايميل موجود بالفعل");
     }
   $number=rand ( 10000 , 99999 );
-  
+
   $email_data = [
     'name' => Auth::user()->name,
     'activation_code' => $number
 ];
-$Userid = 24;
+
 $affected = DB::table('users')
-   ->where('id', $Userid)
+   ->where('id', $id)
    ->update([
-             'remember_token' => $number]); 
+             'remember_token' => $number]);
 Mail::to($request->email)->send(new UpdateEmail($email_data));
+return back()->with(['status'=>"تم ارسال رمز التحقق الى بريدك الجديد",'email'=>$request->email]);
+
 }
-public function checkUpdateEmail(Request $request)
+public function checkUpdateEmail(Request $request,$id)
 {
   // $id = Auth::id();
-  $id=24;
+  
   if (DB::table('users')->where([['remember_token',$request['numberCode']], ['id', $id]] )->exists()) {
     $userDate = DB::table('users')
     ->where('users.id',$id)
     ->update(['email' =>$request['email']]);
-   
+    if($userDate)
+    return back()->with('status',"تم تعديل الايميل بنجاح");
+    return back()->with('error',"لم تم تعديل الايميل بنجاح  حدث خطاء!!");
+
+
 }
 else{
-  return back()->with('  رمز التحقق خطاء ');
-}    
+  return back()->with('error','  رمز التحقق خطاء ');
+}
 }
 public function doUpdataImage(Request $request)
-{   
-   
+{
+
     $userAvater= SystemUtils::updateAvatar($request);
-    
+
     User::where('id', '=', 1)->update(['avater' => $userAvater]);
-   
+
 }
 public function updatePassword(Request $requset,$id)
 {   
@@ -182,17 +201,19 @@ public function updatePassword(Request $requset,$id)
     // return $requset;
      //Auth::user()->password
 
-    if(Hash::check($requset['password'],'$2y$10$ZLx3i0MhudO9aPHLV1lgg.fDhgHsWgmpyuahcqTuwIIykoOE94Qzy'))
+    if(Hash::check($requset['password'],Auth::user()->password))
     {
    
    $userDate = DB::table('users') 
    ->where('id',$id)
    ->update(['password' =>Hash::make($requset['new-password'])]);
-   return (Hash::make($requset['new-password']));
+   if($userDate)
+   return back()->with('status','     تم تعديل كلمة السر بنجاح');
   
+
  }
  else{
-   return '  كلمة السر خطا  ';
+    return back()->with('error','     تم تعديل كلمة السر بنجاح');
   }
 }
 
@@ -203,7 +224,7 @@ public function checkAddress($request,$id)
    'address.min'=>'يجب ان يكون  العنوان اربع احرف او اكثر'
 ]);
 Client::where('user_id', '=', $id)->update(array('address' => $request->address));
-} 
+}
 
 public function checkDob($request,$id)
 {
@@ -211,7 +232,7 @@ public function checkDob($request,$id)
    'dob.before'=>'يجب ادخال تاريخ الصحيح'
 ]);
 Client::where('user_id', '=', $id)->update(array('dob' => $request->dob));
-} 
+}
 
 public function checkPhone($request,$id)
 {

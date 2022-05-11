@@ -133,7 +133,7 @@
                                                 </td>
 
                                                 <td>
-                                                <a href="/_admin/edit_Customers">  <button class="btn btn-primary text-white" >تعديل</button></a>
+                                                <a href="/_admin/edit_Service">  <button class="btn btn-primary text-white" >تعديل</button></a>
                                                     <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button>
                                                         <div class="modal"  id="exampleModal"  tabindex="-1">
                                                             <div class="modal-dialog">
@@ -172,7 +172,7 @@
 
                     <!-- 3 -->
                 <div class="tab-pane fade" id="socialmedia" role="tabpanel" aria-labelledby="socialmedia-tab">
-                    <div class="col-6 col-m-8 col-sm-8">
+                    <div class="col-12 col-m-8 col-sm-8">
                             <div class="card bg-white m-5">
 
                                     <div class="card-header d-flex justify-content-between">
@@ -182,35 +182,50 @@
 
 
                                         <form>
-                                                    <div class="mb-3">
+                                        <div class="row g-3">
+
+                                            <div class="mb-3 col-6">
                                                         <label for="exampleInputName" class="form-label">رقم الهاتف</label>
                                                         <input type="text" class="form-control" id="exampleInputName">
                                                     </div>
-                                                    <div class="mb-3">
+                                                    <div class="mb-3 col-6">
                                                         <label for="exampleInputLink" class="form-label"> البريد الالكتروني</label>
                                                         <input type="text" class="form-control" id="exampleInputName">
-                                                    </div>
+                                            </div>
+
+                                        </div>
 
 
-                                                    <div class="mb-3">
+                                        <div class="row g-3">
+
+
+                                            <div class="mb-3 col-6">
                                                         <label for="exampleInputLink" class="form-label"><i class="fab fa-whatsapp fa-lg" style="color: lightgreen; padding : 0 10px 0 10px;"></i> واتساب</label>
                                                         <input type="text" class="form-control" id="exampleInputName">
-                                                    </div>
+                                            </div>
 
-                                                        <div class="mb-3">
+                                            <div class="mb-3 col-6">
                                                         <label for="exampleInputLink" class="form-label"><i class="fab fa-twitter fa-lg" style="color: #55acee; padding : 0 10px 0 10px;"></i> تويتر</label>
                                                         <input type="text" class="form-control" id="exampleInputName">
-                                                    </div>
+                                            </div>
 
-                                                        <div class="mb-3">
+
+                                        </div>
+
+
+                                        <div class="row g-3">
+
+                                                <div class="mb-3 col-6">
                                                         <label for="exampleInputLink" class="form-label"> <i class="fab fa-facebook-f fa-lg" style="color: #3b5998; padding: 0 10px 0 10px ;"></i>فيسبوك</label>
                                                         <input type="text" class="form-control" id="exampleInputName">
-                                                    </div>
+                                                </div>
 
-                                                        <div class="mb-3">
+                                                <div class="mb-3 col-6">
                                                         <label for="exampleInputLink" class="form-label"> <i class="fab fa-instagram fa-lg" style="color: red; padding: 0 10px 0 10px ;"></i>انستاغرام</label>
                                                         <input type="text" class="form-control" id="exampleInputName">
-                                                    </div>
+                                                </div>
+                                        </div>
+
 
 
 
@@ -227,7 +242,7 @@
                     <!-- 4 -->
                 <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">
 
-                    <div class="col-6 col-m-8 col-sm-8">
+                    <div class="col-12 col-m-8 col-sm-8">
                             <div class="card bg-white m-5">
 
                                     <div class="card-header d-flex justify-content-between">
@@ -241,26 +256,37 @@
                                                         <label for="exampleInputName" class="form-label">عنوان المحتوى الرئيسي</label>
                                                         <input type="text" class="form-control" id="exampleInputName">
                                                     </div>
-                                                    <div class="mb-3">
+
+                                                <div class="row g-3">
+
+                                                    <div class="mb-3 col-6">
                                                         <label for="exampleInputLink" class="form-label"> وصف المحتوى الرئيسي</label>
                                                         <textarea type="text" name = "desc" class = "form-control"></textarea>
                                                     </div>
 
 
-                                                    <div class="mb-3">
+                                                    <div class="mb-3 col-6">
                                                         <label for="exampleInputLink" class="form-label"> وصف خدمات الزائر</label>
                                                         <textarea type="text" name = "desc" class = "form-control"></textarea>
                                                     </div>
 
-                                                        <div class="mb-3">
+                                                </div>
+
+                                                <div class="row g-3">
+
+
+                                                <div class="mb-3 col-6">
                                                         <label for="exampleInputLink" class="form-label"> وصف خدمات الصيدلية</label>
                                                         <textarea type="text" name = "desc" class = "form-control"></textarea>
                                                     </div>
 
-                                                    <div class="mb-3">
+                                                    <div class="mb-3 col-6">
                                                         <label for="exampleInputLink" class="form-label"> وصف خدمات المستخدم</label>
                                                         <textarea type="text" name = "desc" class = "form-control"></textarea>
                                                     </div>
+
+
+                                                </div>
 
 
 

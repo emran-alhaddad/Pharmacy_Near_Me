@@ -4,19 +4,20 @@
 
 <div class="wrapper bg-white">
     <div class="row  ">
-        <div class="col-8 col-m-8 col-sm-8">
+        <div class="col-12 col-m-12 col-sm-12">
         <div class="card bg-white m-5">
 
             <div class="card-header d-flex justify-content-between">
                 <h3>اضافة حساب</h3>
             </div>
             <div class="card-content">
+                    
     <form>
 
     <div class="row g-3">
         <div class="mb-3 col-4">
                 <label for="exampleInputName" class="form-label">اسم الحساب</label>
-                <input type="text" class="form-control" id="exampleInputName">
+                <input type="text" class="form-control" id="exampleInputName" name="name">
                 </div>
         <div class="mb-3 col-8">
                 <label for="exampleInputLink" class="form-label">وصف الحساب</label>

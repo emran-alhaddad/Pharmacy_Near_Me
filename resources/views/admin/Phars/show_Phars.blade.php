@@ -12,6 +12,16 @@
                 <h3>الصيدليات</h3>
             </div>
             <div class="card-content">
+                @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{session('error') }}
+                </div>
+            @endif
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
                 <table class="table">
 
                         <thead>
@@ -68,17 +78,17 @@
                            
                           @if ($phar->is_active==1)
                         
-                          <td> <a href={{route('admin-edit_Customers', ['id' => $phar->id,'state'=>0]);}} >   <button class="btn btn-success text-white" >مفعل</button></a></td>
+                          <td> <a href={{route('admin-activity', ['id' => $phar->id,'stats'=>0]);}} >   <button class="btn btn-success text-white" >مفعل</button></a></td>
                            
                                 
                             @else 
                           
-                              <td><a href={{route('admin-activity', ['id' => $phar->id,'state'=>1]);}} > <button class="btn btn-danger text-white" >موقف</button></a></td>
+                              <td><a href={{route('admin-activity', ['id' => $phar->id,'stats'=>1]);}} > <button class="btn btn-danger text-white" >موقف</button></a></td>
                          
                             @endif
 
                             <td>
-                            <a href="/_admin/edit_Phars">  <button class="btn badge bg-primary">تعديل</button></a>
+                                <a href={{route('admin-edit_Phars', ['id' => $phar->id]);}}>  <button class="btn badge bg-primary">تعديل</button></a>
                             <button class="btn badge bg-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button>
                                 <!-- <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button> -->
 
