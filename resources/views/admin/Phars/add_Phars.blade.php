@@ -11,23 +11,31 @@
                 <h3>اضافة صيدلية</h3>
             </div>
             <div class="card-content px-5">
-            @if (session('error'))
+                @foreach ($errors->all() as $error)
+                <div class="alert alert-danger" role="alert">{{ $error }}</div>
+              @endforeach
+                @if (session('error'))
                 <div class="alert alert-danger" role="alert">
-                    {!! session('error') !!}
+                    {{session('error') }}
                 </div>
             @endif
             @if (session('status'))
                 <div class="alert alert-success" role="alert">
-                    {!! session('status') !!}
+                    {{ session('status') }}
                 </div>
             @endif
-    <form>
+
+                @foreach ($errors->all() as $error)
+                <div class="alert alert-danger" role="alert">{{ $error }}</div>
+              @endforeach
+    <form   method="POST" action={{route('_admin-phar_create')}}>
 
 
         <div class="row g-3">
             <div class="mb-3 col-8">
                     <label for="exampleInputName" class="form-label">اسم الصيدلية</label>
                     <input type="text" class="form-control" id="exampleInputName" name="name">
+                    <input type="hidden" name="user_type" value="pharmacy">
             </div>
 
 

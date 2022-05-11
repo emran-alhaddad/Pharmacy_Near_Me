@@ -12,6 +12,16 @@
                 <h3>الشكاوى</h3>
             </div>
             <div class="card-content">
+                @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{session('error') }}
+                </div>
+            @endif
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
                 <table class="table">
                     <thead>
                         <tr>
@@ -25,26 +35,36 @@
                     </thead>
 
                     <tbody>
+                        @foreach ($coms as $com )
+                            
+                      
                         <tr>
-                            <td>بينكي</td>
-                            <td> حنين</td>
-                            <td>23/4/2022</td>
-                            <td><p> اشتي اسافر وهي ما جابت لي فلوس  </p></td>
-                            <td>
-                                <button class="btn badge btn-success text-white" >مفعل</button>
-                            </td>
+                            <td>{{$com->client->user->name}}</td>
+                            <td>{{$com->pharmacy->user->name}}</td>
+                            <td> {{$com->created_at}}</td>
+                            <td>{{$com->message}}</td>
+                          
+                            {{-- <td>
+                                <button class="btn btn-success text-white" >مفعل</button>
+                            </td> --}}
 
                             <td>
-                            <a href="/_admin/edit_Complaints"> <button class="btn " ><i class="fas fa-pen" id="edit"></i></button></a>
-                            <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" id="delete"><i class="fas fa-trash"></i></button>
-                                    <div class="modal"  id="exampleModal"  tabindex="-1">
+                                @if ($com->replay==null)
+                                <a href={{route('admin-add_Complaints',['id'=>$com->id])}}>  <button class="btn btn-primary text-white" >رد على الشكوى</button></a>
+                                @else
+                                    
+                               
+                                
+                                <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal{{$com->id}}">عرض الرد</button>
+                                @endif    
+                                <div class="modal"  id="exampleModal{{$com->id}}"  tabindex="-1">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title">حذف </h5>
                                             </div>
                                             <div class="modal-body">
-                                                </p> هل تريد حقا حذف الاعلان ؟</p>
+                                                </p>{{$com->replay}} </p>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">لا</button>
@@ -58,7 +78,7 @@
 
 
                         </tr>
-
+                        @endforeach
                     </tbody>
 
                 </table>
