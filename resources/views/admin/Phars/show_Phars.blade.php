@@ -12,9 +12,20 @@
                 <h3>الصيدليات</h3>
             </div>
             <div class="card-content">
+                @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{session('error') }}
+                </div>
+            @endif
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
                 <table class="table">
 
                         <thead>
+                           
                         <tr>
                             <th> اسم الصيدلية</th>
                             <th> المدينة</th>
@@ -30,13 +41,32 @@
                     </thead>
 
                     <tbody>
+                        @foreach ($phars as $phar)
+                           
+                        
                         <tr>
-                            <td>ابولو</td>
-                            <td>تعز</td>
-                            <td>المسبح</td>
-                            <td> شارع جمال</td>
-                            <td>apolo@yahoo.com</td>
-                            <td>77777777777</td>
+
+                          
+                         
+                        
+                            <td>{{ $phar->name }}</td>
+                         <td>{{  $phar->Cname }}</td>
+                         <td>{{  $phar->Zname}}</td>
+                         <td>{{  $phar->address}}</td>
+                         <td>{{  $phar->email}}</td>
+                         <td>{{  $phar->phone}}</td>
+                         {{-- <td>{{  $phar->$phone}}</td>
+                         <td>{{  $phar->$phone}}</td> --}}
+                         
+                        
+
+                            
+                               
+
+                            
+
+
+                           
                             <td>  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
                                     class="rounded-circle img-fluid" style="width: 50px;">
                             </td>
@@ -45,14 +75,22 @@
                             <td>  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
                                     class="rounded-circle img-fluid" style="width: 50px;">
                             </td>
-                            <td>
-                            <button class="btn badge bg-success">مفعل</button>
+                           
+                          @if ($phar->is_active==1)
+                        
+                          <td> <a href={{route('admin-activity', ['id' => $phar->id,'stats'=>0]);}} >   <button class="btn btn-success text-white" >مفعل</button></a></td>
+                           
+                                
+                            @else 
+                          
+                              <td><a href={{route('admin-activity', ['id' => $phar->id,'stats'=>1]);}} > <button class="btn btn-danger text-white" >موقف</button></a></td>
+                         
+                            @endif
 
-                            </td>
-
                             <td>
-                            <a href="/_admin/edit_Phars"> <button class="btn " ><i class="fas fa-pen" id="edit"></i></button></a>
-                            <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" id="delete"><i class="fas fa-trash"></i></button>
+                                <a href={{route('admin-edit_Phars', ['id' => $phar->id]);}}>  <button class="btn"><i class="fas fa-pen" id="edit"></i></button></a>
+                            <button class="btn badge bg-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button>
+                                <!-- <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button> -->
 
 
                                 <div class="modal"  id="exampleModal"  tabindex="-1">
@@ -76,6 +114,7 @@
 
 
                         </tr>
+                        @endforeach
 
                     </tbody>
                 </table>

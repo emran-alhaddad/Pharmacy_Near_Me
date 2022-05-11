@@ -52,6 +52,9 @@
             </div>
             <hr class="my-0" />
                 <div class="card-body">
+                    @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger" role="alert">{{ $error }}</div>
+                  @endforeach
                     <form id="formAccountSettings" method="POST" onsubmit="return false">
                     <div class="row">
                         <div class="mb-3 col-md-6">

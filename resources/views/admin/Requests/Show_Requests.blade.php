@@ -11,7 +11,7 @@
                 <a href="/_admin/add_Requests"><i class="fas fa-plus"></i></a>
                 <h3>الطلبيات</h3>
             </div>
-            <div class="card-content">
+            <div class="card-content"> 
                 <table class="table">
                     <thead>
                         <tr>
