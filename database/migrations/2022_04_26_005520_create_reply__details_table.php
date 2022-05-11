@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('alt_drug_title')->nullable();
             $table->unsignedDouble('alt_drug_price')->nullable();
             $table->integer('state')->default(ReplyState::WAIT_ACCEPTANCE);
+            $table->unique(['reply_id', 'request_details_id']);
             $table->foreign('reply_id')->references('id')->on('replies');
         });
     }

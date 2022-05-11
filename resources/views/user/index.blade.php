@@ -62,7 +62,7 @@
         </div>
         <hr class="my-0" />
         <div class="card-body">
-            <form  method="POST" action="{{ route('client-dashboard-update') }}"  class="card-body">
+            <div   class="card-body">
           
 
             <div class="row">
@@ -89,10 +89,10 @@
 
             </div>
             <div class="mt-2">
-          <button type="submit" class="btn btn-submit me-2">   <a href="{{ route('edit_profile') }}" style=color:#fff;>تعديل</a> </button>
+          <button  class="btn btn-submit me-2">   <a href="{{ route('edit_profile') }}" style=color:#fff;>تعديل</a> </button>
              
             </div>
-            </form>
+            </div>
         </div>
         <!-- /Account -->
         </div>

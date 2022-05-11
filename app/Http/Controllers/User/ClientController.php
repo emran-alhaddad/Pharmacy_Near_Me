@@ -39,8 +39,8 @@ class ClientController extends Controller
     public function myorder()
     {
         $client = User::with('client')->where('id', Auth::id())->firstOrFail();
-      
-        return view('user.myorder',[
+
+        return view('user.myorder', [
             'requests' => $requests,
             'user' => $client
         ]);
@@ -54,17 +54,17 @@ class ClientController extends Controller
 
     public function problems()
     {
-        
-    $UserId = Auth::id();
 
-    $complaint = Complaint::with(['pharmacy.user'])
-      ->where('client_id', Auth::id())->orderByDesc('id')->get();
-    $client = User::with('client')->where('id', Auth::id())->firstOrFail();
+        $UserId = Auth::id();
 
-    return view('user.problems', [
-      'compliants' => $complaint,
-      'user' => $client
-    ]);
+        $complaint = Complaint::with(['pharmacy.user'])
+            ->where('client_id', Auth::id())->orderByDesc('id')->get();
+        $client = User::with('client')->where('id', Auth::id())->firstOrFail();
+
+        return view('user.problems', [
+            'compliants' => $complaint,
+            'user' => $client
+        ]);
     }
 
     public function updateAvater(Request $request)
@@ -96,7 +96,7 @@ class ClientController extends Controller
     public function edit()
     {
         $client = User::with('client')->where('id', Auth::id())->firstOrFail();
-        return view('user.profile.edit', ['user' => $client]);
+        return view('user.edit_profile', ['user' => $client]);
     }
 
     // Update Client Data
@@ -113,8 +113,8 @@ class ClientController extends Controller
                 ]
             );
 
-        if (!$userData)
-            return back()->with('error', ErrorMessages::PROFILE_UPDATED_FAILED);
+            // if ($request->phone != "" && $userData==0)
+            //     return back()->with('error', ErrorMessages::PROFILE_UPDATED_FAILED);
 
 
         $clientData = DB::table('clients')
@@ -127,8 +127,9 @@ class ClientController extends Controller
                 ]
             );
 
-        if (!$clientData)
-            return back()->with('error', ErrorMessages::PROFILE_UPDATED_FAILED);
+        if ($request->dob || $request->address || $request->gender)
+            if (!$clientData)
+                return back()->with('error', ErrorMessages::PROFILE_UPDATED_FAILED);
 
         return back()->with('status', SuccessMessages::PROFILE_UPDATED_SUCCESS);
     }
@@ -240,19 +241,11 @@ class ClientController extends Controller
     {
         $request->validate([
             'name' => 'required|string|min:5|max:100',
-            'dob' => 'date',
-            'phone' => 'alpha_num',
-            'address' => 'min:3|max:100',
         ], [
             'name.required' => "الأسم يجب ألا يكون فارغا",
             'name.string' => "الأسم يجب أن يكون نص",
             'name.min' => "يجب ألا يقل طول الأسم عن 5 احرف  ",
             'name.max' => "يجب ألا يزيد طول الأسم عن 100 حرف  ",
-            'dob.date' => "صيغة تاريخ الميلاد غير صحيحة",
-            'dob.before' => " تاريخ الميلاد يجب أن يبدأ بتاريخ قبل تاريخ اليوم",
-            'phone.alpha_num' => "رقم الهاتف يتكون من أرقام فقط",
-            'address.min' => "يجب ألا يقل طول العنوان عن 3 احرف  ",
-            'address.max' => "يجب ألا يزيد طول العنوان عن 100 حرف  ",
         ]);
 
         if (!empty($request->dob))

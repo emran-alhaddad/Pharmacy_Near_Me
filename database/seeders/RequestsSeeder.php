@@ -20,12 +20,10 @@ class RequestsSeeder extends Seeder
     {
         for ($i = 22; $i <= 27; $i++) {
 
-
-
             for ($j = 0; $j < 10; $j++) {
                 $order_request = new OrderRequest();
                 $order_request->client_id = $i;
-                $order_request->pharmacy_id = $i - 10;
+                $order_request->pharmacy_id = $i - 21;
                 if ($order_request->save()) {
                     for ($k = 1; $k < 3; $k++) {
                         DB::table('request__details')->insert([

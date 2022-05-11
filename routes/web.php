@@ -130,9 +130,9 @@ Route::group(['middleware' => 'auth'], function () {
 
         // Pharmacy Orders
         Route::get('/_pharmacy/orders', [Pharmacy\PharmacyController::class, 'orders'])->name('pharmacy-orders');
-
-        // Pharmacy Order Details
         Route::get('/_pharmacy/order/{id}', [Pharmacy\PharmacyController::class, 'detailes'])->name('pharmacy-order-details');
+        Route::post('/_pharmacy/order/{id}/reply', [Pharmacy\PharmacyController::class, 'reply'])->name('pharmacy-order-reply');
+        Route::get('/_pharmacy/order/{id}/reject', [Pharmacy\PharmacyController::class, 'reject'])->name('pharmacy-order-reject');
 
         // Pharmacy Settings
         Route::get('/_pharmacy/settings', [Pharmacy\PharmacyController::class, 'settings'])->name('pharmacy-settings');

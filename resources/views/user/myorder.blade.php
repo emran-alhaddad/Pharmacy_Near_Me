@@ -106,7 +106,13 @@
 
 
 
-
+<div class="tab-content">
+            @include('user.state.wait-acceptance')
+            @include('user.state.wait-payment')
+            @include('user.state.wait-delivery')
+            @include('user.state.completed')
+            @include('user.state.rejected')
+        </div>
 
              
 
@@ -127,11 +133,5 @@
  </div>
  </div>
 
-        <div class="tab-content">
-            @include('user.state.wait-acceptance')
-            @include('user.state.wait-payment')
-            @include('user.state.wait-delivery')
-            @include('user.state.completed')
-            @include('user.state.rejected')
-        </div>
+        
 @stop

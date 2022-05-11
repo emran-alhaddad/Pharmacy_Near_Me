@@ -1,4 +1,4 @@
-<div id="wait-accept" class="tab-pane active">
+<div id="rejected" class="tab-pane fade in">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -11,16 +11,14 @@
                 </thead>
                 <tbody>
                     @foreach ($requests as $request)
-                        @if ($request->state == \App\Utils\RequestState::WAIT_ACCEPTANCE)
+                        @if ($request->state == \App\Utils\RequestState::REJECTED)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $request->pharmacy->user->name }}</td>
                                 <td>{{ $request->created_at->diffForHumans() }}</td>
-                                <td><span class="badge bg-warning text-dark">انتضار القبول</span></td>
-                                <td><a class="btn btn-primary" href="javascript:void(0);"
-                                        data-bs-toggle="collapse"
-                                        role="button"
-                                        data-bs-target="#details{{ $request->id }}" >
+                                <td><span class="badge bg-warning text-dark" style="background-color: brown;">غير متوفرة</span></td>
+                                <td><a class="btn btn-primary" data-toggle="collapse"
+                                        href="#details{{ $request->id }}" role="button">
                                         عرض التفاصيل
                                     </a></td>
                             </tr>

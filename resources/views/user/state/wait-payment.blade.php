@@ -1,144 +1,143 @@
 <div id="wait-pay" class="tab-pane fade">
-            <table class="table table-striped">
-                <thead>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">رقم الطلبية</th>
+                <th scope="col">الصيدلية</th>
+                <th scope="col">تاريخ الطلبية</th>
+                <th scope="col">سعر الطلبية</th>
+                <th scope="col">حالة الطلبية</th>
+                <th scope="col">العمليات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($requests as $request)
+                @if ($request->state == \App\Utils\RequestState::ACCEPTED)
                     <tr>
-                        <th scope="col">رقم الطلبية</th>
-                        <th scope="col">الصيدلية</th>
-                        <th scope="col">تاريخ الطلبية</th>
-                        <th scope="col">سعر الطلبية</th>
-                        <th scope="col">حالة الطلبية</th>
-                        <th scope="col">العمليات</th>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $request->pharmacy->user->name }}</td>
+                        <td>{{ $request->created_at->diffForHumans() }}</td>
+                        <td>
+                            {{ $request->replies->details->sum('drug_price') }}
+                        </td>
+                        <td><span class="badge bg-warning text-dark" style="background-color:rgb(240, 225, 15);">في
+                                انتضار الدفع</span></td>
+                        <td><a class="btn btn-primary" href="javascript:void(0);" data-bs-toggle="collapse" role="button"
+                                data-bs-target="#details{{ $request->id }}">
+                                عرض التفاصيل
+                            </a></td>
+                        <td><a class="btn btn-success">
+                                دفع
+                            </a></td>
+                        <td><a href="{{ route('client-orders-reject', $request->id) }}" class="btn btn-danger">
+                                رفض
+                            </a></td>
+
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach ($requests as $request)
-                        @if ($request->state == \App\Utils\RequestState::ACCEPTED)
-                            <tr>
-                                <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $request->pharmacy->user->name }}</td>
-                                <td>{{ $request->created_at->diffForHumans() }}</td>
-                                <td>
-                                    {{ $request->replies->details->sum('drug_price') }}
-                                </td>
-                                <td><span class="badge bg-warning text-dark"
-                                        style="background-color:rgb(240, 225, 15);">في
-                                        انتضار الدفع</span></td>
-                                <td><a class="btn btn-primary" data-toggle="collapse"
-                                        href="#details{{ $request->id }}" role="button" aria-expanded="false"
-                                        aria-controls="collapseExample">
-                                        عرض التفاصيل
-                                    </a></td>
-                                <td><a class="btn btn-success">
-                                        دفع
-                                    </a></td>
-                                <td><a href="{{ route('client-orders-reject',$request->id) }}" class="btn btn-danger">
-                                        رفض
-                                    </a></td>
 
-                            </tr>
+                    <tr>
+                        <td colspan="6">
+                            <div class=" collapse" id="details{{ $request->id }}">
+                                <div class="card card-body">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">أسم/صورة العلاج</th>
+                                                <th scope="col"> الكمية</th>
+                                                <th scope="col">أقبل البدائل</th>
+                                                <th scope="col">العمليات </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($request->details as $requestDetails)
+                                                <tr>
+                                                    <td>{{ $requestDetails->drug_title }}</td>
+                                                    <td>{{ $requestDetails->quantity }}</td>
+                                                    <td>
+                                                        @if ($requestDetails->accept_alternative)
+                                                            <span class="badge bg-success text-light">
+                                                                نعم
+                                                            @else
+                                                                <span class="badge bg-danger text-light">
+                                                                    لا
+                                                        @endif
+                                                        </span>
+                                                    </td>
+                                                    <td><a class="btn btn-primary" href="javascript:void(0);"
+                                                            data-bs-toggle="collapse" role="button"
+                                                            data-bs-target="#reply{{ $requestDetails->id }}">
+                                                            عرض الرد
+                                                        </a></td>
+                                                </tr>
 
-                            <tr>
-                                <td colspan="6">
-                                    <div class=" collapse" id="details{{ $request->id }}">
-                                        <div class="card card-body">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">أسم/صورة العلاج</th>
-                                                        <th scope="col"> الكمية</th>
-                                                        <th scope="col">أقبل البدائل</th>
-                                                        <th scope="col">العمليات </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach ($request->details as $requestDetails)
-                                                        <tr>
-                                                            <td>{{ $requestDetails->drug_title }}</td>
-                                                            <td>{{ $requestDetails->quantity }}</td>
-                                                            <td>
-                                                                    @if ($requestDetails->accept_alternative)
-                                                                    <span class="badge bg-success text-light">
-                                                                        نعم
-                                                                    @else
-                                                                    <span class="badge bg-danger text-light">
-                                                                        لا
-                                                                    @endif
-                                                                </span></td>
-                                                            <td><a class="btn btn-primary" data-toggle="collapse"
-                                                                    href="#reply{{ $requestDetails->id }}"
-                                                                    role="button" aria-expanded="false"
-                                                                    aria-controls="collapseExample">
-                                                                    عرض الرد
-                                                                </a></td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td colspan="5">
-                                                                <div class=" collapse"
-                                                                    id="reply{{ $requestDetails->id }}">
-                                                                    <div class="card card-body">
-                                                                        <table class="table">
-                                                                            <thead>
+                                                <tr>
+                                                    <td colspan="5">
+                                                        <div class=" collapse"
+                                                            id="reply{{ $requestDetails->id }}">
+                                                            <div class="card card-body">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col">أسم/صورة العلاج</th>
+                                                                            <th scope="col"> الكمية</th>
+                                                                            <th scope="col">نوع الرد</th>
+                                                                            <th scope="col">سعر العلاج </th>
+                                                                            <th scope="col">قبول الرد </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @foreach ($request->replies->details as $replyDetails)
+                                                                            @if ($requestDetails->id == $replyDetails->request_details_id)
                                                                                 <tr>
-                                                                                    <th scope="col">أسم/صورة العلاج</th>
-                                                                                    <th scope="col"> الكمية</th>
-                                                                                    <th scope="col">نوع الرد</th>
-                                                                                    <th scope="col">سعر العلاج </th>
-                                                                                    <th scope="col">قبول الرد </th>
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tbody>
-                                                                                @foreach ($request->replies->details as $replyDetails)
-                                                                                   @if ($requestDetails->id == $replyDetails->request_details_id)
-                                                                                        <tr>
-                                                                                        @if ($replyDetails->drug_price)
-                                                                                            <td>{{ $requestDetails->drug_title }}
-                                                                                            </td>
-                                                                                            <td>{{ $requestDetails->quantity }}
-                                                                                            </td>
-                                                                                            <td><span
-                                                                                                    class="badge bg-primary text-light">اساسي</span>
-                                                                                            </td>
-                                                                                            <td>{{ $replyDetails->drug_price }}
-                                                                                            </td>
-                                                                                        @else
-                                                                                            <td>{{ $replyDetails->alt_drug_title }}
-                                                                                            </td>
-                                                                                            <td>{{ $requestDetails->quantity }}
-                                                                                            </td>
-                                                                                            <td><span
-                                                                                                    class="badge bg-secondary text-light">بديل</span>
-                                                                                            </td>
-                                                                                            <td>{{ $replyDetails->alt_drug_price }}
-                                                                                            </td>
-                                                                                        @endif
-
-
-                                                                                        <td>
-                                                                                            <input type="checkbox"
-                                                                                                name="" data-id="{{ $replyDetails->id }}" id="replyDetailState{{ $replyDetails->id }}" checked>
+                                                                                    @if ($replyDetails->drug_price)
+                                                                                        <td>{{ $requestDetails->drug_title }}
                                                                                         </td>
-                                                                                    </tr>
+                                                                                        <td>{{ $requestDetails->quantity }}
+                                                                                        </td>
+                                                                                        <td><span
+                                                                                                class="badge bg-primary text-light">اساسي</span>
+                                                                                        </td>
+                                                                                        <td>{{ $replyDetails->drug_price }}
+                                                                                        </td>
+                                                                                    @else
+                                                                                        <td>{{ $replyDetails->alt_drug_title }}
+                                                                                        </td>
+                                                                                        <td>{{ $requestDetails->quantity }}
+                                                                                        </td>
+                                                                                        <td><span
+                                                                                                class="badge bg-secondary text-light">بديل</span>
+                                                                                        </td>
+                                                                                        <td>{{ $replyDetails->alt_drug_price }}
+                                                                                        </td>
                                                                                     @endif
-                                                                                    
-                                                                                @endforeach
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
 
 
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endif
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+                                                                                    <td>
+                                                                                        <input type="checkbox" name=""
+                                                                                            data-id="{{ $replyDetails->id }}"
+                                                                                            id="replyDetailState{{ $replyDetails->id }}"
+                                                                                            checked>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                @endif
+            @endforeach
+        </tbody>
+    </table>
+</div>
