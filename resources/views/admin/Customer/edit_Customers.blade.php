@@ -11,6 +11,16 @@
                 <h3>تعديل عميل</h3>
             </div>
             <div class="card-content">
+            @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {!! session('error') !!}
+                </div>
+            @endif
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {!! session('status') !!}
+                </div>
+            @endif
     <form action={{route('admin-update_Customers',['id'=>$customer->id])}} method="POST">
     <div class="mb-3">
                     <label for="exampleInputName" class="form-label">صورة العميل</label>

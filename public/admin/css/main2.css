@@ -154,14 +154,12 @@ body {
     cursor: pointer;
 }
 
-.logo {
-    height: 60px;
-    padding: 10px;
-}
+
 
 #logo {
-    /* width: 100px; */
-    /* height: 300px; */
+    width: 150px;
+    height: 70px;
+    padding-right: 20px;
 }
 
 .avt img {
@@ -323,7 +321,7 @@ body {
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 4px 1px;
     overflow-x: hidden;
     z-index: 100;
-    transition: width .5s;
+    /* transition: width .5s; */
 }
 
 .sidebar:hover {
@@ -466,13 +464,13 @@ body {
         width: 100%
     }
     .sidebar {
-        margin-top: 63px;
+        margin-top: 5.5rem;
     }
     .card {
         width: 100%;
     }
     .sidebar-expand .sidebar {
-        width: 250px;
+        width: 16rem;
     }
     th {
         font-size: .8rem;
@@ -483,6 +481,10 @@ body {
     .btn {
         font-size: .7rem;
         width: 3.5rem;
+    }
+
+    .btn i{
+        font-size: .5rem;
     }
 }
 
@@ -846,4 +848,22 @@ table th {
 
 #edit_button:hover {
     background-color: #4688C7;
+}
+
+.btn i{
+    font-size: 1.5rem;
+}
+
+#delete{
+    color:  rgb(196, 16, 16);
+}
+
+#edit{
+    color: #2B547A;
+}
+
+#submit_button
+{
+    background-color: #4688C7;
+
 }

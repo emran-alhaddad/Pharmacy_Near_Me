@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('admin/img/logo.jpg') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('Front/assets/images/about/علاجي-01-3.svg') }}">
     <title>Admin Dashboard</title>
     <link href="{{ asset('admin/css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/main2.css') }}" rel="stylesheet">
@@ -24,9 +24,12 @@
 			<li class="nav-item ps-3"><a class="nav-link">
                 <i class="fas fa-bars" onclick="collapseSidebar()"></i>
 			</a></li>
-			<li class="nav-item"><img src="{{ asset('admin/img/logo.jpg') }}" alt="logo"
-				class="logo logo-light " id="logo"> <img src="{{ asset('admin/img/logo.jpg') }}"
-				alt="logo" class="logo logo-dark" id="logo"></li>
+			<li class="nav-item">
+            <img src="{{ asset('Front/assets/images/about/علاجي-01-3.svg') }}" id="logo" alt="Logo">
+
+            <!-- <img src="{{ asset('Front/assets/images/about/علاجي-01-3.svg') }}" id="logo" alt="Logo"> -->
+
+            </li>
 		</ul>
 		<form class="navbar-search" autocomplete="off">
             <i class="fas fa-search"></i>
