@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/css/core.css')}}" />
     <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/css/theme-default.css')}}" />
     <link rel="stylesheet" href="{{ asset('pharmacy/assets/css/demo.css')}}" />
+    <link rel="stylesheet" href="{{ asset('pharmacy/assets/css/chat.css')}}" />
     <script src="{{ asset('pharmacy/assets/js/config.js')}}"></script>
 
     {{-- Front Style start --}}
