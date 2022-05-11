@@ -83,7 +83,10 @@
             font-size: .7rem;
         }
       }
-
+     html ::selection{
+         background-color: var(--main-color);
+         color: #ffffff;
+      }
     </style>
 </head>
 
