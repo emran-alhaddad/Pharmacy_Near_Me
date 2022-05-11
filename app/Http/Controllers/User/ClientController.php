@@ -25,6 +25,7 @@ class ClientController extends Controller
         $client = User::with('client')->where('id', Auth::id())->firstOrFail();
         return view('user.index', ['user' => $client]);
     }
+    
     public function edit_profile()
     {
         $client = User::with('client')->where('id', Auth::id())->firstOrFail();

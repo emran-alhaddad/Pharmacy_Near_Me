@@ -382,7 +382,7 @@
 
                         <div class="row">
                             <button class="btn-submit radius text-center p-2 col-12 mt-2" type="submit">
-                                تعديل
+                              تعديل
                             </button>
                         </div>
                     </form>

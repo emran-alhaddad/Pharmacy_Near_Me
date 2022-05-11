@@ -59,6 +59,11 @@
         </a>
         </li>
         <li class="menu-item">
+        <a href="#" class="menu-link"><i class="bx bx-notification  me-1"></i>
+            <div data-i18n="Account">الاشعارات</div>
+        </a>
+        </li>
+        <li class="menu-item">
         <a href="{{ route('logout') }}" class="menu-link"><i class="bx bx-power-off me-1"></i>
             <div data-i18n="Account">تسجيل خروج</div>
         </a>
