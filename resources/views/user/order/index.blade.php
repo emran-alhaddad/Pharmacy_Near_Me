@@ -55,7 +55,7 @@
             @include('user.order.state.wait-payment')
             @include('user.order.state.wait-delivery')
             @include('user.order.state.completed')
-            @include('user.order.state.rejected')
+            @include('user.order.state.rejected') 
         </div>
     </section>
 
