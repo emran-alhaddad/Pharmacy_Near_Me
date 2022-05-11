@@ -35,7 +35,7 @@
 
                             </td>
                             <td>
-                                <button class="btn btn-success text-white" >مفعل</button>
+                                <button class="btn badge btn-success text-white" >مفعل</button>
 
                             <!-- </td>
                             <td>
