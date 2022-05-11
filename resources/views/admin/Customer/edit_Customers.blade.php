@@ -4,29 +4,29 @@
 
 <div class="wrapper bg-white">
     <div class="row  ">
-        <div class="col-8 col-m-8 col-sm-8">
+        <div class="col-12 col-m-12 col-sm-12">
         <div class="card bg-white m-5">
 
             <div class="card-header d-flex justify-content-between">
                 <h3>تعديل عميل</h3>
             </div>
             <div class="card-content">
-    <form action={{route('admin-update_Customers',['id'=>$customer->id])}} method="POST">
+    <form action="">
     <div class="mb-3">
                     <label for="exampleInputName" class="form-label">صورة العميل</label>
-                    <input type="file" class="form-control" value="{{$customer->avater}}" id="exampleInputName">
+                    <input type="file" class="form-control" value="" id="exampleInputName">
     </div>
 
 
     <div class="row g-3">
         <div class="mb-3 col-6">
                     <label for="exampleInputName" class="form-label">اسم العميل</label>
-                    <input type="text" class="form-control" value= {{$customer->name}} id="exampleInputName">
+                    <input type="text" class="form-control" value= "" id="exampleInputName">
                 </div>
 
             <div class="mb-3 col-6">
                 <label for="exampleInputLink" class="form-label">تاريخ الميلاد</label>
-                <input type="date" class="form-control" value={{$customer->dob}} id="exampleInputName">
+                <input type="date" class="form-control" value="" id="exampleInputName">
             </div>
 
     </div>
@@ -35,17 +35,16 @@
 
             <div class="mb-3 col-6">
                 <label for="exampleFormControlInput1" class="form-label">رقم الهاتف</label>
-                <input type="text" class="form-control" value={{$customer->phone}} id="exampleFormControlInput1">
+                <input type="text" class="form-control" value="" id="exampleFormControlInput1">
             </div>
 
-            <div class="mb-3 col-4">
+            <div class="mb-3 col-6">
                 <label for="exampleInputLink" class="form-label"> الجنس</label>
                     <select class="form-select" aria-label="Default select example">
-                        @if ($customer->gender=='ذكر')
                         <option selected> ذكر </option>
-                        @else
+
                         <option selected value="1">انثى</option>
-                        @endif
+
 
 
                     </select>
@@ -55,7 +54,7 @@
 
             <div class="mb-3 col-6">
                 <label for="exampleInputLink" class="form-label">العنوان</label>
-                <input type="text" class="form-control" value={{$customer->phone}} id="exampleInputName">
+                <input type="text" class="form-control" value="" id="exampleInputName">
             </div>
 
             <div class="row g-3">
@@ -91,7 +90,7 @@
 
 
 
-                                <form class="modal" method="POST" action={{route('_admin-updateEmail')}}  id="addemail"  tabindex="-1">
+                                <form class="modal" method="POST" action=""  id="addemail"  tabindex="-1">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                             <div class="modal-header">
@@ -100,7 +99,7 @@
                                             <div class="modal-body">
                                             <div class="mb-3 col-12">
                                                 <label for="exampleFormControlInput1" class="form-label"> البريد الالكتروني</label>
-                                                <input type="email" name="email" value={{$customer->email}} class="form-control" id="exampleFormControlInput1">
+                                                <input type="email" name="email" value="" class="form-control" id="exampleFormControlInput1">
                                             </div>
                                             <div class="mb-3 col-12">
                                                 <label for="exampleFormControlInput1" class="form-label">  ادخل رقم التأكيد</label>
@@ -115,7 +114,7 @@
                                     </form>
 
 
-                                <form action={{route('_admin-updatePassword',['id'=>$customer->id])}}  method="POST" class="modal"  id="addpassword"  tabindex="-1">
+                                <form action=""  method="POST" class="modal"  id="addpassword"  tabindex="-1">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                             <div class="modal-header">

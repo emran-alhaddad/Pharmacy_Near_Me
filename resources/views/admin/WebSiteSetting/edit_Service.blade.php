@@ -12,6 +12,16 @@
         </div>
 
         <div class="card-content">
+        @if (session('error'))
+            <div class="alert alert-danger" role="alert">
+                {!! session('error') !!}
+            </div>
+        @endif
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {!! session('status') !!}
+            </div>
+        @endif
                 <form>
 
             <div class="row g-3">
@@ -26,7 +36,7 @@
                         id="uploadedAvatar"/>
                     <div class="button-wrapper">
                         <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                        <span class="d-none d-sm-block">تعديل صورة الخدمة</span>
+                        <span class="d-none d-sm-block" id="submit_button">تعديل صورة الخدمة</span>
                         <i class="bx bx-upload d-block d-sm-none"></i>
                         <input
                             type="file"
@@ -68,7 +78,7 @@
 
 
 
-                        <button  id="edit_button"  type="submit" class="btn btn-primary">اضافة</button>
+                        <button  id="submit_button"  type="submit" class="btn btn-primary">اضافة</button>
                 </form>
 
             </div>
