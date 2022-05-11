@@ -15,8 +15,19 @@ return new class extends Migration
     {
         Schema::create('site_admines', function (Blueprint $table) {
             $table->id();
+            $table->string('address_main');
+            $table->string('descripe_main');
+            $table->string('descripe_ser_client');
+            $table->string('descripe_ser_phar');
+            $table->string('descripe_ser_user');
             $table->string('name');
-            $table->integer('is_active')->default(1);
+            $table->string('facebook');
+            $table->string('twitter');
+            $table->string('whatsup');
+            $table->string('google');
+            $table->string('phone');
+           
+            
             $table->timestamps();
         });
     }

@@ -7,6 +7,8 @@ use App\Http\Controllers\QueryController;
 use App\Models\City;
 use App\Models\zone;
 use Illuminate\Http\Request;
+use App\Models\Pharmacy;
+use App\Utils\SystemUtils; 
 use Illuminate\Support\Facades\Auth;
 
 class interfacesController extends Controller
@@ -87,5 +89,35 @@ class interfacesController extends Controller
         return view('front.add_order', [
             'pharmacy' => $pharmacy,
         ]);
+    }
+
+    public function show($id)
+    {
+        return view('front.license')->with([ 'cities' => City::get(),'zones' => zone::get(),'id'=>$id]);
+    }
+    public function create(Request $request)
+    {
+        
+       
+       if($request->hasFile('license')){
+        
+           $name=SystemUtils::insertLicense($request,'license');
+          
+           
+           Pharmacy::where('user_id', '=', $request->id)->update(array('license' =>$name ));
+
+        }
+       else{
+        $request->validate(['license' => 'required'],[
+            'license.required'=>' يجب ان تدخل صورة  الرخصة', ]);
+       }
+       
+        $affectedRows = Pharmacy::where('user_id',$request->id)->update(array('zone_id' => $request->zone));
+      if($affectedRows>0)
+      {
+        return back()->with('state','تم ارسال الرخصة الى الادمن انتظر قليلا');
+      }
+      return back()->with('error','حدث خطا');
+    
     }
 }
