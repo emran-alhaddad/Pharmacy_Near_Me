@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class SystemUtils extends UploadingUtils
 {
-  CONST AVATER_PATH = 'uploading/avater/';
+  CONST AVATER_PATH = 'uploading/';
   CONST LOGO_PATH = 'uploading/logo/';
 
   public static function  updateAvatar(Request $request)
@@ -36,7 +36,7 @@ class SystemUtils extends UploadingUtils
     return SystemUtils::returnPath($request->image,$path);
   }
 
-  public static function  insertLicense(Request $request)
+  public static function  insertLicense(Request $request ,$path)
   {
 
     $request->validate(['license' => 'required|image|mimes:png,jpg'],[
@@ -44,15 +44,15 @@ class SystemUtils extends UploadingUtils
        'license.image'=>'يجب ان تكون الملف  الصوره '
     ]);
 
-    return SystemUtils::returnPath($request->license);
+    return SystemUtils::returnPath($request->license,$path);
   }
 
   public static function returnPath($img,$path)
   { 
     $avatar = UploadingUtils::updateImage(
       $img,
-      self::AVATER_PATH,
-      self::AVATER_PATH.$path
+      self::AVATER_PATH.$path,
+      self::AVATER_PATH
     );
     
     return $avatar;
