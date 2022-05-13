@@ -126,6 +126,67 @@
             border: var(--border);
             text-align: center;
         }
+        .back-to-top.btn-hover {
+    position: fixed;
+    z-index: 99999;
+}
+
+.back-to-top:hover {
+    color: #fff;
+}
+
+*:focus {
+    outline: none;
+}
+
+
+/*===== All Button Style =====*/
+
+.main-btn {
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 0;
+    padding: 16px 38px;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: var(--radius);
+    color: #fff;
+    cursor: pointer;
+    z-index: 5;
+    background: var(--main-color);
+    transition: all 0.4s ease-out 0s;
+}
+
+.main-btn:hover {
+    color: #fff;
+}
+
+.btn-hover {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.btn-hover::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.3s ease-out 0s;
+}
+
+.btn-hover:hover::after {
+    width: 100%;
+}
+
+
 
     </style>
 </head>
