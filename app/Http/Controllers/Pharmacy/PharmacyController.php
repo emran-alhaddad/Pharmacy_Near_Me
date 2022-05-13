@@ -8,46 +8,65 @@ use App\Models\Reply;
 use App\Models\Reply_Details;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-<<<<<<< HEAD
-use App\Models\Request as OrderRequest;
-use App\Models\Request_Details;
 use App\Models\User;
-use App\Utils\ReplyState;
-use App\Utils\RequestState;
-=======
-use App\Models\User;
->>>>>>> user-dashboard
+use App\Models\Complaint;
 
 class PharmacyController extends Controller
 {
     public function index()
     {
-
-
         
-        return view('pharmacy.account', [
+        return view('pharmacy.index', [
             'pharmacy' => Pharmacy::with(['user', 'zone.city'])->where('user_id', Auth::user()->id)->first()
         ]);
     }
 
-
-    public function edit_profile()
+    public function chat()
     {
-        $client = User::with('client')->where('id', Auth::id())->firstOrFail();
-        return view('user.edit_profile', ['user' => $client]);
-    }
 
+
+        
+        return view('pharmacy.chat');
+    }
 
     // pharmacy views
     public function account()
     {
-        return view('pharmacy.account.pharmacyAccunt');
+        
+        return view('pharmacy.account.pharmacyAccunt', [
+            'pharmacy' => Pharmacy::with(['user', 'zone.city'])->where('user_id', Auth::user()->id)->first()
+        ]);
+
+
+        $client = User::with('pharmacy')->where('id', Auth::id())->firstOrFail();
+        return view('pharmacy.account.pharmacyShowAccount', ['user' => $client]);
+
+
+
+
     }
     public function settings()
     {
         return view('pharmacy.account.pharmacySettings');
     }
+    
+    public function pharmacyCompliants()
+    {
+    $pharmacies = Pharmacy::with('user')->get();
 
+        $client = User::with('client')->where('id', Auth::id())->firstOrFail();
+    
+
+    $complaint = Complaint::with(['pharmacy.user'])
+    ->where('client_id', Auth::id())->orderByDesc('id')->get();
+    
+        return view('pharmacy.account.pharmacyCompliants', [
+            'pharmacies' => $pharmacies,
+            'compliants' => $complaint,
+            'user' => $client
+          ]);
+        
+    }
     public function orders()
     {
 
@@ -122,9 +141,9 @@ class PharmacyController extends Controller
         } else
             return back()->with('error', 'حصل مشكله في اضافة الرد ');
         
-
-        
     }
+
+
 
     public function reject($id)
     {
@@ -134,18 +153,9 @@ class PharmacyController extends Controller
 
         return redirect()->route('pharmacy-orders')->with('status', 'لقد تم رفض الطلبية ' . $id . ' بنجاح');
     }
-    public function chat()
-    {
-        return view('pharmacy.chat');
- 
-    }
 
     
-    public function pharmacyShowAccount()
-    {
-        return view('pharmacy.account.pharmacyShowAccount');
- 
-    }
+
 
   // Update pharmacy Data
   public function  update(Request $request)
@@ -165,13 +175,13 @@ class PharmacyController extends Controller
           return back()->with('error', ErrorMessages::PROFILE_UPDATED_FAILED);
 
 
-      $clientData = DB::table('clients')
+      $clientData = DB::table('pharmacies')
           ->where('user_id', $id)
           ->update(
               [
-                  'dob' => $request->dob,
-                  'address' => $request->address,
-                  'gender' => $request->gender,
+                  '	license' => $request->license,
+                  '	description' => $request->description,
+                  'zone_id' => $request->zone_id,
               ]
           );
 
@@ -180,8 +190,6 @@ class PharmacyController extends Controller
 
       return back()->with('status', SuccessMessages::PROFILE_UPDATED_SUCCESS);
   }
-
-  
 
   public function updatePassword(Request $request)
   {
@@ -283,6 +291,5 @@ class PharmacyController extends Controller
           return false;
       return true;
   }
-
-
+  
 }

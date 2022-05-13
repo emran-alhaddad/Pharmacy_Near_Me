@@ -65,4 +65,21 @@
         <!--/ User -->
         </ul>
     </div>
+    
+
+
+<div class="container">
+    <label class="switch">
+      <input type="checkbox" class="switch-input"><!--<i class="icon-play"></i>-->
+      <span class="switch-label" data-on="" data-=""></span>
+      <span class="switch-handle"></span>
+    </label>
+
+
+<button type="button" class="icon-button">
+    <span class="material-icons">notifications</span>
+    <span class="icon-button__badge">2</span>
+  </button>
+  </div>
+
 </nav>

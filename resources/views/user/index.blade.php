@@ -62,11 +62,10 @@
         </div>
         <hr class="my-0" />
         <div class="card-body">
-<<<<<<< HEAD
+
             <div   class="card-body">
-=======
-       
->>>>>>> user-dashboard
+
+
           
 
             <div class="row">
