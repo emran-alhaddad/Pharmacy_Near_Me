@@ -125,10 +125,11 @@ Route::group(['middleware' => 'auth'], function () {
         // Pharmacy Dashboard
         Route::get('/_pharmacy/', [Pharmacy\PharmacyController::class, 'index'])->name('pharmacy-dashboard');
         Route::get('/chat/', [Pharmacy\PharmacyController::class, 'chat'])->name('chat');
-      
-
+        
+        Route::get('/pharmacyCompliants/', [Pharmacy\PharmacyController::class, 'pharmacyCompliants'])->name('pharmacyCompliants');
         // Pharmacy Chat
         Route::get('/_pharmacy/account', [Pharmacy\PharmacyController::class, 'account'])->name('pharmacy-account');
+        Route::get('/_pharmacy/chat', [Pharmacy\PharmacyController::class, 'chat'])->name('pharmacy-chat');
 
         // Pharmacy Orders
         Route::get('/_pharmacy/orders', [Pharmacy\PharmacyController::class, 'orders'])->name('pharmacy-orders');
@@ -140,12 +141,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/_pharmacy/settings', [Pharmacy\PharmacyController::class, 'settings'])->name('pharmacy-settings');
 
 //pharmacy backend
-        Route::get('/client/edit', [User\PharmacyController::class, 'edit'])->name('pharmacy-dashboard-edit');
-        Route::put('/client/update', [User\PharmacyController::class, 'update'])->name('pharmacy-dashboard-update');
+        Route::get('/pharmacy/edit', [User\PharmacyController::class, 'edit'])->name('pharmacy-dashboard-edit');
+        Route::put('/pharmacy/update', [User\PharmacyController::class, 'update'])->name('pharmacy-dashboard-update');
         Route::put('/pharmacy-password-update', [User\PharmacyController::class, 'updatePassword'])->name('pharmacy-password-update');
-        Route::post('/client/email/sendCode', [User\PharmacyController::class, 'sendEmailCode'])->name('pharmacy-email-code');
-        Route::put('/client/email/update', [User\PharmacyController::class, 'updateEmail'])->name('pharmacy-email-update');
-        Route::put('/client/avater/update', [User\PharmacyController::class, 'updateAvater'])->name('pharmacy-avater-update');
+        Route::post('/pharmacy/email/sendCode', [User\PharmacyController::class, 'sendEmailCode'])->name('pharmacy-email-code');
+        Route::put('/pharmacy/email/update', [User\PharmacyController::class, 'updateEmail'])->name('pharmacy-email-update');
+        Route::put('/pharmacy/avater/update', [User\PharmacyController::class, 'updateAvater'])->name('pharmacy-avater-update');
 
 
 

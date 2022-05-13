@@ -37,11 +37,11 @@
         </a>
         </li>
         <li class="menu-item">
-        <a href="#" class="menu-link"><i class="bx bx-notification  me-1"></i>
-            <div data-i18n="Account">الاشعارات</div>
+        <a href="{{ route('pharmacyCompliants') }}"class="menu-link"><i class="bx bx-notification  me-1"></i>
+            <div data-i18n="Account">الشكاوي</div>
         </a>
         </li>
-       
+        
         <li class="menu-item">
         <a href="{{ route('pharmacy-account') }}" class="menu-link"><i class="bx bx-user me-1"></i>
             <div data-i18n="Account">البروفايل</div>
