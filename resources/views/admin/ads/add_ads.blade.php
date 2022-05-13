@@ -11,12 +11,30 @@
                         <h3>اضافة اعلان</h3>
             </div>
             <div class="card-content">
+                @foreach ($errors->all() as $error)
+                <div class="alert alert-danger" role="alert">{{ $error }}</div>
+              @endforeach
+                @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{session('error') }}
+                </div>
+            @endif
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
 
                 <div class="row g-3">
                         <div class="col-8">
 
-                <form>
+                <form action={{route('admin-ads_create');}} method="POST" enctype="multipart/form-data">
                         <div class="mb-3">
+                            <div class="mb-3">
+                                <label for="exampleInputLink" class="form-label">اسم الاعلان </label>
+                                <input type="text" class="form-control" id="exampleInputName" name="name">
+                            </div>
+           
                         <label for="exampleInputName" class="form-label">  وصف الاعلان</label>
                         <input type="text" class="form-control" id="exampleInputName" name="descripe">
                         </div>
@@ -41,7 +59,7 @@
                     <div class="mb-3 ">
                         <label for="exampleInputLink" class="form-label"> مكان الاعلان</label>
                             <select class="form-select" aria-label="Default select example" name="position">
-                                <option selected> يسار </option>
+                                <option selected value="4"> يسار </option>
                                 <option value="1">يمين</option>
                                 <option value="2">فوق</option>
                                 <option value="3">تحت</option>
@@ -63,7 +81,7 @@
                             </div>
                     </div>
 
-                    <button  id="edit_button"  type="submit" class="btn btn-primary">اضافة</button>
+                    <button  id="submit_button"  type="submit" class="btn btn-primary">اضافة</button>
                 </form>
         </div>
     </div>

@@ -28,14 +28,13 @@
                             <td>هىهعؤثش9هعر9ضش8عرؤ0شض9ه0ؤرىهعض0ش9ع43ض90</td>
 
                             <td>
-                                <button class="btn btn-success text-white" >مفعل</button>
+                                <button class="btn badge btn-success text-white" >مفعل</button>
 
                             </td>
 
                             <td>
-                            <a href="/_admin/edit_Accounts">  <button class="btn btn-primary text-white" >تعديل</button></a>
-                                <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button>
-                                    <div class="modal"  id="exampleModal"  tabindex="-1">
+                            <a href="/_admin/edit_Accounts">  <button class="btn " ><i class="fas fa-pen" id="edit"></i></button></a>
+                            <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" id="delete"><i class="fas fa-trash"></i></button>                                    <div class="modal"  id="exampleModal"  tabindex="-1">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                             <div class="modal-header">
@@ -59,78 +58,6 @@
 
                     </tbody>
 
-                    <tbody>
-                        <tr>
-                            <td>عميل</td>
-                            <td>هىهعؤثش9هعر9ضش8عرؤ0شض9ه0ؤرىهعض0ش9ع43ض90</td>
-
-                            <td>
-                                <button class="btn btn-success text-white" >مفعل</button>
-
-                            </td>
-
-                            <td>
-                            <a href="/_admin/edit_Accounts">  <button class="btn btn-primary text-white" >تعديل</button></a>
-                                <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button>
-                                    <div class="modal"  id="exampleModal"  tabindex="-1">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">حذف </h5>
-                                            </div>
-                                            <div class="modal-body">
-                                                </p> هل تريد حقا حذف الاعلان ؟</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">لا</button>
-                                                <button type="button" class="btn btn-primary">نعم</button>
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                            </td>
-
-
-                        </tr>
-
-                    </tbody>
-                    <tbody>
-                        <tr>
-                            <td>ادمن</td>
-                            <td>هىهعؤثش9هعر9ضش8عرؤ0شض9ه0ؤرىهعض0ش9ع43ض90</td>
-
-                            <td>
-                                <button class="btn btn-success text-white" >مفعل</button>
-
-                            </td>
-
-                            <td>
-                            <a href="/_admin/edit_Accounts">  <button class="btn btn-primary text-white" >تعديل</button></a>
-                                <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button>
-                                    <div class="modal"  id="exampleModal"  tabindex="-1">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">حذف </h5>
-                                            </div>
-                                            <div class="modal-body">
-                                                </p> هل تريد حقا حذف الاعلان ؟</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">لا</button>
-                                                <button type="button" class="btn btn-primary">نعم</button>
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                            </td>
-
-
-                        </tr>
-
-                    </tbody>
                 </table>
 
             </div>

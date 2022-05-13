@@ -83,34 +83,94 @@ class AdminController extends Controller
 }
 
 public function updateEmail(Request $request)
-{
-  $number=rand ( 10000 , 99999 );
-  
-  $email_data = [
-    'name' => 'Osama',
-    'activation_code' => $number
-];
+{   
+  $request->validate(['email' => 'required|email'],[
+   'email.required'=>'يجب ادخال الايميل ',
+   'email.email'=>'يجب ادخال الايميل بشكل الصحيح '
+]);   
+
+ if (DB::table('users')->where('email', $request->email)->exists())
+ {
+   return back()->with("الايميل موجود بالفعل");
+}
+ $number=rand ( 10000 , 99999 );
+
+ $email_data = [
+'name' => Auth::user()->name,
+'activation_code' => $number
+  ];
 $Userid = 24;
-$affected = DB::table('users')
-   ->where('id', $Userid)
-   ->update([
-             'remember_token' => $number]); 
-Mail::to($request->email)->send(new UpdateEmail($email_data));
+    $affected = DB::table('users')
+  ->where('id', $Userid)
+  ->update([
+        'remember_token' => $number]); 
+  Mail::to($request->email)->send(new UpdateEmail($email_data));
+  return 'لقد تم ارسال رمز التحقق الى البريد المدخل';
 }
 public function checkUpdateEmail(Request $request)
 {
-  // $id = Auth::id();
-  $id=24;
-  if (DB::table('users')->where([['remember_token',$request['numberCode']], ['id', $id]] )->exists()) {
-    $userDate = DB::table('users')
-    ->where('users.id',$id)
-    ->update(['email' =>$request['email']]);
-   
+// $id = Auth::id();
+$id=24;
+if (DB::table('users')->where([['remember_token',$request['numberCode']], ['id', $id]] )->exists()) {
+$userDate = DB::table('users')
+->where('users.id',$id)
+->update(['email' =>$request['email']]);
+
 }
 else{
-  return back()->with('  رمز التحقق خطاء ');
+return back()->with('  رمز التحقق خطاء ');
 }    
+} 
+
+public function checkSocialMieda($request,$id)
+{ 
+
+if($request->filled('facebook'))
+{    $this->validationFacebook($request,$id);
+
+} 
+
+if($request->filled('twitter'))
+{   
+ 
+$this->validationTwitter($request,$id);
 }
+if($request->filled('google'))
+{   
+  $this->validationGoogle($request,$id);
+}  
+
+}
+
+// public function updateEmail(Request $request)
+// {
+//   $number=rand ( 10000 , 99999 );
+  
+//   $email_data = [
+//     'name' => 'Osama',
+//     'activation_code' => $number
+// ];
+// $Userid = 24;
+// $affected = DB::table('users')
+//    ->where('id', $Userid)
+//    ->update([
+//              'remember_token' => $number]); 
+// Mail::to($request->email)->send(new UpdateEmail($email_data));
+// }
+// public function checkUpdateEmail(Request $request)
+// {
+//   // $id = Auth::id();
+//   $id=24;
+//   if (DB::table('users')->where([['remember_token',$request['numberCode']], ['id', $id]] )->exists()) {
+//     $userDate = DB::table('users')
+//     ->where('users.id',$id)
+//     ->update(['email' =>$request['email']]);
+   
+// }
+// else{
+//   return back()->with('  رمز التحقق خطاء ');
+// }    
+// }
 
 
 

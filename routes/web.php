@@ -34,6 +34,8 @@ Route::get('/about', [Front\interfacesController::class, 'about'])->name('about'
 Route::get('/contact', [Front\interfacesController::class, 'contact'])->name('contact');
 Route::get('/404', [Front\interfacesController::class, 'notFound'])->name('404');
 Route::get('/pharmacy/{id}', [Front\interfacesController::class, 'detailes'])->name('detailes');
+Route::get('/show_request_license/{id}', [Front\interfacesController::class, 'show'])->name('show_request_license');
+Route::post('/add_request_license', [Front\interfacesController::class, 'create'])->name('add_request_license');
 // Search For Pharmacy
 Route::post('/pharmacies/search', [Front\interfacesController::class, 'searchPharmacies'])->name('search-pharmacies');
 Route::get('/pharmacy/{id}/add-order', [Front\interfacesController::class, 'add_order'])->name('add-order');
@@ -104,7 +106,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/client/email/sendCode', [User\ClientController::class, 'sendEmailCode'])->name('client-email-code');
         Route::put('/client/email/update', [User\ClientController::class, 'updateEmail'])->name('client-email-update');
         Route::put('/client/avater/update', [User\ClientController::class, 'updateAvater'])->name('client-avater-update');
-
         // Client Orders
         Route::get('/client/orders', [User\OrderController::class, 'index'])->name('client-orders');
         Route::get('/client/orders/create', [User\OrderController::class, 'create'])->name('client-orders-create');
@@ -177,33 +178,56 @@ Route::group(['middleware' => 'auth'], function () {
         // Route::get('/_admin/edit_ads', [Admin\AdsController::class, 'editAds'])->name('admin-edit_ads');
 
 
-        Route::get('/_admin/show_ads', [Admin\AdsController::class, 'showAds'])->name('admin-show_ads');
-        Route::get('/_admin/add_ads', [Admin\AdsController::class, 'addAds'])->name('admin-add_ads');
-        Route::get('/_admin/edit_ads', [Admin\AdsController::class, 'editAds'])->name('admin-edit_ads');
+        Route::get('/_admin/show_ads', [Admin\AdsController::class, 'index'])->name('admin-show_ads');
+        Route::get('/_admin/add_ads', [Admin\AdsController::class, 'add'])->name('admin-add_ads');
+        Route::get('/_admin/edit_ads/{id}', [Admin\AdsController::class, 'edit'])->name('admin-edit_ads');
+        Route::get('/_admin/ads/activity/{id}/{stats}', [Admin\AdsController::class, 'toggle'])->name('admin-ads_activity');
+        Route::post('/_admin/ads/update/{id}', [Admin\AdsController::class, 'update'])->name('admin-ads_update');
+        Route::post('/_admin/ads/create/', [Admin\AdsController::class, 'create'])->name('admin-ads_create');
 
 
         Route::get('/_admin/show_Complaints', [Admin\ComplaintsController::class, 'showComplaints'])->name('admin-show_Complaints');
-        Route::get('/_admin/add_Complaints', [Admin\ComplaintsController::class, 'addComplaints'])->name('admin-add_Complaints');
+        Route::get('/_admin/add_Complaints/{id}', [Admin\ComplaintsController::class, 'addComplaints'])->name('admin-add_Complaints');
         Route::get('/_admin/edit_Complaints', [Admin\ComplaintsController::class, 'editComplaints'])->name('admin-edit_Complaints');
+        Route::post('/_admin/create_Complaints/{id}', [Admin\ComplaintsController::class, 'relpay'])->name('admin-create_Complaints');
 
 
         Route::get('/_admin/show_Zones', [Admin\ZonesController::class, 'showZones'])->name('admin-show_Zones');
-        Route::get('/_admin/add_Zones', [Admin\ZonesController::class, 'addZones'])->name('admin-add_Zones');
-        Route::get('/_admin/edit_Zones', [Admin\ZonesController::class, 'editZones'])->name('admin-edit_Zones');
+        Route::get('/_admin/add_zone', [Admin\ZonesController::class, 'addZones'])->name('admin-add_Zones');
+        Route::get('/_admin/edit_zone/{id}', [Admin\ZonesController::class, 'editZones'])->name('admin-edit_zone');
+       
+        Route::get('/_admin/activity_zone/{id}/{state}', [Admin\ZonesController::class, 'activity'])->name('admin-activity_zone');
+        Route::post('/_admin/update_zone/{id}', [Admin\ZonesController::class, 'doUpdate'])->name('admin-update_zone');
+        Route::post('/_admin/create_zone', [Admin\ZonesController::class, 'create'])->name('admin-create_zone');
 
 
         Route::get('/_admin/show_Cities', [Admin\CitiesController::class, 'showCities'])->name('admin-show_Cities');
         Route::get('/_admin/add_Cities', [Admin\CitiesController::class, 'addCities'])->name('admin-add_Cities');
-        Route::get('/_admin/edit_Cities', [Admin\CitiesController::class, 'editCities'])->name('admin-edit_Cities');
+        Route::get('/_admin/edit_Cities/{id}', [Admin\CitiesController::class, 'editCities'])->name('admin-edit_Cities');
+        Route::get('/_admin/activity_Cities/{id}/{state}', [Admin\CitiesController::class, 'activity'])->name('admin-activity_Cities');
+        Route::post('/_admin/update_Cities/{id}', [Admin\CitiesController::class, 'doUpdate'])->name('admin-update_Cities');
+        Route::post('/_admin/create_Cities', [Admin\CitiesController::class, 'create'])->name('admin-create_Cities');
 
 
+        // Route::get('/_admin/edit_Cities',function(){
+        //     return 
+        // }
         Route::get('/_admin/show_Customers', [Admin\CustomerController::class, 'showCustomers'])->name('admin-show_Customer');
         Route::get('/_admin/add_Customers', [Admin\CustomerController::class, 'addCustomers'])->name('admin-add_Customers');
-        Route::get('/_admin/edit_Customers', [Admin\CustomerController::class, 'editCustomers'])->name('admin-edit_Customers');
+        Route::get('/_admin/edit_Customers/{id}', [Admin\CustomerController::class, 'editCustomers'])->name('admin-edit_Customers');
+        Route::post('/_admin/update_Customers/{id}', [Admin\CustomerController::class, 'doUpdate'])->name('admin-update_Customers');
+        Route::post('/_admin/updateEmail/{id}', [Admin\CustomerController::class, 'updateEmail'])->name('_admin-updateEmail');
+        Route::post('/_admin/updatePassword/{id}', [Admin\CustomerController::class, 'updatePassword'])->name('_admin-updatePassword');
+        Route::post('/_admin/checkEmail/{id}', [Admin\CustomerController::class, 'checkUpdateEmail'])->name('_admin-checkEmail');
+        Route::post('/_admin/create-customer', [Admin\CustomerController::class, 'create'])->name('_admin-create-customer');
 
         Route::get('/_admin/show_Phars', [Admin\PharController::class, 'showPhars'])->name('admin-show_Phars');
         Route::get('/_admin/add_Phars', [Admin\PharController::class, 'addPhars'])->name('admin-add_Phars');
-        Route::get('/_admin/edit_Phars', [Admin\PharController::class, 'editPhars'])->name('admin-edit_Phars');
+        Route::get('/_admin/edit_Phars/{id}', [Admin\PharController::class, 'editPhars'])->name('admin-edit_Phars');
+        Route::get('/_admin/activity/{id}/{stats}', [Admin\PharController::class, 'activity'])->name('admin-activity');
+        Route::post('/_admin/phar/Updata/{id}', [Admin\PharController::class, 'doUpdata'])->name('_admin-phar_Updata');
+        Route::post('/_admin/phar/create', [Admin\PharController::class, 'create'])->name('_admin-phar_create');
+
 
 
         Route::get('/_admin/show_PaymentMethods', [Admin\PaymentMethodsCotroller::class, 'showPaymentMethods'])->name('admin-show_PaymentMethods');
