@@ -8,6 +8,9 @@ use App\Http\Controllers\Auth\Login;
 use App\Http\Controllers\Auth\Register;
 use App\Http\Controllers\Auth\Social;
 use App\Http\Controllers\Auth as CustomAuth;
+use App\Http\Controllers\WalletController;
+use App\Models\Role;
+use App\Models\User as ModelsUser;
 use Illuminate\Support\Facades\Route;
 
 
@@ -86,6 +89,13 @@ Route::get('auth/google/callback', [Social\GoogleController::class, 'callback'])
 // Email Verification
 Route::get('auth/verify_email/{token}', [CustomAuth\VerifyEmailController::class, 'verify']);
 
+// This Code will Used By Hadeel after payment process 
+// Route::get('/transfer/{sender}/{reciver}/{amount}',function($id1,$id2,$amount){
+
+//     $sender = ModelsUser::where('id',$id1)->first();
+//     $reciver = ModelsUser::where('id',$id2)->first();
+//     WalletController::pay($sender,$reciver,$amount,0.15);
+// });
 
 // Routes That Needs Authentication
 Route::group(['middleware' => 'auth'], function () {
@@ -98,8 +108,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/myorder/', [User\OrderController::class, 'index'])->name('myorder');
         
         Route::get('/edit_profile/', [User\ClientController::class, 'edit_profile'])->name('edit_profile');
-   
-     
+
+        Route::get('/client/payment/{id}', [User\OrderController::class, 'showPayment'])->name('client-payment');
+        Route::get('/client/wallet',[User\ClientController::class,'']);
         Route::get('/client/edit', [User\ClientController::class, 'edit'])->name('client-dashboard-edit');
         Route::put('/client/update', [User\ClientController::class, 'update'])->name('client-dashboard-update');
         Route::put('/client/password/update', [User\ClientController::class, 'updatePassword'])->name('client-password-update');
@@ -111,6 +122,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/client/orders/create', [User\OrderController::class, 'create'])->name('client-orders-create');
         Route::post('/client/orders/store', [User\OrderController::class, 'store'])->name('client-orders-store');
         Route::get('/client/order/{id}/reject', [User\OrderController::class, 'reject'])->name('client-orders-reject');
+        Route::get('/client/reply-details/{id}/toggle/{state}', [User\OrderController::class, 'toggleReplyDetails'])->name('client-reply-details-toggle');
 
         // Client Compliants
         Route::get('/problems/', [User\ComplaintController::class, 'index'])->name('problems');
@@ -159,12 +171,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/_admin/profile', [Admin\AdminController::class, 'showProfile'])->name('admin-profile');
         Route::get('/_admin/edit_profile', [Admin\AdminController::class, 'editProfile'])->name('admin-edit_profile');
         Route::get('/_admin/zones', [Admin\AdminController::class, 'showZones'])->name('admin-zones');
-
-
-        // Route::get('/_admin/show_ads', [Admin\AdsController::class, 'showAds'])->name('admin-show_ads');
-        // Route::get('/_admin/add_ads', [Admin\AdsController::class, 'addAds'])->name('admin-add_ads');
-        // Route::get('/_admin/edit_ads', [Admin\AdsController::class, 'editAds'])->name('admin-edit_ads');
-
 
         Route::get('/_admin/show_ads', [Admin\AdsController::class, 'index'])->name('admin-show_ads');
         Route::get('/_admin/add_ads', [Admin\AdsController::class, 'add'])->name('admin-add_ads');

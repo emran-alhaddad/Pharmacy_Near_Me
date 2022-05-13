@@ -128,7 +128,6 @@ class RegisterController extends Controller
             Client::create([
                 'user_id' => $user->id,
             ]);
-
             return $user;
         }
     }
@@ -178,4 +177,6 @@ class RegisterController extends Controller
 
         ]);
     }
+    
+
 }
