@@ -21,7 +21,7 @@
                             {{ $request->replies->details->sum('drug_price') }}
                         </td>
                         <td><span class="badge bg-warning text-dark" style="background-color:green;">مكتملة</span></td>
-                        <td><a class="btn btn-primary" data-toggle="collapse" href="#details{{ $request->id }}"
+                        <td><a class="btn btn-submit btn-hover me-2" data-toggle="collapse" href="#details{{ $request->id }}"
                                 role="button" aria-expanded="false" aria-controls="collapseExample">
                                 عرض التفاصيل
                             </a></td>

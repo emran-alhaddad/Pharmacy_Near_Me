@@ -33,7 +33,7 @@
   position: relative;
   display: inline-block;
   vertical-align: top;
-  width: 96px;
+  width: 74px;
   height: 36px;
   padding: 1px;
   border-radius: 3px;
@@ -47,6 +47,7 @@
   opacity: 0;
 }
 .switch-label {
+  width:60px;
   position: relative;
   display: block;
   height: inherit;
@@ -211,12 +212,62 @@
             border-radius: var(--radius);
             color: #ffffff;
             background-color: var(--main-color);
+            
         }
 
-        .btn-submit :hover {
-            color: var(--main-color);
+        .btn-submit:hover {
+            color: #fff;
             /* background-color: #ffffff; */
         }
+        /*===== All Button Style =====*/
+
+.main-btn {
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 0;
+    padding: 16px 38px;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: var(--radius);
+    color: #fff;
+    cursor: pointer;
+    z-index: 5;
+    background: var(--main-color);
+    transition: all 0.4s ease-out 0s;
+}
+
+.main-btn:hover {
+    color: #fff;
+}
+
+.btn-hover {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+   
+}
+
+.btn-hover::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.3s ease-out 0s;
+}
+
+.btn-hover:hover::after {
+    width: 100%;
+}
+
+
+
 /**notifiaction style */
 
 .icon-button {
@@ -224,8 +275,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   color: #333333;
   background: #dddddd;
   border: none;
@@ -241,20 +292,20 @@
   background: #cccccc;
 }
 
-.icon-button__badge {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  width: 25px;
-  height: 25px;
-  background: var(--main-color);;
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-}
 
+.icon-button__badge {
+    position: absolute;
+    top: -5px;
+    right: -4px;
+    width: 20px;
+    height: 20px;
+    background: var(--main-color);
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
 
 
     </style>

@@ -94,7 +94,8 @@ Route::group(['middleware' => 'auth'], function () {
     // Client Routes
     Route::group(['middleware' => ['role:client']], function () {
         Route::get('/client/', [User\ClientController::class, 'index'])->name('client-dashboard');
-        Route::get('/chat/', [User\ClientController::class, 'chat'])->name('chat');
+        Route::get('/chat-user/', [User\ClientController::class, 'chat'])->name('chat-user');
+        Route::get('/bag-user/', [User\ClientController::class, 'bag'])->name('bag-user');
         Route::get('/settings/', [User\ClientController::class, 'settings'])->name('settings');
         Route::get('/myorder/', [User\OrderController::class, 'index'])->name('myorder');
 
@@ -114,8 +115,9 @@ Route::group(['middleware' => 'auth'], function () {
 
         // Client Compliants
         Route::get('/problems/', [User\ComplaintController::class, 'index'])->name('problems');
-        // Route::get('/client/compliants', [User\ComplaintController::class, 'index'])->name('client-compliants');
-        //  Route::get('/client/compliants/create', [User\ComplaintController::class, 'create'])->name('client-compliants-create');
+        
+       // Route::get('/client/compliants', [User\ComplaintController::class, 'index'])->name('client-compliants');
+      //  Route::get('/client/compliants/create', [User\ComplaintController::class, 'create'])->name('client-compliants-create');
         Route::post('/client/compliants/store', [User\ComplaintController::class, 'store'])->name('client-compliants-store');
         Route::get('/client/compliant/{id}/delete', [User\ComplaintController::class, 'delete'])->name('client-compliants-delete');
     });
@@ -126,7 +128,7 @@ Route::group(['middleware' => 'auth'], function () {
         // Pharmacy Dashboard
         Route::get('/_pharmacy/', [Pharmacy\PharmacyController::class, 'index'])->name('pharmacy-dashboard');
         Route::get('/chat/', [Pharmacy\PharmacyController::class, 'chat'])->name('chat');
-        
+        Route::get('/phamacy-bag/', [Pharmacy\PharmacyController::class, 'bag'])->name('phamacy-bag');
         Route::get('/pharmacyCompliants/', [Pharmacy\PharmacyController::class, 'pharmacyCompliants'])->name('pharmacyCompliants');
         // Pharmacy Chat
         Route::get('/_pharmacy/account', [Pharmacy\PharmacyController::class, 'account'])->name('pharmacy-account');
