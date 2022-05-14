@@ -21,7 +21,7 @@
                 <ul class="nav nav-pills flex-column flex-md-row mb-3">
                     <li class="nav-item">
 
-                        <button type="submit" class="btn  me-2 btn-hover"> <a href="{{ route('client-dashboard') }}"
+                        <button type="submit" class="btn btn-submit btn-hover  me-2"> <a href="{{ route('client-dashboard') }}"
                                 style="color:#fff;"><i class="bx bx-user me-1"></i> البروفايل</a></button>
                     </li>
                     <li class="nav-item">
@@ -45,10 +45,10 @@
                 style="width: 150px; z-index: 1">
 
 
-                <label for="upload" class=" btn btn-submit mb-4 .text-white " tabindex="0">
-                                    <span class="d-none d-sm-block ">تغيير الصورة  </span>
+                <label for="upload" class=" main-btn btn-hover mb-4 .text-white " tabindex="0">
+                                    <span class="d-none d-sm-block  ">تغيير الصورة  </span>
 
-                                    <i class="bx bx-upload d-block d-sm-none"></i>
+                                   
                                     <input type="file" name="avater" id="upload" class="account-file-input" hidden
                                         accept="image/png, image/jpeg" />
                                 </label>
@@ -137,8 +137,10 @@
             </div>
             <div class="mt-2">
            
-                <button type="submit" class="btn main-btn  btn-hover me-2  ">حفظ التغيرات</button>
+           
+                <button type="submit" class="btn btn-submit btn-hover  me-2  ">حفظ التغيرات</button>
                 <button type="reset" class="btn btn-outline-secondary">الغاء</button>
+             
             </div>
 
         </form>
@@ -327,10 +329,10 @@
                         @csrf
                         <div class="col">
                             <div class="row">
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <h6 class="mb-0">البريد الإلكتروني</h6>
                                 </div>
-                                <div class="col-sm-6 text-secondary">
+                                <div class="col-sm-9 text-secondary">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text rounded"
                                             style="background-color: var(--main-color)"><i
@@ -347,8 +349,8 @@
 
                                     </div>
                                 </div>
-                                <div class="col-4">
-                                    <button id="send_email_code_btn" class="btn-submit radius text-center p-2 col-12 mt-2">
+                                <div class="col-6 row g-0 ">
+                                    <button id="send_email_code_btn" class="btn btn-submit btn-hover   text-center p-2 col-12 mt-2">
                                         ارسال رمز التحقق
                                     </button>
                                 </div>

@@ -47,6 +47,12 @@
             <div data-i18n="Account">البروفايل</div>
         </a>
         </li>
+       
+        <li class="menu-item">
+        <a href="{{ route('phamacy-bag') }}" class="menu-link"><i class="bx bx-user me-1"></i>
+            <div data-i18n="Account">محفظتي</div>
+        </a>
+        </li>
         <li class="menu-item">
         <a href="{{ route('logout') }}" class="menu-link"><i class="bx bx-power-off me-1"></i>
             <div data-i18n="Account">تسجيل خروج</div>

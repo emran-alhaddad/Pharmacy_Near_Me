@@ -94,7 +94,7 @@
         }
 
         .btn-submit :hover {
-            color: var(--main-color);
+            color: #fff;
             /* background-color: #ffffff; */
         }
         .back-to-top.btn-hover {

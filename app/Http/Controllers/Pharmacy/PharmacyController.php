@@ -29,6 +29,10 @@ class PharmacyController extends Controller
         return view('pharmacy.chat');
     }
 
+    public function bag()
+    {
+        return view('pharmacy.account.bag');
+    }
     // pharmacy views
     public function account()
     {

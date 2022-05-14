@@ -1,4 +1,4 @@
-@extends('layouts.masterPharmacy')
+@extends('layouts.masterUser2')
 
 @section('content')
  <!-- Content -->
@@ -13,9 +13,8 @@
             <a class="nav-link" href="{{ route('client-dashboard') }}"><i class="bx bx-user me-1"></i> البروفايل</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="{{ route('pharmacy-settings') }}"
-            ><i class="bx bx-cog me-1"></i> الاعدادات</a
-            >
+         
+            <button type="submit" class="btn btn-submit btn-hover me-2">    <a  href="{{ route('client-dashboard') }}" style="color:#fff;"><i class="bx bx-user me-1"></i> الاعدادات</a></button>
         </li>
 
         </ul>
