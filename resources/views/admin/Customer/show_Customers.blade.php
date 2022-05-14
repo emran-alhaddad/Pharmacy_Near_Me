@@ -12,6 +12,19 @@
                 <h3>العملاء</h3>
             </div>
             <div class="card-content">
+                @foreach ($errors->all() as $error)
+                <div class="alert alert-danger" role="alert">{{ $error }}</div>
+              @endforeach
+                @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{session('error') }}
+                </div>
+            @endif
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
                 <table class="table">
                     <thead>
                         <tr>
@@ -37,12 +50,12 @@
 
                           @if ($customer->is_active==1)
 
-                        <td>   <button class="btn btn-success text-white" >مفعل</button></td>
+                        <td>  <a href={{route('admin-activity', ['id' => $customer->id , 'stats'=>0])}}>   <button class="btn btn-success text-white" >مفعل</button></a></td>
 
 
                           @else
 
-                            <td> <button class="btn btn-danger text-white" >موقف</button></td>
+                            <td>  <a href={{route('admin-activity', ['id' => $customer->id ,'stats'=>1])}}> <button class="btn btn-danger text-white" >موقف</button></a></td>
 
                           @endif
 
@@ -51,8 +64,8 @@
 
 
                             <td>
-                            <a href={{route('admin-edit_Customers', ['id' => $customer->id]);}} >  <button class="btn btn-primary text-white" >تعديل</button></a>
-                                <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button>
+                            <a href={{route('admin-edit_Customers', ['id' => $customer->id]);}} > <button class="btn " ><i class="fas fa-pen" id="edit"></i></button></a>
+                            <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" id="delete"><i class="fas fa-trash"></i></button>
 
                             </td>
 
@@ -68,7 +81,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">لا</button>
-                                                <button type="button" class="btn btn-primary">نعم</button>
+                                                <a href={{route('admin-activity', ['id' => $customer->id,'stats'=>0])}}  >    <button type="button" class="btn btn-primary">نعم</button></a>
                                             </div>
                                             </div>
                                         </div>

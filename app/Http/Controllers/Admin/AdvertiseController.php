@@ -13,7 +13,7 @@ class AdvertiseController extends Controller
         // $ads=new
        $ads_data=  Advertising::get();
         // $ads_data=$ads->get();
-        return view('admin.ads');
+        return view('admin.ads')->with('ads',$ads_data);
         //  return view('welcome');
 
     }
