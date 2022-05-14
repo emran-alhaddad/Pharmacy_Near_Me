@@ -25,7 +25,7 @@
          
         <div class="row gy-2 mb-1" style="margin-top:3rem;">
         <div class="col-4">
-                <form action="{{ route('client-orders-store') }}" method="POST">
+            <form action="{{ route('client-orders-store') }}" method="POST">
             @csrf
             <input type="hidden" name="client_id" value="{{ Auth::user()->id }}">
             <input type="hidden" name="pharmacy_id" value="{{ $pharmacy->id }}">
@@ -250,6 +250,7 @@
             drugs.data.push({
                 ...drug
             });
+            
 
             data.val(JSON.stringify(drugs));
 

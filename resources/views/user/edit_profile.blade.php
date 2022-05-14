@@ -29,49 +29,46 @@
                             الاعدادات</a>
                     </li>
                     <!-- <li class="nav-item">
-                                                    <a class="nav-link" href="pages-account-settings-connections.html"
-                                                    ><i class="bx bx-link-alt me-1"></i> Connections</a
-                                                    >
-                                                </li> -->
+                                                        <a class="nav-link" href="pages-account-settings-connections.html"
+                                                        ><i class="bx bx-link-alt me-1"></i> Connections</a
+                                                        >
+                                                    </li> -->
                 </ul>
                 <div class="card mb-4">
                     <h5 class="card-header">تفاصيل البروفايل</h5>
                     <!-- Account -->
                     <div class="card-body">
                         <div class="d-flex align-items-start align-items-sm-center gap-4">
-                        <div class="ms-4 d-flex flex-column" style="width: 150px;">
-              <img src="{{ asset('uploads/avaters/client/'.Auth::user()->avater) }}"
-                alt="profile image" class="img-fluid img-thumbnail mt-4 mb-2 d-block rounded" 
-                style="width: 150px; z-index: 1">
+                            <img src="{{ asset('uploads/avaters/client/' . Auth::user()->avater) }}" alt="user-avatar"
+                                class="d-block rounded" height="100" width="100" id="uploadedAvatar" />
 
+                            <form action="{{ route('client-avater-update') }}" method="POST" class="g-3"
+                                enctype="multipart/form-data">
+                                @csrf
+                                @method('put')
+                                <div class="button-wrapper">
+                                    <label for="upload" class=" btn btn-submit mb-4 .text-white " tabindex="0">
+                                        <span class="d-none d-sm-block ">تغيير صورة البروفايل </span>
 
-                <label for="upload" class=" btn btn-submit mb-4 .text-white " tabindex="0">
-                                    <span class="d-none d-sm-block ">تغيير الصورة  </span>
+                                        <i class="bx bx-upload d-block d-sm-none"></i>
+                                        <input type="file" name="avater" id="upload" class="account-file-input" hidden
+                                            accept="image/png, image/jpeg" />
+                                    </label>
+                                    <!-- <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
+                                                            <i class="bx bx-reset d-block d-sm-none"></i>
+                                                            <span class="d-none d-sm-block">اعادة تعيين</span>
+                                                            </button> -->
 
-                                    <i class="bx bx-upload d-block d-sm-none"></i>
-                                    <input type="file" name="avater" id="upload" class="account-file-input" hidden
-                                        accept="image/png, image/jpeg" />
-                                </label>
+                                    <p class="text-muted mb-0">مسموح فقط ب JPG, GIF or PNG. أكبر حجم هو 800K</p>
+                                </div>
+                            </form>
 
-
-            
-            </div>
-                            
-                            <form action="{{ route('client-avater-update') }}" method="POST" class="g-3" enctype="multipart/form-data">
-                        @csrf
-                        @method('put')
-                            <div class="button-wrapper">
-                       
-                          
-                        </form>
-                            
                         </div>
                     </div>
                     <hr class="my-0" />
                     <p class="text-muted mb-0">مسموح فقط ب JPG, GIF or PNG. أكبر حجم هو 800K</p>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('client-password-update') }}" class="card-body">
-                            <!-- Button trigger modal -->
+
                             <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">
                                 تغيير كلمة المرور
@@ -105,7 +102,7 @@
                 <div class="mb-3 col-md-6">
                     <label class="form-label" for="country">تاريخ الميلاد</label>
                     <input value="{{ $user->client->dob }}" type="date" placeholder="تاريخ الميلاد" name="dob"
-                        class="form-control rounded @error('phone') border-danger @enderror" />
+                        class="form-control rounded @error('dob') border-danger @enderror" />
                     @error('dob')
                         <div class="invalid-feedback d-block">
                             {{ $message }}
@@ -412,12 +409,10 @@
                 },
                 url: "{{ route('client-email-code') }}",
                 success: function(data) {
-                    if (data['type'] != 'danger')
-                        {
-                            $("#currentEmail").attr('disabled', 'disabled');
-                            $('#send_email_code_btn').text('تم ارسال الكود');
-                        }
-                        else
+                    if (data['type'] != 'danger') {
+                        $("#currentEmail").attr('disabled', 'disabled');
+                        $('#send_email_code_btn').text('تم ارسال الكود');
+                    } else
                         $('#send_email_code_btn').text('حدث خطأ في ارسال الكود');
                     $("#sendEmailCodeMessage").html(
                         "<div class='alert alert-" + data['type'] + "' role='alert'>" +
