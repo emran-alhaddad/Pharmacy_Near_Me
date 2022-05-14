@@ -28,8 +28,9 @@
                                         aria-controls="collapseExample">
                                         عرض التفاصيل
                                     </a></td>
-                                <td><a class="btn btn-success">
-                                        دفع
+                                <td><a class="btn btn-success" href="{{ route('checkout-order') }}">
+                                        {{-- I added payment page route up her in href  --}}
+                                    دفع
                                     </a></td>
                                 <td><a href="{{ route('client-orders-reject',$request->id) }}" class="btn btn-danger">
                                         رفض
@@ -120,7 +121,7 @@
                                                                                         </td>
                                                                                     </tr>
                                                                                     @endif
-                                                                                    
+
                                                                                 @endforeach
                                                                             </tbody>
                                                                         </table>
