@@ -117,7 +117,7 @@ class PaymentController extends Controller
         if ($err) {
             echo " Error #:" . $err;
         }
-        // success Case => sho;ud make it function latter
+        // success Case => should make it function latter
         else {
             // return redirect(['']);
             echo $response;
