@@ -27,7 +27,7 @@
     <div class="menu-inner-shadow"></div>
     <ul class="menu-inner py-1">
         <li class="menu-item">
-        <a href="{{ route('chat') }}" class="menu-link"><i class="bx bx-message-alt me-1"></i>
+        <a href="{{ route('pharmacy-chat') }}" class="menu-link"><i class="bx bx-message-alt me-1"></i>
             <div data-i18n="Account">الرسائل</div>
         </a>
         </li>
@@ -37,7 +37,7 @@
         </a>
         </li>
         <li class="menu-item">
-        <a href="{{ route('pharmacyCompliants') }}"class="menu-link"><i class="bx bx-notification  me-1"></i>
+        <a href="{{ route('pharmacy-compliants') }}"class="menu-link"><i class="bx bx-notification  me-1"></i>
             <div data-i18n="Account">الشكاوي</div>
         </a>
         </li>

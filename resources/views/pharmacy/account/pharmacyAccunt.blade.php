@@ -23,130 +23,240 @@
                 <ul class="nav nav-pills flex-column flex-md-row mb-3">
                     <li class="nav-item">
 
-                        <button type="submit" class="btn btn-submit me-2"> <a href="{{ route('pharmacy-dashboard') }}"
+                        <button type="submit" class="btn btn-submit me-2"> <a href="{{ route('pharmacy-account') }}"
                                 style="color:#fff;"><i class="bx bx-user me-1"></i> البروفايل</a></button>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('settings') }}"><i class="bx bx-cog me-1"></i>
+                        <a class="nav-link" href="{{ route('pharmacy-settings') }}"><i class="bx bx-cog me-1"></i>
                             الاعدادات</a>
                     </li>
-                    <!-- <li class="nav-item">
-                                                    <a class="nav-link" href="pages-account-settings-connections.html"
-                                                    ><i class="bx bx-link-alt me-1"></i> Connections</a
-                                                    >
-                                                </li> -->
+
                 </ul>
-                <div class="card mb-4">
-                    <h5 class="card-header">تفاصيل البروفايل</h5>
-                    <!-- Account -->
-                    <div class="card-body">
-                        <div class="d-flex align-items-start align-items-sm-center gap-4">
-                            <img src="{{ asset('uploads/avaters/client/'. Auth::user()->avater) }}" alt="user-avatar" class="d-block rounded"
-                                height="100" width="100" id="uploadedAvatar" />
-                            
-                            <form action="{{ route('pharmacy-avater-update') }}" method="POST" class="g-3" enctype="multipart/form-data">
-                        @csrf
-                        @method('put')
-                            <div class="button-wrapper">
-                                <label for="upload" class=" btn btn-submit mb-4 .text-white " tabindex="0">
-                                    <span class="d-none d-sm-block ">تغيير صورة البروفايل </span>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="card mb-4">
+                            <h5 class="card-header">تفاصيل البروفايل</h5>
+                            <!-- Account -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="d-flex flex-column h-100 justify-content-evenly">
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal">
+                                                تغيير كلمة المرور
+                                            </button>
 
-                                    <i class="bx bx-upload d-block d-sm-none"></i>
-                                    <input type="file" name="avater" id="upload" class="account-file-input" hidden
-                                        accept="image/png, image/jpeg" />
-                                </label>
-                                <!-- <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
-                                                        <i class="bx bx-reset d-block d-sm-none"></i>
-                                                        <span class="d-none d-sm-block">اعادة تعيين</span>
-                                                        </button> -->
+                                            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal2">
+                                                تغيير البريد
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12">
+                                        <form action="{{ route('pharmacy-avater-update') }}" method="POST"
+                                            class="d-flex flex-column flex-wrap justify-content-center align-content-center" enctype="multipart/form-data" class="d-flex flex-row">
+                                            <img src="{{ asset('uploads/avaters/client/' . Auth::user()->avater) }}"
+                                                alt="user-avatar" class="d-block rounded" height="150" width="150"
+                                                id="uploadedAvatar" />
+                                            <div class="button-wrapper">
+                                                <label for="upload" class=" btn btn-submit mb-4 .text-white " tabindex="0">
+                                                    <span class="d-none d-sm-block ">تغيير صورة البروفايل </span>
 
-                                <p class="text-muted mb-0">مسموح فقط ب JPG, GIF or PNG. أكبر حجم هو 800K</p>
+                                                    <i class="bx bx-upload d-block d-sm-none"></i>
+                                                    <input type="file" name="avater" id="upload" class="account-file-input"
+                                                       hidden accept="image/png, image/jpeg" />
+                                                </label>
+                                                </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+
                             </div>
-                        </form>
-                            
                         </div>
                     </div>
-                    <hr class="my-0" />
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('pharmacy-password-update') }}" class="card-body">
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                تغيير كلمة المرور
-                            </button>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="card mb-4">
+                            <div class="d-flex align-items-start align-items-sm-center gap-4">
+                                <img src="{{ asset('uploads/avaters/pharmacy/' . Auth::user()->avater) }}"
+                                    alt="user-avatar" class="d-block rounded" height="100" width="100"
+                                    id="uploadedAvatar" />
 
-                            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal2">
-                                تغيير البريد
-                            </button>
+                                <form action="{{ route('pharmacy-avater-update') }}" method="POST" class="g-3"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    @method('put')
+                                    <div class="button-wrapper">
+                                        <label for="upload" class=" btn btn-submit mb-4 .text-white " tabindex="0">
+                                            <span class="d-none d-sm-block ">تغيير صورة الرخصة </span>
+
+                                            <i class="bx bx-upload d-block d-sm-none"></i>
+                                            <input type="file" name="avater" id="upload" class="account-file-input" hidden
+                                                accept="image/png, image/jpeg" />
+                                        </label>
+
+                                        <p class="text-muted mb-0">مسموح فقط ب JPG, GIF or PNG. أكبر حجم هو 800K</p>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             </div>
+
         </div>
 
         <form action="{{ route('pharmacy-dashboard-update') }}" method="POST">
             @csrf
             @method('put')
             <div class="row">
-                <div class="mb-3 col-md-6">
-                    <label for="firstName" class="form-label">اسم الصيدلية </label>
-                    <input class="form-control rounded @error('name') border-danger @enderror" value="{{ $pharmacy->user->name }}"
-                        type="text" placeholder="اسم المستخدم" name="name" autofocus />
-                    @error('name')
-                        <div class="invalid-feedback d-block">
-                            {{ $message }}
+                <div class="mb-3 col-lg-6 col-md-12 col-sm-12">
+                    <div class="mb-3 col">
+                        <label for="firstName" class="form-label">اسم الصيدلية </label>
+                        <input class="form-control rounded @error('name') border-danger @enderror"
+                            value="{{ $pharmacy->user->name }}" type="text" placeholder="اسم المستخدم" name="name"
+                            autofocus />
+                        @error('name')
+                            <div class="invalid-feedback d-block">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="row">
+                        <div class="mb-3 col-lg-6 col-sm-12">
+
+                            <div class="input-group mb-3 rounded">
+                                <label for="city" class="form-label">المدينة</label>
+                                <div class="dropdown col-12">
+                                    <select name="city_id" class="col-12 rounded form-control">
+                                        @foreach ($cities as $city)
+                                            <option value="{{ $city->id }}"
+                                                @if ($pharmacy->zone->city_id == $city->id) selected @endif>
+                                                {{ $city->name }}
+                                        @endforeach
+
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                    @enderror
-                </div>
-
-              
-                
-
-             {{--   <div class="input-group mb-3 rounded">
-                                    <div class="dropdown col-12">
-                                        <select name="zone_id"  class="col-12 rounded form-control" >
-                                            @foreach ($zones as $zone)
-                                                <option value="{{ $zone->id }}" @if ($user->pharmacy>zone_id == $zone->id) selected @endif>
+                        <div class="mb-3 col-lg-6 col-sm-12">
+                            <div class="input-group mb-3 rounded">
+                                <label for="firstName" class="form-label">الحي السكني</label>
+                                <div class="dropdown col-12">
+                                    <select name="zone_id" class="col-12 rounded form-control">
+                                        @foreach ($zones as $zone)
+                                            <option value="{{ $zone->id }}"
+                                                @if ($pharmacy->zone_id == $zone->id) selected @endif>
                                                 {{ $zone->name }}
+                                        @endforeach
 
-</select>
-</div>--}}
-
-
-
-
-                
-                <div class="mb-3 col-md-6">
-                    <label for="firstName" class="form-label">وصف الصيدلية  </label>
-                    <input class="form-control rounded @error('name') border-danger @enderror" value="{{ $pharmacy->user->name }}"
-                        type="text" placeholder="الوصف " name="	description" autofocus />
-                    @error('name')
-                        <div class="invalid-feedback d-block">
-                            {{ $message }}
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                    @enderror
-                </div>
-                <div class="mb-3 col-md-6">
-                    <label for="firstName" class="form-label">الترخيص</label>
-                    <input class="form-control rounded @error('name') border-danger @enderror" value="{{ $pharmacy->user->name }}"
-                        type="text" placeholder="الترخيص " name="name" autofocus />
-                    @error('name')
-                        <div class="invalid-feedback d-block">
-                            {{ $message }}
+                        <div class="row">
+                            <div class="mb-3 col-lg-6 col-sm-12">
+                                <label for="phone" class="form-label">رقم الهاتف </label>
+                                <input class="form-control rounded @error('phone') border-danger @enderror"
+                                    value="{{ $pharmacy->phone }}" type="text" placeholder="رقم الهاتف" name="phone"
+                                    autofocus />
+                                @error('phone')
+                                    <div class="invalid-feedback d-block">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col-lg-6 col-sm-12">
+                                <label for="whatsup" class="form-label">واتساب</label>
+                                <input class="form-control rounded @error('whatsup') border-danger @enderror"
+                                    value="{{ $pharmacy->whatsup }}" type="tel" placeholder="واتساب" name="whatsup"
+                                    autofocus />
+                                @error('whatsup')
+                                    <div class="invalid-feedback d-block">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
                         </div>
-                    @enderror
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col">
+                            <label for="facebook" class="form-label">فيسبوك </label>
+                            <input class="form-control rounded @error('facebook') border-danger @enderror"
+                                value="{{ $pharmacy->facebook }}" type="url" placeholder="فيسبوك" name="facebook"
+                                autofocus />
+                            @error('facebook')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col">
+                            <label for="twitter" class="form-label">تويتر </label>
+                            <input class="form-control rounded @error('twitter') border-danger @enderror"
+                                value="{{ $pharmacy->twitter }}" type="url" placeholder="تويتر" name="twitter"
+                                autofocus />
+                            @error('twitter')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col">
+                            <label for="google" class="form-label">الموقع الإلكتروني </label>
+                            <input class="form-control rounded @error('google') border-danger @enderror"
+                                value="{{ $pharmacy->google }}" type="url" placeholder="الموقع الإلكتروني" name="google"
+                                autofocus />
+                            @error('google')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
-               
-              
-               
-            </div>
-            <div class="mt-2">
 
-                <button type="submit" class="btn btn btn-submit me-2 ">حفظ التغيرات</button>
-                <button type="reset" class="btn btn-outline-secondary">الغاء</button>
-            </div>
+                <div class="mb-3 col-lg-6 col-md-12 col-sm-12">
+                    <div class="row mb-3">
+                        <label for="address" class="form-label">وصف عنوان الصيدلية</label>
+                        <textarea rows=3 class="form-control rounded @error('address') border-danger @enderror"
+                            value="{{ $pharmacy->address }}" name="address"></textarea>
+                        @error('address')
+                            <div class="invalid-feedback d-block">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
 
-        </form>
+                    <div class="row mb-3">
+                        <label for="description" class="form-label">وصف الصيدلية </label>
+                        <textarea rows=7 class="form-control rounded @error('description') border-danger @enderror"
+                            value="{{ $pharmacy->description }}" name="description"></textarea>
+                        @error('description')
+                            <div class="invalid-feedback d-block">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
+    <div class="mt-2">
+
+        <button type="submit" class="btn btn btn-submit me-2 ">حفظ التغيرات</button>
+        <button type="reset" class="btn btn-outline-secondary">الغاء</button>
+    </div>
+
+    </form>
     </div>
 
     <!-- /Account -->
@@ -391,7 +501,7 @@
 
                         <div class="row">
                             <button class="btn-submit radius text-center p-2 col-12 mt-2" type="submit">
-                              تعديل
+                                تعديل
                             </button>
                         </div>
                     </form>
@@ -417,12 +527,10 @@
                 },
                 url: "{{ route('pharmacy-email-code') }}",
                 success: function(data) {
-                    if (data['type'] != 'danger')
-                        {
-                            $("#currentEmail").attr('disabled', 'disabled');
-                            $('#send_email_code_btn').text('تم ارسال الكود');
-                        }
-                        else
+                    if (data['type'] != 'danger') {
+                        $("#currentEmail").attr('disabled', 'disabled');
+                        $('#send_email_code_btn').text('تم ارسال الكود');
+                    } else
                         $('#send_email_code_btn').text('حدث خطأ في ارسال الكود');
                     $("#sendEmailCodeMessage").html(
                         "<div class='alert alert-" + data['type'] + "' role='alert'>" +

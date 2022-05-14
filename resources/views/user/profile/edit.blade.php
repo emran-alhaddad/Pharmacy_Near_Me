@@ -280,8 +280,9 @@
                 </div>
 
                 <div class="modal-body">
-                    
-                    <form id="sendEmailCode" action="{{ route('client-email-code') }}" method="POST" class="row">
+
+                    <form id="sendEmailCode" action="{{ route('client-email-code') }}" method="POST"
+                        class="row">
                         @csrf
                         <div class="col">
                             <div class="row">
@@ -353,10 +354,15 @@
     </div>
 
     <script>
+        $(window).on('load', function() {
+            @error('modal')
+                $("#{{ $message }}").modal('show');
+            @enderror
 
-    $("#sendEmailCode").on('submit',function(e){
-        e.preventDefault();
-        var token = $($("[name='_token']")[0]).val();
+        });
+        $("#sendEmailCode").on('submit', function(e) {
+            e.preventDefault();
+            var token = $($("[name='_token']")[0]).val();
             var email = $("#currentEmail").val();
             $.ajax({
                 method: 'post',
@@ -367,27 +373,20 @@
                 url: "{{ route('client-email-code') }}",
                 success: function(data) {
                     $("#hiddenEmail").val($("#currentEmail").val());
-                    if(data['type']!='danger')
-                    $("#currentEmail").attr('disabled','disabled');
+                    if (data['type'] != 'danger')
+                        $("#currentEmail").attr('disabled', 'disabled');
                     $("#sendEmailCode").html(
-                        "<div class='alert alert-"+data['type']+"' role='alert'>"+
-                           data['data']+
-                        "</div>"+
+                        "<div class='alert alert-" + data['type'] + "' role='alert'>" +
+                        data['data'] +
+                        "</div>" +
                         $("#sendEmailCode").html()
                     );
-                    
+
                 }
 
-                
-            })
-    })
 
-    @error('modal')
-    $("#{{ $message }}").toggleClass('show');
-    $("#{{ $message }}").attr('style',"padding-left: 15px; display: block;");
-    $("#{{ $message }}").attr('aria-modal',"true");
-    $("#{{ $message }}").attr('role',"dialog");
-    @enderror
+            })
+        })
     </script>
 
 

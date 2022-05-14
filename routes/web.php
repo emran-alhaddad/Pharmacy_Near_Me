@@ -45,11 +45,11 @@ Route::post('/pharmacies/search', [Front\interfacesController::class, 'searchPha
 Route::get('/pharmacy/{id}/add-order', [Front\interfacesController::class, 'add_order'])->name('add-order');
 
 
-// // PHARMACY TEST ROUTES
-Route::get('/account', [Pharmacy\PharmacyController::class, 'account'])->name('profile');
-Route::get('/settings', [Pharmacy\PharmacyController::class, 'settings'])->name('settings');
-Route::get('/detail', [Pharmacy\PharmacyController::class, 'detailes'])->name('orderData');
-Route::get('/order', [Pharmacy\PharmacyController::class, 'order'])->name('order');
+// // // PHARMACY TEST ROUTES
+// Route::get('/account', [Pharmacy\PharmacyController::class, 'account'])->name('profile');
+// Route::get('/settings', [Pharmacy\PharmacyController::class, 'settings'])->name('settings');
+// Route::get('/detail', [Pharmacy\PharmacyController::class, 'detailes'])->name('orderData');
+// Route::get('/order', [Pharmacy\PharmacyController::class, 'order'])->name('order');
 
 
 
@@ -112,6 +112,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/client/payment/{id}', [User\OrderController::class, 'showPayment'])->name('client-payment');
         Route::get('/client/wallet',[User\ClientController::class,'']);
+
         Route::get('/client/edit', [User\ClientController::class, 'edit'])->name('client-dashboard-edit');
         Route::put('/client/update', [User\ClientController::class, 'update'])->name('client-dashboard-update');
         Route::put('/client/password/update', [User\ClientController::class, 'updatePassword'])->name('client-password-update');
@@ -138,9 +139,8 @@ Route::group(['middleware' => 'auth'], function () {
 
         // Pharmacy Dashboard
         Route::get('/_pharmacy/', [Pharmacy\PharmacyController::class, 'index'])->name('pharmacy-dashboard');
-        Route::get('/chat/', [Pharmacy\PharmacyController::class, 'chat'])->name('chat');
         
-        Route::get('/pharmacyCompliants/', [Pharmacy\PharmacyController::class, 'pharmacyCompliants'])->name('pharmacyCompliants');
+        Route::get('/_pharmacy/compliants/', [Pharmacy\PharmacyController::class, 'pharmacyCompliants'])->name('pharmacy-compliants');
         // Pharmacy Chat
         Route::get('/_pharmacy/account', [Pharmacy\PharmacyController::class, 'account'])->name('pharmacy-account');
         Route::get('/_pharmacy/chat', [Pharmacy\PharmacyController::class, 'chat'])->name('pharmacy-chat');
@@ -155,26 +155,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/_pharmacy/settings', [Pharmacy\PharmacyController::class, 'settings'])->name('pharmacy-settings');
 
 //pharmacy backend
-        Route::get('/pharmacy/edit', [User\PharmacyController::class, 'edit'])->name('pharmacy-dashboard-edit');
-        Route::put('/pharmacy/update', [User\PharmacyController::class, 'update'])->name('pharmacy-dashboard-update');
-        Route::put('/pharmacy-password-update', [User\PharmacyController::class, 'updatePassword'])->name('pharmacy-password-update');
-        Route::post('/pharmacy/email/sendCode', [User\PharmacyController::class, 'sendEmailCode'])->name('pharmacy-email-code');
-        Route::put('/pharmacy/email/update', [User\PharmacyController::class, 'updateEmail'])->name('pharmacy-email-update');
-        Route::put('/pharmacy/avater/update', [User\PharmacyController::class, 'updateAvater'])->name('pharmacy-avater-update');
+        Route::get('/pharmacy/edit', [Pharmacy\PharmacyController::class, 'edit'])->name('pharmacy-dashboard-edit');
+        Route::put('/pharmacy/update', [Pharmacy\PharmacyController::class, 'update'])->name('pharmacy-dashboard-update');
+        Route::put('/pharmacy/password/update', [Pharmacy\PharmacyController::class, 'updatePassword'])->name('pharmacy-password-update');
+        Route::post('/pharmacy/email/sendCode', [Pharmacy\PharmacyController::class, 'sendEmailCode'])->name('pharmacy-email-code');
+        Route::put('/pharmacy/email/update', [Pharmacy\PharmacyController::class, 'updateEmail'])->name('pharmacy-email-update');
+        Route::put('/pharmacy/avater/update', [Pharmacy\PharmacyController::class, 'updateAvater'])->name('pharmacy-avater-update');
 
 
-
-
-
-        // // Pharmacy Requests
-        // Route::get('/_pharmacy/requests', [Pharmacy\ReplyController::class, 'index'])->name('pharmacy-requests');
-        // Route::get('/_pharmacy/request/{id}', [Pharmacy\ReplyController::class, 'showRequest']);
-        // Route::post('/_pharmacy/request/{id}', [Pharmacy\ReplyController::class, 'acceptRequest']);
-
-        // // Pharmacy Replies
-        // Route::get('/_pharmacy/replies/{id}', [Pharmacy\ReplyController::class, 'showReplies'])->name('pharmacy-replies');
-        // Route::post('/_pharmacy/reply', [Pharmacy\ReplyController::class, 'create'])->name('pharmacy-reply');
-    });
+ });
 
     // Admin Routes
     Route::group(['middleware' => ['role:admin']], function () {

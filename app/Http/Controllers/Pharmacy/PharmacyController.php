@@ -3,29 +3,26 @@
 namespace App\Http\Controllers\Pharmacy;
 
 use App\Http\Controllers\Controller;
+use App\Models\City;
+use App\Models\zone;
 use App\Models\Pharmacy;
 use App\Models\Reply;
 use App\Models\Reply_Details;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Request as OrderRequest;
 use App\Models\Complaint;
 
 class PharmacyController extends Controller
 {
     public function index()
     {
-        
-        return view('pharmacy.index', [
-            'pharmacy' => Pharmacy::with(['user', 'zone.city'])->where('user_id', Auth::user()->id)->first()
-        ]);
+        return $this->account();
     }
 
     public function chat()
     {
-
-
-        
         return view('pharmacy.chat');
     }
 
@@ -34,17 +31,12 @@ class PharmacyController extends Controller
     {
         
         return view('pharmacy.account.pharmacyAccunt', [
-            'pharmacy' => Pharmacy::with(['user', 'zone.city'])->where('user_id', Auth::user()->id)->first()
+            'pharmacy' => Pharmacy::with(['user', 'zone.city'])->where('user_id', Auth::user()->id)->first(),
+            'zones' => zone::get(),
+            'cities' => City::get()
         ]);
-
-
-        $client = User::with('pharmacy')->where('id', Auth::id())->firstOrFail();
-        return view('pharmacy.account.pharmacyShowAccount', ['user' => $client]);
-
-
-
-
     }
+
     public function settings()
     {
         return view('pharmacy.account.pharmacySettings');
@@ -52,18 +44,12 @@ class PharmacyController extends Controller
     
     public function pharmacyCompliants()
     {
-    $pharmacies = Pharmacy::with('user')->get();
-
-        $client = User::with('client')->where('id', Auth::id())->firstOrFail();
     
-
-    $complaint = Complaint::with(['pharmacy.user'])
-    ->where('client_id', Auth::id())->orderByDesc('id')->get();
+    $complaint = Complaint::with(['pharmacy.user','client.user'])
+    ->where('pharmacy_id', Auth::id())->orderByDesc('id')->get();
     
         return view('pharmacy.account.pharmacyCompliants', [
-            'pharmacies' => $pharmacies,
-            'compliants' => $complaint,
-            'user' => $client
+            'compliants' => $complaint
           ]);
         
     }
@@ -291,5 +277,39 @@ class PharmacyController extends Controller
           return false;
       return true;
   }
+
+
+  private function validatePharmacy(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|min:5|max:100',
+        ], [
+            'name.required' => "الأسم يجب ألا يكون فارغا",
+            'name.string' => "الأسم يجب أن يكون نص",
+            'name.min' => "يجب ألا يقل طول الأسم عن 5 احرف  ",
+            'name.max' => "يجب ألا يزيد طول الأسم عن 100 حرف  ",
+        ]);
+
+        if (!empty($request->dob))
+            $request->validate(
+                ['dob' => 'date'],
+                ['dob.date' => "صيغة تاريخ الميلاد غير صحيحة"]
+            );
+
+        if (!empty($request->phone))
+            $request->validate(
+                ['phone' => 'alpha_num'],
+                ['phone.alpha_num' => "رقم الهاتف يتكون من أرقام فقط"]
+            );
+
+        if (!empty($request->address))
+            $request->validate(
+                ['address' => 'min:3|max:100'],
+                [
+                    'address.min' => "يجب ألا يقل طول العنوان عن 3 احرف  ",
+                    'address.max' => "يجب ألا يزيد طول العنوان عن 100 حرف  "
+                ]
+            );
+    }
   
 }
