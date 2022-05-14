@@ -14,5 +14,6 @@
             <li><a class="dropdown-item fs-6 fw-bold" href="{{ route('logout') }}">تسجيل خروج </a></li>
             </ul>
         </div>
+        
 
 </div>
