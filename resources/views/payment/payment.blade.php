@@ -180,7 +180,9 @@
 
                     <div class="col-12 d-flex justify-content-center p-1 my-2 radius">
                         <div class="form-group d-flex justify-content-center col-6">
+                            <a href="{{ route('test') }}">
                             <button type="submit" class="main-btn col-6 btn-hover">دفع  </button>
+                            </a>
                         </div>
                     </div>
                 </div>

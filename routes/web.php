@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\Register;
 use App\Http\Controllers\Auth\Social;
 use App\Http\Controllers\Auth as CustomAuth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Payment;
 
 
 
@@ -258,3 +259,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 // payment page route
 Route::get('/checkout-order', [Front\interfacesController::class, 'localCheckout'])->name('checkout-order');
+// test payment route
+Route::get('/checkout-order/test', [Payment\PaymentController::class, 'index'])->name('test');
+Route::get('/checkout-order/test/response/{info}', [Payment\PaymentController::class, 'showTest'])->name('test/response');
+Route::get('/checkout-order/test/cancel/{cancel}', [Payment\PaymentController::class, 'testCancel'])->name('testCancel');
+Route::get('/checkout-order/test/cancel', [Payment\PaymentController::class, 'viewCancel'])->name('viewCancel');

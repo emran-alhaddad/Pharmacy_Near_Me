@@ -116,14 +116,17 @@ class PaymentController extends Controller
 
         if ($err) {
             echo " Error #:" . $err;
-        } else {
+        }
+        // success Case => sho;ud make it function latter
+        else {
             // return redirect(['']);
             echo $response;
+
+            // return redirect($response['next_url']);
             // return $res = json_encode($response, true);
 
             // $response = base64_decode($response);
             // trim($root . $path, '/');
-            // return redirect($response['next_url']);
             // echo $response;
             // return $res = json_encode($response, true);
         }
