@@ -12,17 +12,20 @@
                     <div class="text-center banner-area ">
                         <h3 class="heading text-white">عملية الدفع</h3>
                     </div>
-                     @if (session('error'))
-                        <div class="alert alert-danger" role="alert">
-                            {!! session('error') !!}
-                        </div>
+
+                    @if (session('error'))
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                         {!! session('error') !!}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
                     @endif
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {!! session('status') !!}
-                        </div>
-                    @endif
 
+                     <div class="alert alert-success alert-dismissible" role="alert">
+                         {!! session('status') !!}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                    @endif
                     <div class="col-lg-6 col-12 radius p-5 ">
                         <div class="form-main">
                             <div class="text-center">
@@ -177,7 +180,9 @@
 
                     <div class="col-12 d-flex justify-content-center p-1 my-2 radius">
                         <div class="form-group d-flex justify-content-center col-6">
+                            <a href="{{ route('test') }}">
                             <button type="submit" class="main-btn col-6 btn-hover">دفع  </button>
+                            </a>
                         </div>
                     </div>
                 </div>
