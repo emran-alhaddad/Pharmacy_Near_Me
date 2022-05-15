@@ -8,6 +8,7 @@ use App\Models\City;
 use App\Models\zone;
 use Illuminate\Http\Request;
 use App\Models\Pharmacy;
+use App\Models\User;
 use App\Utils\SystemUtils;
 use Illuminate\Support\Facades\Auth;
 
@@ -90,32 +91,36 @@ class interfacesController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function createRequestLicense($id)
     {
-        return view('front.license')->with(['cities' => City::get(), 'zones' => zone::get(), 'id' => $id]);
+        $user = User::with('pharmacy')->where('id',$id)->first();
+        if($user)
+        {
+            if(!$user->pharmacy->license)
+            return view('front.license')->with(['cities' => City::get(), 'zones' => zone::get(), 'id' => $id]);
+            return back()->with('error','لقد قمت بتأكيد الرخصة مسبقا الرجاء إنتضار قبول إدارة الموقع');
+        }
+        return redirect()->route('login')->with('error','لا يمكنك الوصول إلى هذا الرابط');
+        
     }
-    public function create(Request $request)
+    public function storeRequestLicense(Request $request,$id)
     {
-
-
         if ($request->hasFile('license')) {
-
             $name = SystemUtils::insertLicense($request, 'license');
-
-
-            Pharmacy::where('user_id', '=', $request->id)->update(array('license' => $name));
+            Pharmacy::where('user_id', '=', $id)->update(array('license' => $name));
         } else {
             $request->validate(['license' => 'required'], [
                 'license.required' => ' يجب ان تدخل صورة  الرخصة',
             ]);
         }
 
-        $affectedRows = Pharmacy::where('user_id', $request->id)->update(array('zone_id' => $request->zone));
+        $affectedRows = Pharmacy::where('user_id', $id)->update(array('zone_id' => $request->zone));
         if ($affectedRows > 0) {
-            return back()->with('state', 'تم ارسال الرخصة الى الادمن انتظر قليلا');
+            return redirect()->route('login')->with('status', 'تم ارسال الرخصة الى الادمن سيتم إرسال إشعار إلى بريدك الإلكتروني عند إكتمال العملية');
         }
-        return back()->with('error', 'حدث خطا');
+        return redirect()->route('login')->with('error', 'حدث خطا');
     }
+
     public function localCheckout()
     {
         return view(

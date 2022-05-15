@@ -42,10 +42,7 @@ class FacebookController extends Controller
                
                 if(!$userCheck->email_verified_at)
                 return redirect()->route('login')->with('error', ErrorMessages::EMAIL_VERIFY);
-                
-                if(!$userCheck->is_active)
-                return redirect()->route('login')->with('error',ErrorMessages::EMAIL_ACTIVATE);
-                
+
                 Auth::login($userCheck, $remember = true);
                 return LoginController::checkrole(Auth::user());
                
@@ -57,17 +54,13 @@ class FacebookController extends Controller
                     [
                         'name' => $user->name,
                         'email' => $user->email,
-                        'password' => '123456dummy',
-                        'password_confirmation' => '123456dummy',
+                        'password' => '123456789',
+                        'password_confirmation' => '123456789',
                         'facebook_id' => $user->id,
                         'user_type' => $is_pharmacy ? "pharmacy" : "client"
                     ]
                 );
-                if (!$user->is_active)
-                return redirect()->route('login')->with([
-                    'error' => ErrorMessages::EMAIL_ACTIVATE,
-                    'status' => SuccessMessages::REGISTER_SUCCESS
-                ]);
+                
                 Auth::login($user);
                 return LoginController::checkrole(Auth::user());
             }

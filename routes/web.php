@@ -39,9 +39,8 @@ Route::get('/about', [Front\interfacesController::class, 'about'])->name('about'
 Route::get('/contact', [Front\interfacesController::class, 'contact'])->name('contact');
 Route::get('/404', [Front\interfacesController::class, 'notFound'])->name('404');
 Route::get('/pharmacy/{id}', [Front\interfacesController::class, 'detailes'])->name('detailes');
-Route::get('/show_request_license/{id}', [Front\interfacesController::class, 'show'])->name('show_request_license');
-Route::post('/add_request_license', [Front\interfacesController::class, 'create'])->name('add_request_license');
-// Search For Pharmacy
+Route::get('/pharmacy/{id}/license/create', [Front\interfacesController::class, 'createRequestLicense'])->name('create-request-license');
+Route::post('/pharmacy/{id}/license/store', [Front\interfacesController::class, 'storeRequestLicense'])->name('store-request-license');
 Route::post('/pharmacies/search', [Front\interfacesController::class, 'searchPharmacies'])->name('search-pharmacies');
 Route::get('/select/city/{id}/zones',[Front\interfacesController::class,'getCityZones'])->name('city-zones');
 
