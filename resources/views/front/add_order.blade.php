@@ -276,7 +276,7 @@
 
             $(".drug_image").val("");
             $("#drug_title").val("");
-            $("#quantity").val("");
+            $("#quantity").val(1);
             $("#accept_alternative").prop('checked', false);
             $("#day").val("");
             $("#month").val("");
@@ -284,6 +284,7 @@
             $("#repeat_until").val("");
             $("#accept_repeate").prop('checked', false);
             $("#repeate_form").css("display","none");
+             window.scrollTo(0, 0);
 
         }
 
@@ -301,6 +302,7 @@
                     $("#success_msg").css("display","none");
                     this.value = '';
             }
+            window.scrollTo(0, 0);
         });
 
         $("#accept_repeate").on("change", function(e) {

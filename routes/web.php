@@ -42,7 +42,7 @@ Route::get('/show_request_license/{id}', [Front\interfacesController::class, 'sh
 Route::post('/add_request_license', [Front\interfacesController::class, 'create'])->name('add_request_license');
 // Search For Pharmacy
 Route::post('/pharmacies/search', [Front\interfacesController::class, 'searchPharmacies'])->name('search-pharmacies');
-
+Route::get('/select/city/{id}/zones',[Front\interfacesController::class,'getCityZones'])->name('city-zones');
 
 // // // PHARMACY TEST ROUTES
 // Route::get('/account', [Pharmacy\PharmacyController::class, 'account'])->name('profile');

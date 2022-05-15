@@ -126,4 +126,14 @@ class interfacesController extends Controller
             ]
         );
     }
+
+    public function getCityZones($id)
+    {
+        $zones =  zone::where('city_id',$id)->get(['id','name']);
+        $data = "";
+        foreach ($zones as $z) {
+            $data .="<option value='".$z->id."'>". $z->name."</option>";
+        }
+        return $data;
+    }
 }
