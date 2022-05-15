@@ -54,7 +54,6 @@ class OrderController extends Controller
 
         $id = $req->id;
 
-
         $obj_json_durg = json_decode($allDurg);
         $allDurg = $obj_json_durg->data;
 
@@ -62,7 +61,7 @@ class OrderController extends Controller
 
         foreach ($allDurg as $durg) {
             $Req_Details = new Request_Details();
-
+            
             $Req_Details->request_id = $id;
             if (isset($durg->drug_title)) $Req_Details->drug_title = $durg->drug_title;
             if (isset($durg->drug_image)) $Req_Details->drug_image = $durg->drug_image;

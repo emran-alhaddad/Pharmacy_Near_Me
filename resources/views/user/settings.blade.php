@@ -1,4 +1,4 @@
-@extends('layouts.masterPharmacy')
+@extends('layouts.masterUser2')
 
 @section('content')
  <!-- Content -->

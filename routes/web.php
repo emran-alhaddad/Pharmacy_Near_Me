@@ -42,7 +42,6 @@ Route::get('/show_request_license/{id}', [Front\interfacesController::class, 'sh
 Route::post('/add_request_license', [Front\interfacesController::class, 'create'])->name('add_request_license');
 // Search For Pharmacy
 Route::post('/pharmacies/search', [Front\interfacesController::class, 'searchPharmacies'])->name('search-pharmacies');
-Route::get('/pharmacy/{id}/add-order', [Front\interfacesController::class, 'add_order'])->name('add-order');
 
 
 // // // PHARMACY TEST ROUTES
@@ -100,6 +99,8 @@ Route::get('auth/verify_email/{token}', [CustomAuth\VerifyEmailController::class
 
 // Routes That Needs Authentication
 Route::group(['middleware' => 'auth'], function () {
+
+Route::get('/pharmacy/{id}/add-order', [Front\interfacesController::class, 'add_order'])->name('add-order');
 
     // Client Routes
     Route::group(['middleware' => ['role:client']], function () {

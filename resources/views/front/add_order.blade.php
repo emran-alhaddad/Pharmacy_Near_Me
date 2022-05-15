@@ -206,8 +206,8 @@
              drug_title_image = "";
 
             if (drug_image.val() != "")  {
-                drug.drug_image = drug_image.val();  
-                drug_title_image = "<img src='"+drug.drug_image+"' >";
+                drug.drug_image =  drug_image;
+                drug_title_image = "<img width='50px' src='"+window.URL.createObjectURL(drug_image.prop('files')[0])+"' >";
             }
             else {
                 if (drug_title.val() == "") {
