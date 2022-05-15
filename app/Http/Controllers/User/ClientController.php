@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-
+use App\Models\Pharmacy;
 class ClientController extends Controller
 {
 
@@ -25,6 +25,7 @@ class ClientController extends Controller
         $client = User::with('client')->where('id', Auth::id())->firstOrFail();
         return view('user.index', ['user' => $client]);
     }
+    
     public function edit_profile()
     {
         $client = User::with('client')->where('id', Auth::id())->firstOrFail();

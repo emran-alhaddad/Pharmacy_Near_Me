@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\Register;
 use App\Http\Controllers\Auth\Social;
 use App\Http\Controllers\Auth as CustomAuth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Payment;
 
 
 
@@ -96,10 +97,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/chat/', [User\ClientController::class, 'chat'])->name('chat');
         Route::get('/settings/', [User\ClientController::class, 'settings'])->name('settings');
         Route::get('/myorder/', [User\OrderController::class, 'index'])->name('myorder');
-        
+
         Route::get('/edit_profile/', [User\ClientController::class, 'edit_profile'])->name('edit_profile');
-   
-     
+
         Route::get('/client/edit', [User\ClientController::class, 'edit'])->name('client-dashboard-edit');
         Route::put('/client/update', [User\ClientController::class, 'update'])->name('client-dashboard-update');
         Route::put('/client/password/update', [User\ClientController::class, 'updatePassword'])->name('client-password-update');
@@ -114,8 +114,8 @@ Route::group(['middleware' => 'auth'], function () {
 
         // Client Compliants
         Route::get('/problems/', [User\ComplaintController::class, 'index'])->name('problems');
-       // Route::get('/client/compliants', [User\ComplaintController::class, 'index'])->name('client-compliants');
-      //  Route::get('/client/compliants/create', [User\ComplaintController::class, 'create'])->name('client-compliants-create');
+        // Route::get('/client/compliants', [User\ComplaintController::class, 'index'])->name('client-compliants');
+        //  Route::get('/client/compliants/create', [User\ComplaintController::class, 'create'])->name('client-compliants-create');
         Route::post('/client/compliants/store', [User\ComplaintController::class, 'store'])->name('client-compliants-store');
         Route::get('/client/compliant/{id}/delete', [User\ComplaintController::class, 'delete'])->name('client-compliants-delete');
     });
@@ -125,9 +125,12 @@ Route::group(['middleware' => 'auth'], function () {
 
         // Pharmacy Dashboard
         Route::get('/_pharmacy/', [Pharmacy\PharmacyController::class, 'index'])->name('pharmacy-dashboard');
-
+        Route::get('/chat/', [Pharmacy\PharmacyController::class, 'chat'])->name('chat');
+        
+        Route::get('/pharmacyCompliants/', [Pharmacy\PharmacyController::class, 'pharmacyCompliants'])->name('pharmacyCompliants');
         // Pharmacy Chat
         Route::get('/_pharmacy/account', [Pharmacy\PharmacyController::class, 'account'])->name('pharmacy-account');
+        Route::get('/_pharmacy/chat', [Pharmacy\PharmacyController::class, 'chat'])->name('pharmacy-chat');
 
         // Pharmacy Orders
         Route::get('/_pharmacy/orders', [Pharmacy\PharmacyController::class, 'orders'])->name('pharmacy-orders');
@@ -137,6 +140,16 @@ Route::group(['middleware' => 'auth'], function () {
 
         // Pharmacy Settings
         Route::get('/_pharmacy/settings', [Pharmacy\PharmacyController::class, 'settings'])->name('pharmacy-settings');
+
+//pharmacy backend
+        Route::get('/pharmacy/edit', [User\PharmacyController::class, 'edit'])->name('pharmacy-dashboard-edit');
+        Route::put('/pharmacy/update', [User\PharmacyController::class, 'update'])->name('pharmacy-dashboard-update');
+        Route::put('/pharmacy-password-update', [User\PharmacyController::class, 'updatePassword'])->name('pharmacy-password-update');
+        Route::post('/pharmacy/email/sendCode', [User\PharmacyController::class, 'sendEmailCode'])->name('pharmacy-email-code');
+        Route::put('/pharmacy/email/update', [User\PharmacyController::class, 'updateEmail'])->name('pharmacy-email-update');
+        Route::put('/pharmacy/avater/update', [User\PharmacyController::class, 'updateAvater'])->name('pharmacy-avater-update');
+
+
 
 
 
@@ -183,7 +196,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/_admin/show_Zones', [Admin\ZonesController::class, 'showZones'])->name('admin-show_Zones');
         Route::get('/_admin/add_zone', [Admin\ZonesController::class, 'addZones'])->name('admin-add_Zones');
         Route::get('/_admin/edit_zone/{id}', [Admin\ZonesController::class, 'editZones'])->name('admin-edit_zone');
-       
+
         Route::get('/_admin/activity_zone/{id}/{state}', [Admin\ZonesController::class, 'activity'])->name('admin-activity_zone');
         Route::post('/_admin/update_zone/{id}', [Admin\ZonesController::class, 'doUpdate'])->name('admin-update_zone');
         Route::post('/_admin/create_zone', [Admin\ZonesController::class, 'create'])->name('admin-create_zone');
@@ -198,7 +211,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
         // Route::get('/_admin/edit_Cities',function(){
-        //     return 
+        //     return
         // }
         Route::get('/_admin/show_Customers', [Admin\CustomerController::class, 'showCustomers'])->name('admin-show_Customer');
         Route::get('/_admin/add_Customers', [Admin\CustomerController::class, 'addCustomers'])->name('admin-add_Customers');
@@ -254,3 +267,12 @@ Route::group(['middleware' => 'auth'], function () {
     // Logout
     Route::get('/logout', [CustomAuth\LogoutController::class, 'logout'])->name('logout');
 });
+
+
+// payment page route
+Route::get('/checkout-order', [Front\interfacesController::class, 'localCheckout'])->name('checkout-order');
+// test payment route  There is a problem her
+Route::get('/checkout-order/test', [Payment\PaymentController::class, 'index'])->name('test');
+Route::get('/checkout-order/test/response/{info}', [Payment\PaymentController::class, 'showTest'])->name('test/response');
+Route::get('/checkout-order/test/cancel/{cancel}', [Payment\PaymentController::class, 'testCancel'])->name('testCancel');
+Route::get('/checkout-order/test/cancel', [Payment\PaymentController::class, 'viewCancel'])->name('viewCancel');

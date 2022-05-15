@@ -62,7 +62,10 @@
         </div>
         <hr class="my-0" />
         <div class="card-body">
+
             <div   class="card-body">
+
+
           
 
             <div class="row">
@@ -89,8 +92,8 @@
 
             </div>
             <div class="mt-2">
-          <button  class="btn btn-submit me-2">   <a href="{{ route('edit_profile') }}" style=color:#fff;>تعديل</a> </button>
-             
+           <a class=" btn-submit me-2" href="{{ route('edit_profile') }}" style=color:#fff;>تعديل</a> </button>
+        
             </div>
             </div>
         </div>
