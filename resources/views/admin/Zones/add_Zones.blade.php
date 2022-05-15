@@ -11,33 +11,20 @@
                 <h3>اضافة منطقة سكنية</h3>
             </div>
             <div class="card-content">
-<<<<<<< HEAD
-            @if (session('error'))
-                <div class="alert alert-danger" role="alert">
-                    {!! session('error') !!}
-=======
                 @foreach ($errors->all() as $error)
                 <div class="alert alert-danger" role="alert">{{ $error }}</div>
               @endforeach
                 @if (session('error'))
                 <div class="alert alert-danger" role="alert">
                     {{session('error') }}
->>>>>>> admin/v.2
                 </div>
             @endif
             @if (session('status'))
                 <div class="alert alert-success" role="alert">
-<<<<<<< HEAD
-                    {!! session('status') !!}
-                </div>
-            @endif
-    <form>
-=======
                     {{ session('status') }}
                 </div>
             @endif
     <form  method="POST" action={{route('admin-create_zone');}}>
->>>>>>> admin/v.2
 
     <div class="row g-3">
 

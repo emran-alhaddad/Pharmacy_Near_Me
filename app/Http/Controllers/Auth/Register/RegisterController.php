@@ -72,23 +72,23 @@ class RegisterController extends Controller
         $user->name = $request['name'];
         $user->email = $request['email'];
         $user->password = Hash::make($request['password']);
-        $user->email_verified_at = Carbon::now()->timestamp;
+        $token = Str::uuid();
+        $user->remember_token = $token;
+        
         if (isset($request['google_id']))
         { $user->google_id = $request['google_id'];
-            $token = Str::uuid();
-            $user->remember_token = $token;
+            $user->email_verified_at = Carbon::now()->timestamp;
         }
         elseif (isset($request['facebook_id']))
         { $user->facebook_id = $request['facebook_id'];
-            $token = Str::uuid();
-            $user->remember_token = $token;
+            $user->email_verified_at = Carbon::now()->timestamp;
           
         }  
         else{ 
             $requestObj=new Request($request); 
               $this->validateFields($requestObj);
             if (!$requestObj->has('email_verified_at')) {
-                $token = Str::uuid();
+               
                 $user->remember_token = $token;
                 $email_data = [
                     'name' => $user->name,

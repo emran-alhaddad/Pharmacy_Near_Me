@@ -116,18 +116,23 @@ class PharController extends Controller
 
     }
     public function doUpdataImage(Request $request)
-    {
+    {  
+      //  return $request;
+        $userAvater= SystemUtils::updateAvatar($request,'pharmacy');
 
-        $userAvater= SystemUtils::updateAvatar($request);
-
-        User::where('id', '=', 1)->update(['avater' => $userAvater]);
+        $effect=User::where('id', '=',$request->id )->update(['avater' => $userAvater]);
+        if($effect)
+        {
+          return back()->with('status','تم تعديل لوجو الصيدلية  بنجاح');
+        }
+        return back()->with('error',' لم تم تعديل لوجو الصيدلية  بنجاح');
 
     }
 
     public function doUpdataLicense(Request $request)
     {
 
-        $pharLicense= SystemUtils::insertLicense($request);
+        $pharLicense= SystemUtils::insertLicense($request,'license');
 
         Pharmacy::where('id', '=', 1)->update(['license' => $pharLicense]);
 
@@ -144,7 +149,10 @@ class PharController extends Controller
 
         if(Hash::check($requset['password'],Auth::user()->password))
          {
-
+            $requset->validate(['new-password' => 'required|min:9'],[
+            'password.required'=>'يجب ادخال  كلمة السر  ',
+            'password.min'=>'يجب ادخال كلمة السر طولها   '
+         ]);
 
 
         $userDate = DB::table('users')
@@ -180,11 +188,18 @@ class PharController extends Controller
 
         if($request->hasFile('license')){
 
-            $name=SystemUtils::insertLicense($request);
+            $name=SystemUtils::insertLicense($request,'license');
 
             Pharmacy::where('user_id', '=', $user->id)->update(array('license' =>$name ));
 
          }
+         if($request->hasFile('avatar')){
+
+          $name=SystemUtils::updateAvatar($request,'pharmacy');
+
+          User::where('id', '=', $user->id)->update(array('avater' =>$name ));
+
+       }
          if($request->filled('address'))
         {
             $this->checkAddress($request,$user->id);

@@ -11,7 +11,7 @@
                                     <h3>اضافة عميل</h3>
                                
                                 </div>
-                                <div class="card-content">
+                                <div class="card-content"> 
                                     @foreach ($errors->all() as $error)
                                     <div class="alert alert-danger" role="alert">{{ $error }}</div>
                                   @endforeach
@@ -25,7 +25,7 @@
                                         {{ session('status') }}
                                     </div>
                                 @endif
-                        <form action={{route('_admin-create-customer')}} method="POST" >
+                        <form action={{route('_admin-create-customer')}} method="POST" enctype="multipart/form-data" > 
                             @csrf
                        
                         
@@ -33,7 +33,7 @@
 
                         <div class="mb-3 col-6">
                                         <label for="exampleInputName" class="form-label">صورة العميل</label>
-                                        <input type="file" name="avater"  class="form-control" id="exampleInputName">
+                                        <input type="file" name="avatar"  class="form-control" id="exampleInputName">
                                         <input type="hidden" name="user_type" value="client">
                         </div>
 
@@ -153,7 +153,7 @@
                                             </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary" id="submit_button">اضافة الايميل</button>
+                                                <button type="submit" class="btn btn-primary" id="submit_button">اضافة الايميل</button>
                                             </div>
                                             </div>
                                         </div>

@@ -25,6 +25,13 @@ class ComplaintsController extends Controller
         return view('admin.Complaints.add_Complaints')->with('id',$id);;
     }
     public function relpay(Request $request,$id){
+
+        $request->validate(['replay' => 'required|min:3'],[
+    
+            'replay.required'=>'لا يمكن الرد على الشكوى برسالة فارغة  ',
+            'replay.min'=>'يجب ان يكون الاسم 3 احرف',
+      
+        ]);
       
         $affectedRows = Complaint::where('id', $id)->update(array('replay' => $request->replay));
         if($affectedRows>0)
