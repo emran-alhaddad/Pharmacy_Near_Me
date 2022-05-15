@@ -104,7 +104,7 @@
                                                 <div class="d-flex justify-content-start align-items-sm-center gap-4">
                                                     <label for="upload_logo">
                                                     <img
-                                                    src={{asset("/uploading/logo/$site->logo")}}
+                                                    src={{asset("/uploads/logo/$site->logo")}}
                                                         alt="user-avatar"
                                                         class="d-block rounded"
                                                         height="100"

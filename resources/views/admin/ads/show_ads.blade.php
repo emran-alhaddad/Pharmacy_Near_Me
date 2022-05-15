@@ -45,7 +45,7 @@
                         <td>{{$ad->startAt}}</td>
                         <td>{{$ad->endAt}}</td>
                         <td>{{$ad->position}}</td>
-                        <td>  <img src={{asset("/uploading/ads/$ad->image")}} alt="avatar"
+                        <td>  <img src={{asset("/uploads/ads/$ad->image")}} alt="avatar"
                                     class="rounded-circle img-fluid" style="width: 50px;"></td>
                         
 

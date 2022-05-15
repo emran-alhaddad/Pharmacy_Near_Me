@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Validator;
 
 class SystemUtils extends UploadingUtils
 {
-  CONST AVATER_PATH = 'uploading/';
-  CONST LOGO_PATH = 'uploading/logo/';
+  CONST AVATER_PATH = 'uploads/';
+  CONST LOGO_PATH = 'uploads/logo/';
 
   public static function  updateAvatar(Request $request,$path)
   {

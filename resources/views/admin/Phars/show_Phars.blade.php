@@ -67,12 +67,12 @@
 
 
                            
-                            <td>  <img src={{asset("/uploading/pharmacy/$phar->avater")}} alt="avatar"
+                            <td>  <img src={{asset("/uploads/avaters/pharmacy/$phar->avater")}} alt="avatar"
                                     class="rounded-circle img-fluid" style="width: 50px;">
                             </td>
 
 
-                            <td>  <img src={{asset("/uploading/license/$phar->license")}} alt="avatar"
+                            <td>  <img src={{asset("/uploads/license/$phar->license")}} alt="avatar"
                                     class="rounded-circle img-fluid" style="width: 50px;">
                             </td>
                            

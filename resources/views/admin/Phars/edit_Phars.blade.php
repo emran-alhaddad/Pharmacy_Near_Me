@@ -45,7 +45,7 @@
 
                     <div class="d-flex justify-content-start align-items-sm-center gap-4">
                     <img
-                        src="{{asset("/uploading/pharmacy/$phar->avater")}}" 
+                        src="{{asset("/uploads/pharmacy/$phar->avater")}}" 
                         alt="user-avatar"
                         class="d-block rounded"
                         height="100"
@@ -139,7 +139,7 @@
             {{-- <div class="d-flex align-items-start align-items-sm-center gap-4">
                 <form action="">
                     <img
-                        src="{{asset("/uploading/license/$phar->license")}}"
+                        src="{{asset("/uploads/license/$phar->license")}}"
                         alt="user-avatar"
                         class="d-block rounded"
                         height="100"
@@ -245,7 +245,7 @@
                 <input type="hidden" name="id" value="{{$phar->id}}">
                     <label for="license_img" class="" tabindex="0">
                     <img
-                        src="{{asset("/uploading/license/$phar->license")}}"
+                        src="{{asset("/uploads/license/$phar->license")}}"
                         alt="user-avatar"
                         class="d-block rounded card-img-top"
                         height="100"
@@ -283,7 +283,7 @@
                       <input type="hidden" name="id" value="{{$phar->id}}">
                         <label for="upload-image" class="form-label">
                            <img
-                               src="{{asset("/uploading/pharmacy/$phar->avater")}}"
+                               src="{{asset("/uploads/pharmacy/$phar->avater")}}"
                                alt="user-avatar"
                                class="d-block rounded card-img-top"
                                height="100"
