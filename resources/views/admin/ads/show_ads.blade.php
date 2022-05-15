@@ -40,12 +40,12 @@
                     <tbody>
                         @foreach ($ads as $ad)
                         <tr>
-                        <td>{{$ad->name}}</td>
+                        <td>{{$ad->descripe}}</td>
                         <td>{{$ad->url}}</td>
                         <td>{{$ad->startAt}}</td>
                         <td>{{$ad->endAt}}</td>
                         <td>{{$ad->position}}</td>
-                            <td>  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                        <td>  <img src={{asset("/uploading/ads/$ad->image")}} alt="avatar"
                                     class="rounded-circle img-fluid" style="width: 50px;"></td>
                         
 

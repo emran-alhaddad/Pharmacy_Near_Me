@@ -8,16 +8,19 @@
         <div class="card bg-white m-5">
 
             <div class="card-header d-flex justify-content-between">
-            <a href="{{'admin-add_Zones'}}"><i class="fas fa-plus"></i></a>
+            <a href="{{ route('admin-add_Zones') }}"><i class="fas fa-plus"></i></a>
                 <h3>المناطق السكنية</h3>
             </div>
             <div class="card-content">
-                @if (session('error'))
+                @foreach ($errors->all() as $error)
+                <div class="alert alert-danger" role="alert">{{ $error }}</div>
+              @endforeach
+                @if(session('error'))
                 <div class="alert alert-danger" role="alert">
-                    {{session('error') }}
+                    {{ session('error') }}
                 </div>
             @endif
-            @if (session('status'))
+            @if(session('status'))
                 <div class="alert alert-success" role="alert">
                     {{ session('status') }}
                 </div>
@@ -37,6 +40,7 @@
                         
                         <tr>
                         <td>{{$zone->name}}</td> 
+                        <td>{{$zone->Cname}}</td> 
                         @if ($zone->is_active==1)
 
                         <td>  <a href={{route('admin-activity_zone', ['id' => $zone->id , 'state'=>0])}}>   <button class="btn btn-success text-white" >مفعل</button></a></td>
@@ -47,19 +51,12 @@
 
                           @endif
 
-                            <td>
-                                <a href={{route('admin-edit_zone', ['id' => $zone->id]);}} >  <button class="btn btn-primary text-white" >تعديل</button></a>
-                        <tr>
-                            {{-- <td>ابولو</td>
-                            <td>تعز</td>
-                            <td>
-                                <button class="btn badge btn-success text-white" >مفعل</button>
+                           
+                              
 
-                            </td> --}}
-
-                            <td>
-                            <a href="/_admin/edit_Zones">  <button class="btn " ><i class="fas fa-pen" id="edit"></i></button></a>
-                            <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" id="delete"><i class="fas fa-trash"></i></button>
+                           
+                          <td> <a href={{route('admin-edit_zone', ['id' => $zone->id]);}}>  <button class="btn " ><i class="fas fa-pen" id="edit"></i></button></a></td>
+                            {{-- <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" id="delete"><i class="fas fa-trash"></i></button> --}}
 
                                     <div class="modal"  id="exampleModal"  tabindex="-1">
                                         <div class="modal-dialog">
@@ -78,7 +75,7 @@
                                         </div>
                                     </div>
 
-                            </td> --}}
+                            </td> 
 
 
                         </tr>

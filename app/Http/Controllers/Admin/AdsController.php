@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Advertising;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Utils\SystemUtils;
 
 class AdsController extends Controller
 {
@@ -26,12 +27,12 @@ class AdsController extends Controller
 
 
     public function create(Request $request)
-    {
+    {   $this->checkAds($request);
         $ads = new Advertising();
 
         $ads->descripe = $request->descripe;
-        $ads->name = $request->name;
-        $ads->image = $request->image;
+       
+        $ads->image =SystemUtils::updateImages($request,'ads');
         $ads->url = $request->url;
         $ads->position = $request->position;
         $ads->startAt = $request->startAt;
@@ -57,8 +58,8 @@ class AdsController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
-
+    {         
+        $this->checkAds($request);
         $affected = DB::table('advertisings')
             ->where('id', $id)
             ->update([
@@ -95,5 +96,28 @@ class AdsController extends Controller
             return back()->with('status', 'لقد تم تغيير حالة الإعلان الى مفعل');
            else return back()->with('status', 'لقد تم تعديل الإعلان بنجاح');
         
+    }
+    public function checkAds($request)
+    {
+        $request->validate(
+            [
+              
+                'position' => 'required',
+                'startAt' => 'required|date|before:endAt',
+                'endAt' => 'required|date|after:startAt',
+            
+            ],[
+
+            
+            'position.required'=>'يجب تحديد  مكان الاعلان ',
+            'startAt.required'=>'يجب تحديد  بداية تاريخ الاعلان ',
+            'endAt.required'=>'يجب تحديد  نهاية تاريخ الاعلان', 
+            'startAt.date'=>'يجب ان يكون صيغة التاريخ    ',
+            'endAt.date'=>'يجب ان يكون صيغة التاريخ    ',
+            'startAt.before'=>'  يجب ان يكون  التاريخ  البداية اقل من تاريخ النهاية  ',
+           
+          
+           
+         ]);
     }
 }

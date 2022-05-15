@@ -13,6 +13,7 @@ use App\Models\Role;
 use App\Models\User as ModelsUser;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Payment;
+use App\Http\Controllers\Admin\ServicesController;
 
 
 
@@ -174,6 +175,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/_admin/profile', [Admin\AdminController::class, 'showProfile'])->name('admin-profile');
         Route::get('/_admin/edit_profile', [Admin\AdminController::class, 'editProfile'])->name('admin-edit_profile');
+        Route::post('/_admin/update_profile', [Admin\AdminController::class, 'doUpdata'])->name('admin-update_profile');
         Route::get('/_admin/zones', [Admin\AdminController::class, 'showZones'])->name('admin-zones');
 
         Route::get('/_admin/show_ads', [Admin\AdsController::class, 'index'])->name('admin-show_ads');
@@ -225,6 +227,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/_admin/activity/{id}/{stats}', [Admin\PharController::class, 'activity'])->name('admin-activity');
         Route::post('/_admin/phar/Updata/{id}', [Admin\PharController::class, 'doUpdata'])->name('_admin-phar_Updata');
         Route::post('/_admin/phar/create', [Admin\PharController::class, 'create'])->name('_admin-phar_create');
+        Route::post('/_admin/update/phar_avater', [Admin\PharController::class, 'doUpdataImage'])->name('_admin-phar_avater');
+        Route::post('/_admin/update/phar_license', [Admin\PharController::class, 'doUpdataLicense'])->name('_admin-phar_licenes');
 
 
 
@@ -241,7 +245,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/_admin/show_Requests', [Admin\RequestsController::class, 'showRequests'])->name('admin-show_Requests');
         Route::get('/_admin/add_Requests', [Admin\RequestsController::class, 'addRequests'])->name('admin-add_Requests');
         Route::get('/_admin/edit_Requests', [Admin\RequestsController::class, 'editRequests'])->name('admin-edit_Requests');
-        Route::get('/_admin/show_RequestDetails', [Admin\RequestsController::class, 'showRequestDetails'])->name('admin-show_RequestDetails');
+        Route::get('/_admin/show_RequestDetails\{id}', [Admin\RequestsController::class, 'showRequestDetails'])->name('admin-show_RequestDetails');
 
 
         Route::get('/_admin/show_Notifications', [Admin\NotificationsController::class, 'showNotifications'])->name('admin-show_[Notifications');
@@ -252,8 +256,18 @@ Route::group(['middleware' => 'auth'], function () {
 
 
         Route::get('/_admin/show_WebSiteSetting', [Admin\WebSiteSettingController::class, 'showWebSiteSetting'])->name('admin-show_WebSiteSetting');
-        Route::get('/_admin/Add_Service', [Admin\WebSiteSettingController::class, 'AddService'])->name('admin-Add_Service');
-        Route::get('/_admin/edit_Service', [Admin\WebSiteSettingController::class, 'editService'])->name('admin-edit_Service');
+        Route::post('/_admin/update_WebSiteSetting', [Admin\WebSiteSettingController::class, 'update'])->name('_admin-update_WebSiteSetting');
+        Route::post('/_admin/update_logo', [Admin\WebSiteSettingController::class, 'updateLogo'])->name('_admin-update_logo');
+        Route::post('/_admin/update_contact', [Admin\WebSiteSettingController::class, 'updateContact'])->name('_admin-update_contact');
+        Route::post('/_admin/create_about', [Admin\WebSiteSettingController::class, 'create'])->name('_admin-create_about');
+        Route::get('/_admin/Add_Service', [Admin\ServicesController::class, 'AddService'])->name('admin-Add_Service');
+        Route::post('/_admin/store_Service', [Admin\ServicesController::class, 'AddService'])->name('admin-store_Service');
+        Route::get('/_admin/edit_Service/{id}', [Admin\ServicesController::class, 'edit'])->name('admin-edit_Service');
+        Route::post('/_admin/update_Service', [Admin\ServicesController::class, 'update'])->name('admin-update_Service');
+        Route::get('/_admin/get_services', [Admin\ServicesController::class, 'index'])->name('admin-get_services');
+        Route::get('/_admin/Add_Service', [Admin\ServicesController::class, 'AddService'])->name('admin-Add_Service');
+        Route::post('/_admin/store_Service', [Admin\ServicesController::class, 'storeService'])->name('admin-store_Service');
+        Route::get('/admin/activity_service/{id}/{stats}', [Admin\ServicesController::class, 'activity'])->name('admin-activity_service');
 
         // Route::get('/_admin/adds', [AdvertiseController::class, 'index'])->name('admin-adds');
         // Route::get('/_admin/adds/add', [AdvertiseController::class, 'add'])->name('admin-adds-create');
