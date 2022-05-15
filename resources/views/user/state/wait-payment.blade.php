@@ -26,7 +26,7 @@
                                 data-bs-target="#details{{ $request->id }}">
                                 عرض التفاصيل
                             </a></td>
-                        <td><a class="btn btn-success">
+                        <td><a class="btn btn-success" href="{{ route('client-payment',$request->id) }}">
                                 دفع
                             </a></td>
                         <td><a href="{{ route('client-orders-reject', $request->id) }}" class="btn btn-danger">
@@ -115,8 +115,8 @@
                                                                                     <td>
                                                                                         <input type="checkbox" name=""
                                                                                             data-id="{{ $replyDetails->id }}"
-                                                                                            id="replyDetailState{{ $replyDetails->id }}"
-                                                                                            checked>
+                                                                                            class="replyDetailsState"
+                                                                                            @if ($replyDetails->state == \App\Utils\ReplyState::ACCEPTED) checked @endif>
                                                                                     </td>
                                                                                 </tr>
                                                                             @endif
@@ -141,3 +141,23 @@
         </tbody>
     </table>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+    $(".replyDetailsState").change(function() {
+        var state = "{{ \App\Utils\ReplyState::REJECTED }}";
+        if (this.checked)
+            state = "{{ \App\Utils\ReplyState::ACCEPTED }}";
+
+        var url = "/client/reply-details/" + $(this).attr('data-id') + "/toggle/" + state;
+
+        $.ajax({
+            method: 'get',
+            url: url,
+            success: function(data) {
+                alert(data);
+            }
+        });
+    });
+</script>

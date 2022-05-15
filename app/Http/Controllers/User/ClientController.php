@@ -110,6 +110,7 @@ class ClientController extends Controller
     // Update Client Data
     public function  update(Request $request)
     {
+
         $this->validateClient($request);
         $id = Auth::id();
         $userData = DB::table('users')
@@ -121,8 +122,9 @@ class ClientController extends Controller
                 ]
             );
 
-            // if ($request->phone != "" && $userData==0)
-            //     return back()->with('error', ErrorMessages::PROFILE_UPDATED_FAILED);
+        // if ($request->phone != "" && $userData==0)
+        //     return back()->with('error', ErrorMessages::PROFILE_UPDATED_FAILED);
+
 
 
         $clientData = DB::table('clients')
@@ -135,11 +137,10 @@ class ClientController extends Controller
                 ]
             );
 
-        if ($request->dob || $request->address || $request->gender)
-            if (!$clientData)
-                return back()->with('error', ErrorMessages::PROFILE_UPDATED_FAILED);
-
-        return back()->with('status', SuccessMessages::PROFILE_UPDATED_SUCCESS);
+        if ($clientData !== false)
+            return back()->with('status', SuccessMessages::PROFILE_UPDATED_SUCCESS);
+        else
+            return back()->with('error', ErrorMessages::PROFILE_UPDATED_FAILED);
     }
 
 
