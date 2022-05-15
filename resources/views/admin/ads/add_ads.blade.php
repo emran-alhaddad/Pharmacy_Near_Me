@@ -46,12 +46,12 @@
                     <div class="row g-3">
                         <div class="mb-3 col-6">
                             <label for="exampleInputDate" class="form-label">تاريخ بداية الاعلان</label>
-                            <input type="date" class="form-control" id="exampleInputName">
+                            <input type="date" name="startAt" class="form-control" id="exampleInputName">
                         </div>
 
                         <div class="mb-3 col-6">
                             <label for="exampleInputLink" class="form-label">تاريخ نهاية الاعلان</label>
-                            <input type="date" class="form-control" id="exampleInputName">
+                            <input type="date" name="endAt" class="form-control" id="exampleInputName">
                         </div>
                     </div>
 

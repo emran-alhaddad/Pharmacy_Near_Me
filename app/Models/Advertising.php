@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Advertising extends Model 
 {
     use HasFactory;
+    public $timestamps = true;
+
     protected $fillable = [
         'admin_id',
         'descripe',
-        'owner',
+       
         'image',
         'url',
         'is_active',

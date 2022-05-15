@@ -29,7 +29,7 @@
                             <th> على من الشكوى </th>
                             <th>تاريخ تقديم الشكوى</th>
                             <th>محتوى الشكوى</th>
-                            <th>الحالة</th>
+                            
                             <th>العمليات</th>
                         </tr>
                     </thead>
@@ -61,14 +61,14 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">حذف </h5>
+                                                <h5 class="modal-title">رد  الشكوى </h5>
                                             </div>
                                             <div class="modal-body">
                                                 </p>{{$com->replay}} </p>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">لا</button>
-                                                <button type="button" class="btn btn-primary">نعم</button>
+                                                {{-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">لا</button>
+                                                <button type="button" class="btn btn-primary">نعم</button> --}}
                                             </div>
                                             </div>
                                         </div>

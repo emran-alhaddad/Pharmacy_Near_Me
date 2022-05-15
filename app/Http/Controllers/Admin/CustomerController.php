@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Client;
 use App\Models\User;
 use App\Mail\UpdateEmail;
+use App\Utils\SystemUtils;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -135,12 +136,19 @@ class CustomerController extends Controller
         {
             $this->checkPhone($request,$user->id);
         }
+        if($request->hasFile('avater')){
+
+            $name=SystemUtils::updateAvatar($request,'client');
+  
+            User::where('id', '=', $user->id)->update(array('avater' =>$name ));
+  
+         }
 
 
     }
 
 
-    public function updateEmail(Request $request,$id)
+    public function updateEmail(Request $request,$id) 
 {
     $request->validate(['email' => 'required|email'],[
         'email.required'=>'يجب ادخال الايميل ',
@@ -180,7 +188,7 @@ public function checkUpdateEmail(Request $request,$id)
 
 
 }
-else{
+else{ 
   return back()->with('error','  رمز التحقق خطاء ');
 }
 }
