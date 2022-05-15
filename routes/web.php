@@ -268,6 +268,7 @@ Route::get('/pharmacy/{id}/add-order', [Front\interfacesController::class, 'add_
         Route::get('/_admin/get_services', [Admin\ServicesController::class, 'index'])->name('admin-get_services');
         Route::get('/_admin/Add_Service', [Admin\ServicesController::class, 'AddService'])->name('admin-Add_Service');
         Route::post('/_admin/store_Service', [Admin\ServicesController::class, 'storeService'])->name('admin-store_Service');
+        Route::post('/_admin/update_iamge_Service', [Admin\ServicesController::class, 'updateImageService'])->name('admin-update_iamge_Service');
         Route::get('/admin/activity_service/{id}/{stats}', [Admin\ServicesController::class, 'activity'])->name('admin-activity_service');
 
         // Route::get('/_admin/adds', [AdvertiseController::class, 'index'])->name('admin-adds');

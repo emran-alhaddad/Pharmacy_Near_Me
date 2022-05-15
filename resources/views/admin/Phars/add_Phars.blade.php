@@ -52,21 +52,23 @@
 
             <div class="mb-3 col-3 col-4">
                 <label for="exampleInputLink" class="form-label">المدينة</label>
-                    <select class="form-select" aria-label="Default select example" name="cities">
-                        <option selected> تعز </option>
-                        <option value="1">عدن</option>
+                    <select class="form-select" aria-label="Default select example" name="city">
+                        @foreach ($city as $c )                  
+                        <option  value="{{$c->id}}"> {{$c->name}} </option>
+                        {{-- <option value="1">عدن</option>
                         <option value="2">صنعاء</option>
-                        <option value="3">حضرموت</option>
+                        <option value="3">حضرموت</option> --}}
+                        @endforeach
                     </select>
                 </div>
 
             <div class="mb-3 col-4">
                 <label for="exampleInputLink" class="form-label">المنطقة السكنية</label>
-                    <select class="form-select" aria-label="Default select example" name="zones">
-                        <option selected> الروضة </option>
-                        <option value="1">المسبح</option>
-                        <option value="2">بيرباشا</option>
-                        <option value="3">صينا</option>
+                    <select class="form-select" aria-label="Default select example" name="zone">
+                        @foreach ($zone as $c )
+                    <option value="{{$c->id}}" > {{$c->name}} </option>
+                    @endforeach
+                      
                     </select>
             </div>
             <div class="mb-3 col-4">

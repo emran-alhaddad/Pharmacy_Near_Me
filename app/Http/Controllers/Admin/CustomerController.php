@@ -195,7 +195,7 @@ else{
 public function doUpdataImage(Request $request)
 {
 
-    $userAvater= SystemUtils::updateAvatar($request);
+    $userAvater= SystemUtils::updateAvatar($request,"avaters/client");
 
     User::where('id', '=', 1)->update(['avater' => $userAvater]);
 

@@ -27,28 +27,24 @@ class WebSiteSettingController extends Controller
       
     }
     public function update(Request $request)
-    {
+    {   $this->validationIndexMain($request);
         $affected=DB::table('site_admines')
       
         ->update(['name'=>$request->name,'address_main'=>$request->address_main,'descripe_main'=>$request->descripe_main]);
         if($affected>0)
         {
-            // return back()->with('status','تم  تعديل بيانات الموقع ');
-              response()->json(['ok update']);
+             return back()->with('status','تم  تعديل بيانات الموقع ');
+          
         }
         else
-         response()->json(['failde update']);
-        
-
-        // return back()->with('error','لم يتم  تعديل بيانات الموقع ');
+        // response()->json(['failde update']);
+         return back()->with('error','لم يتم  تعديل بيانات الموقع ');
 
     }
     public function updateContact(Request $request)
     {  $this->checkSocialMieda($request);
         $affected=DB::table('site_admines')
-        
-      
-        ->update(['facebook'=>$request->facebook,'twitter'=>$request->twitter,'whatsup'=>$request->whatsup,
+         ->update(['facebook'=>$request->facebook,'twitter'=>$request->twitter,'whatsup'=>$request->whatsup,
                    'google'=>$request->google,'phone'=>$request->phone]);
         if($affected>0)
         {
@@ -152,6 +148,16 @@ $siteadmine=new SiteAdmine();
 $siteadmine=new SiteAdmine();
  $siteadmine->update(array('google' => $request->google));
 
+  }
+
+  public function validationIndexMain($request) 
+  {
+    $request->validate(['address_main' => 'min:5','descripe_main'=>'min:10','name'=>'min:3'],[
+      'address_main.min'=>'يجب ادخال ما يقل خمسة احرف تصف عنوان',
+      'descripe_main.min'=>'يجب ادخال ما يقل عشرة احرف تصف عنوان',
+      'name.min'=>'يجب ادخال ما يقل ثلاثة احرف تصف عنوان',
+      
+   ]);
   }
 
 }

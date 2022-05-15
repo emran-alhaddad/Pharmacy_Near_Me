@@ -63,7 +63,7 @@
                                         <div class="row g-3">
                                         <div class="col-8">
 
-                                        <form method="POST" id="update_index" action=>
+                                        <form method="POST" id="update_index" action="{{route('_admin-update_WebSiteSetting')}}">
                                                 <div class="mb-3">
                                                 <label for="exampleInputName" class="form-label">اسم الموقع</label>
                                                 <input type="text" name="name" value="{{$site->name}}" class="form-control" id="exampleInputName">
@@ -154,7 +154,7 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>  صورة الخدمة</th>
+                                                <th>  صورة الخدمة</th> 
                                                 <th> عنوان الخدمة</th>
                                                 <th>   وصف الخدمة</th>
                                                 <th>الحالة</th>
@@ -169,7 +169,7 @@
                                             @foreach ( $services as $ser )
                                             <tr>
 
-                                            <td>  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                                            <td>  <img  src="{{asset("/uploads/service/$ser->image")}}" alt="avatar"
                                             class="rounded-circle img-fluid" style="width: 50px;"></td>
                                             <td> {{$ser->title}} </td>
 

@@ -33,7 +33,7 @@ class PharController extends Controller
 
     public function addPhars(){
       
-        return view('admin.Phars.add_Phars');
+        return view('admin.Phars.add_Phars')->with(['city'=>CitiesController::getCity(),'zone'=>ZonesController::getZone()]);
     }
 
 
@@ -117,8 +117,8 @@ class PharController extends Controller
     }
     public function doUpdataImage(Request $request)
     {  
-      //  return $request;
-        $userAvater= SystemUtils::updateAvatar($request,'pharmacy');
+      return $request;
+        $userAvater= SystemUtils::updateAvatar($request,'avaters/pharmacy');
 
         $effect=User::where('id', '=',$request->id )->update(['avater' => $userAvater]);
         if($effect)
@@ -130,11 +130,18 @@ class PharController extends Controller
     }
 
     public function doUpdataLicense(Request $request)
-    {
-
+    {  
+   
+      
         $pharLicense= SystemUtils::insertLicense($request,'license');
 
-        Pharmacy::where('id', '=', 1)->update(['license' => $pharLicense]);
+        $effect= Pharmacy::where('user_id', '=',$request->id )->update(['license' => $pharLicense]);
+      
+        if($effect)
+        {
+          return back()->with('status','تم تعديل الرخصة الصيدلية  بنجاح');
+        }
+        return back()->with('error',' لم تم تعديل الرخصة الصيدلية  بنجاح');
 
     }
 
@@ -195,7 +202,7 @@ class PharController extends Controller
          }
          if($request->hasFile('avatar')){
 
-          $name=SystemUtils::updateAvatar($request,'pharmacy');
+          $name=SystemUtils::updateAvatar($request,'avaters/pharmacy');
 
           User::where('id', '=', $user->id)->update(array('avater' =>$name ));
 

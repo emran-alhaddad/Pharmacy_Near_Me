@@ -241,8 +241,10 @@
             </div>
 
             <div class="align-left col-3 align-items-start align-items-sm-center gap-4">
-                <form action="" class="card" style="width: 18rem;">
-                <input type="hidden" name="id" value="{{$phar->id}}">
+                <form  enctype="multipart/form-data"  method="POST" action={{route("_admin-phar_licenes")}} class="card" style="width: 18rem;">
+                    @csrf
+                    <input type="file"  name="license" id="license_img" onchange="edit(event,'license_id')" class="account-file-input invisible" />
+                <input type="hidden" name="id" value="{{$phar->id}}"> 
                     <label for="license_img" class="" tabindex="0">
                     <img
                         src="{{asset("/uploads/license/$phar->license")}}"
@@ -250,22 +252,15 @@
                         class="d-block rounded card-img-top"
                         height="100"
                         width="100"
-                        id="license"/>
+                        id="license_id"/>
                     </label>
                     <div class="button-wrapper">
+                     
                         <button type="submit"  class="btn btn-primary me-2 mb-4" tabindex="0">
                         <span class="d-none d-sm-block">تعديل صورة الرخصة</span>
                         <i class="bx bx-upload d-block d-sm-none"></i>
                         </button>
-                        <input
-                            type="file"
-                            id="license_img"
-                            onchange="edit(event,'license')"
-                            class="account-file-input invisible"
-                            
-                            accept="image/png, image/jpeg"
-                            name="license"
-                        />
+                       
                         
                     </div>
                    
@@ -282,8 +277,8 @@
                         <input class="form-control invisible" onchange="edit(event,'img_avater')" name="avatar"  type="file" id="upload-image">
                       <input type="hidden" name="id" value="{{$phar->id}}">
                         <label for="upload-image" class="form-label">
-                           <img
-                               src="{{asset("/uploads/pharmacy/$phar->avater")}}"
+                           <img    
+                               src="{{asset("/uploads/avaters/pharmacy/$phar->avater")}}"
                                alt="user-avatar"
                                class="d-block rounded card-img-top"
                                height="100"
