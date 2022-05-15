@@ -161,6 +161,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/pharmacy/email/sendCode', [Pharmacy\PharmacyController::class, 'sendEmailCode'])->name('pharmacy-email-code');
         Route::put('/pharmacy/email/update', [Pharmacy\PharmacyController::class, 'updateEmail'])->name('pharmacy-email-update');
         Route::put('/pharmacy/avater/update', [Pharmacy\PharmacyController::class, 'updateAvater'])->name('pharmacy-avater-update');
+        Route::put('/pharmacy/license/update', [Pharmacy\PharmacyController::class, 'updateLicense'])->name('pharmacy-license-update');
 
 
  });

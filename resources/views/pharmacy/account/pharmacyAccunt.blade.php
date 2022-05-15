@@ -6,6 +6,10 @@
 
     <!-- Content -->
     <div class="container-xxl flex-grow-1 container-p-y">
+
+        <div id="alert">
+        </div>
+
         @if (session('error'))
             <div class="alert alert-danger" role="alert">
                 {{ session('error') }}
@@ -43,31 +47,37 @@
                                         <div class="d-flex flex-column h-100 justify-content-evenly">
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal">
+                                                data-bs-target="#edit-password">
                                                 تغيير كلمة المرور
                                             </button>
 
                                             <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal2">
+                                                data-bs-target="#edit-email">
                                                 تغيير البريد
                                             </button>
                                         </div>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12">
                                         <form action="{{ route('pharmacy-avater-update') }}" method="POST"
-                                            class="d-flex flex-column flex-wrap justify-content-center align-content-center" enctype="multipart/form-data" class="d-flex flex-row">
-                                            <img src="{{ asset('uploads/avaters/client/' . Auth::user()->avater) }}"
-                                                alt="user-avatar" class="d-block rounded" height="150" width="150"
-                                                id="uploadedAvatar" />
-                                            <div class="button-wrapper">
-                                                <label for="upload" class=" btn btn-submit mb-4 .text-white " tabindex="0">
+                                            class="d-flex flex-column flex-wrap justify-content-center align-content-center"
+                                            enctype="multipart/form-data" class="d-flex flex-row">
+                                            @csrf
+                                            @method('put')
+                                            <label for="avater">
+                                                <img src="{{ asset('uploads/avaters/pharmacy/' . Auth::user()->avater) }}"
+                                                    alt="user-avatar" class="d-block rounded" height="150" width="150"
+                                                    id="uploadedAvatar" />
+                                                <input type="file" name="avater" id="avater" class="account-file-input"
+                                                    hidden />
+                                            </label>
+
+                                            <div class="button-wrapper mt-2">
+                                                <button type="submit" class=" btn btn-submit mb-4 .text-white "
+                                                    tabindex="0">
                                                     <span class="d-none d-sm-block ">تغيير صورة البروفايل </span>
 
-                                                    <i class="bx bx-upload d-block d-sm-none"></i>
-                                                    <input type="file" name="avater" id="upload" class="account-file-input"
-                                                       hidden accept="image/png, image/jpeg" />
-                                                </label>
-                                                </div>
+                                                </button>
+                                            </div>
                                         </form>
                                     </div>
 
@@ -76,33 +86,43 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="card mb-4">
-                            <div class="d-flex align-items-start align-items-sm-center gap-4">
-                                <img src="{{ asset('uploads/avaters/pharmacy/' . Auth::user()->avater) }}"
-                                    alt="user-avatar" class="d-block rounded" height="100" width="100"
-                                    id="uploadedAvatar" />
+                            <h5 class="card-header">تفاصيل البروفايل</h5>
+                            <!-- Account -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <form action="{{ route('pharmacy-license-update') }}" method="POST"
+                                            class="d-flex flex-column flex-wrap justify-content-center align-content-center"
+                                            enctype="multipart/form-data" class="d-flex flex-row">
+                                            @csrf
+                                            @method('put')
+                                            <label for="license">
+                                                <img src="{{ asset('uploads/license/' . $pharmacy->license) }}"
+                                                     class="d-block rounded" height="150" width="150"
+                                                    id="uploadedLicense" />
+                                                <input type="file" onchange="editImage(this,'uploadedLicense')" name="license" id="license"
+                                                    hidden />
+                                            </label>
 
-                                <form action="{{ route('pharmacy-avater-update') }}" method="POST" class="g-3"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    @method('put')
-                                    <div class="button-wrapper">
-                                        <label for="upload" class=" btn btn-submit mb-4 .text-white " tabindex="0">
-                                            <span class="d-none d-sm-block ">تغيير صورة الرخصة </span>
+                                            <div class="button-wrapper mt-2">
+                                                <button type="submit" class=" btn btn-submit mb-4 .text-white "
+                                                    tabindex="0">
+                                                    <span class="d-none d-sm-block ">تغيير صورة الرخصة </span>
 
-                                            <i class="bx bx-upload d-block d-sm-none"></i>
-                                            <input type="file" name="avater" id="upload" class="account-file-input" hidden
-                                                accept="image/png, image/jpeg" />
-                                        </label>
-
-                                        <p class="text-muted mb-0">مسموح فقط ب JPG, GIF or PNG. أكبر حجم هو 800K</p>
+                                                </button>
+                                            </div>
+                                        </form>
                                     </div>
-                                </form>
+
+                                </div>
 
                             </div>
                         </div>
                     </div>
+
                 </div>
 
             </div>
@@ -145,7 +165,7 @@
                         </div>
                         <div class="mb-3 col-lg-6 col-sm-12">
                             <div class="input-group mb-3 rounded">
-                                <label for="firstName" class="form-label">الحي السكني</label>
+                                <label for="zone_id" class="form-label">الحي السكني</label>
                                 <div class="dropdown col-12">
                                     <select name="zone_id" class="col-12 rounded form-control">
                                         @foreach ($zones as $zone)
@@ -162,7 +182,7 @@
                             <div class="mb-3 col-lg-6 col-sm-12">
                                 <label for="phone" class="form-label">رقم الهاتف </label>
                                 <input class="form-control rounded @error('phone') border-danger @enderror"
-                                    value="{{ $pharmacy->phone }}" type="text" placeholder="رقم الهاتف" name="phone"
+                                    value="{{ $pharmacy->user->phone }}" type="text" placeholder="رقم الهاتف" name="phone"
                                     autofocus />
                                 @error('phone')
                                     <div class="invalid-feedback d-block">
@@ -228,7 +248,7 @@
                     <div class="row mb-3">
                         <label for="address" class="form-label">وصف عنوان الصيدلية</label>
                         <textarea rows=3 class="form-control rounded @error('address') border-danger @enderror"
-                            value="{{ $pharmacy->address }}" name="address"></textarea>
+                            name="address">{{ $pharmacy->address }}</textarea>
                         @error('address')
                             <div class="invalid-feedback d-block">
                                 {{ $message }}
@@ -239,7 +259,7 @@
                     <div class="row mb-3">
                         <label for="description" class="form-label">وصف الصيدلية </label>
                         <textarea rows=7 class="form-control rounded @error('description') border-danger @enderror"
-                            value="{{ $pharmacy->description }}" name="description"></textarea>
+                            name="description">{{ $pharmacy->description }}</textarea>
                         @error('description')
                             <div class="invalid-feedback d-block">
                                 {{ $message }}
@@ -267,58 +287,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-    <script>
-        $("#sendEmailCode").on('submit', function(e) {
-            e.preventDefault();
-            var token = $($("[name='_token']")[0]).val();
-            var email = $("#currentEmail").val();
-            var sendCodeBtn = $(".sendEmailCodeBtn");
-
-            sendCodeBtn.text('جاري ارسال الرمز ...');
-            console.log(sendCodeBtn);
-
-            $.ajax({
-                method: 'post',
-                data: {
-                    _token: token,
-                    email: email
-                },
-                url: "{{ route('pharmacy-email-code') }}",
-                success: function(data) {
-
-                    if (data['type'] != 'danger')
-
-                        $("#sendEmailCode").html(
-                            "<div class='alert alert-" + data['type'] + "' role='alert'>" +
-                            data['data'] +
-                            "</div>" +
-                            $("#sendEmailCode").html()
-                        );
-                    $("#currentEmail").attr('disabled', 'disabled');
-                    $("#hiddenEmail").val(email);
-                    $("#currentEmail").val(email);
-
-                    sendCodeBtn.text('تم أرسال الرمز بنجاح');
-
-
-                }
-                error: function(error) {
-                    sendCodeBtn.text('ارسل رمز التحقق مرة اخرى');
-                }
-            })
-        })
-
-        @error('modal')
-            $("#{{ $message }}").toggleClass('show');
-            $("#{{ $message }}").attr('style', "padding-left: 15px; display: block;");
-            $("#{{ $message }}").attr('aria-modal', "true");
-            $("#{{ $message }}").attr('role', "dialog");
-        @enderror
-    </script>
-
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="edit-password" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content p-3">
@@ -422,7 +393,7 @@
 
     </div>
 
-    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="edit-email" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content p-3">
@@ -512,6 +483,7 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    
     <script>
         $("#sendEmailCode").on('submit', function(e) {
             e.preventDefault();
@@ -546,12 +518,50 @@
 
         })
 
+        function editImage(event,target)
+        {
+            
+            var file = event.files[0];
+            var fileType = file["type"];
+            var validImageTypes = ["image/jpg", "image/png"];
+            if ($.inArray(fileType, validImageTypes) < 0) {
+                $(event).val("");
+                $('#alert').html("<div class='alert alert-danger' role='alert'>نوع الصورة غير مقبول</div>");
+            }
+            else
+            {
+                let img = document.getElementById(target);
+                img.src = window.URL.createObjectURL(event.files[0]);
+            }
+        }
+
+        $("#avater").change(function(e) {
+            var file = this.files[0];
+            var fileType = file["type"];
+            var validImageTypes = ["image/jpg", "image/png"];
+            if ($.inArray(fileType, validImageTypes) < 0) {
+                $(this).val("");
+                $('#alert').html("<div class='alert alert-danger' role='alert'>نوع الصورة غير مقبول</div>");
+            }
+
+        });
+
+$(document).ready(function(){
         @error('modal')
-            $("#{{ $message }}").toggleClass('show');
-            $("#{{ $message }}").attr('style', "padding-left: 15px; display: block;");
-            $("#{{ $message }}").attr('aria-modal', "true");
-            $("#{{ $message }}").attr('role', "dialog");
-        @enderror
+   $("#{{ $message }}").modal('show');
+   @enderror
+   @error('email')
+   $("#edit-email").modal('show');
+   @enderror
+   @error('new_password')
+   $("#edit-password").modal('show');
+   @enderror
+   @error('new_password_confirmed')
+   $("#edit-password").modal('show');
+   @enderror
+});
+        
+        
     </script>
 
 @stop

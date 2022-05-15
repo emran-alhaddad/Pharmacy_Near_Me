@@ -18,11 +18,10 @@ return new class extends Migration
         $table->string('license')->nullable();
         $table->string('description')->nullable();
         $table->string('address')->nullable();
-        $table->string('facebook')->nullable();;
-        $table->string('twitter')->nullable();;
-        $table->string('whatsup')->nullable();;
-        $table->string('google')->nullable();;
-        $table->string('phone')->nullable();;
+        $table->string('facebook')->nullable();
+        $table->string('twitter')->nullable();
+        $table->string('whatsup')->nullable();
+        $table->string('google')->nullable();
         $table->unsignedBigInteger('zone_id')->nullable();
         $table->foreign('user_id')->references('id')->on('users');
         $table->foreign('zone_id')->references('id')->on('zones');
