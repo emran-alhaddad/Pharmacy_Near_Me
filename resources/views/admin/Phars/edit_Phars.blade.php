@@ -3,14 +3,14 @@
 
 
 <div class="wrapper bg-white">
-    <div class="row ">
+    <div class="row">
         <div class="col-12 col-m-8 col-sm-8">
         <div class="card bg-white m-5">
 
             <div class="card-header d-flex justify-content-between">
                 <h3>تعديل صيدلية</h3>
             </div>
-            <div class="card-content px-5">
+            <div class="card-content px-5 row">
                 @foreach ($errors->all() as $error)
                 <div class="alert alert-danger" role="alert">{{ $error }}</div>
               @endforeach
@@ -18,7 +18,7 @@
                 <div class="alert alert-danger" role="alert">
                     {{session('error') }}
                 </div>
-            @endif
+              @endif
             @if (session('status'))
                 <div class="alert alert-success" role="alert">
                     {{ session('status') }}
@@ -29,7 +29,7 @@
                 <div class="alert alert-danger" role="alert">{{ $error }}</div>
               @endforeach
 
-    <form method="POST" action={{route('_admin-phar_Updata', ['id' => $phar->id]);}}>
+         <form method="POST" class="col-9" action={{route('_admin-phar_Updata', ['id' => $phar->id]);}}>
 
 
         <div class="row g-3">
@@ -39,26 +39,32 @@
             </div>
 
 
-            <div class="mb-3 col-4">
+            {{-- <div id="" class="mb-3 col-4">
+                <form id="update_image" method="POST" action="{{route('_admin-phar_avater')}}">
+                    @csrf
 
                     <div class="d-flex justify-content-start align-items-sm-center gap-4">
                     <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                        src="{{asset("/uploads/pharmacy/$phar->avater")}}" 
                         alt="user-avatar"
                         class="d-block rounded"
                         height="100"
                         width="100"
                         id="uploadedAvatar"/>
                     <div class="button-wrapper">
+                        <button type="" id="btn_update_avater" class="d-none d-sm-block"  >تعديل صورة الصيدلي</button>
+                        
                         <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                        <span class="d-none d-sm-block" >تعديل صورة الصيدلي</span>
+                           
+                        
                         <i class="bx bx-upload d-block d-sm-none"></i>
                         <input type="file"
-                            id="upload"
+                            
+                            id="update_avater"
                             class="account-file-input"
-                            hidden
-                            accept="image/png, image/jpeg"
-                            name="image"
+                            
+                           
+                            name="avater"
                         />
                         </label>
                     </div>
@@ -66,9 +72,9 @@
 
 
 
+                </form>
 
-
-        </div>
+                </div> --}}
 
 
         </div>
@@ -125,14 +131,15 @@
 
 
 
-        <div class="mb-3 col-4">
+          <div class="mb-3 col-4">
             <!-- <label for="formFile" class="form-label">صورة الرخصة</label>
             <input class="form-control" type="file" id="formFile"> -->
 
 
-            <div class="d-flex align-items-start align-items-sm-center gap-4">
+            {{-- <div class="d-flex align-items-start align-items-sm-center gap-4">
+                <form action="">
                     <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                        src="{{asset("/uploads/license/$phar->license")}}"
                         alt="user-avatar"
                         class="d-block rounded"
                         height="100"
@@ -153,6 +160,7 @@
                         </label>
                     </div>
                     </div>
+                </form>
 
 
 
@@ -160,7 +168,7 @@
 
 
 
-        </div>
+           </div> --}}
 
         </div>
 
@@ -227,9 +235,101 @@
 
             <button  id="submit_button"  type="submit" class="btn btn-primary">تعديل</button>
     </form>
+    
+    
 
             </div>
-        </div>
+
+            <div class="align-left col-3 align-items-start align-items-sm-center gap-4">
+                <form action="" class="card" style="width: 18rem;">
+                <input type="hidden" name="id" value="{{$phar->id}}">
+                    <label for="license_img" class="" tabindex="0">
+                    <img
+                        src="{{asset("/uploads/license/$phar->license")}}"
+                        alt="user-avatar"
+                        class="d-block rounded card-img-top"
+                        height="100"
+                        width="100"
+                        id="license"/>
+                    </label>
+                    <div class="button-wrapper">
+                        <button type="submit"  class="btn btn-primary me-2 mb-4" tabindex="0">
+                        <span class="d-none d-sm-block">تعديل صورة الرخصة</span>
+                        <i class="bx bx-upload d-block d-sm-none"></i>
+                        </button>
+                        <input
+                            type="file"
+                            id="license_img"
+                            onchange="edit(event,'license')"
+                            class="account-file-input invisible"
+                            
+                            accept="image/png, image/jpeg"
+                            name="license"
+                        />
+                        
+                    </div>
+                   
+                </form>
+                <div class="mb-3 ">
+                    {{-- <label for="upload-image" class="form-label"> --}}
+                   
+               
+        
+        
+                    <div class=" align-items-start align-items-sm-center gap-4">
+                      <form action="{{route('_admin-phar_avater')}}" enctype="multipart/form-data" method="POST" class="card" style="width: 18rem;">
+                        @csrf
+                        <input class="form-control invisible" onchange="edit(event,'img_avater')" name="avatar"  type="file" id="upload-image">
+                      <input type="hidden" name="id" value="{{$phar->id}}">
+                        <label for="upload-image" class="form-label">
+                           <img
+                               src="{{asset("/uploads/pharmacy/$phar->avater")}}"
+                               alt="user-avatar"
+                               class="d-block rounded card-img-top"
+                               height="100"
+                               width="100"
+                               id="img_avater"/>
+                            </label> 
+
+                           <div class="button-wrapper card-body">
+                               <button type="submit" for="upload-image" class="btn btn-primary me-2 mb-4" tabindex="0">
+                               <span class="d-none d-sm-block">  تعديل صورة اللوجو</span>
+                               <i class="bx bx-upload d-block d-sm-none"></i>
+                               </button>
+                               {{-- <input
+                                   type="file"
+                                
+                                   id="upload-image"
+                                   class="account-file-input"
+                                   hidden
+                                   accept="image/png, image/jpeg"
+                                   name="image"
+                               /> --}}
+                              
+                           </div>
+                           </div>
+                       </form>
+        
+        
+        
+        
+        
+        
+        
+                  </div>
+        
+               
+
+
+    </div>
+
+
+
+
+           </div>
+         
+           
+        </div>  {{-- end--}}
 </div>
 
 
@@ -298,3 +398,43 @@
                                             </div>
                                         </div>
                                 </div>
+                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
+
+
+
+<script>
+    function edit(event,id)
+    {
+        var out=document.getElementById(id);
+        out.src=URL.createObjectURL(event.target.files[0]);
+    }
+
+
+
+// $(document).ready(function() {
+   
+//  $("document").on('submit','update_image',function(event) { 
+//     event.preventDefault();
+//     alert('dasd');
+//     var formData=new FormData($('#update_image')[0]);
+   
+//     $.ajax({
+//      type:'post',
+//      url:"{{route('_admin-phar_avater')}}",
+//      enctype:'multipart/form-data',
+//      data:formData,
+//     success:function(data)
+//     { 
+//         // data.forEach(function (serv) {
+//         console.log(data);
+
+//         // });
+//     }
+//     });
+// });
+// });
+                                    </script>  
+                                                            

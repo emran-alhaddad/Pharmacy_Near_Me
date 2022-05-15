@@ -10,15 +10,29 @@ use Illuminate\Support\Facades\Validator;
 
 class SystemUtils extends UploadingUtils
 {
-  CONST AVATER_PATH = 'uploading/';
-  CONST LOGO_PATH = 'uploading/logo/';
+  CONST AVATER_PATH = 'uploads/';
+  CONST LOGO_PATH = 'uploads/logo/';
 
-  public static function  updateAvatar(Request $request)
+  public static function  updateAvatar(Request $request,$path)
   {
     
-    $request->validate(['avatar' => 'required|image|mimes:png,jpg']);
+    $request->validate(['avatar' => 'required|image|mimes:png,jpg'],
+    ['avatar.mimes'=>'يجب ان تكون الصورة بصيغة ',
+    'avatar.image'=>'يجب ان تكون الملف  الصوره ']
+  );
     
-    return SystemUtils::returnPath($request->avatar);
+    return SystemUtils::returnPath($request->avatar,$path);
+  }
+
+  public static function  updateLogo(Request $request,$path)
+  {
+    
+    $request->validate(['logo' => 'required|image|mimes:png,jpg'],
+    ['logo.mimes'=>'يجب ان تكون الصورة بصيغة ',
+    'logo.image'=>'يجب ان تكون الملف  الصوره ']
+  );
+    
+    return SystemUtils::returnPath($request->logo,$path);
   }
    
   public static function  updateImages(Request $request,$path)
@@ -28,7 +42,7 @@ class SystemUtils extends UploadingUtils
     $request->validate(['image' => 'required|mimes:png,jpg'],
     [
       'image.mimes'=>'يجب ان تكون الصورة بصيغة ',
-      'image.image'=>'يجب ان تكون الملف  الصوره '
+      
     ]);
   
   

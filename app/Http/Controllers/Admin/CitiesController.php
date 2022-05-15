@@ -86,7 +86,7 @@ class CitiesController extends Controller
    {
     $request->validate(['name' => 'required|min:2'],[
     
-        'name.required'=>'يجب ادخال اسم الصيدلية '
+        'name.required'=>'يجب ادخال اسم المدينة '
      ]);
    }
   

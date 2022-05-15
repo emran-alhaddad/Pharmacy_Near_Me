@@ -16,11 +16,16 @@ return new class extends Migration
         Schema::create('site_admines', function (Blueprint $table) {
             $table->id();
             $table->string('address_main');
-            $table->string('descripe_main');
-            $table->string('descripe_ser_client');
-            $table->string('descripe_ser_phar');
-            $table->string('descripe_ser_user');
             $table->string('name');
+            $table->string('logo');
+            $table->string('image')->nullable();
+            $table->string('title_about');
+            $table->text('descripe_about');
+            $table->string('descripe_main');
+            $table->string('descripe_ser_client')->nullable();;
+            $table->string('descripe_ser_phar')->nullable();;
+            $table->string('descripe_ser_user')->nullable();
+         
             $table->string('facebook');
             $table->string('twitter');
             $table->string('whatsup');

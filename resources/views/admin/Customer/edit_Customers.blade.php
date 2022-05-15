@@ -153,11 +153,11 @@
                                                 </div>
                                             </form>
                                             </div>
-                                            <form  method="POST" action={{route('_admin-checkEmail',['id'=>$customer->id])}}    tabindex="-1">
+                                            <form  method="POST" action="{{route('_admin-checkEmail',['id'=>$customer->id])}}"    tabindex="-1">
                                                 @csrf   
                                                <div class="modal-dialog">
                                                        <div class="modal-content">
-                                                           @foreach ($errors->all() as $error)
+                                                           {{-- @foreach ($errors->all() as $error)
                                                            <div class="alert alert-danger" role="alert">{{ $error }}</div>
                                                          @endforeach
                                                            @if (session('error'))
@@ -169,7 +169,7 @@
                                                            <div class="alert alert-success" role="alert">
                                                                {{ session('status') }}
                                                            </div>
-                                                       @endif 
+                                                       @endif  --}}
                                             <div class="mb-3 col-12">
                                                 <label for="exampleFormControlInput1" class="form-label">  ادخل رقم التأكيد</label>
                                                 <input type="text" class="form-control" name="code" id="exampleFormControlInput1">
@@ -177,19 +177,18 @@
                                             </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="submit" class="btn btn-primary">تعديل الايميل</button>
+                                                <button type="submit"  class="btn btn-primary">ارسال   </button>
                                             </div>
                                             </div>
-                                        </div>
+                                        
                                     </form>
                                 </div>
                               </div>
                             </div>
 
 
-
-                                <form action={{route('_admin-updatePassword',['id'=>$customer->id])}}  method="POST" class="modal"  id="addpassword"  tabindex="-1">
-                                    @csrf   
+                            <div id="addemail" class="modal"  id="addpassword" >
+                       
                                     <div class="modal-dialog">
                                             <div class="modal-content">
                                                 @foreach ($errors->all() as $error)
@@ -209,6 +208,8 @@
                                                 <h5 class="modal-title">تعديل كلمة المرور   </h5>
                                             </div>
                                             <div class="modal-body">
+                                                <form action={{route('_admin-updatePassword',['id'=>$customer->id])}}  method="POST"   tabindex="-1">
+                                                    @csrf   
 
                                             <div class="mb-3 col-12">
                                                 <label for="exampleFormControlInput1" class="form-label">  كلمة المرور القديمة</label>
@@ -227,46 +228,48 @@
                                             <div class="modal-footer">
                                                 <button type="submit" class="btn btn-primary">اضافة</button>
                                             </div>
-                                            </div>
-                                        </div>
+                                         
                                     </form>
+                                </div>
+                            </div>
+                            </div>
 
 
                                     <script>
-                                    $("#sendEmailCode").on('submit',function(e){
-                                        e.preventDefault();
-                                        var token = $($("[name='_token']")[0]).val();
-                                            var email = $("#currentEmail").val();
-                                            $.ajax({
-                                                method: 'post',
-                                                data: {
-                                                    _token: token,
-                                                    email: email
-                                                },
-                                                url: "{{ route('client-email-code') }}",
-                                                success: function(data) {
-                                                    $("#hiddenEmail").val($("#currentEmail").val());
-                                                    if(data['type']!='danger')
-                                                    $("#currentEmail").attr('disabled','disabled');
-                                                    $("#sendEmailCode").html(
-                                                        "<div class='alert alert-"+data['type']+"' role='alert'>"+
-                                                           data['data']+
-                                                        "</div>"+
-                                                        $("#sendEmailCode").html()
-                                                    );
+                                    // $("#sendEmailCode").on('submit',function(e){
+                                    //     e.preventDefault();
+                                    //     var token = $($("[name='_token']")[0]).val();
+                                    //         var email = $("#currentEmail").val();
+                                    //         $.ajax({
+                                    //             method: 'post',
+                                    //             data: {
+                                    //                 _token: token,
+                                    //                 email: email
+                                    //             },
+                                    //             url: "{{ route('client-email-code') }}",
+                                    //             success: function(data) {
+                                    //                 $("#hiddenEmail").val($("#currentEmail").val());
+                                    //                 if(data['type']!='danger')
+                                    //                 $("#currentEmail").attr('disabled','disabled');
+                                    //                 $("#sendEmailCode").html(
+                                    //                     "<div class='alert alert-"+data['type']+"' role='alert'>"+
+                                    //                        data['data']+
+                                    //                     "</div>"+
+                                    //                     $("#sendEmailCode").html()
+                                    //                 );
                                                     
-                                                }
+                                    //             }
                                 
                                                 
-                                            })
-                                    })
+                                    //         })
+                                    // })
                                 
-                                    @error('modal')
-                                    $("#{{ $message }}").toggleClass('show');
-                                    $("#{{ $message }}").attr('style',"padding-left: 15px; display: block;");
-                                    $("#{{ $message }}").attr('aria-modal',"true");
-                                    $("#{{ $message }}").attr('role',"dialog");
-                                    @enderror
+                                    // @error('modal')
+                                    // $("#{{ $message }}").toggleClass('show');
+                                    // $("#{{ $message }}").attr('style',"padding-left: 15px; display: block;");
+                                    // $("#{{ $message }}").attr('aria-modal',"true");
+                                    // $("#{{ $message }}").attr('role',"dialog");
+                                    // @enderror
                                     </script>
                                                                                            
 

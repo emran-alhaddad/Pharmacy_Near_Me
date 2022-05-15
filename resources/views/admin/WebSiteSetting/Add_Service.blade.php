@@ -12,33 +12,36 @@
         </div>
 
         <div class="card-content">
-        @if (session('error'))
+            @foreach ($errors->all() as $error)
+            <div class="alert alert-danger" role="alert">{{ $error }}</div>
+          @endforeach
+            @if (session('error'))
             <div class="alert alert-danger" role="alert">
-                {!! session('error') !!}
+                {{session('error') }}
             </div>
         @endif
         @if (session('status'))
             <div class="alert alert-success" role="alert">
-                {!! session('status') !!}
+                {{ session('status') }}
             </div>
         @endif
-                <form>
+        <form method="POST" action="{{ route('admin-store_Service') }} " enctype="multipart/form-data">
 
                         <div class="row g-3">
 
                                 <div class="mb-3 col-6">
                                     <label for="exampleInputName" class="form-label">عنوان الخدمة</label>
-                                    <input type="text" class="form-control" id="exampleInputName">
+                                    <input type="text" name="title" class="form-control" id="exampleInputName">
                                 </div>
 
                                 <div class="mb-3 col-6">
                                     <label for="formFile" class="form-label">صورة الخدمة</label>
-                                    <input class="form-control" type="file" id="formFile">
+                                    <input class="form-control" name="image" type="file" id="formFile">
                                 </div>
 
                                 <div class="mb-3 col-12">
                                     <label for="formFile" class="form-label">وصف الخدمة</label>
-                                    <input class="form-control" type="textarea" id="formFile">
+                                    <input class="form-control" name="descripe" type="textarea" id="formFile">
                                 </div>
 
 
@@ -49,9 +52,6 @@
 
                         <button  id="submit_button"  type="submit" class="btn btn-primary">اضافة</button>
                 </form>
-
-            </>
-
 
 </div>
 </div>

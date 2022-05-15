@@ -12,7 +12,7 @@
         <div class="card-body text-center">
         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
             class="rounded-circle img-fluid" style="width: 150px;">
-        <h5 class="my-3">حنين عبد الجليل</h5>
+        <h5 class="my-3">{{$admin->name}}</h5>
         <p class="text-muted mb-1">Full Stack Developer</p>
         <a href="/_admin/edit_profile">
         <button id="edit_button" type="button" class="btn btn-outline-dark m-3">تعديل بيانات الحساب</button>
@@ -31,7 +31,7 @@
             <p class="mb-0"> الاسم الكامل </p>
             </div>
             <div class="col-sm-9">
-            <p class="text-muted mb-0">حنين عبد الجليل</p>
+            <p class="text-muted mb-0">{{$admin->name}}</p>
             </div>
         </div>
         <hr>
@@ -40,7 +40,7 @@
             <p class="mb-0">البريد الالكتروني</p>
             </div>
             <div class="col-sm-9">
-            <p class="text-muted mb-0">Haneen@example.com</p>
+            <p class="text-muted mb-0">{{$admin->email}}</p>
             </div>
         </div>
         <hr>
@@ -49,7 +49,7 @@
             <p class="mb-0">رقم الجوال</p>
             </div>
             <div class="col-sm-9">
-            <p class="text-muted mb-0">(097) 234-5678</p>
+            <p class="text-muted mb-0">{{$admin->phone}}</p>
             </div>
         </div>
         <hr>
