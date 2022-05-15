@@ -50,15 +50,6 @@
                                     <label for="upload" class=" btn btn-submit mb-4 .text-white " tabindex="0">
                                         <span class="d-none d-sm-block ">تغيير صورة البروفايل </span>
 
-<<<<<<< HEAD
-                <label for="upload" class=" main-btn btn-hover mb-4 .text-white " tabindex="0">
-                                    <span class="d-none d-sm-block  ">تغيير الصورة  </span>
-
-                                   
-                                    <input type="file" name="avater" id="upload" class="account-file-input" hidden
-                                        accept="image/png, image/jpeg" />
-                                </label>
-=======
                                         <i class="bx bx-upload d-block d-sm-none"></i>
                                         <input type="file" name="avater" id="upload" class="account-file-input" hidden
                                             accept="image/png, image/jpeg" />
@@ -71,7 +62,6 @@
                                     <p class="text-muted mb-0">مسموح فقط ب JPG, GIF or PNG. أكبر حجم هو 800K</p>
                                 </div>
                             </form>
->>>>>>> 011fce7a284e7d09b4fe09516873b48b352bd7be
 
                         </div>
                     </div>
