@@ -142,8 +142,7 @@
                         @error('name')
                             <div class="invalid-feedback d-block">
                                 {{ $message }}
-                            </div>
-                        @enderror
+                            </div>                        @enderror
                     </div>
 
                     <div class="row">
@@ -272,7 +271,7 @@
     </div>
     <div class="mt-2">
 
-        <button type="submit" class="btn btn btn-submit me-2 ">حفظ التغيرات</button>
+        <button type="submit" class=" btn btn-submit btn-hover  me-2 ">حفظ التغيرات</button>
         <button type="reset" class="btn btn-outline-secondary">الغاء</button>
     </div>
 
