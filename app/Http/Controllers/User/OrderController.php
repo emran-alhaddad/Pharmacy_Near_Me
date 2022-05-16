@@ -118,7 +118,7 @@ class OrderController extends Controller
         $request = OrderRequest::with(['details','replies.details'])
             ->where(['client_id'=> Auth::id(),'id'=>$id])->first();
 
-        return view('front.payment',[
+        return view('payment.payment',[
             'cities' => City::get(),
             'zones' => zone::get(),
             'request' => $request,

@@ -17,8 +17,9 @@
                                 <td>{{ $request->pharmacy->user->name }}</td>
                                 <td>{{ $request->created_at->diffForHumans() }}</td>
                                 <td><span class="badge bg-warning text-dark" style="background-color: brown;">غير متوفرة</span></td>
-                                <td><a class="btn btn-primary" data-toggle="collapse"
-                                        href="#details{{ $request->id }}" role="button">
+                                <td><a class="btn btn-primary" data-bs-toggle="collapse"
+                                        role="button"
+                                        data-bs-target="#details{{ $request->id }}" role="button">
                                         عرض التفاصيل
                                     </a></td>
                             </tr>
