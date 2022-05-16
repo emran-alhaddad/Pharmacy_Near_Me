@@ -49,7 +49,7 @@
         </li>
        
         <li class="menu-item">
-        <a href="{{ route('phamacy-bag') }}" class="menu-link"><i class="bx bx-user me-1"></i>
+        <a href="{{ route('pharmacy-bag') }}" class="menu-link"><i class="bx bx-user me-1"></i>
             <div data-i18n="Account">محفظتي</div>
         </a>
         </li>

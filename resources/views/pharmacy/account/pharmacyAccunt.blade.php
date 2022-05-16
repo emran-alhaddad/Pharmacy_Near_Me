@@ -142,8 +142,7 @@
                         @error('name')
                             <div class="invalid-feedback d-block">
                                 {{ $message }}
-                            </div>
-                        @enderror
+                            </div>                        @enderror
                     </div>
 
                     <div class="row">
@@ -244,11 +243,6 @@
                     </div>
                 </div>
 
-<<<<<<< HEAD
-                <button type="submit" class="btn btn-submit btn-hover  me-2  ">حفظ التغيرات</button>
-                <button type="reset" class="btn btn-outline-secondary">الغاء</button>
-            </div>
-=======
                 <div class="mb-3 col-lg-6 col-md-12 col-sm-12">
                     <div class="row mb-3">
                         <label for="address" class="form-label">وصف عنوان الصيدلية</label>
@@ -260,7 +254,6 @@
                             </div>
                         @enderror
                     </div>
->>>>>>> 011fce7a284e7d09b4fe09516873b48b352bd7be
 
                     <div class="row mb-3">
                         <label for="description" class="form-label">وصف الصيدلية </label>
@@ -278,7 +271,7 @@
     </div>
     <div class="mt-2">
 
-        <button type="submit" class="btn btn btn-submit me-2 ">حفظ التغيرات</button>
+        <button type="submit" class=" btn btn-submit btn-hover  me-2 ">حفظ التغيرات</button>
         <button type="reset" class="btn btn-outline-secondary">الغاء</button>
     </div>
 

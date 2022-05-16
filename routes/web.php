@@ -147,7 +147,7 @@ Route::get('/pharmacy/{id}/add-order', [Front\interfacesController::class, 'add_
         // Pharmacy Chat
         Route::get('/_pharmacy/account', [Pharmacy\PharmacyController::class, 'account'])->name('pharmacy-account');
         Route::get('/_pharmacy/chat', [Pharmacy\PharmacyController::class, 'chat'])->name('pharmacy-chat');
-
+        Route::get('/_pharmacy/bag', [Pharmacy\PharmacyController::class, 'bag'])->name('pharmacy-bag');
         // Pharmacy Orders
         Route::get('/_pharmacy/orders', [Pharmacy\PharmacyController::class, 'orders'])->name('pharmacy-orders');
         Route::get('/_pharmacy/order/{id}', [Pharmacy\PharmacyController::class, 'detailes'])->name('pharmacy-order-details');

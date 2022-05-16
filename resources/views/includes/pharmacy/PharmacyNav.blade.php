@@ -68,14 +68,5 @@
               <!--/ User -->
           </ul>
       </div>
-      @if (session('error'))
-          <div class="alert alert-danger mt-2 mb-2" role="alert">
-              {{ session('error') }}
-          </div>
-      @endif
-      @if (session('status'))
-          <div class="alert alert-success mt-2 mb-2" role="alert">
-              {{ session('status') }}
-          </div>
-      @endif
+ 
   </nav>
