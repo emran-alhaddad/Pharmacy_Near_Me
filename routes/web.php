@@ -90,12 +90,11 @@ Route::get('auth/google/callback', [Social\GoogleController::class, 'callback'])
 Route::get('auth/verify_email/{token}', [CustomAuth\VerifyEmailController::class, 'verify']);
 
 // This Code will Used By Hadeel after payment process 
-// Route::get('/transfer/{sender}/{reciver}/{amount}',function($id1,$id2,$amount){
-
-//     $sender = ModelsUser::where('id',$id1)->first();
-//     $reciver = ModelsUser::where('id',$id2)->first();
-//     WalletController::pay($sender,$reciver,$amount,0.15);
-// });
+Route::get('/transfer/{sender}/{reciver}/{amount}',function($id1,$id2,$amount){
+    $sender = ModelsUser::where('id',$id1)->first();
+    $reciver = ModelsUser::where('id',$id2)->first();
+    return WalletController::pay($sender,$reciver,$amount,0.15);
+});
 
 // Routes That Needs Authentication
 Route::group(['middleware' => 'auth'], function () {
@@ -106,14 +105,13 @@ Route::get('/pharmacy/{id}/add-order', [Front\interfacesController::class, 'add_
     Route::group(['middleware' => ['role:client']], function () {
         Route::get('/client/', [User\ClientController::class, 'index'])->name('client-dashboard');
         Route::get('/chat-user/', [User\ClientController::class, 'chat'])->name('chat-user');
-        Route::get('/bag-user/', [User\ClientController::class, 'bag'])->name('bag-user');
         Route::get('/settings/', [User\ClientController::class, 'settings'])->name('settings');
         Route::get('/myorder/', [User\OrderController::class, 'index'])->name('myorder');
 
         Route::get('/edit_profile/', [User\ClientController::class, 'edit_profile'])->name('edit_profile');
 
+        Route::get('/client/wallet', [WalletController::class, 'index'])->name('bag-user');
         Route::get('/client/payment/{id}', [User\OrderController::class, 'showPayment'])->name('client-payment');
-        Route::get('/client/wallet',[User\ClientController::class,'']);
 
         Route::get('/client/edit', [User\ClientController::class, 'edit'])->name('client-dashboard-edit');
         Route::put('/client/update', [User\ClientController::class, 'update'])->name('client-dashboard-update');
@@ -147,7 +145,8 @@ Route::get('/pharmacy/{id}/add-order', [Front\interfacesController::class, 'add_
         // Pharmacy Chat
         Route::get('/_pharmacy/account', [Pharmacy\PharmacyController::class, 'account'])->name('pharmacy-account');
         Route::get('/_pharmacy/chat', [Pharmacy\PharmacyController::class, 'chat'])->name('pharmacy-chat');
-        Route::get('/_pharmacy/bag', [Pharmacy\PharmacyController::class, 'bag'])->name('pharmacy-bag');
+        Route::get('/_pharmacy/wallet', [WalletController::class, 'index'])->name('pharmacy-bag');
+
         // Pharmacy Orders
         Route::get('/_pharmacy/orders', [Pharmacy\PharmacyController::class, 'orders'])->name('pharmacy-orders');
         Route::get('/_pharmacy/order/{id}', [Pharmacy\PharmacyController::class, 'detailes'])->name('pharmacy-order-details');
@@ -174,6 +173,8 @@ Route::get('/pharmacy/{id}/add-order', [Front\interfacesController::class, 'add_
 
         // Admin Dashboard
         Route::get('/_admin/', [Admin\AdminController::class, 'index'])->name('admin-dashboard');
+        Route::get('/_admin/wallet', [WalletController::class, 'index'])->name('admin-bag');
+
 
         Route::get('/_admin/profile', [Admin\AdminController::class, 'showProfile'])->name('admin-profile');
         Route::get('/_admin/edit_profile', [Admin\AdminController::class, 'editProfile'])->name('admin-edit_profile');

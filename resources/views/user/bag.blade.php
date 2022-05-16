@@ -7,8 +7,10 @@
 <div class="container">
 <nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand"> رصيدك الحالي هو 0 ريال</a>
-    <button type="submit" class="btn btn-submit btn-hover  me-2">سحب رصيد من المحفظة <i class="lni lni-search-alt"></i></button>
+    <a class="navbar-brand"> رصيدك الحالي هو {{ $user->balance }} $</a>
+    @if ($user->balance > 0)
+            <button type="submit" class="btn btn-submit btn-hover  me-2">سحب رصيد من المحفظة <i class="lni lni-search-alt"></i></button>
+    @endif
     <form class="d-flex">
       <input class="form-control me-2" type="search" placeholder="بحث" aria-label="Search">
       <button class="btn btn-outline-success" type="submit">بحث</button>

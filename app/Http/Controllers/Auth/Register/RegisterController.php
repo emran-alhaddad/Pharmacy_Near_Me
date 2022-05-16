@@ -34,7 +34,6 @@ class RegisterController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-
         if (!$request->has('email_verified_at')) {
             $token = Str::uuid();
             $user->remember_token = $token;
@@ -74,6 +73,7 @@ class RegisterController extends Controller
         $user->password = Hash::make($request['password']);
         $token = Str::uuid();
         $user->remember_token = $token;
+
         
         if (isset($request['google_id']))
         { $user->google_id = $request['google_id'];
@@ -122,6 +122,8 @@ class RegisterController extends Controller
     // Private Functions
     public static function registerClient(User $user)
     {
+    
+        self::createWallet($user);
         $user->is_active = 1;
         if ($user->save()) {
             $user->attachRole('client');
@@ -134,6 +136,7 @@ class RegisterController extends Controller
 
     public static function registerPharmacy(User $user)
     {
+        self::createWallet($user);
         $user->is_active = 0;
         if ($user->save()) {
             $user->attachRole('pharmacy');
@@ -146,6 +149,7 @@ class RegisterController extends Controller
 
     public static function registerAdmin(User $user)
     {
+        self::createWallet($user);
         $user->is_active = 1;
         if ($user->save()) {
             $user->attachRole('admin');
@@ -178,5 +182,12 @@ class RegisterController extends Controller
         ]);
     }
     
-
+    public static function createWallet(User $user)
+{
+    $user->createWallet([
+        'name' => 'Dollars Wallet',
+        'slug' => 'usd',
+        'meta' => ['currency' => 'USD'],
+    ]);
+}
 }

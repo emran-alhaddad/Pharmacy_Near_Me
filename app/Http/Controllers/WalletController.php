@@ -16,23 +16,28 @@ class WalletController extends Controller
     {
         if(Auth::check())
         {
-            // $transactions = DB::table('transactions')
-            // ->where(['payable_id'=>Auth::id()])->get();
+            Auth::user()->balance;
+            $transactions = DB::table('transactions')
+            ->where(['payable_id'=>Auth::id()])->get();
 
-            // $transfers = DB::table('transfers')
-            // ->where(['uuid'=>$transactions[0]->uuid])->get();
+            $transfers = null;
+            if(!$transactions->isEmpty())
+            $transfers = DB::table('transfers')
+            ->where(['uuid'=>$transactions[0]->uuid])->get();
             
-            // if(Auth::user()->hasRole('admin'))
-            // return view('admin.wallet.index',
-            // ['transactions' => $transactions , 'transfers' => $transfers]);
+            if(Auth::user()->hasRole('admin'))
+            return view('admin.wallet.index',
+            ['transactions' => $transactions , 'transfers' => $transfers]);
 
-            // else if(Auth::user()->hasRole('pharmacy'))
-            // return view('pharmacy.wallet.index',
-            // ['transactions' => $transactions , 'transfers' => $transfers]);
+            else if(Auth::user()->hasRole('pharmacy'))
+            return view('pharmacy.account.bag',
+            ['transactions' => $transactions , 'transfers' => $transfers,
+            'user' => User::with('client')->where('id', Auth::id())->firstOrFail()]);
             
-            // else 
-            // return view('user.wallet.index',
-            // ['transactions' => $transactions , 'transfers' => $transfers]);
+            else 
+            return view('user.bag',
+            ['transactions' => $transactions , 'transfers' => $transfers,
+        'user' => User::with('client')->where('id', Auth::id())->firstOrFail()]);
         }
         else
         return redirect()->route('login')->with('error','يجب عليك تسجيل الدخول');
@@ -49,6 +54,8 @@ class WalletController extends Controller
         $from->transfer($to, $amount);
         self::notify($from,'لقد تم تحويل '.$amount.' $ من حسابك إلى حساب '.$to->name . $products);
         self::notify($to,'لقد تم إيداع '.$amount.' $ إلى حسابك من حساب '.$from->name . $products);
+        $from->wallet->refreshBalance();
+        $to->wallet->refreshBalance();
         return "Done";
         
     }
