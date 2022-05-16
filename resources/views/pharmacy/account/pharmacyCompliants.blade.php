@@ -46,7 +46,7 @@
                                             @if ($compliant->replay)
                                                 <td>
                                                     <i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                                    <button type="button" class="btn btn-submit " data-bs-toggle="modal"
+                                                    <button type="button" class=" btn btn-submit btn-hover  me-2 " data-bs-toggle="modal"
                                                         data-bs-target="#exampleModal2"
                                                         onclick="$('#replay_massage').text('{{ $compliant->replay }}');">
                                                         عرض الرد

@@ -4,14 +4,13 @@
 @section('content')
 
 
-<div class="container-xxl flex-grow-1 container-p-y">
+<div class="row g-0 me-auto ">
 
             <h1 class="h3 mb-3">الرسائل</h1>
     
-            <div class="card">
-                <div class="row g-0">
+            <div class="card ">
+                <div class="row g-0 ">
                    
-                    <div class="col-12 col-lg-7 col-xl-9">
                         <div class="py-2 px-4 border-bottom d-none d-lg-block">
                             <div class="d-flex align-items-center py-1">
                                 <div class="position-relative">
@@ -86,7 +85,7 @@
                         </div>
     
                     </div>
-                </div>
+            
             </div>
         </div>
     </main>

@@ -33,8 +33,10 @@ class ClientController extends Controller
     }
     public function chat()
     {
+     
         $client = User::with('client')->where('id', Auth::id())->firstOrFail();
         return view('user.chat', ['user' => $client]);
+       
     }
 
     public function myorder()
@@ -51,6 +53,11 @@ class ClientController extends Controller
     {
         $client = User::with('client')->where('id', Auth::id())->firstOrFail();
         return view('user.settings', ['user' => $client]);
+    }
+    public function bag()
+    {
+        $client = User::with('client')->where('id', Auth::id())->firstOrFail();
+        return view('user.bag', ['user' => $client]);
     }
 
     public function problems()
