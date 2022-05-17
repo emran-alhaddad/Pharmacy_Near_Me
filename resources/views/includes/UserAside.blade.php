@@ -9,7 +9,7 @@
 
     <div class="app-brand demo">
         <a href=" {{ route('index') }}" class="app-brand-link">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{ route('index') }}">
                 <img src="{{ asset('Front/assets/images/about/علاجي-01-3.svg') }}" id="logo" alt="Logo">
             </a>
         </a>
@@ -20,8 +20,8 @@
     </div>
 
     <div class="card-body text-center mt-2">
-        <a href="{{ route('pharmacy-account') }}">
-            <img src="{{ asset('uploads/avaters/pharmacy/'.Auth::user()->avater)}}" alt="avatar"
+        <a href="{{ route('client-dashboard') }}">
+            <img src="{{ asset('uploads/avaters/client/'.Auth::user()->avater)}}" alt="avatar"
                 class="rounded-circle img-fluid" style="width: 150px;">
                 <span style="margin-top: -50px;">
                     <div class="d-flex justify-content-center mb-2">

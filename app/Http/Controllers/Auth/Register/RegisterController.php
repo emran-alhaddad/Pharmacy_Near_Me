@@ -122,7 +122,7 @@ class RegisterController extends Controller
     // Private Functions
     public static function registerClient(User $user)
     {
-    
+
         $user->is_active = 1;
         if ($user->save()) {
             $user->attachRole('client');
@@ -138,6 +138,7 @@ class RegisterController extends Controller
         $user->is_active = 0;
         if ($user->save()) {
             $user->attachRole('pharmacy');
+            self::createWallet($user);
             Pharmacy::create([
                 'user_id' => $user->id,
             ]);
@@ -150,6 +151,7 @@ class RegisterController extends Controller
         $user->is_active = 1;
         if ($user->save()) {
             $user->attachRole('admin');
+            self::createWallet($user);
             Admin::create([
                 'user_id' => $user->id,
             ]);
@@ -181,10 +183,10 @@ class RegisterController extends Controller
     
     public static function createWallet(User $user)
 {
-    $user->createWallet([
-        'name' => 'Dollars Wallet',
-        'slug' => 'usd',
-        'meta' => ['currency' => 'USD'],
-    ]);
+    $user->balance;
+    $user->wallet->name = 'Dollars Wallet';
+    $user->wallet->slug = '$';
+    $user->wallet->meta = ['currency' => 'USD'];
+
 }
 }

@@ -113,15 +113,5 @@ class OrderController extends Controller
         return $reply_detail->update();
     }
 
-    public function showPayment($id)
-    {
-        $request = OrderRequest::with(['details','replies.details'])
-            ->where(['client_id'=> Auth::id(),'id'=>$id])->first();
-
-        return view('payment.payment',[
-            'cities' => City::get(),
-            'zones' => zone::get(),
-            'request' => $request,
-        ]);
-    }
+    
 }

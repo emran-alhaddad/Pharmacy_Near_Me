@@ -1,117 +1,144 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Payment;
 
+use App\Http\Controllers\Auth\Register\RegisterController;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\WalletController;
+use App\Models\Admin;
+use App\Models\City;
 use App\Models\Payment;
+use App\Models\Pharmacy;
+use App\Models\zone;
 use Illuminate\Http\Request;
-
-
+use App\Models\Request as OrderRequest;
+use App\Models\User;
+use App\Utils\ReplyState;
+use App\Utils\RequestState;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use PhpParser\Node\Expr\Cast\Object_;
 
 class PaymentController extends Controller
 {
-
-    /**
-     * This function is used to show the success page with the amount and the other details
-     */
-    public function showTest()
-    {
-        $info = Route::current()->parameter('info');
-
-        $data =  base64_decode($info);
-        $data =  json_decode($data, true);
-
-        // $data=json_decode($info);
-        // $data = $arrayFormat = json_decode($info, true);
-
-        for ($i = 0; $i < count($data); $i++) {
-            $status = array_column($data, 'status');
-            $paid_amount = array_column($data, 'paid_amount');
-            $card_holder = array_column($data, 'card_holder');
-            $card_type = array_column($data, 'card_type');
-            $created_at = array_column($data, 'created_at');
-            $updated_at = array_column($data, 'updated_at');
-        }
-        $card_type = str_replace('+', ' ', $card_type[0]);
-        $card_holder = str_replace('+', ' ', $card_holder[0]);
-
-        return view('payment.successPay');
-        // return view('payment.successPay', compact('paid_amount', 'status', 'card_holder', 'card_type', 'created_at'));
-    }
-
-    /**
-     * This function is used to show the cancel page with
-     * @param cancel
-     */
-    public function testCancel()
-    {
-
-        $cancel = Route::current()->parameter('cancel');
-
-        // return $cancel;
-        return view('payment.cancelPay');
-        //  return view('payment.cancelPay', compact('cancel'));
-    }
-
-    public function viewCancel()
-    {
-
-        return view('payment.cancelPay');
-    }
-
-
     /**
      * The index function which is used for posting the data to the api
      */
-    public function index()
-    {
-        $data = [
-            "order_reference" => "123412",
 
-            "products" => [
-                array(
-                    "id" => 1,
-                    "product_name" => "charger",
-                    "quantity" => 1,
-                    "unit_amount" => 1000
-                )
-            ],
+    public static function getProducts($id)
+    {
+        try {
+
+            $request = OrderRequest::with(['details', 'replies.details'])
+                ->where(['client_id' => Auth::id(), 'id' => $id])->first();
+
+            if (!$request)
+                return redirect()->route('index')->with('error', 'طلبيتك غير موجودة');
+
+            if ($request->state != RequestState::ACCEPTED)
+                return redirect()->route('index')->with('error', 'طلبية غير صالحة للدفع');
+
+
+            $total_products = $request->replies->details->where('state', 1)->count();
+            $products = [];
+            $total_price = 0;
+            foreach ($request->details as $reqDetails)
+                foreach ($request->replies->details as $repDetails)
+                    if ($reqDetails->id == $repDetails->request_details_id && $repDetails->state == ReplyState::ACCEPTED) {
+                        $product = [];
+
+                        if ($reqDetails->quantity) $product['quantity'] = $reqDetails->quantity;
+                        else  return redirect()->route('index')->with('error', 'منتج ليس له كمبة غير مقبول');
+
+                        if ($repDetails->drug_price) {
+
+                            $product['id'] = $reqDetails->id;
+                            if ($reqDetails->drug_image) $product['drug_image'] = $reqDetails->drug_image;
+                            if ($reqDetails->drug_title) $product['drug_title'] = $reqDetails->drug_title;
+                            $product['drug_price'] = $repDetails->drug_price;
+                            $total_price += ($repDetails->drug_price * $reqDetails->quantity);
+                        } else if ($repDetails->alt_drug_price) {
+
+                            $product['id'] = $repDetails->id;
+                            if ($repDetails->alt_drug_title) $product['drug_title'] = $repDetails->alt_drug_title;
+                            if ($repDetails->alt_drug_image) $product['drug_image'] = $repDetails->alt_drug_image;
+                            $product['drug_price'] = $repDetails->alt_drug_price;
+                            $total_price += ($repDetails->alt_drug_price * $reqDetails->quantity);
+                        } else
+                            return redirect()->route('index')->with('error', 'منتج غير مسعر غير مقبول');
+
+
+                        $products[] = $product;
+                    }
+
+            return array(
+                'order_reference' => $request->id,
+                'total_price' => $total_price,
+                'total_products' => $total_products,
+                'products' => $products
+            );
+        } catch (\Exception $ex) {
+            return redirect()->route('index')->with('error', 'حدث خطأ غير متوقع ' . $ex->getMessage());
+        }
+    }
+
+    public function index($id)
+    {
+        return view('payment.payment', [
+            'cities' => City::get(),
+            'zones' => zone::get(),
+            'request' => self::getProducts($id),
+        ]);
+    }
+
+    public function pay(Request $request, $id)
+    {
+        $order = self::getProducts($id);
+        $products = [];
+        foreach ($order['products'] as $product) {
+            if(!isset($product['drug_title'])) $product['drug_title'] = "Test";
+            $products[] = array(
+                "id" => $product['id'],
+                "product_name" => $product['drug_title'],
+                "quantity" => $product['quantity'],
+                "unit_amount" => $product['drug_price']
+            );
+        }
+        $data = [
+            "order_reference" => $order['order_reference'],
+            "products" => $products,
             "currency" => "YER",
-            "total_amount" => 1000,
-            "success_url" => "http://127.0.0.1:8000/test/response",
-            "cancel_url" => "http://127.0.0.1:8000/test/cancel",
+            "total_amount" => $order['total_price'],
+            "success_url" => "http://127.0.0.1:8000/user/payment/success",
+            "cancel_url" => "http://127.0.0.1:8000/user/payment/cancel",
             "metadata" => [
-                "Customer name" => "hadeel",
+                "Customer name" => Auth::user()->name,
                 "order id" => 0
             ]
 
         ];
 
+        // return $data;
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
             CURLOPT_URL => "https://waslpayment.com/api/test/merchant/payment_order",
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
+            // CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
             CURLOPT_TIMEOUT => 30000,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
             CURLOPT_POSTFIELDS => json_encode($data),
-
             CURLOPT_HTTPHEADER => array(
-
-                "private-key: rRQ26GcsZzoEhbrP2HZvLYDbn9C9et",
-                "public-key: HGvTMLDssJghr9tlN9gr4DVYt0qyBy",
+                "private-key:" . env('PRIVATE_KEY'),
+                "public-key:" . env('PUBLIC_KEY'),
                 "Content-Type:  application/x-www-form-urlencoded"
-
-
             ),
         ));
 
         $response = curl_exec($curl);
         $err = curl_error($curl);
-
         curl_close($curl);
 
         if ($err) {
@@ -119,86 +146,67 @@ class PaymentController extends Controller
         }
         // success Case => should make it function latter
         else {
-            // return redirect(['']);
-            echo $response;
 
-            // return redirect($response['next_url']);
-            // return $res = json_encode($response, true);
-
-            // $response = base64_decode($response);
-            // trim($root . $path, '/');
-            // echo $response;
-            // return $res = json_encode($response, true);
+            $response = json_decode($response, true);
+            return redirect($response['invoice']['next_url']);
         }
     }
 
 
-
-
-
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * This function is used to show the success page with the amount and the other details
      */
-    public function create()
+    public function success()
     {
-        //
+        try {
+
+            $info = Route::current()->parameter('info');
+            $data =  base64_decode($info);
+            $data =  json_decode($data, true);
+
+            for ($i = 0; $i < count($data); $i++) {
+                $status = array_column($data, 'status');
+                $paid_amount = array_column($data, 'paid_amount');
+                $card_holder = array_column($data, 'card_holder');
+                $card_type = array_column($data, 'card_type');
+                $created_at = array_column($data, 'created_at');
+                $updated_at = array_column($data, 'updated_at');
+            }
+            $card_type = str_replace('+', ' ', $card_type[0]);
+            $card_holder = str_replace('+', ' ', $card_holder[0]);
+
+            $paid_amount = $paid_amount[0];
+            $sender = Auth::user();
+            $reciver = User::find(Admin::first()->user_id);
+
+            RegisterController::createWallet($sender);
+            $sender->wallet->name = $card_type;
+            $sender->deposit(floatval($paid_amount));
+            WalletController::notifyDeposit(
+                $sender,
+                WalletController::depositMessage($card_holder, $sender, floatval($paid_amount))['reciver_message']
+            );
+            WalletController::pay($sender, $reciver, floatval($paid_amount), 1, 0, []);
+
+            return view('payment.successPay', compact('paid_amount', 'status', 'card_holder', 'card_type', 'created_at'));
+        } catch (\Throwable $th) {
+            return redirect()->route('index')->with('error', 'حصلت مشكلة غير متوقعة عند اكتمال الدفع من الموقع');
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Payment  $payment
-     * @return \Illuminate\Http\Response
+     * This function is used to show the cancel page with
+     * @param cancel
      */
-    public function show(Payment $payment)
+    public function cancel()
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Payment $payment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Payment $payment)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Payment $payment)
-    {
-        //
+        return view(
+            'payment.cancelPay',
+            [
+                'cities' => City::get(),
+                'zones' => zone::get()
+            ]
+        );
     }
 }
