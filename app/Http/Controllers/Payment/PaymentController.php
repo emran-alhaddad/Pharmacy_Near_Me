@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Payment;
 
+use App\Http\Controllers\Controller;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 
@@ -17,12 +18,8 @@ class PaymentController extends Controller
     public function showTest()
     {
         $info = Route::current()->parameter('info');
-
         $data =  base64_decode($info);
         $data =  json_decode($data, true);
-
-        // $data=json_decode($info);
-        // $data = $arrayFormat = json_decode($info, true);
 
         for ($i = 0; $i < count($data); $i++) {
             $status = array_column($data, 'status');
@@ -35,8 +32,8 @@ class PaymentController extends Controller
         $card_type = str_replace('+', ' ', $card_type[0]);
         $card_holder = str_replace('+', ' ', $card_holder[0]);
 
-        return view('payment.successPay');
-        // return view('payment.successPay', compact('paid_amount', 'status', 'card_holder', 'card_type', 'created_at'));
+        // return view('payment.successPay');
+        return view('payment.successPay', compact('paid_amount', 'status', 'card_holder', 'card_type', 'created_at'));
     }
 
     /**
@@ -45,19 +42,23 @@ class PaymentController extends Controller
      */
     public function testCancel()
     {
-
-        $cancel = Route::current()->parameter('cancel');
-
+        // $cancel = Route::current()->parameter('cancel');
         // return $cancel;
         return view('payment.cancelPay');
         //  return view('payment.cancelPay', compact('cancel'));
     }
 
-    public function viewCancel()
-    {
+    // public function viewCancel()
+    // {
 
-        return view('payment.cancelPay');
-    }
+    //     return view(
+    //         'payment.cancelPay',
+    //         [
+    //             'cities' => City::get(),
+    //             'zones' => zone::get()
+    //         ]
+    //     );
+    // }
 
 
     /**
@@ -78,8 +79,8 @@ class PaymentController extends Controller
             ],
             "currency" => "YER",
             "total_amount" => 1000,
-            "success_url" => "http://127.0.0.1:8000/test/response",
-            "cancel_url" => "http://127.0.0.1:8000/test/cancel",
+            "success_url" => "http://127.0.0.1:8000/checkout-order/response",
+            "cancel_url" => "http://127.0.0.1:8000/checkout-order/cancel",
             "metadata" => [
                 "Customer name" => "hadeel",
                 "order id" => 0
@@ -92,7 +93,7 @@ class PaymentController extends Controller
         curl_setopt_array($curl, array(
             CURLOPT_URL => "https://waslpayment.com/api/test/merchant/payment_order",
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
+            // CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
             CURLOPT_TIMEOUT => 30000,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
@@ -100,12 +101,9 @@ class PaymentController extends Controller
             CURLOPT_POSTFIELDS => json_encode($data),
 
             CURLOPT_HTTPHEADER => array(
-
                 "private-key: rRQ26GcsZzoEhbrP2HZvLYDbn9C9et",
                 "public-key: HGvTMLDssJghr9tlN9gr4DVYt0qyBy",
                 "Content-Type:  application/x-www-form-urlencoded"
-
-
             ),
         ));
 
@@ -119,86 +117,9 @@ class PaymentController extends Controller
         }
         // success Case => should make it function latter
         else {
-            // return redirect(['']);
-            echo $response;
 
-            // return redirect($response['next_url']);
-            // return $res = json_encode($response, true);
-
-            // $response = base64_decode($response);
-            // trim($root . $path, '/');
-            // echo $response;
-            // return $res = json_encode($response, true);
+            $response = json_decode($response, true);
+            return redirect($response['invoice']['next_url']);
         }
-    }
-
-
-
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Payment $payment)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Payment $payment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Payment $payment)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Payment $payment)
-    {
-        //
     }
 }
