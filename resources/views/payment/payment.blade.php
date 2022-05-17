@@ -199,13 +199,9 @@ $total_price = 0
 
                     <div class="col-12 d-flex justify-content-center p-1 my-2 radius">
                         <div class="form-group d-flex justify-content-center col-6">
-<<<<<<< HEAD:resources/views/payment/payment.blade.php
                             <a href="{{ route('test') }}">
                             <button type="submit" class="main-btn col-6 btn-hover">دفع  </button>
                             </a>
-=======
-                            <button type="submit" class="main-btn col-6 btn-hover">دفع </button>
->>>>>>> origin/main-backup:resources/views/front/payment.blade.php
                         </div>
                     </div>
                 </div>
