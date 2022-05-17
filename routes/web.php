@@ -92,6 +92,7 @@ Route::get('auth/verify_email/{token}', [CustomAuth\VerifyEmailController::class
 // This Code will Used By Hadeel after payment process 
 Route::get('/transfer/{sender}/{reciver}/{amount}',function($id1,$id2,$amount){
     $sender = ModelsUser::where('id',$id1)->first();
+    // $sender->deposit(200);
     $reciver = ModelsUser::where('id',$id2)->first();
     return WalletController::pay($sender,$reciver,$amount,0.15);
 });

@@ -123,7 +123,6 @@ class RegisterController extends Controller
     public static function registerClient(User $user)
     {
     
-        self::createWallet($user);
         $user->is_active = 1;
         if ($user->save()) {
             $user->attachRole('client');
@@ -136,7 +135,6 @@ class RegisterController extends Controller
 
     public static function registerPharmacy(User $user)
     {
-        self::createWallet($user);
         $user->is_active = 0;
         if ($user->save()) {
             $user->attachRole('pharmacy');
@@ -149,7 +147,6 @@ class RegisterController extends Controller
 
     public static function registerAdmin(User $user)
     {
-        self::createWallet($user);
         $user->is_active = 1;
         if ($user->save()) {
             $user->attachRole('admin');

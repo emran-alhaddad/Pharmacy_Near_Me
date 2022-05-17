@@ -37,29 +37,15 @@
                     </thead>
 
                     <tbody>
+                    @foreach ($transactions as $transaction)
                         <tr>
-                            <td>1</td>
+                            <td>{{ $transaction->uuid }}</td>
                             <td>
-                              تم تحويل 12  من حساب عمران الى حساب وفاء وذلك مقابل رسوم المنتجات المالية
-
+                              
                             </td>
-
-                    
-
-
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>
-                            تم تحويل 12  من حساب عمران الى حساب وفاء وذلك مقابل رسوم المنتجات المالية
-
-
-                            </td>
-
-                    
-
-
-                        </tr>
+                    @endforeach
+                        
 
                     </tbody>
 
