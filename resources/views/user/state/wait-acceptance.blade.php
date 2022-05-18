@@ -17,7 +17,7 @@
                                 <td>{{ $request->pharmacy->user->name }}</td>
                                 <td>{{ $request->created_at->diffForHumans() }}</td>
                                 <td><span class="badge bg-warning text-dark">انتضار القبول</span></td>
-                                <td><a class="btn btn-primary" href="javascript:void(0);"
+                                <td><a class=" btn btn-submit btn-hover me-2" href="javascript:void(0);"
                                         data-bs-toggle="collapse"
                                         role="button"
                                         data-bs-target="#details{{ $request->id }}" >

@@ -93,17 +93,15 @@ class interfacesController extends Controller
 
     public function createRequestLicense($id)
     {
-        $user = User::with('pharmacy')->where('id',$id)->first();
-        if($user)
-        {
-            if(!$user->pharmacy->license)
-            return view('front.license')->with(['cities' => City::get(), 'zones' => zone::get(), 'id' => $id]);
-            return back()->with('error','لقد قمت بتأكيد الرخصة مسبقا الرجاء إنتضار قبول إدارة الموقع');
+        $user = User::with('pharmacy')->where('id', $id)->first();
+        if ($user) {
+            if (!$user->pharmacy->license)
+                return view('front.license')->with(['cities' => City::get(), 'zones' => zone::get(), 'id' => $id]);
+            return back()->with('error', 'لقد قمت بتأكيد الرخصة مسبقا الرجاء إنتضار قبول إدارة الموقع');
         }
-        return redirect()->route('login')->with('error','لا يمكنك الوصول إلى هذا الرابط');
-        
+        return redirect()->route('login')->with('error', 'لا يمكنك الوصول إلى هذا الرابط');
     }
-    public function storeRequestLicense(Request $request,$id)
+    public function storeRequestLicense(Request $request, $id)
     {
         if ($request->hasFile('license')) {
             $name = SystemUtils::insertLicense($request, 'license');
@@ -116,6 +114,7 @@ class interfacesController extends Controller
 
         $affectedRows = Pharmacy::where('user_id', $id)->update(array('zone_id' => $request->zone));
         if ($affectedRows > 0) {
+
             return redirect()->route('login')->with('status', 'تم ارسال الرخصة الى الادمن سيتم إرسال إشعار إلى بريدك الإلكتروني عند إكتمال العملية');
         }
         return redirect()->route('login')->with('error', 'حدث خطا');
@@ -134,10 +133,10 @@ class interfacesController extends Controller
 
     public function getCityZones($id)
     {
-        $zones =  zone::where('city_id',$id)->get(['id','name']);
+        $zones =  zone::where(['city_id'=> $id,'is_active'=>1])->get(['id', 'name']);
         $data = "";
         foreach ($zones as $z) {
-            $data .="<option value='".$z->id."'>". $z->name."</option>";
+            $data .= "<option value='" . $z->id . "'>" . $z->name . "</option>";
         }
         return $data;
     }

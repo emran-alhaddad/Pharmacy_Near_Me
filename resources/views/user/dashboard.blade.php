@@ -1,5 +1,5 @@
 
-@extends('layouts.masterUser')
+@extends('layouts.masterUser2')
 
 @section('content')
 

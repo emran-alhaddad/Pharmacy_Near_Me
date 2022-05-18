@@ -57,20 +57,22 @@
                                     </div>
                                     
 
-                                </div>
-
+                                
+                                <div class="col">
+                                @if ($compliant->replay)
+                           
+                           <button type="button" class="btn btn-submit btn-hover me-2 " data-bs-toggle="modal" data-bs-target="#exampleModal2"
+                           onclick="$('#replay_massage').text('{{ $compliant->replay }}');">
+                   
+                   
+                      عرض الرد
+                          </button>
+                                                          @endif    
+</div>
+</div>
                             </td>
                             
-                            @if ($compliant->replay)
-                            <td>
-                            <i class="fab fa-angular fa-lg text-danger me-3"></i> 
-        <button type="button" class="btn btn-submit " data-bs-toggle="modal" data-bs-target="#exampleModal2"
-        onclick="$('#replay_massage').text('{{ $compliant->replay }}');">
-
-
-   عرض الرد
-       </button></td>
-                                       @endif    
+       
                             
        
                         </tr>
@@ -80,7 +82,7 @@
                             <div class="d-flex justify-content-center">
                             
                            <!-- Button trigger modal -->
-<button type="button" class="btn btn-submit " data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button type="button" class="btn btn-submit btn-hover me-2 " data-bs-toggle="modal" data-bs-target="#exampleModal">
   اضافة شكوى
 </tbody>
 <!-- Modal -->
@@ -118,8 +120,7 @@
                             </div>
                             <div class="col-sm-9 text-secondary">
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
-                                            class="bi bi-person-plus-fill text-white"></i></span>
+                                  
                                             <div class="dropdown col-12">
                                     <select name="pharmacy_id"  class=" rounded form-control">
                                     @foreach ($pharmacies as $pharmacy)

@@ -13,10 +13,12 @@ use App\Models\Role;
 use App\Models\User as ModelsUser;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Payment;
+use App\Http\Controllers\Notify;
+
+
+
 use App\Http\Controllers\Admin\ServicesController;
-
-
-
+use App\Http\Controllers\Payment\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +44,7 @@ Route::get('/pharmacy/{id}', [Front\interfacesController::class, 'detailes'])->n
 Route::get('/pharmacy/{id}/license/create', [Front\interfacesController::class, 'createRequestLicense'])->name('create-request-license');
 Route::post('/pharmacy/{id}/license/store', [Front\interfacesController::class, 'storeRequestLicense'])->name('store-request-license');
 Route::post('/pharmacies/search', [Front\interfacesController::class, 'searchPharmacies'])->name('search-pharmacies');
-Route::get('/select/city/{id}/zones',[Front\interfacesController::class,'getCityZones'])->name('city-zones');
+Route::get('/select/city/{id}/zones', [Front\interfacesController::class, 'getCityZones'])->name('city-zones');
 
 // // // PHARMACY TEST ROUTES
 // Route::get('/account', [Pharmacy\PharmacyController::class, 'account'])->name('profile');
@@ -89,30 +91,36 @@ Route::get('auth/google/callback', [Social\GoogleController::class, 'callback'])
 // Email Verification
 Route::get('auth/verify_email/{token}', [CustomAuth\VerifyEmailController::class, 'verify']);
 
-// This Code will Used By Hadeel after payment process 
-// Route::get('/transfer/{sender}/{reciver}/{amount}',function($id1,$id2,$amount){
-
-//     $sender = ModelsUser::where('id',$id1)->first();
-//     $reciver = ModelsUser::where('id',$id2)->first();
-//     WalletController::pay($sender,$reciver,$amount,0.15);
-// });
+// This Code will Used By Hadeel after payment process
+Route::get('/transfer/{sender}/{reciver}/{amount}', function ($id1, $id2, $amount) {
+    $sender = ModelsUser::where('id', $id1)->first();
+    // $sender->deposit(200);
+    $reciver = ModelsUser::where('id', $id2)->first();
+    return WalletController::pay($sender, $reciver, $amount, 0.15);
+});
 
 // Routes That Needs Authentication
 Route::group(['middleware' => 'auth'], function () {
 
-Route::get('/pharmacy/{id}/add-order', [Front\interfacesController::class, 'add_order'])->name('add-order');
+    Route::get('/pharmacy/{id}/add-order', [Front\interfacesController::class, 'add_order'])->name('add-order');
+
+    Route::get('/user/payment/{id}', [PaymentController::class, 'index'])->name('user-payment');
+
+    Route::post('/user/payment/{id}/pay', [PaymentController::class, 'pay'])->name('user-payment-pay');
+    Route::get('/user/payment/success/{info}', [PaymentController::class, 'success'])->name('user-payment-success');
+    Route::get('/user/payment/cancel/{cancel}', [PaymentController::class, 'cancel'])->name('user-payment-cancel');
+
 
     // Client Routes
     Route::group(['middleware' => ['role:client']], function () {
         Route::get('/client/', [User\ClientController::class, 'index'])->name('client-dashboard');
-        Route::get('/chat/', [User\ClientController::class, 'chat'])->name('chat');
+        Route::get('/chat-user/', [User\ClientController::class, 'chat'])->name('chat-user');
         Route::get('/settings/', [User\ClientController::class, 'settings'])->name('settings');
         Route::get('/myorder/', [User\OrderController::class, 'index'])->name('myorder');
 
         Route::get('/edit_profile/', [User\ClientController::class, 'edit_profile'])->name('edit_profile');
 
-        Route::get('/client/payment/{id}', [User\OrderController::class, 'showPayment'])->name('client-payment');
-        Route::get('/client/wallet',[User\ClientController::class,'']);
+        Route::get('/client/wallet', [WalletController::class, 'index'])->name('bag-user');
 
         Route::get('/client/edit', [User\ClientController::class, 'edit'])->name('client-dashboard-edit');
         Route::put('/client/update', [User\ClientController::class, 'update'])->name('client-dashboard-update');
@@ -129,6 +137,7 @@ Route::get('/pharmacy/{id}/add-order', [Front\interfacesController::class, 'add_
 
         // Client Compliants
         Route::get('/problems/', [User\ComplaintController::class, 'index'])->name('problems');
+
         // Route::get('/client/compliants', [User\ComplaintController::class, 'index'])->name('client-compliants');
         //  Route::get('/client/compliants/create', [User\ComplaintController::class, 'create'])->name('client-compliants-create');
         Route::post('/client/compliants/store', [User\ComplaintController::class, 'store'])->name('client-compliants-store');
@@ -140,11 +149,12 @@ Route::get('/pharmacy/{id}/add-order', [Front\interfacesController::class, 'add_
 
         // Pharmacy Dashboard
         Route::get('/_pharmacy/', [Pharmacy\PharmacyController::class, 'index'])->name('pharmacy-dashboard');
-        
+
         Route::get('/_pharmacy/compliants/', [Pharmacy\PharmacyController::class, 'pharmacyCompliants'])->name('pharmacy-compliants');
         // Pharmacy Chat
         Route::get('/_pharmacy/account', [Pharmacy\PharmacyController::class, 'account'])->name('pharmacy-account');
         Route::get('/_pharmacy/chat', [Pharmacy\PharmacyController::class, 'chat'])->name('pharmacy-chat');
+        Route::get('/_pharmacy/wallet', [WalletController::class, 'index'])->name('pharmacy-bag');
 
         // Pharmacy Orders
         Route::get('/_pharmacy/orders', [Pharmacy\PharmacyController::class, 'orders'])->name('pharmacy-orders');
@@ -155,7 +165,7 @@ Route::get('/pharmacy/{id}/add-order', [Front\interfacesController::class, 'add_
         // Pharmacy Settings
         Route::get('/_pharmacy/settings', [Pharmacy\PharmacyController::class, 'settings'])->name('pharmacy-settings');
 
-//pharmacy backend
+        //pharmacy backend
         Route::get('/pharmacy/edit', [Pharmacy\PharmacyController::class, 'edit'])->name('pharmacy-dashboard-edit');
         Route::put('/pharmacy/update', [Pharmacy\PharmacyController::class, 'update'])->name('pharmacy-dashboard-update');
         Route::put('/pharmacy/password/update', [Pharmacy\PharmacyController::class, 'updatePassword'])->name('pharmacy-password-update');
@@ -163,15 +173,15 @@ Route::get('/pharmacy/{id}/add-order', [Front\interfacesController::class, 'add_
         Route::put('/pharmacy/email/update', [Pharmacy\PharmacyController::class, 'updateEmail'])->name('pharmacy-email-update');
         Route::put('/pharmacy/avater/update', [Pharmacy\PharmacyController::class, 'updateAvater'])->name('pharmacy-avater-update');
         Route::put('/pharmacy/license/update', [Pharmacy\PharmacyController::class, 'updateLicense'])->name('pharmacy-license-update');
-
-
- });
+    });
 
     // Admin Routes
     Route::group(['middleware' => ['role:admin']], function () {
 
         // Admin Dashboard
         Route::get('/_admin/', [Admin\AdminController::class, 'index'])->name('admin-dashboard');
+        Route::get('/_admin/wallet', [WalletController::class, 'index'])->name('admin-bag');
+
 
         Route::get('/_admin/profile', [Admin\AdminController::class, 'showProfile'])->name('admin-profile');
         Route::get('/_admin/edit_profile', [Admin\AdminController::class, 'editProfile'])->name('admin-edit_profile');
@@ -286,5 +296,9 @@ Route::get('/checkout-order', [Front\interfacesController::class, 'localCheckout
 // test payment route  There is a problem her
 Route::get('/checkout-order/test', [Payment\PaymentController::class, 'index'])->name('test');
 Route::get('/checkout-order/test/response/{info}', [Payment\PaymentController::class, 'showTest'])->name('test/response');
+Route::get('/checkout-order/test/response/{info}', [Payment\PaymentController::class, 'showTest'])->name('test/response');
 Route::get('/checkout-order/test/cancel/{cancel}', [Payment\PaymentController::class, 'testCancel'])->name('testCancel');
 Route::get('/checkout-order/test/cancel', [Payment\PaymentController::class, 'viewCancel'])->name('viewCancel');
+
+Route::get('send', [Notify\NotificationsController::class, 'registerNotification'])->name('viewCancel');
+

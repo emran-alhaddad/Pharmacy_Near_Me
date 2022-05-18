@@ -16,9 +16,23 @@
     <link rel="stylesheet" href="{{ asset('pharmacy/assets/css/chat.css')}}" />
     <script src="{{ asset('pharmacy/assets/js/config.js')}}"></script>
 
+
+
+
+    <script src="//js.pusher.com/3.1/pusher.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+
+
     {{-- Front Style start --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.rtl.min.css"
         integrity="sha384-+qdLaIRZfNu4cVPK/PxJJEy0B0f3Ugv8i482AKY7gwXwhaCroABd086ybrVKTa0q" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+
     <style>
         @import url('http://fonts.cdnfonts.com/css/tajawal?styles=19782,19779,19780,19781,19777,19778,19776');
 
@@ -94,7 +108,7 @@
         }
 
         .btn-submit :hover {
-            color: var(--main-color);
+            color: #fff;
             /* background-color: #ffffff; */
         }
         .back-to-top.btn-hover {
