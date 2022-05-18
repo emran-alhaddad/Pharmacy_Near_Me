@@ -28,7 +28,7 @@
                 @foreach ($errors->all() as $error)
                 <div class="alert alert-danger" role="alert">{{ $error }}</div>
               @endforeach
-    <form   method="POST" action={{route('_admin-phar_create')}}>
+    <form  method="POST" action={{route('_admin-phar_create')}} enctype="multipart/form-data">
 
 
         <div class="row g-3">
@@ -41,7 +41,7 @@
 
             <div class="mb-3 col-4">
             <label for="formFile" class="form-label">صورة الصيدلية</label>
-            <input class="form-control" type="file" id="formFile" name="image">
+            <input class="form-control" type="file" id="formFile" name="avatar">
 
         </div>
 

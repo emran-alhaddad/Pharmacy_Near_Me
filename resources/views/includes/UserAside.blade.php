@@ -9,7 +9,7 @@
 
     <div class="app-brand demo">
         <a href=" {{ route('index') }}" class="app-brand-link">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{ route('index') }}">
                 <img src="{{ asset('Front/assets/images/about/علاجي-01-3.svg') }}" id="logo" alt="Logo">
             </a>
         </a>
@@ -20,8 +20,8 @@
     </div>
 
     <div class="card-body text-center mt-2">
-        <a href="{{ route('pharmacy-account') }}">
-            <img src="{{ asset('uploads/avaters/pharmacy/'.Auth::user()->avater)}}" alt="avatar"
+        <a href="{{ route('client-dashboard') }}">
+            <img src="{{ asset('uploads/avaters/client/'.Auth::user()->avater)}}" alt="avatar"
                 class="rounded-circle img-fluid" style="width: 150px;">
                 <span style="margin-top: -50px;">
                     <div class="d-flex justify-content-center mb-2">
@@ -37,7 +37,7 @@
     <div class="menu-inner-shadow"></div>
     <ul class="menu-inner py-1">
         <li class="menu-item">
-        <a href="{{ route('chat') }}" class="menu-link"><i class="bx bx-message-alt me-1"></i>
+        <a href="{{ route('chat-user') }}" class="menu-link"><i class="bx bx-message-alt me-1"></i>
             <div data-i18n="Account">الرسائل</div>
         </a>
         </li>
@@ -59,8 +59,8 @@
         </a>
         </li>
         <li class="menu-item">
-        <a href="#" class="menu-link"><i class="bx bx-notification  me-1"></i>
-            <div data-i18n="Account">الاشعارات</div>
+        <a href="{{ route('bag-user') }}" class="menu-link"><i class="bx bx-notification  me-1"></i>
+            <div data-i18n="Account">محفظتي</div>
         </a>
         </li>
         <li class="menu-item">

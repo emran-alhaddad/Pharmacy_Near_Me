@@ -13,7 +13,7 @@
     <script src="{{ asset('user/js/jquery.min.js') }}"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-        <style>
+    <style>
         :root {
             --black: #444;
             --light-color: #777;
@@ -126,67 +126,66 @@
             border: var(--border);
             text-align: center;
         }
+
         .back-to-top.btn-hover {
-    position: fixed;
-    z-index: 99999;
-}
+            position: fixed;
+            z-index: 99999;
+        }
 
-.back-to-top:hover {
-    color: #fff;
-}
+        .back-to-top:hover {
+            color: #fff;
+        }
 
-*:focus {
-    outline: none;
-}
-
-
-/*===== All Button Style =====*/
-
-.main-btn {
-    display: inline-block;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    user-select: none;
-    border: 0;
-    padding: 16px 38px;
-    font-weight: 600;
-    font-size: 18px;
-    border-radius: var(--radius);
-    color: #fff;
-    cursor: pointer;
-    z-index: 5;
-    background: var(--main-color);
-    transition: all 0.4s ease-out 0s;
-}
-
-.main-btn:hover {
-    color: #fff;
-}
-
-.btn-hover {
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-}
-
-.btn-hover::after {
-    content: '';
-    position: absolute;
-    width: 0%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.1);
-    top: 0;
-    left: 0;
-    z-index: -1;
-    transition: all 0.3s ease-out 0s;
-}
-
-.btn-hover:hover::after {
-    width: 100%;
-}
+        *:focus {
+            outline: none;
+        }
 
 
+        /*===== All Button Style =====*/
+
+        .main-btn {
+            display: inline-block;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            user-select: none;
+            border: 0;
+            padding: 16px 38px;
+            font-weight: 600;
+            font-size: 18px;
+            border-radius: var(--radius);
+            color: #fff;
+            cursor: pointer;
+            z-index: 5;
+            background: var(--main-color);
+            transition: all 0.4s ease-out 0s;
+        }
+
+        .main-btn:hover {
+            color: #fff;
+        }
+
+        .btn-hover {
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .btn-hover::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            top: 0;
+            left: 0;
+            z-index: -1;
+            transition: all 0.3s ease-out 0s;
+        }
+
+        .btn-hover:hover::after {
+            width: 100%;
+        }
 
     </style>
 </head>
@@ -220,21 +219,22 @@
 
                     <!-- model body -->
                     <div class="modal-body">
-                        <form action="{{ route('client-avater-update') }}" method="POST" class="g-3" enctype="multipart/form-data">
-                        @csrf
-                        @method('put')
+                        <form action="{{ route('client-avater-update') }}" method="POST" class="g-3"
+                            enctype="multipart/form-data">
+                            @csrf
+                            @method('put')
                             <div class="input-group mb-3">
                                 <input type="file" name='avater' class="form-control" id="inputGroupFile02" />
                             </div>
                             <button type="submit" class="btn bg-primary text-white">
-                            تعديل
-                        </button>
+                                تعديل
+                            </button>
                         </form>
                     </div>
 
                     <!-- model footer -->
                     <div class="modal-footer">
-                        
+
                     </div>
                 </div>
             </div>
@@ -250,70 +250,22 @@
                         <h4 class="modal-title fw-bold text-center" id="exampleModalLabel2">
                             الرد على الشكوى
                         </h4>
-                        <button type="button" class="btn-close" data-dismiss="modal" ></button>
+                        <button type="button" class="btn-close" data-dismiss="modal"></button>
                     </div>
 
                     <!-- model body -->
                     <div class="modal-body">
-                        
+
                         <p id="reply-text"></p>
                     </div>
 
                     <!-- model footer -->
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-primary text-light" data-dismiss="modal">تـــم</button>
+                        <button type="button" class="btn btn-primary text-light" data-dismiss="modal">تـــم</button>
                     </div>
                 </div>
             </div>
         </div>
-
-
-        <script>
-            // $('personal').click($('pp').hide());
-            $(document).ready(function() {
-
-                $("#perso,#wrk,#skil,#Edu,#expe,#curs,#Edpers").hide();
-
-
-            });
-
-            $("#personal").click(function() {
-                $("#ord").hide();
-                $("#perso").show();
-
-
-
-            });
-            //
-            $("#order").click(function() {
-                $("#perso").hide();
-                $("#ord").show();
-            });
-            //
-            $("#order-repate").click(function() {
-                // $("#repe").hide();
-                //  $("#wrk,#skil,#Edu,#expe,#curs,#Edpers,#perso").hide();
-                $("#rep").show();
-            });
-
-
-
-            $("#Edit").click(function() {
-                $("#wrk,#skil,#Edu,#expe,#curs,#Edpers,#perso").hide();
-                $("#Edpers").show();
-            });
-
-            $("#saveEd").click(function() {
-                $("#wrk,#skil,#Edu,#expe,#curs,#Edpers,#Edpers").hide();
-                $("#perso").show();
-            });
-
-            // $("#detelis").click(function(){
-            // $("#wrk,#perso,#Edu,#skil,#curs,#Edpers").hide();
-            // // $("#deteli").show();
-            // });
-        </script>
-
 </body>
 
 </html>

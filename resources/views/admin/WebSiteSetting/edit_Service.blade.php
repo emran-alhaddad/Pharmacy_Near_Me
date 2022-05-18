@@ -22,8 +22,7 @@
                 {!! session('status') !!}
             </div>
         @endif
-                <form>
-
+               
             <div class="row g-3">
 
                 <div class="d-flex align-items-start align-items-sm-center gap-4">
@@ -53,19 +52,21 @@
                         <!-- <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p> -->
                     </div>
                 </div>
+                <form method="POST" action={{route('admin-update_Service')}}>
 
                 <div class="row g-3">
 
                     <div class="mb-3 col-4">
                                     <label for="exampleInputName" class="form-label">عنوان الخدمة</label>
-                                    <input type="text" class="form-control" id="exampleInputName">
+                    <input name="title" value="{{$service->title}}" type="text" class="form-control" id="exampleInputName">
+                    <input type="hidden" name="id" value="{{$service->id}}">
                                 </div>
 
 
 
                                 <div class="mb-3 col-8">
                                     <label for="formFile" class="form-label">وصف الخدمة</label>
-                                    <input class="form-control" type="textarea" id="formFile" rows="5" cols="50">
+                                    <input  name="descripe" value="{{$service->descripe}}" class="form-control" type="textarea" id="formFile" rows="5" cols="50">
                                 </div>
 
                 </div>

@@ -36,7 +36,6 @@ class RegisterController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-
         if (!$request->has('email_verified_at')) {
             $token = Str::uuid();
             $user->remember_token = $token;
@@ -82,23 +81,24 @@ class RegisterController extends Controller
         $user->name = $request['name'];
         $user->email = $request['email'];
         $user->password = Hash::make($request['password']);
-        $user->email_verified_at = Carbon::now()->timestamp;
+        $token = Str::uuid();
+        $user->remember_token = $token;
+
+
         if (isset($request['google_id']))
         { $user->google_id = $request['google_id'];
-            $token = Str::uuid();
-            $user->remember_token = $token;
+            $user->email_verified_at = Carbon::now()->timestamp;
         }
         elseif (isset($request['facebook_id']))
         { $user->facebook_id = $request['facebook_id'];
-            $token = Str::uuid();
-            $user->remember_token = $token;
+            $user->email_verified_at = Carbon::now()->timestamp;
 
         }
         else{
             $requestObj=new Request($request);
             $this->validateFields($requestObj);
             if (!$requestObj->has('email_verified_at')) {
-                $token = Str::uuid();
+
                 $user->remember_token = $token;
                 $email_data = [
                     'name' => $user->name,
@@ -132,13 +132,13 @@ class RegisterController extends Controller
     // Private Functions
     public static function registerClient(User $user)
     {
+
         $user->is_active = 1;
         if ($user->save()) {
             $user->attachRole('client');
             Client::create([
                 'user_id' => $user->id,
             ]);
-
             return $user;
         }
     }
@@ -148,6 +148,7 @@ class RegisterController extends Controller
         $user->is_active = 0;
         if ($user->save()) {
             $user->attachRole('pharmacy');
+            self::createWallet($user);
             Pharmacy::create([
                 'user_id' => $user->id,
             ]);
@@ -160,6 +161,7 @@ class RegisterController extends Controller
         $user->is_active = 1;
         if ($user->save()) {
             $user->attachRole('admin');
+            self::createWallet($user);
             Admin::create([
                 'user_id' => $user->id,
             ]);
@@ -189,6 +191,14 @@ class RegisterController extends Controller
         ]);
     }
 
+    public static function createWallet(User $user)
+{
+    $user->balance;
+    $user->wallet->name = 'Dollars Wallet';
+    $user->wallet->slug = '$';
+    $user->wallet->meta = ['currency' => 'USD'];
+
+}
 }
 
 // $data = [

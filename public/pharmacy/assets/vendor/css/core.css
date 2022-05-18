@@ -7954,7 +7954,7 @@ form select.selectpicker.is-invalid ~ .btn {
   transform: translate(20px, -20px);
 }
 .modal .modal-header .btn-close {
-  margin-top: -1.25rem;
+  margin-top: 0.75rem;
 }
 
 .modal-footer {

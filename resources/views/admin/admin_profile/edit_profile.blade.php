@@ -52,10 +52,20 @@
             </div>
             <hr class="my-0" />
                 <div class="card-body">
-                    @foreach ($errors->all() as $error)
-                    <div class="alert alert-danger" role="alert">{{ $error }}</div>
-                  @endforeach
-                    <form id="formAccountSettings" method="POST" onsubmit="return false">
+                    {{-- @foreach ($errors->all() as $error)
+                <div class="alert alert-danger" role="alert">{{ $error }}</div>
+              @endforeach
+                @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{session('error') }}
+                </div>
+            @endif
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif --}}
+                <form id="formAccountSettings" action="{{route('admin-update_profile')}}" method="POST">
                     <div class="row">
                         <div class="mb-3 col-md-6">
                         <label for="firstName" class="form-label">الاسم </label>
@@ -63,9 +73,9 @@
                             class="form-control"
                             type="text"
                             id="Name"
-                            name="Name"
-                            value="Haneen"
-                            name="image"
+                            name="name"
+                            value="{{$admin->name}}"
+                           
                             autofocus
                         />
                         </div>
@@ -77,8 +87,9 @@
                             id="phoneNumber"
                             name="phoneNumber"
                             class="form-control"
-                            name="mobile"
-                            placeholder="777777"/>
+                            name="phone"
+                            value="{{$admin->phone}}"
+                            placeholder=""/>
                         </div>
 
                         <div class="mb-3 col-md-6">
@@ -134,7 +145,7 @@
 
 
 
-                                <div class="modal"  id="addemail"  tabindex="-1">
+                                <form id="email" class="modal"  id="addemail"  tabindex="-1">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                             <div class="modal-header">
@@ -146,8 +157,8 @@
                                             <div class="mb-3 col-12">
                                             <label for="exampleFormControlInput1" class="form-label"> البريد الالكتروني</label>
                                             <div class="input-group mb-3">
-                                            <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                            <button class="btn btn-primary" type="button" id="submit_button">ارسال</button>
+                                            <input type="text" name="email" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                            <button class="btn btn-primary" id="send-email" type="button" id="submit_button">ارسال</button>
 
                                             </div>
                                             </div>

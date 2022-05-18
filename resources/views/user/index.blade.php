@@ -21,7 +21,7 @@
         <ul class="nav nav-pills flex-column flex-md-row mb-3">
         <li class="nav-item">
 
-        <button type="submit" class="btn btn-submit me-2">    <a  href="{{ route('client-dashboard') }}" style="color:#fff;"><i class="bx bx-user me-1"></i> البروفايل</a></button>
+        <button type="submit" class="btn btn-submit btn-hover me-2">    <a  href="{{ route('client-dashboard') }}" style="color:#fff;"><i class="bx bx-user me-1"></i> البروفايل</a></button>
 
          
         </li>
@@ -42,7 +42,7 @@
         <div class="card-body">
             <div class="d-flex align-items-start align-items-sm-center gap-4">
             <img
-                src="Front/assets/images/pharmacy/pharma.jpg"
+                src="{{ asset('uploads/avaters/client/'.Auth::user()->avater) }}"
                 alt="user-avatar"
                 class="d-block rounded"
                 height="100"
@@ -92,7 +92,7 @@
 
             </div>
             <div class="mt-2">
-           <a class=" btn-submit me-2" href="{{ route('edit_profile') }}" style=color:#fff;>تعديل</a> </button>
+           <a class=" btn btn-submit btn-hover  me-2" href="{{ route('edit_profile') }}" style=color:#fff;>تعديل</a> </button>
         
             </div>
             </div>

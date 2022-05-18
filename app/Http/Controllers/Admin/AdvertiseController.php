@@ -59,9 +59,28 @@ class AdvertiseController extends Controller
 
         }
 
-    public function add()
+    public function checkAds($request)
     {
-        //    return view('welcome');
+        $request->validate(
+            [
+                'name' => 'required|min:3',
+                'position' => 'required',
+                'startAt' => 'required|date|before:endAt',
+                'endAt' => 'required|date|after:startAt',
+            
+            ],[
+
+            'name.required'=>'يجب ادخال اسم الاعلان ',
+            'name.min'=>' ا  3 يجب  اسم الاعلان ',
+            'position.required'=>'يجب تحديد  مكان الاعلان ',
+            'startAt.required'=>'يجب تحديد  بداية تاريخ الاعلان ',
+            'endAt.required'=>'يجب تحديد  نهاية تاريخ الاعلان', 
+            'startAt.date'=>'يجب ان يكون صيغة التاريخ    ',
+            'endAt.date'=>'يجب ان يكون صيغة التاريخ    ',
+            'startAt.before'=>'  يجب ان يكون  التاريخ  البداية اقل من تاريخ النهاية  ',
+            'endAt.date'=>'  يجب ان يكون  التاريخ  النهاية اكبر من تاريخ البداية  ',
+           
+         ]);
     }
 
 }

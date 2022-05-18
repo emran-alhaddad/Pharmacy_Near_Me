@@ -67,12 +67,12 @@
 
 
                            
-                            <td>  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                            <td>  <img src={{asset("/uploads/avaters/pharmacy/$phar->avater")}} alt="avatar"
                                     class="rounded-circle img-fluid" style="width: 50px;">
                             </td>
 
 
-                            <td>  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                            <td>  <img src={{asset("/uploads/license/$phar->license")}} alt="avatar"
                                     class="rounded-circle img-fluid" style="width: 50px;">
                             </td>
                            
@@ -84,7 +84,7 @@
                             @else 
                           
                               <td><a href={{route('admin-activity', ['id' => $phar->id,'stats'=>1]);}} > <button class="btn btn-danger text-white" >موقف</button></a></td>
-                         
+                          
                             @endif
 
                             <td>

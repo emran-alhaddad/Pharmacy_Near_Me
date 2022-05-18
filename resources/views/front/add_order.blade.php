@@ -25,7 +25,7 @@
          
         <div class="row gy-2 mb-1" style="margin-top:3rem;">
         <div class="col-4">
-                <form action="{{ route('client-orders-store') }}" method="POST">
+            <form action="{{ route('client-orders-store') }}" method="POST">
             @csrf
             <input type="hidden" name="client_id" value="{{ Auth::user()->id }}">
             <input type="hidden" name="pharmacy_id" value="{{ $pharmacy->id }}">
@@ -206,8 +206,8 @@
              drug_title_image = "";
 
             if (drug_image.val() != "")  {
-                drug.drug_image = drug_image.val();  
-                drug_title_image = "<img src='"+drug.drug_image+"' >";
+                drug.drug_image =  drug_image;
+                drug_title_image = "<img width='50px' src='"+window.URL.createObjectURL(drug_image.prop('files')[0])+"' >";
             }
             else {
                 if (drug_title.val() == "") {
@@ -250,6 +250,7 @@
             drugs.data.push({
                 ...drug
             });
+            
 
             data.val(JSON.stringify(drugs));
 
@@ -275,7 +276,7 @@
 
             $(".drug_image").val("");
             $("#drug_title").val("");
-            $("#quantity").val("");
+            $("#quantity").val(1);
             $("#accept_alternative").prop('checked', false);
             $("#day").val("");
             $("#month").val("");
@@ -283,6 +284,7 @@
             $("#repeat_until").val("");
             $("#accept_repeate").prop('checked', false);
             $("#repeate_form").css("display","none");
+             window.scrollTo(0, 0);
 
         }
 
@@ -300,6 +302,7 @@
                     $("#success_msg").css("display","none");
                     this.value = '';
             }
+            window.scrollTo(0, 0);
         });
 
         $("#accept_repeate").on("change", function(e) {
