@@ -318,7 +318,7 @@
 
                                                     <div class="mb-3 col-6">
                                                         <label for="exampleInputLink" class="form-label"> وصف المحتوى الرئيسي</label>
-                                                        <textarea type="text" id="editor" name = "descripe_about" class = "form-control editor "></textarea>
+                                                        <textarea type="text" id="editor" name = "descripe_about" class = "form-control editor ">{{$site->title_about}}"</textarea>
                                                     </div>
 
 
@@ -335,12 +335,12 @@
 
                                                 <div class="mb-3 col-6">
                                                         <label for="exampleInputLink" class="form-label"> وصف خدمات الصيدلية</label>
-                                                        <textarea type="text" id="editor" name = "descripe_ser_phar" class = "form-control editor "></textarea>
+                                                        <textarea type="text" id="editor" name = "descripe_ser_phar" class = "form-control editor ">{{$site->descripe_ser_phar}}</textarea>
                                                     </div> 
 
                                                     <div class="mb-3 col-6">
                                                         <label for="exampleInputLink" class="form-label"> وصف خدمات المستخدم</label>
-                                                        <textarea type="text" id="editor" name = "descripe_ser_user" class = "form-control editor"></textarea>
+                                                        <textarea type="text" id="editor" name = "descripe_ser_user" class = "form-control editor">{{$site->descripe_ser_user}}</textarea>
                                                     </div>
 
 
@@ -368,40 +368,40 @@
 </div>
 {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>--}}
-<script src='{{asset("/jquery/jquery.js")}}'> </script>   
+{{-- <script src='{{asset("/jquery/jquery.js")}}'> </script>    --}}
 <script>
 
- $(document).ready(function() {
+//  $(document).ready(function() {
     
-    // function getData(thisele,formid,modelId)
-    // {   debugger;
-        alert('asasda');
-        $('#submit_button').on('submit',function(event){
-  event.preventDefault();
+//     // function getData(thisele,formid,modelId)
+//     // {   debugger;
+        
+//         $('#submit_button').on('submit',function(event){
+//   event.preventDefault();
   
-  var formDate=new FormData($('#update_index')[0]);
-//   $.ajaxSetup({
-//                   headers: {
-//                       'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-//                   }
-//               });
-   $.ajax({
-     type:'post',
-     data:formDate,
-     url:"{{route('_admin-update_WebSiteSetting')}}",
-    success:function(data)
-    { 
-        // data.forEach(function (serv) {
-            alert('data');
-        console.log( data);
+//   var formDate=new FormData($('#update_index')[0]);
+// //   $.ajaxSetup({
+// //                   headers: {
+// //                       'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+// //                   }
+// //               });
+// //    $.ajax({
+// //      type:'post',
+// //      data:formDate,
+// //      url:"{{route('_admin-update_WebSiteSetting')}}",
+// //     success:function(data)
+//     { 
+//         // data.forEach(function (serv) {
+//             alert('data');
+//         console.log( data);
 
-        // });
-    }
-    });
+//         // });
+//     }
+//     });
 
-    });
+//     });
  
-});
+// });
 
 // $('#services-tab').click(function() { 
 //     alert('dasd');

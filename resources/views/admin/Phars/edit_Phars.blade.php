@@ -224,7 +224,7 @@
 
         <div class="row g-3">
         <div class="mb-3 col-6">
-        <a href="" data-bs-toggle= "modal" data-bs-target="#addemail">تعديل البريد الكتروني</a>
+        <a href="" data-bs-toggle= "modal" data-bs-target="#edit-email">تعديل البريد الكتروني</a>
         </div>
         <div class="mb-3 col-6">
         <a href="" data-bs-toggle= "modal" data-bs-target="#addpassword"> تعديل كلمة المرور</a>
@@ -334,8 +334,9 @@
 
 
 
-                                <div class="modal"  id="addemail"  tabindex="-1">
+                                {{-- <div class="modal"  id="addemail"  tabindex="-1">
                                         <div class="modal-dialog">
+                                        <form action="{{route('_admin-phar_email')}}" method="post"></form>
                                             <div class="modal-content">
                                             <div class="modal-header">
                                             <h5 class="modal-title ps-5 ms-5">تعديل البريد الالكتروني </h5>
@@ -362,7 +363,94 @@
                                             </div>
                                             </div>
                                         </div>
+                                </div> --}}
+                                 <!-- edit email -->
+    <div class="modal fade" id="edit-email" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-3">
+                <div class="modal-header">
+                    <h4 class="modal-title fw-bold text-center col-10" id="exampleModalLabel">
+                        تبديل البريد الالكتروني
+                    </h4>
+                    <button type="button" class="btn-close col-2" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <form id="sendEmailCode" action="{{ route('_admin-phar_email') }}" method="POST"
+                        class="row">
+                        @csrf
+                        <div class="col">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <h6 class="mb-0">البريد الإلكتروني</h6>
                                 </div>
+                                <div class="col-sm-6 text-secondary">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text rounded"
+                                            style="background-color: var(--main-color)"><i
+                                                class="bi bi-person-plus-fill text-white"></i></span>
+                                    <input type="hidden" id="id" name="id" value="{{ $phar->id }}">
+                                    <input type="hidden" id="name"  name="name" value="{{ $phar->name }}">
+                                        <input value="{{ $phar->email }}" id='currentEmail' type="email"
+                                            placeholder="البريد الإلكتروني" name="email"
+                                            class="form-control rounded @error('email') border-danger @enderror">
+                                        @error('email')
+                                            <div class="invalid-feedback d-block">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <button class="btn-submit radius text-center p-2 col-12 mt-2">
+                                        ارسال رمز التحقق
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                    <hr>
+                    <form action="{{ route('_admin-phar_check_email') }}" method="POST" class="g-3">
+
+                        @csrf
+                       
+
+                        <input id="hiddenEmail" type="hidden" name="email">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">رمز التحقق</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
+                                            class="bi bi-person-plus-fill text-white"></i></span>
+                                    <input type="text" placeholder="رمز التحقق" name="code"
+                                        class="form-control rounded @error('code') border-danger @enderror">
+                                    <input type="hidden" name="id" value="{{$phar->id}}">
+                                    @error('code')
+                                        <div class="invalid-feedback d-block">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+
+
+                        <div class="row">
+                            <button class="btn-submit radius text-center p-2 col-12 mt-2" type="submit">
+                                تعديل
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
                                 <div class="modal"  id="addpassword"  tabindex="-1">
@@ -395,6 +483,7 @@
                                 </div>
                                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
                                 integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+                        
 
 
 
@@ -406,7 +495,52 @@
         var out=document.getElementById(id);
         out.src=URL.createObjectURL(event.target.files[0]);
     }
+   
+        $(window).on('load', function() {
+            @error('modal')
+                $("#{{ $message }}").modal('show');
+            @enderror
 
+        });
+        var formData={};
+        
+        $("#sendEmailCode").on('submit', function(e) {
+            e.preventDefault();
+            // var formData=new FormData($('#sendEmailCode')[0]);
+            $("#sendEmailCode :input").each(function(){
+          var input = $(this);
+          if (typeof input.attr("name") !== 'undefined')
+          { console.log(typeof  input.attr("name")+" "+input.val());
+            formData[input.attr("name")]=input.val();
+          }
+
+        //  console.log(typeof  input.attr("name")+" "+input.attr("value"));
+});
+            // var token = $($("[name='_token']")[0]).val();
+            // var email = $("#currentEmail").val();
+            // var name = $("#name").val();
+            // var id = $("#id").val();
+            $.ajax({
+                method: 'post',
+                data:formData,
+                url: "{{ route('_admin-phar_email') }}",
+                success: function(data) {
+                    $("#hiddenEmail").val($("#currentEmail").val());
+                    if (data['type'] != 'danger')
+                        $("#currentEmail").attr('disabled', 'disabled');
+                    $("#sendEmailCode").html(
+                        "<div class='alert alert-" + data['type'] + "' role='alert'>" +
+                        data['data'] +
+                        "</div>" +
+                        $("#sendEmailCode").html()
+                    );
+
+                }
+
+
+            })
+        })
+    </script>
 
 
 // $(document).ready(function() {

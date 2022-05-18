@@ -46,6 +46,9 @@ Route::post('/pharmacy/{id}/license/store', [Front\interfacesController::class, 
 Route::post('/pharmacies/search', [Front\interfacesController::class, 'searchPharmacies'])->name('search-pharmacies');
 Route::get('/select/city/{id}/zones', [Front\interfacesController::class, 'getCityZones'])->name('city-zones');
 
+/* backend front  route */
+Route::get('/front/showinfor',[Front\HomeController::class,'indexInfo'])->name('front_showinfor');
+
 // // // PHARMACY TEST ROUTES
 // Route::get('/account', [Pharmacy\PharmacyController::class, 'account'])->name('profile');
 // Route::get('/settings', [Pharmacy\PharmacyController::class, 'settings'])->name('settings');
@@ -239,6 +242,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/_admin/phar/create', [Admin\PharController::class, 'create'])->name('_admin-phar_create');
         Route::post('/_admin/update/phar_avater', [Admin\PharController::class, 'doUpdataImage'])->name('_admin-phar_avater');
         Route::post('/_admin/update/phar_license', [Admin\PharController::class, 'doUpdataLicense'])->name('_admin-phar_licenes');
+        Route::post('/_admin/update/phar_email', [Admin\PharController::class, 'updateEmail'])->name('_admin-phar_email');
+        Route::post('/_admin/update/check_email', [Admin\PharController::class, 'checkUpdateEmail'])->name('_admin-phar_check_email');
 
 
 

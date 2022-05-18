@@ -39,7 +39,7 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-
+                
         if (empty($request['data']))
             return back()->with('error', 'يجب عليك أولا إضافة الطلبية قبل إرسالها ');
 

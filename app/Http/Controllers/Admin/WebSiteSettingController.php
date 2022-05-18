@@ -64,12 +64,12 @@ class WebSiteSettingController extends Controller
                    'descripe_about'=>$request->descripe_about,
                    'title_about'=>$request->title_about]);
                    return response()->json("yes data");
-        // if($affected>0)
-        // {
-        //     return back()->with('status','تم  تعديل بيانات من نحن ');
-        // }
-        // else
-        // return back()->with('error','لم يتم  تعديل بيانات الموقع ');
+        if($affected>0)
+        {
+            return back()->with('status','تم  تعديل بيانات من نحن ');
+        }
+        else
+        return back()->with('error','لم يتم  تعديل بيانات الموقع ');
     }
 
     public function updateLogo(Request $request)
@@ -141,9 +141,9 @@ $siteadmine=new SiteAdmine();
   public function validationGoogle($request)
   {
     Validator::validate($request->all(),
-    ['google' => ['url'] ],
+    ['google' => ['email'] ],
 
-   ['google.url'=>'يجب ادخال رابط جوجل بطريقة صحيحة']
+   ['google.email'=>'يجب ادخال رابط جوجل بطريقة صحيحة']
 );
 $siteadmine=new SiteAdmine();
  $siteadmine->update(array('google' => $request->google));
