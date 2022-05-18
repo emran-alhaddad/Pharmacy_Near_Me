@@ -13,6 +13,10 @@ use App\Models\Role;
 use App\Models\User as ModelsUser;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Payment;
+use App\Http\Controllers\Notify;
+
+
+
 use App\Http\Controllers\Admin\ServicesController;
 use App\Http\Controllers\Payment\PaymentController;
 
@@ -87,7 +91,7 @@ Route::get('auth/google/callback', [Social\GoogleController::class, 'callback'])
 // Email Verification
 Route::get('auth/verify_email/{token}', [CustomAuth\VerifyEmailController::class, 'verify']);
 
-// This Code will Used By Hadeel after payment process 
+// This Code will Used By Hadeel after payment process
 Route::get('/transfer/{sender}/{reciver}/{amount}', function ($id1, $id2, $amount) {
     $sender = ModelsUser::where('id', $id1)->first();
     // $sender->deposit(200);
@@ -99,14 +103,14 @@ Route::get('/transfer/{sender}/{reciver}/{amount}', function ($id1, $id2, $amoun
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/pharmacy/{id}/add-order', [Front\interfacesController::class, 'add_order'])->name('add-order');
-    
+
     Route::get('/user/payment/{id}', [PaymentController::class, 'index'])->name('user-payment');
 
     Route::post('/user/payment/{id}/pay', [PaymentController::class, 'pay'])->name('user-payment-pay');
     Route::get('/user/payment/success/{info}', [PaymentController::class, 'success'])->name('user-payment-success');
     Route::get('/user/payment/cancel/{cancel}', [PaymentController::class, 'cancel'])->name('user-payment-cancel');
 
-    
+
     // Client Routes
     Route::group(['middleware' => ['role:client']], function () {
         Route::get('/client/', [User\ClientController::class, 'index'])->name('client-dashboard');
@@ -284,3 +288,16 @@ Route::group(['middleware' => 'auth'], function () {
     // Logout
     Route::get('/logout', [CustomAuth\LogoutController::class, 'logout'])->name('logout');
 });
+
+
+// payment page route
+Route::get('/checkout-order', [Front\interfacesController::class, 'localCheckout'])->name('checkout-order');
+// test payment route  There is a problem her
+Route::get('/checkout-order/test', [Payment\PaymentController::class, 'index'])->name('test');
+Route::get('/checkout-order/test/response/{info}', [Payment\PaymentController::class, 'showTest'])->name('test/response');
+Route::get('/checkout-order/test/response/{info}', [Payment\PaymentController::class, 'showTest'])->name('test/response');
+Route::get('/checkout-order/test/cancel/{cancel}', [Payment\PaymentController::class, 'testCancel'])->name('testCancel');
+Route::get('/checkout-order/test/cancel', [Payment\PaymentController::class, 'viewCancel'])->name('viewCancel');
+
+Route::get('send', [Notify\NotificationsController::class, 'registerNotification'])->name('viewCancel');
+

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth\Register;
 
 use App\Http\Controllers\Auth\Login\LoginController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Notify\NotificationsController;
 use App\Mail\VerifyEmail;
 use App\Models\Admin;
 use App\Models\Client;
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
+// use App\Events\Notify;
 
 class RegisterController extends Controller
 {
@@ -53,15 +55,23 @@ class RegisterController extends Controller
                     $this->registerPharmacy($user, $request);
                     break;
                 default:
-                
+
                     return back()->with('error',ErrorMessages::REGISTER_FAILD);
             }
 
             if (!$request->has('email_verified_at'))
                 Mail::to($request->email)->send(new VerifyEmail($email_data));
+
+                $Notify = new NotificationsController();
+                $data =[
+                    'user_name'=> $user->name,
+                    'email'=> $user->email,
+                ];
+                $Notify -> registerNotification($user->name,$user->email);
+
             return  redirect()->route('login')->with('status',SuccessMessages::EMAIL_VERIFY_SEND);
         } else
-        
+
             return back()->with('error', ErrorMessages::REGISTER_FAILD);
     }
 
@@ -74,7 +84,7 @@ class RegisterController extends Controller
         $token = Str::uuid();
         $user->remember_token = $token;
 
-        
+
         if (isset($request['google_id']))
         { $user->google_id = $request['google_id'];
             $user->email_verified_at = Carbon::now()->timestamp;
@@ -82,13 +92,13 @@ class RegisterController extends Controller
         elseif (isset($request['facebook_id']))
         { $user->facebook_id = $request['facebook_id'];
             $user->email_verified_at = Carbon::now()->timestamp;
-          
-        }  
-        else{ 
-            $requestObj=new Request($request); 
-              $this->validateFields($requestObj);
+
+        }
+        else{
+            $requestObj=new Request($request);
+            $this->validateFields($requestObj);
             if (!$requestObj->has('email_verified_at')) {
-               
+
                 $user->remember_token = $token;
                 $email_data = [
                     'name' => $user->name,
@@ -97,9 +107,9 @@ class RegisterController extends Controller
             }
             if (!$requestObj->has('email_verified_at'))
             Mail::to($requestObj->email)->send(new VerifyEmail($email_data));
-            
 
-             
+
+
 
         }
 
@@ -180,7 +190,7 @@ class RegisterController extends Controller
 
         ]);
     }
-    
+
     public static function createWallet(User $user)
 {
     $user->balance;
@@ -190,3 +200,11 @@ class RegisterController extends Controller
 
 }
 }
+
+// $data = [
+//     'user_id'=> $request->name,
+//     'email'=> $request->email,
+// ];
+
+
+// event(new Notify($data));

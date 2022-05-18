@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use App\Models\Complaint;
+use App\Events\Notify;
 
 class ComplaintsController extends Controller
 {
@@ -15,17 +15,23 @@ class ComplaintsController extends Controller
         $complaint = Complaint::with(['pharmacy.user','client.user'])->get();
       //  return  $complaint;
 
-         return view('admin.Complaints.show_Complaints')->with('coms',$complaint);
+        return view('admin.Complaints.show_Complaints')->with('coms',$complaint);
     }
     // public function createComplaints(Request $request)
     // {
 
     // }
-    public function addComplaints($id){
-        return view('admin.Complaints.add_Complaints')->with('id',$id);;
-    }
+
+
+    // public function addComplaints($id){
+    //     return view('admin.Complaints.add_Complaints')->with('id',$id);
+    // }
+
+
     public function relpay(Request $request,$id){
 
+<<<<<<< HEAD
+=======
         $request->validate(['replay' => 'required|min:3'],[
     
             'replay.required'=>'لا يمكن الرد على الشكوى برسالة فارغة  ',
@@ -33,21 +39,31 @@ class ComplaintsController extends Controller
       
         ]);
       
+>>>>>>> main
         $affectedRows = Complaint::where('id', $id)->update(array('replay' => $request->replay));
         if($affectedRows>0)
         {
             return back()->with('status','تم الرد على المستخدم');
         }
-        return back()->with('error',' لم تم الرد على المستخدم  ');
-        
+        return back()->with('error',' لم يتم الرد على المستخدم  ');
 
-      
+
+
     }
 
-    public function editComplaints(){
-        return view('admin.Complaints.edit_Complaints')->with($id);;
-    }
-    
-    
+    // public function editComplaints(){
+    //     return view('admin.Complaints.edit_Complaints')->with($id);;
+    // }
+
+    // $data = [
+    //     'client_id'=> ,
+    //     'pharmacy_id'=> ,
+    //     'message'=> ,
+    // ];
+
+
+    // event(new Notify($data));
+
+
 }
 
