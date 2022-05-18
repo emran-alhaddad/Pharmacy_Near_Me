@@ -48,13 +48,8 @@
                           @endif
 
                             <td>
-<<<<<<< HEAD
-                            <a href="/_admin/edit_Cities">  <button class="btn " ><i class="fas fa-pen" id="edit"></i></button></a>
-                                <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" id="delete"><i class="fas fa-trash"></i></button>
-=======
-                                <a href={{route('admin-edit_Cities', ['id' => $city->id]);}} >  <button class="btn btn-primary text-white" >تعديل</button></a>
-                                <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button>
->>>>>>> admin/v.2
+                                <a href={{route('admin-edit_Cities', ['id' => $city->id]);}} >  <button class="btn btn-primary text-white" ><i class="fas fa-pen" id="edit"></i></button></a>
+                                <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-trash"></i></button>
                                     <div class="modal"  id="exampleModal"  tabindex="-1">
                                         <div class="modal-dialog">
                                             <div class="modal-content">

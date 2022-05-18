@@ -20,8 +20,8 @@ class AdminController extends Controller
 
     public function showProfile(){
      
-    // $id = Auth::id();
-    $id=5;
+     $id = Auth::id();
+
         $user= DB::table('users')
             ->join('admins', 'users.id', '=', 'admins.user_id')
            
@@ -31,7 +31,7 @@ class AdminController extends Controller
        
        
 
-       return view('admin.admin_profile.show_profile');
+       return view('admin.admin_profile.show_profile')->with('admin',$user);
     }
 
     public function editProfile(){
@@ -44,18 +44,22 @@ class AdminController extends Controller
             ->first();
         
 
-        return view('admin.admin_profile.edit_profile');
+        return view('admin.admin_profile.edit_profile')->with('admin',$user);;
     }
 
     public function doUpdata(Request $request)
-    {
-        $user=new User();
-       
-        //$user->email=$request->email;
-        $user->phone=$request->phone;
-        //$user->password=$request->password;
-        $user->name=$request->name;
-        $user->save();
+    {  $request->validate(['name' => 'required|min:3'],[
+    
+      'name.required'=>'يجب ادخال الاسم  ',
+      'name.min'=>'يجب ان يكون الاسم 3 احرف',
+
+  ]);
+  if($request->filled('phone'))
+  {
+      $this->checkPhone($request,$id);
+  }
+      User::where('id', '=',  Auth::id())->update(array('name' => $request->name));
+      return back()->with('status','تم تعديل البيانات بنجاح');
     }
     public function doUpdataImage(Request $request)
     {   
@@ -171,6 +175,14 @@ if($request->filled('google'))
 //   return back()->with('  رمز التحقق خطاء ');
 // }    
 // }
+public function checkPhone($request,$id)
+{
+    $request->validate(['phone' => 'numeric|min:9'],[
+        'phone.min'=>'يجب ان يكون رقم الهاتف 9',
+        'phone.numeric'=>'يجب ان يكون رقم الهاتف  ارقام'
+     ]);
+User::where('id', '=', $id)->update(array('phone' => $request->phone));
+} 
 
 
 

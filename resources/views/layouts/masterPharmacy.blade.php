@@ -94,7 +94,7 @@
         }
 
         .btn-submit :hover {
-            color: var(--main-color);
+            color: #fff;
             /* background-color: #ffffff; */
         }
         .back-to-top.btn-hover {
@@ -195,7 +195,9 @@
     <!-- Core JS -->
     <script src="{{ asset('pharmacy/assets/vendor/js/bootstrap.js')}}"></script>
     <script src="{{ asset('pharmacy/assets/vendor/js/menu.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!-- Main JS -->
+
     <script src="{{ asset('pharmacy/assets/js/main.js')}}"></script>
 
     <!-- Page JS -->

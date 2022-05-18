@@ -15,22 +15,27 @@ class VerifyEmailController extends Controller
 {
     public function verify($token)
     {
-        $user = User::where('remember_token',$token)->first();
-        if($user)
-        {
+        $user = User::where('remember_token', $token)->first();
+        if ($user) {
             $user->email_verified_at = Carbon::now()->timestamp;
             $user->remember_token = null;
             $user->save();
-            if(!$user->is_active)  
-            return redirect()->route('login')->with([
-                'error'=>ErrorMessages::EMAIL_ACTIVATE,
-                'status' => SuccessMessages::EMAIL_ACTIVATION_SUCCESS
-            ]);
-
             Auth::login($user);
+
+            if (!$user->is_active) {
+                $msg = ErrorMessages::EMAIL_ACTIVATE;
+                if ($user->hasRole('pharmacy'))
+                    $msg .= "<a href='" . route('create-request-license',$user->id) . "'>الرابط</a>";
+                Auth::logout();
+                return redirect()->route('login')->with([
+                    'error' => $msg,
+                    'status' => SuccessMessages::EMAIL_ACTIVATION_SUCCESS
+                ]);
+            }
+
             return LoginController::checkrole($user);
-        }
-        else
-        return redirect()->route('register')->with('error',ErrorMessages::EMAIL_VERIFY_EXPIRED);
+
+        } else
+            return redirect()->route('register')->with('error', ErrorMessages::EMAIL_VERIFY_EXPIRED);
     }
 }

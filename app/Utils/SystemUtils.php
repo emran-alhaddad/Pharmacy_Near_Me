@@ -10,15 +10,30 @@ use Illuminate\Support\Facades\Validator;
 
 class SystemUtils extends UploadingUtils
 {
-  CONST AVATER_PATH = 'uploading/';
-  CONST LOGO_PATH = 'uploading/logo/';
+  CONST AVATER_PATH = '/uploads/';
+  CONST UPLOADS_PATH = '/uploads/';
+  CONST LOGO_PATH = '/uploads/logo/';
 
-  public static function  updateAvatar(Request $request)
+  public static function  updateAvatar(Request $request,$path)
   {
     
-    $request->validate(['avatar' => 'required|image|mimes:png,jpg']);
+    $request->validate(['avatar' => 'required|image|mimes:png,jpg'],
+    ['avatar.mimes'=>'يجب ان تكون الصورة بصيغة png , jpg فقط',
+    'avatar.image'=>'يجب ان تكون الملف  الصوره ']
+  );
     
-    return SystemUtils::returnPath($request->avatar);
+    return SystemUtils::returnPath($request->avatar,$path);
+  }
+
+  public static function  updateLogo(Request $request,$path)
+  {
+    
+    $request->validate(['logo' => 'required|image|mimes:png,jpg,svg'],
+    ['logo.mimes'=>'يجب ان تكون الصورة بصيغة png , svg , jpg فقط',
+    'logo.image'=>'يجب ان تكون الملف  الصوره ']
+  );
+    
+    return SystemUtils::returnPath($request->logo,$path);
   }
    
   public static function  updateImages(Request $request,$path)
@@ -27,8 +42,8 @@ class SystemUtils extends UploadingUtils
 
     $request->validate(['image' => 'required|mimes:png,jpg'],
     [
-      'image.mimes'=>'يجب ان تكون الصورة بصيغة ',
-      'image.image'=>'يجب ان تكون الملف  الصوره '
+      'license.mimes'=>'يجب ان تكون الصورة بصيغة png , jpg فقط',
+      
     ]);
   
   
@@ -40,8 +55,8 @@ class SystemUtils extends UploadingUtils
   {
 
     $request->validate(['license' => 'required|image|mimes:png,jpg'],[
-      'license.mimes'=>'يجب ان تكون الصورة بصيغة ',
-       'license.image'=>'يجب ان تكون الملف  الصوره '
+      'license.mimes'=>'يجب ان تكون الصورة بصيغة png , jpg فقط',
+       'license.image'=>'يجب ان تكون الملف صوره '
     ]);
 
     return SystemUtils::returnPath($request->license,$path);
@@ -49,13 +64,13 @@ class SystemUtils extends UploadingUtils
 
   public static function returnPath($img,$path)
   { 
-    $avatar = UploadingUtils::updateImage(
+    $image = UploadingUtils::updateImage(
       $img,
-      self::AVATER_PATH.$path,
-      self::AVATER_PATH
+      self::UPLOADS_PATH.$path,
+      self::UPLOADS_PATH
     );
     
-    return $avatar;
+    return $image;
     
   }
 }

@@ -13,6 +13,6 @@ class LogoutController extends Controller
    public function logout()
    {
     Auth::logout();
-    return back()->with('status',SuccessMessages::LOGOUT_SUCCESS);
+    return redirect()->route('login')->with('status',SuccessMessages::LOGOUT_SUCCESS);
    }
 }

@@ -27,11 +27,6 @@ class LoginController extends Controller
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             if ($user->email_verified_at) {
-                if (!$user->is_active) {
-                    Auth::logout();
-                    return back()->with('error', ErrorMessages::EMAIL_ACTIVATE);
-                }
-
                 return LoginController::checkrole($user);
             } else {
                 Auth::logout();
@@ -50,6 +45,14 @@ class LoginController extends Controller
 
     public static function checkrole($user)
     {
+        if (!$user->is_active) {
+            
+            $msg = ErrorMessages::EMAIL_ACTIVATE;
+            if ($user->hasRole('pharmacy')) 
+            $msg .= "<a href='".route('create-request-license',$user->id)."'>الرابط</a>";
+            Auth::logout();
+            return back()->with('error', $msg);
+        }
 
         if ($user->hasRole('admin'))
             return redirect()->route('admin-dashboard');

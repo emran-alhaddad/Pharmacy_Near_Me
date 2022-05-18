@@ -17,7 +17,12 @@
                         <tr>
                             <th> مرسل الطلب</th>
                             <th> مستقبل الطلب</th>
+                            <th> عنوان الصيدلية </th>
+                            <th> مدينة الصيدلية </th>
+                            <th>تاريخ الطلبية</th>
                             <th>عرض التفاصيل</th>
+                          
+                           
                             <th>الحالة</th>
                             <!-- <th>العمليات</th> -->
                         </tr>
@@ -25,12 +30,17 @@
 
 
                     <tbody>
+                        @foreach ( $request as $req )
+                       
                         <tr>
-                            <td>ابولو</td>
-                            <td>تعز</td>
+                           <td>{{$req->client->user->name}}</td>
+                            <td>{{$req->pharmacy->user->name}}</td>
+                            <td>{{$req->pharmacy->zone->name}}</td>
+                            <td>{{$req->pharmacy->zone->city->name}}</td>
+                            <td>{{$req->created_at}}</td>
                             <td>
                             <a href="/_admin/show_RequestDetails">
-                            <button class="btn btn-light text-dark" >تفاصيل الطلبية</button>
+                                <a href="{{route('admin-show_RequestDetails',['id'=>$req->id])}}"><button class="btn btn-light text-dark" >تفاصيل الطلبية</button></a>
                             </a>
 
                             </td>
@@ -62,7 +72,8 @@
 
 
                         </tr>
-
+                           
+                        @endforeach
                     </tbody>
 
 
