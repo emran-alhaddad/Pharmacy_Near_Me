@@ -29,6 +29,7 @@ body {
     box-sizing: border-box;
 }
 
+/*! You have To Use This vars in style  */
 :root {
     --black: #333;
     --light-black: #777;

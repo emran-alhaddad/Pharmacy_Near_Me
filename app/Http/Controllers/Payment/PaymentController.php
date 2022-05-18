@@ -22,7 +22,7 @@ use PhpParser\Node\Expr\Cast\Object_;
 class PaymentController extends Controller
 {
     /**
-     * The index function which is used for posting the data to the api
+     * The index function which is used for posting Our Order data to the api
      */
 
     public static function getProducts($id)
@@ -70,11 +70,12 @@ class PaymentController extends Controller
 
                         $products[] = $product;
                     }
-
+            // ! The return value of the order_reference from the api is 0, So that our order data dosn't return back
             return array(
                 'order_reference' => $request->id,
                 'total_price' => $total_price,
                 'total_products' => $total_products,
+
                 'products' => $products
             );
         } catch (\Exception $ex) {
@@ -96,7 +97,7 @@ class PaymentController extends Controller
         $order = self::getProducts($id);
         $products = [];
         foreach ($order['products'] as $product) {
-            if(!isset($product['drug_title'])) $product['drug_title'] = "Test";
+            if (!isset($product['drug_title'])) $product['drug_title'] = "Test";
             $products[] = array(
                 "id" => $product['id'],
                 "product_name" => $product['drug_title'],
@@ -117,8 +118,9 @@ class PaymentController extends Controller
             ]
 
         ];
-
         // return $data;
+
+        // connect To the server block start
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -140,11 +142,13 @@ class PaymentController extends Controller
         $response = curl_exec($curl);
         $err = curl_error($curl);
         curl_close($curl);
+        // connection To the server end
 
+        // error Case
         if ($err) {
             echo " Error #:" . $err;
         }
-        // success Case => should make it function latter
+        // TODO success Case => better make it function latter
         else {
 
             $response = json_decode($response, true);

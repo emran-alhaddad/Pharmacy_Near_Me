@@ -28,8 +28,7 @@
         }
 
     </style>
-    <section class="col-lg-9 col-md-8 col-12 container-xxl flex-grow-1 container-p-y">
-        <div class="row mb-2 mt-2">
+     <div class="">
             @if (session('error'))
                 <div class="alert alert-danger" role="alert">
                     {{ session('error') }}
@@ -41,6 +40,8 @@
                 </div>
             @endif
         </div>
+    <section class="col-lg-9 col-md-8 col-12 container-xxl flex-grow-1 container-p-y">
+
 
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#wait-accept">في انتضار القبول</a></li>
@@ -55,7 +56,7 @@
             @include('user.order.state.wait-payment')
             @include('user.order.state.wait-delivery')
             @include('user.order.state.completed')
-            @include('user.order.state.rejected') 
+            @include('user.order.state.rejected')
         </div>
     </section>
 

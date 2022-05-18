@@ -4,12 +4,12 @@
 
     <!-- order Section -->
     <section class="col-lg-9 col-md-8 col-12" id="ord">
-        <div id="alert_msg" class="alert alert-danger hide" role="alert">
+        {{-- <div id="alert_msg" class="alert alert-danger hide" role="alert">
 
         </div>
         <div id="success_msg" class="alert alert-success hide" role="alert">
 
-        </div>
+        </div> --}}
         @if (session('error'))
             <div class="alert alert-danger" role="alert">
                 {{ session('error') }}
@@ -65,15 +65,15 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-sm-3">
                              <a class=" btn btn-outline-primary" role="button " data-toggle="modal" data-target="#rep">
-تكرار الطلبية
+                            تكرار الطلبية
                         </a>
                         </div>
-                       
+
                     </div>
-                    <hr>
+                    <hr> --}}
                     <div class="row">
                         <button type="button" onclick="addRequestDetail()" class="col-12 p-2 m-2 log-btn ">اضافة</button>
                     </div>
@@ -94,7 +94,7 @@
                                 <div class="col-3">صورة العلاج </div>
                                 <div class="col-2">الكمية </div>
                                 <div class="col-2">أقبل البدائل </div>
-                                <div class="col-2">التكرار كل </div>
+                                {{-- <div class="col-2">التكرار كل </div> --}}
 
                             </div>
                             <hr>
@@ -116,7 +116,7 @@
     <div class="modal fade" id="rep" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-body fw-bold d-flex justify-content-lg-center align-items-center flex-column">
+                {{-- <div class="modal-body fw-bold d-flex justify-content-lg-center align-items-center flex-column">
                     <h3 class="fs-4">تكرار الطلبية كل </h3>
                     <div class="col">
                         <div class="d-inline-block p-2">
@@ -141,7 +141,7 @@
 
                     </div>
 
-                </div>
+                </div> --}}
                 <div class="modal-footer">
                     <button type="button" class="btn" data-dismiss="modal">
                         تم

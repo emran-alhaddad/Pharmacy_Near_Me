@@ -129,7 +129,7 @@
                                                                         <div class="d-flex flex-row align-items-center">
                                                                              @if (isset($product['drug_image']))
                                                                             <div>
-                                                                           
+
                                                                                 <img src="{{ $product['drug_image'] }}"
                                                                                     class="img-fluid rounded-3"
                                                                                     alt="Shopping item"
@@ -173,8 +173,8 @@
 
                     <div class="col-12 d-flex justify-content-center p-1 my-2 radius">
                         <div class="form-group d-flex justify-content-center col-6">
-                            <a href="javascript:void(0);">
-                                <button type="submit" class="main-btn col-6 btn-hover">دفع </button>
+                            <a href="javascript:void(0);" class="col-12">
+                                <button type="submit" class="main-btn col-12 btn-hover">دفع </button>
                             </a>
                         </div>
                     </div>
