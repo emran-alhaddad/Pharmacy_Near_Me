@@ -82,7 +82,7 @@
 
                         <div class="d-flex align-items-start align-items-sm-center gap-4">
                             <img
-                                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                                src="{{asset("/uploads/ads/$ads->image")}}"
                                 alt="user-avatar"
                                 class="d-block rounded"
                                 height="100"

@@ -63,7 +63,7 @@
                                         <div class="row g-3">
                                         <div class="col-8">
 
-                                        <form method="POST" id="update_index" action=>
+                                        <form method="POST" id="update_index" action="{{route('_admin-update_WebSiteSetting')}}">
                                                 <div class="mb-3">
                                                 <label for="exampleInputName" class="form-label">اسم الموقع</label>
                                                 <input type="text" name="name" value="{{$site->name}}" class="form-control" id="exampleInputName">
@@ -154,7 +154,7 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>  صورة الخدمة</th>
+                                                <th>  صورة الخدمة</th> 
                                                 <th> عنوان الخدمة</th>
                                                 <th>   وصف الخدمة</th>
                                                 <th>الحالة</th>
@@ -169,7 +169,7 @@
                                             @foreach ( $services as $ser )
                                             <tr>
 
-                                            <td>  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                                            <td>  <img  src="{{asset("/uploads/service/$ser->image")}}" alt="avatar"
                                             class="rounded-circle img-fluid" style="width: 50px;"></td>
                                             <td> {{$ser->title}} </td>
 
@@ -318,7 +318,7 @@
 
                                                     <div class="mb-3 col-6">
                                                         <label for="exampleInputLink" class="form-label"> وصف المحتوى الرئيسي</label>
-                                                        <textarea type="text" id="editor" name = "descripe_about" class = "form-control editor "></textarea>
+                                                        <textarea type="text" id="editor" name = "descripe_about" class = "form-control editor ">{{$site->title_about}}"</textarea>
                                                     </div>
 
 
@@ -335,12 +335,12 @@
 
                                                 <div class="mb-3 col-6">
                                                         <label for="exampleInputLink" class="form-label"> وصف خدمات الصيدلية</label>
-                                                        <textarea type="text" id="editor" name = "descripe_ser_phar" class = "form-control editor "></textarea>
+                                                        <textarea type="text" id="editor" name = "descripe_ser_phar" class = "form-control editor ">{{$site->descripe_ser_phar}}</textarea>
                                                     </div> 
 
                                                     <div class="mb-3 col-6">
                                                         <label for="exampleInputLink" class="form-label"> وصف خدمات المستخدم</label>
-                                                        <textarea type="text" id="editor" name = "descripe_ser_user" class = "form-control editor"></textarea>
+                                                        <textarea type="text" id="editor" name = "descripe_ser_user" class = "form-control editor">{{$site->descripe_ser_user}}</textarea>
                                                     </div>
 
 
@@ -368,40 +368,40 @@
 </div>
 {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>--}}
-<script src='{{asset("/jquery/jquery.js")}}'> </script>   
+{{-- <script src='{{asset("/jquery/jquery.js")}}'> </script>    --}}
 <script>
 
- $(document).ready(function() {
+//  $(document).ready(function() {
     
-    // function getData(thisele,formid,modelId)
-    // {   debugger;
-        alert('asasda');
-        $('#submit_button').on('submit',function(event){
-  event.preventDefault();
+//     // function getData(thisele,formid,modelId)
+//     // {   debugger;
+        
+//         $('#submit_button').on('submit',function(event){
+//   event.preventDefault();
   
-  var formDate=new FormData($('#update_index')[0]);
-//   $.ajaxSetup({
-//                   headers: {
-//                       'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-//                   }
-//               });
-   $.ajax({
-     type:'post',
-     data:formDate,
-     url:"{{route('_admin-update_WebSiteSetting')}}",
-    success:function(data)
-    { 
-        // data.forEach(function (serv) {
-            alert('data');
-        console.log( data);
+//   var formDate=new FormData($('#update_index')[0]);
+// //   $.ajaxSetup({
+// //                   headers: {
+// //                       'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+// //                   }
+// //               });
+// //    $.ajax({
+// //      type:'post',
+// //      data:formDate,
+// //      url:"{{route('_admin-update_WebSiteSetting')}}",
+// //     success:function(data)
+//     { 
+//         // data.forEach(function (serv) {
+//             alert('data');
+//         console.log( data);
 
-        // });
-    }
-    });
+//         // });
+//     }
+//     });
 
-    });
+//     });
  
-});
+// });
 
 // $('#services-tab').click(function() { 
 //     alert('dasd');
