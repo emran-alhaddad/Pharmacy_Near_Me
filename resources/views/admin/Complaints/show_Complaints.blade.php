@@ -36,14 +36,14 @@
 
                     <tbody>
                         @foreach ($coms as $com )
-                            
-                      
+
+
                         <tr>
                             <td>{{$com->client->user->name}}</td>
                             <td>{{$com->pharmacy->user->name}}</td>
                             <td> {{$com->created_at}}</td>
                             <td>{{$com->message}}</td>
-                          
+                        
                             {{-- <td>
                                 <button class="btn btn-success text-white" >مفعل</button>
                             </td> --}}
@@ -52,11 +52,11 @@
                                 @if ($com->replay==null)
                                 <a href={{route('admin-add_Complaints',['id'=>$com->id])}}>  <button class="btn btn-primary text-white" >رد على الشكوى</button></a>
                                 @else
-                                    
-                               
-                                
+
+
+
                                 <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal{{$com->id}}">عرض الرد</button>
-                                @endif    
+                                @endif
                                 <div class="modal"  id="exampleModal{{$com->id}}"  tabindex="-1">
                                         <div class="modal-dialog">
                                             <div class="modal-content">

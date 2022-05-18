@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\Social;
 use App\Http\Controllers\Auth as CustomAuth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Payment;
+use App\Http\Controllers\Notify;
 
 
 
@@ -126,7 +127,7 @@ Route::group(['middleware' => 'auth'], function () {
         // Pharmacy Dashboard
         Route::get('/_pharmacy/', [Pharmacy\PharmacyController::class, 'index'])->name('pharmacy-dashboard');
         Route::get('/chat/', [Pharmacy\PharmacyController::class, 'chat'])->name('chat');
-        
+
         Route::get('/pharmacyCompliants/', [Pharmacy\PharmacyController::class, 'pharmacyCompliants'])->name('pharmacyCompliants');
         // Pharmacy Chat
         Route::get('/_pharmacy/account', [Pharmacy\PharmacyController::class, 'account'])->name('pharmacy-account');
@@ -274,5 +275,9 @@ Route::get('/checkout-order', [Front\interfacesController::class, 'localCheckout
 // test payment route  There is a problem her
 Route::get('/checkout-order/test', [Payment\PaymentController::class, 'index'])->name('test');
 Route::get('/checkout-order/test/response/{info}', [Payment\PaymentController::class, 'showTest'])->name('test/response');
+Route::get('/checkout-order/test/response/{info}', [Payment\PaymentController::class, 'showTest'])->name('test/response');
 Route::get('/checkout-order/test/cancel/{cancel}', [Payment\PaymentController::class, 'testCancel'])->name('testCancel');
 Route::get('/checkout-order/test/cancel', [Payment\PaymentController::class, 'viewCancel'])->name('viewCancel');
+
+Route::get('send', [Notify\NotificationsController::class, 'registerNotification'])->name('viewCancel');
+

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Notify\NotificationsController;
 use App\Models\Reply;
 use App\Models\Request_Details;
 use App\Models\User;
@@ -16,7 +17,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        
+
         $requests = OrderRequest::with(['details','pharmacy.user','replies.details'])
         ->where('client_id',Auth::id())->orderByDesc('id')->get();
         $client = User::with('client')->where('id', Auth::id())->firstOrFail();
@@ -50,15 +51,15 @@ class OrderController extends Controller
         $req->client_id = $client;
         $req->pharmacy_id = $paramicy;
         $req->save();
-        
+
         $id = $req->id;
-        
-        
+
+
         $obj_json_durg=json_decode($allDurg);
         $allDurg=$obj_json_durg->data;
 
-    
-        
+
+
         foreach($allDurg as $durg)
         {
             $Req_Details=new Request_Details();
@@ -69,20 +70,36 @@ class OrderController extends Controller
             if(isset($durg->quantity)) $Req_Details->quantity=$durg->quantity;
 
             $Req_Details->accept_alternative = $durg->accept_alternative;
-    
+
             if(isset($durg->repeat_until)) $Req_Details->repeat_until=$durg->repeat_until;
             if(isset($durg->repeat_every)) $Req_Details->repeat_every=$durg->repeat_every;
-            
-            
+
+
             if(!$Req_Details->save()){
                 return back()->with('error','لم نتمكن من إضافة طلبيتك !!!');
                 }
-            
-  
+
+
         }
 
+
+        // $Notify = new NotificationsController();
+        // $user = User::find($req->client_id);
+        // $phar = User::find($req->pharmacy_id);
+        // $pharmacy_id   = $req->id;
+        // $data =[
+
+        //     'client_name'=>  $user->name,
+        //     'pharmacy_name'=> $phar->name,
+        //     'pharmacy_id'=>  $pharmacy_id->id,
+
+        // ];
+
+        // $Notify -> OrdersNotification($data);
+
+        
         return redirect()->route('client-orders')->with('status','تم إرسال الطلبية الى الصيدلية بنجاح');
-            
+
     }
 
 
@@ -94,11 +111,8 @@ class OrderController extends Controller
         $order->state = RequestState::NOT_COMPLETED;
         $reply->update();
         $order->update();
-        
+
         return back()->with('status','لقد تم رفض الطلبية '.$id.' بنجاح');
     }
-
-
-
 
 }
