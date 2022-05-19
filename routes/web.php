@@ -3,6 +3,8 @@
 use App\Http\Controllers\User;
 use App\Http\Controllers\Admin;
 use App\Http\Controllers\Pharmacy;
+use App\Http\Controllers\ChatController;
+
 use App\Http\Controllers\Front;
 use App\Http\Controllers\Auth\Login;
 use App\Http\Controllers\Auth\Register;
@@ -125,6 +127,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/client/orders/store', [User\OrderController::class, 'store'])->name('client-orders-store');
         Route::get('/client/order/{id}/reject', [User\OrderController::class, 'reject'])->name('client-orders-reject');
         Route::get('/client/reply-details/{id}/toggle/{state}', [User\OrderController::class, 'toggleReplyDetails'])->name('client-reply-details-toggle');
+       //chat routs
+        Route::group(['middleware' => 'auth'], function () {
+            Route::get('/inbox', [ChatController::class, 'index'])->name('inbox.index');
+            Route::get('/inbox/{id}', [ChatController::class, 'show'])->name('inbox.show');
+        });
+
 
         // Client Compliants
         Route::get('/problems/', [User\ComplaintController::class, 'index'])->name('problems');
