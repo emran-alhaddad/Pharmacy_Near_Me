@@ -21,9 +21,6 @@ use PhpParser\Node\Expr\Cast\Object_;
 
 class PaymentController extends Controller
 {
-    /**
-     * The index function which is used for posting Our Order data to the api
-     */
 
     public static function getProducts($id)
     {
@@ -82,6 +79,9 @@ class PaymentController extends Controller
             return redirect()->route('index')->with('error', 'حدث خطأ غير متوقع ' . $ex->getMessage());
         }
     }
+    /**
+     * The index function which is used for posting Our Order data to the api
+     */
 
     public function index($id)
     {

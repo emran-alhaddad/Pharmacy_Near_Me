@@ -47,6 +47,13 @@
             font-family: "Droid Arabic Kufi", "Droid Sans", sans-serif;
             font-size: 14px;
         }
+        body {
+            font-family: "Tajawal", sans-serif;
+            font-weight: normal;
+            font-style: normal;
+            background: #f4f5f6;
+            text-justify: justify;
+        }
 
         a {
             text-decoration: none;
@@ -190,8 +197,6 @@
             }
         });
     </script>
- <
-    
 
 
 </body>

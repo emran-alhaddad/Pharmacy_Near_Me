@@ -1,7 +1,6 @@
 @extends('layouts.masterAdmin')
 @section('admin_pages')
 
-
 <div class="wrapper bg-white">
     <div class="row  ">
         <div class="col-12 col-m-12 col-sm-12">
