@@ -13,8 +13,9 @@
     <link href="{{ asset('admin/css/main2.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
+ <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="//js.pusher.com/3.1/pusher.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+   
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
@@ -56,15 +57,15 @@
             <ul class=" list-group list-group-flush">
 
             @foreach( \App\Http\Controllers\Notify\NotificationsController::getNotification()['notifications'] as $notification)
-
+       
 
             <li class="list-group-item list-group-item-action dropdown-notifications-item">
                 <div class="d-flex">
                     <div class="flex-grow-1">
-                    <h6 class="mb-0">{{$notification->message }}</h6>
+                         <h6 class="mb-0"><a class="text-decoration-none" href={{route('admin-showalert',['id'=>$notification->client_id])}}>{{$notification->message }}</a></h6>
                     <h6 class="mb-0">{{$notification->client_name }}</h6>
                     <h6 class="mb-0">{{$notification->pharmacy_name }}</h6>
-                    <small class="text-muted">5 days ago</small>
+                    {{-- <small class="text-muted">5 days ago</small> --}}
                     </div>
                     <div class="flex-shrink-0 dropdown-notifications-actions">
                     <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
@@ -82,7 +83,8 @@
             </li>
         </ul>
 </li>
-
+         
+{{-- <audio class="" style="display: none" id="audio" src= src={{asset("/uploads/audio/alert.mp3")}}  autoplay="false" ></audio> --}}
 
 		<form class="navbar-search" autocomplete="off">
             <i class="fas fa-search"></i>
@@ -129,8 +131,10 @@
     });
 
     var channel = pusher.subscribe('new_notification');
-
+   
     channel.bind('App\\Events\\Notify', function(data) {
+        const audio = new Audio('{{asset("/uploads/aduio/alert.mp3")}}');
+        audio.play();
         var node = document.createElement('li');
             // <li class="list-group-item list-group-item-action dropdown-notifications-item">
             //         <div class="d-flex">
@@ -168,7 +172,7 @@
     // if( data.admin_id.toString() =="{!! Auth::id() !!}") {
         // alert("{!! Auth::id() !!}");
         var list = document.getElementById('notifications_list');
-        alert("hi pinky");
+        // alert("hi complaint news");
         // var list =   document.getElementById('notifictions_list');
         document.getElementById('notifications_list').append(node);
         // insertAfter(node, list )
