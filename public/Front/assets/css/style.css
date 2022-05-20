@@ -20,7 +20,7 @@ body {
     font-family: "Tajawal", sans-serif;
     font-weight: normal;
     font-style: normal;
-    /* color: #7C869A; */
+    background: #7C869A;
 }
 
 * {
@@ -29,13 +29,14 @@ body {
     box-sizing: border-box;
 }
 
+/*! You have To Use This vars in style  */
 :root {
     --black: #333;
     --light-black: #777;
-    --main-color: #2B547A;
-    --hover-main: #4688C7;
-    --secondary-color: #57ABFA;
-    --hover-secondary: #A3D0FB;
+    --main-color: #01497c;
+    --hover-main: #2a6f97;
+    --secondary-color: #42a5f5;
+    --hover-secondary: #64b5f6;
     --bg-sec: #f6f4fa;
     --border: .2rem solid var(--main-color);
     --radius: .5rem;
@@ -290,6 +291,9 @@ textarea:focus {
 
 
 /*===== All Section Title Style =====*/
+section {
+    padding: 4rem 0;
+}
 
 .section-title h1 {
     font-size: 45px;
@@ -1925,7 +1929,7 @@ hero area css
 }
 
 .search-area {
-    margin-top: -85px;
+    margin-top: -95px;
     position: relative;
     z-index: 999;
 }
@@ -3098,7 +3102,7 @@ video css
     padding: 200px 0 130px;
     /* background-image: url("../images/banner/banner-bg.jpg"); */
     overflow: hidden;
-    clip-path: polygon(0 0, 100% 0, 100% 73%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 79%, 0% 100%);
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {

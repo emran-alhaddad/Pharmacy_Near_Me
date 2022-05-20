@@ -48,6 +48,14 @@
             font-size: 14px;
         }
 
+        body {
+            font-family: "Tajawal", sans-serif;
+            font-weight: normal;
+            font-style: normal;
+            background: #f4f5f6;
+            text-justify: justify;
+        }
+
         a {
             text-decoration: none;
         }
@@ -75,18 +83,22 @@
             color: var(--main-color);
             background-color: #ffffff;
         }
-        .tns-controls{
+
+        .tns-controls {
             display: none;
         }
-        @media  (max-width: 991px){
-            input::placeholder{
-            font-size: .7rem;
+
+        @media (max-width: 991px) {
+            input::placeholder {
+                font-size: .7rem;
+            }
         }
-      }
-     html ::selection{
-         background-color: var(--main-color);
-         color: #ffffff;
-      }
+
+        html ::selection {
+            background-color: var(--main-color);
+            color: #ffffff;
+        }
+
     </style>
 </head>
 
@@ -190,8 +202,6 @@
             }
         });
     </script>
- <
-    
 
 
 </body>

@@ -11,13 +11,17 @@
                     </div>
 
                     @if (session('error'))
-                        <div class="alert alert-danger" role="alert">
+                        <div class="alert alert-danger alert-dismissible text-center mt-2 fade show" role="alert">
                             {!! session('error') !!}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
                         </div>
                     @endif
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
+                        <div class="alert alert-success alert-dismissible text-center mt-2 fade show" role="alert">
                             {!! session('status') !!}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
                         </div>
                     @endif
                     <form action="{{ route('register') }}" method="POST">
@@ -100,7 +104,8 @@
                                 <div class="footer-widget about">
                                     <ul class="social text-center d-flex justify-content-center">
                                         <p class="text-center ml-1">أو يمكنك التسجيل عبر </p>
-                                        <li class="m-1 btn-hover"><a href="{{ route('facebook-client') }}" id="facebook"><i
+                                        <li class="m-1 btn-hover"><a href="{{ route('facebook-client') }}"
+                                                id="facebook"><i
                                                     class="lni lni-facebook-filled btn-submit p-1 btn-hover"></i></a></li>
                                         <li class="m-1 btn-hover"><a href="{{ route('google-client') }}" id="google"><i
                                                     class="lni lni-google btn-submit p-1 btn-hover"></i></a></li>
@@ -136,4 +141,3 @@
         });
     </script>
 @stop
-

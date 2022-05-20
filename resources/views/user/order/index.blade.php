@@ -28,19 +28,24 @@
         }
 
     </style>
+    <div class="">
+        @if (session('error'))
+            <div class="alert alert-danger alert-dismissible text-center mt-2 fade show" role="alert">
+                {!! session('error') !!}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            </div>
+        @endif
+        @if (session('status'))
+            <div class="alert alert-success alert-dismissible text-center mt-2 fade show" role="alert">
+                {!! session('status') !!}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            </div>
+        @endif
+    </div>
     <section class="col-lg-9 col-md-8 col-12 container-xxl flex-grow-1 container-p-y">
-        <div class="row mb-2 mt-2">
-            @if (session('error'))
-                <div class="alert alert-danger" role="alert">
-                    {{ session('error') }}
-                </div>
-            @endif
-            @if (session('status'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
-                </div>
-            @endif
-        </div>
+
 
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#wait-accept">في انتضار القبول</a></li>
@@ -55,7 +60,7 @@
             @include('user.order.state.wait-payment')
             @include('user.order.state.wait-delivery')
             @include('user.order.state.completed')
-            @include('user.order.state.rejected') 
+            @include('user.order.state.rejected')
         </div>
     </section>
 
