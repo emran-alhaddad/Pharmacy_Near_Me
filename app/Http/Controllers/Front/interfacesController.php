@@ -43,7 +43,7 @@ class interfacesController extends Controller
 
     public function pharmacy($search = null)
     {
-        $pharmacies =  !$search ? QueryController::pharmacies()->get() : $search;
+        $pharmacies =  !$search ? QueryController::pharmacies()->paginate(4) : $search;
 
         return view('front.pharmacies', [
             'pharmacies' => $pharmacies,
@@ -88,7 +88,7 @@ class interfacesController extends Controller
         // if ($request->has('zone')) $qry->whereIn('pharmacies.zone_id', $request->zone);
 
         $search = new interfacesController();
-        return $search->pharmacy($qry->get());
+        return $search->pharmacy($qry->paginate(4));
     }
 
 
@@ -142,7 +142,7 @@ class interfacesController extends Controller
 
     public function getCityZones($id)
     {
-        $zones =  zone::where(['city_id'=> $id,'is_active'=>1])->get(['id', 'name']);
+        $zones =  zone::where(['city_id' => $id, 'is_active' => 1])->get(['id', 'name']);
         $data = "";
         foreach ($zones as $z) {
             $data .= "<option value='" . $z->id . "'>" . $z->name . "</option>";

@@ -2,74 +2,77 @@
 
 @section('content')
 
-<!-- Content -->
-<div class="container-xxl flex-grow-1 container-p-y">
-<div class="container">
-<nav class="navbar navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand"> رصيدك الحالي هو {{ $user->balance }} $</a>
-    @if ($user->balance > 0)
-            <button type="submit" class="btn btn-submit btn-hover  me-2">سحب رصيد من المحفظة <i class="lni lni-search-alt"></i></button>
-    @endif
-    <form class="d-flex">
-      <input class="form-control me-2" type="search" placeholder="بحث" aria-label="Search">
-      <button class="btn btn-outline-success" type="submit">بحث</button>
-    </form>
-  
-</nav>
-<!--table-->
-<div class="row  ">
-        <div class="col-12 col-m-12 col-sm-12">
-        <div class="card bg-white m-5">
+    <!-- Content -->
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="container">
+            <nav class="navbar navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand"> رصيدك الحالي هو {{ $user->balance }} $</a>
+                    @if ($user->balance > 0)
+                        <button type="submit" class="btn btn-submit btn-hover  me-2">سحب رصيد من المحفظة <i
+                                class="lni lni-search-alt"></i></button>
+                    @endif
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="بحث" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">بحث</button>
+                    </form>
 
-            <div class="card-header d-flex justify-content-between">
-             
-                <h5>العمليات في المحفظة</h5>
-            </div>
-            <div class="card-content">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th> رقم العملية </th>
-                            <th>نص العملية</th>
-                          
-                        </tr>
-                    </thead>
+            </nav>
+            <!--table-->
+            <div class="row  ">
+                <div class="col-12 col-m-12 col-sm-12">
+                    <div class="card bg-white m-5">
 
-                    <tbody>
-                    @foreach ($transactions as $transaction)
-                        <tr>
-                            <td>{{ $transaction->uuid }}</td>
-                            <td>
-                              
-                            </td>
-                        </tr>
-                    @endforeach
-                        
+                        <div class="card-header d-flex justify-content-between">
 
-                    </tbody>
+                            <h5>العمليات في المحفظة</h5>
+                        </div>
+                        <div class="card-content">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th> رقم العملية </th>
+                                        <th>نص العملية</th>
 
-                </table>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach ($transactions as $transaction)
+                                        <tr>
+                                            <td>{{ $transaction->uuid }}</td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                <script src="http://127.0.0.1:8000/admin/js/script2.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+                                integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+                                crossorigin="anonymous"></script>
+
+
+
 
             </div>
         </div>
-</div>
-
-
-
-
-
-
-
-<script src="http://127.0.0.1:8000/admin/js/script2.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-
-
-
-</div>
-</div>
-            <div id="rejected" class="tab-pane fade in">
+        <div id="rejected" class="tab-pane fade in">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -81,17 +84,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+
 
 
                 </tbody>
             </table>
-        </div>        </div>
+        </div>
     </div>
-</div>
-<!-- / Content -->
+    </div>
+    </div>
+    <!-- / Content -->
 
 
 
 @stop
-
