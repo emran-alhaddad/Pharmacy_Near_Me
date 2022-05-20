@@ -362,7 +362,7 @@
         });
         $("#sendEmailCode").on('submit', function(e) {
             e.preventDefault();
-            var token = $($("[name='_token']")[0]).val();
+            var token = $($("#sendEmailCode [name='_token']")[0]).val();
             var email = $("#currentEmail").val();
             $.ajax({
                 method: 'post',
@@ -370,7 +370,7 @@
                     _token: token,
                     email: email
                 },
-                url: "{{ route('client-email-code') }}",
+                url: "{{ route('client-email-code') }}", 
                 success: function(data) {
                     $("#hiddenEmail").val($("#currentEmail").val());
                     if (data['type'] != 'danger')
@@ -387,6 +387,8 @@
 
             })
         })
+
+        
     </script>
 
 

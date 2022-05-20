@@ -6,31 +6,30 @@
     <section id="pay" class="contact-us section  radius search-area" style="direction: rtl; z-index: 00000000;">
         <div class="container">
             <div class="contact-head wow fadeInUp" data-wow-delay=".4s">
-                <div class="row p-2  shadow radius">
+                <form action="{{ route('user-payment-pay',$request['order_reference']) }}" method="post" class="row p-2  shadow radius">
 
                     <div class="text-center banner-area ">
                         <h3 class="heading text-white">عملية الدفع</h3>
                     </div>
 
                     @if (session('error'))
-                    <div class="alert alert-danger alert-dismissible" role="alert">
-                         {!! session('error') !!}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                      </div>
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            {!! session('error') !!}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
                     @endif
                     @if (session('status'))
-
-                     <div class="alert alert-success alert-dismissible" role="alert">
-                         {!! session('status') !!}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                      </div>
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            {!! session('status') !!}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
                     @endif
                     <div class="col-lg-6 col-12 radius p-5 ">
                         <div class="form-main">
                             <div class="text-center">
                                 <h3 class="heading" style="font-size: 1.6rem">المعلومات <span>الشخصية </span></h3>
                             </div>
-                            <form class="form" method="post" action="">
+                            <div class="form" >
                                 <div class="row">
                                     @csrf
                                     <div class="p-4">
@@ -39,7 +38,7 @@
                                             <span class="input-group-text rounded"
                                                 style="background-color: var(--main-color)"><i
                                                     class="bi bi-person-fill text-white"></i></span>
-                                            <input value="" type="text" placeholder="اسم المستخدم" name="name"
+                                            <input value="{{ Auth::user()->name }}" type="text" placeholder="اسم المستخدم" name="name"
                                                 class="form-control rounded @error('name') border-danger @enderror">
                                             @error('name')
                                                 <div class="invalid-feedback d-block">
@@ -52,7 +51,7 @@
                                             <span class="input-group-text rounded"
                                                 style="background-color: var(--main-color)"><i
                                                     class="bi bi-envelope-fill text-white"></i></span>
-                                            <input type="email" value="" placeholder="example@example.com" name="email"
+                                            <input type="email" value="{{ Auth::user()->email }}" placeholder="example@example.com" name="email"
                                                 class="form-control rounded @error('email') border-danger @enderror">
                                             @error('email')
                                                 <div class="invalid-feedback d-block">
@@ -98,7 +97,7 @@
 
                                     </div>
                                 </div>
-                            </form>
+                            </div>
 
                         </div>
                     </div>
@@ -108,7 +107,7 @@
                             <div class="text-center">
                                 <h3 class="heading" style="font-size: 1.6rem">تفاصيل <span>الطلبية</span></h3>
                             </div>
-                            <form class="form" method="post" action="">
+                            <div class="form" >
                                 <div class="row">
 
                                     <div class="row">
@@ -116,95 +115,70 @@
                                             <hr>
                                             <div class="d-flex justify-content-between align-items-center mb-4">
                                                 <div>
-                                                    <p class="mb-0"> لديك {{ $request->replies->details->where('state',1)->count() }}
+                                                    <p class="mb-0"> لديك
+                                                        {{ $request['total_products'] }}
                                                         منتجات في انتظار الدفع </p>
                                                 </div>
                                             </div>
-@php
-$total_price = 0
-@endphp
-                                            @foreach ($request->details as $reqDetails)
-                                                @foreach ($request->replies->details as $repDetails)
-                                                    @if ($reqDetails->id == $repDetails->request_details_id && $repDetails->state == \App\Utils\ReplyState::ACCEPTED)
+
+                                            @foreach ($request['products'] as $product)
                                                         <div class="card mb-3 col-12">
                                                             <div class="card-body">
                                                                 <div class="d-flex justify-content-between">
-                                                                    @if ($repDetails->drug_price)
+                                                                    @if ($product['drug_price'])
                                                                         <div class="d-flex flex-row align-items-center">
+                                                                             @if (isset($product['drug_image']))
                                                                             <div>
-                                                                                <img src="{{ asset('Front/assets/images/pharmacy/pharma.jpg') }}"
+                                                                           
+                                                                                <img src="{{ $product['drug_image'] }}"
                                                                                     class="img-fluid rounded-3"
                                                                                     alt="Shopping item"
                                                                                     style="width: 65px;">
                                                                             </div>
+                                                                            @endif
+                                                                            @if (isset($product['drug_title']))
                                                                             <div class="ms-3">
-                                                                                <h5>{{ $reqDetails->drug_title }} </h5>
+                                                                                <h5>{{ $product['drug_title'] }} </h5>
                                                                             </div>
+                                                                            @endif
                                                                         </div>
                                                                         <div class="d-flex flex-row align-items-center">
                                                                             <div style="width: 50px;">
-                                                                                <h5 class="fw-normal mb-0">{{ $reqDetails->quantity }}</h5>
+                                                                                <h5 class="fw-normal mb-0">
+                                                                                    {{ $product['quantity'] }}</h5>
                                                                             </div>
                                                                             <div style="width: 80px;">
-                                                                                <h5 class="mb-0">${{ $repDetails->drug_price }}</h5>
-                                                                                @php
-                                                                                    $total_price += $repDetails->drug_price;
-                                                                                @endphp
-                                                                            </div>
-                                                                        </div>
-                                                                    @else
-                                                                        <div class="d-flex flex-row align-items-center">
-                                                                            <div>
-                                                                                <img src="{{ asset('Front/assets/images/pharmacy/pharma.jpg') }}"
-                                                                                    class="img-fluid rounded-3"
-                                                                                    alt="Shopping item"
-                                                                                    style="width: 65px;">
-                                                                            </div>
-                                                                            <div class="ms-3">
-                                                                                <h5>{{ $repDetails->alt_drug_title }} </h5>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="d-flex flex-row align-items-center">
-                                                                            <div style="width: 50px;">
-                                                                                <h5 class="fw-normal mb-0">{{ $reqDetails->quantity }}</h5>
-                                                                            </div>
-                                                                            <div style="width: 80px;">
-                                                                                <h5 class="mb-0">${{ $repDetails->alt_drug_price }}</h5>
-                                                                                @php
-                                                                                    $total_price += $repDetails->alt_drug_price;
-                                                                                @endphp
+                                                                                <h5 class="mb-0">
+                                                                                    ${{ $product['drug_price'] }}</h5>
                                                                             </div>
                                                                         </div>
                                                                     @endif
-
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    @endif
-                                                @endforeach
                                             @endforeach
 
 
                                             <hr>
                                             <div class="d-flex justify-content-around mb-5">
                                                 <h5 class="text-uppercase">اجمالي السعر </h5>
-                                                <h5>${{ $total_price }}</h5>
+                                                <h5>${{ $request['total_price'] }}</h5>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
 
                     <div class="col-12 d-flex justify-content-center p-1 my-2 radius">
                         <div class="form-group d-flex justify-content-center col-6">
-                            <a href="{{ route('test') }}">
-                            <button type="submit" class="main-btn col-6 btn-hover">دفع  </button>
+                            <a href="javascript:void(0);">
+                                <button type="submit" class="main-btn col-6 btn-hover">دفع </button>
                             </a>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </section>

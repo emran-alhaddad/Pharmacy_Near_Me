@@ -42,7 +42,7 @@
         <div class="card-body">
             <div class="d-flex align-items-start align-items-sm-center gap-4">
             <img
-                src="Front/assets/images/pharmacy/pharma.jpg"
+                src="{{ asset('uploads/avaters/client/'.Auth::user()->avater) }}"
                 alt="user-avatar"
                 class="d-block rounded"
                 height="100"

@@ -26,7 +26,7 @@
                                 data-bs-target="#details{{ $request->id }}">
                                 عرض التفاصيل
                             </a></td>
-                        <td><a class="btn btn-success" href="{{ route('client-payment',$request->id) }}">
+                        <td><a class="btn btn-success" href="{{ route('user-payment',$request->id) }}">
                                 دفع
                             </a></td>
                         <td><a href="{{ route('client-orders-reject', $request->id) }}" class="btn btn-danger">

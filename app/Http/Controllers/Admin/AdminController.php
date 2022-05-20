@@ -64,7 +64,7 @@ class AdminController extends Controller
     public function doUpdataImage(Request $request)
     {   
        
-        $userAvater= SystemUtils::updateAvatar($request);
+        $userAvater= SystemUtils::updateAvatar($request,'avaters/admin');
         
         User::where('id', '=', 1)->update(['avater' => $userAvater]);
        

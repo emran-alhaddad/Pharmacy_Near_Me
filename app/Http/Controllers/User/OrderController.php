@@ -39,7 +39,7 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-
+                
         if (empty($request['data']))
             return back()->with('error', 'يجب عليك أولا إضافة الطلبية قبل إرسالها ');
 
@@ -61,7 +61,7 @@ class OrderController extends Controller
 
         foreach ($allDurg as $durg) {
             $Req_Details = new Request_Details();
-            
+
             $Req_Details->request_id = $id;
             if (isset($durg->drug_title)) $Req_Details->drug_title = $durg->drug_title;
             if (isset($durg->drug_image)) $Req_Details->drug_image = $durg->drug_image;
@@ -113,15 +113,5 @@ class OrderController extends Controller
         return $reply_detail->update();
     }
 
-    public function showPayment($id)
-    {
-        $request = OrderRequest::with(['details','replies.details'])
-            ->where(['client_id'=> Auth::id(),'id'=>$id])->first();
 
-        return view('payment.payment',[
-            'cities' => City::get(),
-            'zones' => zone::get(),
-            'request' => $request,
-        ]);
-    }
 }
