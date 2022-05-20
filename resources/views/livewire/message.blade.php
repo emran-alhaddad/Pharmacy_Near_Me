@@ -1,6 +1,6 @@
 <div>
     <div class="row justify-content-center" wire:poll="mountComponent()">
-        @if(auth()->user()->is_admin == true)
+        @if(auth()->user()->is_active == true)
             <div class="col-md-4" wire:init>
                 <div class="card">
                     <div class="card-header">
@@ -10,7 +10,7 @@
                         <ul class="list-group list-group-flush" wire:poll="render">
                             @foreach($users as $user)
                                 @php
-                                    $not_seen = \App\Models\Message::where('user_id', $user->id)->where('receiver', auth()->id())->where('is_seen', false)->get() ?? null
+                                    $not_seen = \App\Models\Messages::where('user_id', $user->id)->where('receiver', auth()->id())->where('is_seen', false)->get() ?? null
                                 @endphp
                                 <a href="{{ route('inbox.show', $user->id) }}" class="text-dark link">
                                     <li class="list-group-item" wire:click="getUser({{ $user->id }})" id="user_{{ $user->id }}">
@@ -32,7 +32,7 @@
                 <div class="card-header">
                     @if(isset($clicked_user)) {{ $clicked_user->name }}
 
-                    @elseif(auth()->user()->is_admin == true)
+                    @elseif(auth()->user()->is_active == true)
                         Select a user to see the chat
                     @elseif($admin->is_online)
                         <i class="fa fa-circle text-success"></i> We are online
@@ -72,12 +72,12 @@
                             @else
                                 No messages to show
                             @endif
-                            @if(!isset($clicked_user) and auth()->user()->is_admin == true)
+                            @if(!isset($clicked_user) and auth()->user()->is_active == true)
                                 Click on a user to see the messages
                             @endif
                         @endif
                     </div>
-                @if(auth()->user()->is_admin == false)
+                @if(auth()->user()->is_active == false)
                     <div class="card-footer">
                         <form wire:submit.prevent="SendMessage" enctype="multipart/form-data">
                             <div wire:loading wire:target='SendMessage'>
@@ -95,7 +95,7 @@
                             @endif
                             <div class="row">
                                 <div class="col-md-7">
-                                    <input wire:model="message" class="form-control input shadow-none w-100 d-inline-block" placeholder="Type a message" @if(!$file) required @endif>
+                                    <input wire:model="messages" class="form-control input shadow-none w-100 d-inline-block" placeholder="Type a message" @if(!$file) required @endif>
                                 </div>
                                 @if(empty($file))
                                 <div class="col-md-1">
