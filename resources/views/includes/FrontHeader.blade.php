@@ -6,8 +6,9 @@
             <div class="row align-items-center">
                 <div class="col-xl-12">
                     <nav class="navbar navbar-expand-lg dir">
-                        <a class="navbar-brand " href="#">
-                            <img src="{{ asset('Front/assets/images/about/علاجي-01-3.svg') }}" id="logo" clasd="btn-hover"alt="Logo">
+                        <a class="navbar-brand " href="{{ route('index') }}">
+                            <img src="{{ asset('Front/assets/images/about/علاجي-01-3.svg') }}" id="logo"
+                                clasd="btn-hover" alt="Logo">
                         </a>
                         <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                             <ul id="nav" class="navbar-nav">
@@ -36,13 +37,13 @@
                                         <span class="d-none d-md-block">البروفايل</span>
                                     </a>
                                     <ul class="dropdown-nav dir" style="height: auto;">
-                                    @if (auth()->user()->hasRole('admin'))
-                                        <li><a href="{{ route('admin-dashboard') }}">لوحة التحكم</a></li>
-                                    @elseif (auth()->user()->hasRole('pharmacy'))
-                                        <li><a href="{{ route('pharmacy-dashboard') }}">لوحة التحكم</a></li>
-                                    @else
-                                        <li><a href="{{ route('client-dashboard') }}">لوحة التحكم</a></li>
-                                    @endif
+                                        @if (auth()->user()->hasRole('admin'))
+                                            <li><a href="{{ route('admin-dashboard') }}">لوحة التحكم</a></li>
+                                        @elseif (auth()->user()->hasRole('pharmacy'))
+                                            <li><a href="{{ route('pharmacy-dashboard') }}">لوحة التحكم</a></li>
+                                        @else
+                                            <li><a href="{{ route('client-dashboard') }}">لوحة التحكم</a></li>
+                                        @endif
 
                                         <li><a href="{{ route('logout') }}">تسجيل خروج</a></li>
                                     </ul>

@@ -3,6 +3,8 @@
 @section('content')
 
 
+
+
     <!--====== HERO PART START ======-->
     <section class="banner-area bg_cover shadow" style="direction: rtl;">
         <div class="container">
@@ -23,7 +25,101 @@
     </section>
     <!--====== HERO PART END ======-->
 
-    <!--====== SEARCH PART START ======-->
+    {{-- payment --}}
+    <section id="pay" class="radius" style="direction: rtl; z-index: 0; ">
+        <div class="container">
+            <div class="contact-head wow fadeInUp p-2 shadow radius" data-wow-delay=".4s">
+                <div class="alert alert-success alert-dismissible text-center mt-2 fade show" role="alert">
+                    تهانينا تمت عملية الدفع بنجاح
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                @if (session('error'))
+                    <div class="alert alert-danger alert-dismissible text-center mt-2 fade show" role="alert">
+                        {!! session('error') !!}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                @endif
+                @if (session('status'))
+                    <div class="alert alert-success alert-dismissible text-center mt-2 fade show" role="alert">
+                        {!! session('status') !!}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                @endif
+
+                <div class="card shadow col-12 p-3">
+                    <div class="container">
+                        <div class="d-flex justify-content-between">
+                            <a class="navbar-brand col-6 my-3" href="{{ route('index') }}">
+                                <img src="{{ asset('Front/assets/images/about/علاجي-01-3.svg') }}" alt="Logo">
+                            </a>
+                            <p class="my-3 col-6 " style="font-size: 1.5rem;"><span>فاتورة دفع </span>
+                            </p>
+
+                        </div>
+                        <div class="row">
+                            <div class=" d-flex justify-content-between">
+                                <ul class="list-unstyled  p-2 g-1 col-sm-5 text-center">
+                                    <li class="text-center">هديل جميل </li>
+                                    <li class="text-muted mt-1"><span class="text-var(--main-color)">رقم
+                                            الفاتورة</span>
+                                        #12345</li>
+                                    <li class="text-var(--main-color) mt-1"> 17 ابريل 2021</li>
+                                </ul>
+                                <ul class="list-unstyled  p-2 g-1 col-sm-5 text-center">
+                                    <li class="text-center">هديل جميل </li>
+                                    <li class="text-muted mt-1"><span class="text-var(--main-color)">رقم
+                                            الفاتورة</span>
+                                        #12345</li>
+                                    <li class="text-var(--main-color) mt-1"> 17 ابريل 2021</li>
+                                </ul>
+                            </div>
+
+                            <hr>
+                            <div class="row  p-3">
+                                <div class="col-xl-9">
+                                    <p>بنادول</p>
+                                </div>
+                                <div class="col-xl-3 ">
+                                    <p class="float-end">$50.00
+                                    </p>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="row  p-3">
+                                <div class="col-xl-10">
+                                    <p>بنادول</p>
+                                </div>
+                                <div class="col-xl-2 ">
+                                    <p class="float-end">$50.00
+                                    </p>
+                                </div>
+                                <hr>
+                            </div>
+
+                            <div class="row text-var(--main-color)">
+
+                                <div class="col-xl-12 p-3">
+                                    <p class="float-start fw-bold">الاجمالي : 100$
+                                    </p>
+                                </div>
+                                <hr style="border: 2px solid var(--main-color);">
+                            </div>
+
+                            {{-- <div class="text-center p-4" role="button">
+                                <a><u class="text-info">العودة للبروفايل </u></a>
+                            </div> --}}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+
+    {{-- <!--====== SEARCH PART START ======-->
     @include('includes.FrontSearch')
     <!--====== SEARCH PART END ======-->
 
@@ -108,7 +204,7 @@
             </div>
         </div>
     </section>
-    <!-- /End About Us Area -->
+    <!-- /End About Us Area --> --}}
 
 
 @stop
