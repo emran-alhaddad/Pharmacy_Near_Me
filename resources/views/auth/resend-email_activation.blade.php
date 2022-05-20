@@ -7,26 +7,29 @@
             <div class=" d-flex justify-content-center">
                 <div class="col-md-4 col-sm-12 shadow-lg p-5 bg-light">
                     <div class="text-center">
-                        <h3 class="heading">لم يصلك  <span>رابط تفعيل الحساب ؟</span></h3>
+                        <h3 class="heading">لم يصلك <span>رابط تفعيل الحساب ؟</span></h3>
                     </div>
                     @if (session('error'))
-                        <div class="alert alert-danger" role="alert">
+                        <div class="alert alert-danger alert-dismissible mt-2 me-3 text-center" role="alert">
                             {!! session('error') !!}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
+                        <div class="alert alert-success alert-dismissible mt-2 me-3 text-center" role="alert">
                             {!! session('status') !!}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
-                    <form  action="{{ route('resend-email-activation') }}" method="POST">
+                    <form action="{{ route('resend-email-activation') }}" method="POST">
                         @csrf
                         <div class="p-4">
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
                                         class="bi bi-envelope-fill text-white"></i></span>
-                                <input type="email" class="form-control rounded" placeholder="example@gmail.com"  name="email" required>
+                                <input type="email" class="form-control rounded" placeholder="example@gmail.com"
+                                    name="email" required>
                             </div>
 
 
@@ -41,6 +44,4 @@
         </div>
     </div>
 
- @stop
-
-
+@stop

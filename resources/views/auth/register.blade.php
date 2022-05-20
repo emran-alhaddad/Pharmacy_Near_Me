@@ -11,13 +11,15 @@
                     </div>
 
                     @if (session('error'))
-                        <div class="alert alert-danger" role="alert">
+                        <div class="alert alert-danger alert-dismissible mt-2 me-3 text-center" role="alert">
                             {!! session('error') !!}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
+                        <div class="alert alert-success alert-dismissible mt-2 me-3 text-center" role="alert">
                             {!! session('status') !!}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
                     <form action="{{ route('register') }}" method="POST">
@@ -100,7 +102,8 @@
                                 <div class="footer-widget about">
                                     <ul class="social text-center d-flex justify-content-center">
                                         <p class="text-center ml-1">أو يمكنك التسجيل عبر </p>
-                                        <li class="m-1 btn-hover"><a href="{{ route('facebook-client') }}" id="facebook"><i
+                                        <li class="m-1 btn-hover"><a href="{{ route('facebook-client') }}"
+                                                id="facebook"><i
                                                     class="lni lni-facebook-filled btn-submit p-1 btn-hover"></i></a></li>
                                         <li class="m-1 btn-hover"><a href="{{ route('google-client') }}" id="google"><i
                                                     class="lni lni-google btn-submit p-1 btn-hover"></i></a></li>
@@ -136,4 +139,3 @@
         });
     </script>
 @stop
-

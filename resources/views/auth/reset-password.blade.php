@@ -10,25 +10,28 @@
                         <h3 class="heading">تغيير <span>كلمة المرور</span></h3>
                     </div>
                     @if (session('error'))
-                        <div class="alert alert-danger" role="alert">
+                        <div class="alert alert-danger alert-dismissible mt-2 me-3 text-center" role="alert">
                             {!! session('error') !!}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
+                        <div class="alert alert-success alert-dismissible mt-2 me-3 text-center" role="alert">
                             {!! session('status') !!}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
-                    <form  action="{{ route('reset-password', $token) }}" method="POST">
+                    <form action="{{ route('reset-password', $token) }}" method="POST">
                         @csrf
-                         <input type="hidden" name="token" value="{{ $token }}">
+                        <input type="hidden" name="token" value="{{ $token }}">
 
                         <div class="p-4">
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
                                         class="bi bi-envelope-fill text-white"></i></span>
-                                <input value="{{ old('email') }}"  type="email"  placeholder="example@gmail.com"  name="email" class="form-control rounded @error('email') border-danger @enderror">
+                                <input value="{{ old('email') }}" type="email" placeholder="example@gmail.com"
+                                    name="email" class="form-control rounded @error('email') border-danger @enderror">
                                 @error('email')
                                     <div class="invalid-feedback d-block">
                                         {{ $message }}
@@ -37,10 +40,10 @@
                             </div>
 
                             <div class="input-group mb-3 rounded">
-                                <span class="input-group-text rounded"style="background-color: var(--main-color)"><i
+                                <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
                                         class="bi bi-key-fill text-white"></i></span>
-                                <input type="password"  placeholder="كلمة المرور" name="password"
-                                class="form-control rounded @error('password') border-danger @enderror">
+                                <input type="password" placeholder="كلمة المرور" name="password"
+                                    class="form-control rounded @error('password') border-danger @enderror">
                                 @error('password')
                                     <div class="invalid-feedback d-block">
                                         {{ $message }}
@@ -49,10 +52,10 @@
                             </div>
 
                             <div class="input-group mb-3 rounded" id="show_hide_password">
-                                <span class="input-group-text rounded"style="background-color: var(--main-color)"><i
+                                <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
                                         class="bi bi-key-fill text-white"></i></span>
-                                <input type="password" placeholder="تأكيد كلمة المرور "  name="password_confirmation"
-                                class="form-control rounded @error('password_confirmation') border-danger @enderror">
+                                <input type="password" placeholder="تأكيد كلمة المرور " name="password_confirmation"
+                                    class="form-control rounded @error('password_confirmation') border-danger @enderror">
                                 @error('password_confirmation')
                                     <div class="invalid-feedback d-block">
                                         {{ $message }}
@@ -62,7 +65,7 @@
 
 
                             <button class="btn-submit radius text-center p-2 col-12 mt-2 btn-hover" type="submit">
-                              حفظ
+                                حفظ
                             </button>
 
                         </div>
@@ -73,6 +76,4 @@
         </div>
     </div>
 
- @stop
-
-
+@stop

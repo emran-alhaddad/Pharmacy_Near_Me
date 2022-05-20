@@ -47,6 +47,7 @@
             font-family: "Droid Arabic Kufi", "Droid Sans", sans-serif;
             font-size: 14px;
         }
+
         body {
             font-family: "Tajawal", sans-serif;
             font-weight: normal;
@@ -82,18 +83,22 @@
             color: var(--main-color);
             background-color: #ffffff;
         }
-        .tns-controls{
+
+        .tns-controls {
             display: none;
         }
-        @media  (max-width: 991px){
-            input::placeholder{
-            font-size: .7rem;
+
+        @media (max-width: 991px) {
+            input::placeholder {
+                font-size: .7rem;
+            }
         }
-      }
-     html ::selection{
-         background-color: var(--main-color);
-         color: #ffffff;
-      }
+
+        html ::selection {
+            background-color: var(--main-color);
+            color: #ffffff;
+        }
+
     </style>
 </head>
 
