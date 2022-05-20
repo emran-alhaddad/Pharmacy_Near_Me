@@ -85,15 +85,15 @@
                                                     </div>
                                                 </div>
 
-                                               
 
-                                                    
+
+
 
                                                 <button  id="submit_button"  type="submit" class="btn btn-primary">حفظ التغيرات</button>
                                         </form>
                                     </div>
 
-                                        <div class="col-4"> 
+                                        <div class="col-4">
                                         <form action="{{route('_admin-update_logo')}}" enctype="multipart/form-data" method="post">
 
                                             <!-- <div class="mb-3">
@@ -154,16 +154,16 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>  صورة الخدمة</th> 
+                                                <th>  صورة الخدمة</th>
                                                 <th> عنوان الخدمة</th>
                                                 <th>   وصف الخدمة</th>
                                                 <th>الحالة</th>
                                                 <th>العمليات</th>
                                             </tr>
                                         </thead>
-                                        
-                                             
-                                        
+
+
+
 
                                         <tbody>
                                             @foreach ( $services as $ser )
@@ -175,19 +175,19 @@
 
                                             <td> {{$ser->descripe}}</td>
                                             @if ($ser->is_active==1)
-                        
+
                                             <td> <a href={{route('admin-activity_service', ['id' => $ser->id,'stats'=>0]);}} >   <button class="btn btn-success text-white" >مفعل</button></a></td>
-                                             
-                                                  
-                                              @else 
-                                            
+
+
+                                            @else
+
                                                 <td><a href={{route('admin-activity_service', ['id' => $ser->id,'stats'=>1]);}} > <button class="btn btn-danger text-white" >موقف</button></a></td>
-                                           
-                                              @endif
+
+                                            @endif
 
 
-                                                
-                                              
+
+
                                                 <td>
                                                 <a href={{route('admin-edit_Service',['id'=>$ser->id])}}> <button class="btn " ><i class="fas fa-pen" id="edit"></i></button></a>
                                                 <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" id="delete"><i class="fas fa-trash"></i></button>
@@ -198,7 +198,7 @@
                                                                     <h5 class="modal-title">حذف </h5>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    </p> هل تريد حقا حذف الاعلان ؟</p>
+                                                                    </p> هل تريد حقا حذف الخدمة ؟</p>
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">لا</button>
@@ -240,13 +240,13 @@
                                     <form method="POST" action="{{route('_admin-update_contact')}}">
                                         <div class="row g-3">
 
-                                            <div class="mb-3 col-6"> 
+                                            <div class="mb-3 col-6">
                                                         <label for="exampleInputName" class="form-label">رقم الهاتف</label>
                                             <input type="text" name="phone" value="{{$site->phone}}" class="form-control" id="exampleInputName">
                                                     </div>
                                                     <div class="mb-3 col-6">
                                                         <label for="exampleInputLink" class="form-label"> البريد الالكتروني</label>
-                                                        <input type="text"  name="google" value="{{$site->google}}" class="form-control" id="exampleInputName">
+                                                        <input type="text"  name="email" value="{{$site->email}}" class="form-control" id="exampleInputName">
                                             </div>
 
                                         </div>
@@ -255,8 +255,8 @@
                                         <div class="row g-3">
 
 
-                                            <div class="mb-3 col-6">    
-                                                        <label for="exampleInputLink" class="form-label"><i class="fab fa-whatsapp fa-lg" style="color: lightgreen; padding : 0 10px 0 10px;"></i> واتساب</label>
+                                            <div class="mb-3 col-6">
+                                                        <label for="exampleInputLink" class="form-label"><i class="fab fa-whatsapp fa-lg" style="color: lightgreen; padding : 0 10px 0 10px;"></i> واتس اب</label>
                                                         <input type="text"  name="whatsup" value="{{$site->whatsup}}" class="form-control" id="exampleInputName">
                                             </div>
 
@@ -277,8 +277,8 @@
                                                 </div>
 
                                                 <div class="mb-3 col-6">
-                                                        <label for="exampleInputLink" class="form-label"> <i class="fab fa-instagram fa-lg" style="color: red; padding: 0 10px 0 10px ;"></i>انستاغرام</label>
-                                                        <input type="text"   name="" value="{{$site->phone}}" class="form-control" id="exampleInputName">
+                                                        <label for="exampleInputLink" class="form-label"> <i class="fab fa-world fa-lg" style="color: red; padding: 0 10px 0 10px ;"></i>الموقع الالكتروني</label>
+                                                        <input type="text"   name="website" value="{{$site->website}}" class="form-control" id="exampleInputName">
                                                 </div>
                                         </div>
 
@@ -318,7 +318,7 @@
 
                                                     <div class="mb-3 col-6">
                                                         <label for="exampleInputLink" class="form-label"> وصف المحتوى الرئيسي</label>
-                                                        <textarea type="text" id="editor" name = "descripe_about" class = "form-control editor ">{{$site->title_about}}"</textarea>
+                                                        <textarea type="text" id="editor" name = "descripe_about" class = "form-control editor ">{{$site->descripe_about}}</textarea>
                                                     </div>
 
 
@@ -336,7 +336,7 @@
                                                 <div class="mb-3 col-6">
                                                         <label for="exampleInputLink" class="form-label"> وصف خدمات الصيدلية</label>
                                                         <textarea type="text" id="editor" name = "descripe_ser_phar" class = "form-control editor ">{{$site->descripe_ser_phar}}</textarea>
-                                                    </div> 
+                                                    </div>
 
                                                     <div class="mb-3 col-6">
                                                         <label for="exampleInputLink" class="form-label"> وصف خدمات المستخدم</label>
@@ -372,13 +372,13 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 <script>
 
 //  $(document).ready(function() {
-    
+
 //     // function getData(thisele,formid,modelId)
 //     // {   debugger;
-        
+
 //         $('#submit_button').on('submit',function(event){
 //   event.preventDefault();
-  
+
 //   var formDate=new FormData($('#update_index')[0]);
 // //   $.ajaxSetup({
 // //                   headers: {
@@ -390,7 +390,7 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 // //      data:formDate,
 // //      url:"{{route('_admin-update_WebSiteSetting')}}",
 // //     success:function(data)
-//     { 
+//     {
 //         // data.forEach(function (serv) {
 //             alert('data');
 //         console.log( data);
@@ -400,17 +400,17 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 //     });
 
 //     });
- 
+
 // });
 
-// $('#services-tab').click(function() { 
+// $('#services-tab').click(function() {
 //     alert('dasd');
 //     event.preventDefault();
 //     $.ajax({
 //      type:'get',
 //      url:"{{route('admin-get_services')}}",
 //     success:function(data)
-//     { 
+//     {
 //         data.forEach(function (serv) {
 //         console.log( serv.title);
 
@@ -427,7 +427,7 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
 <script>
     // ClassicEditor
-    //     .create( document.querySelector( '#editor' ) ) 
+    //     .create( document.querySelector( '#editor' ) )
     //     .catch( error => {
     //         console.error( error );
     //     } );
@@ -437,7 +437,7 @@ for (var i = 0; i < allEditors.length; ++i) {
 }
 </script>
 <script>
-   
+
 </script>
 
 

@@ -25,14 +25,16 @@ return new class extends Migration
             $table->string('descripe_ser_client')->nullable();;
             $table->string('descripe_ser_phar')->nullable();;
             $table->string('descripe_ser_user')->nullable();
-         
+
+            $table->string('email');
             $table->string('facebook');
             $table->string('twitter');
             $table->string('whatsup');
-            $table->string('google');
+            $table->string('website');
             $table->string('phone');
-           
-            
+
+
+
             $table->timestamps();
         });
     }
@@ -44,7 +46,7 @@ return new class extends Migration
      */
     public function down()
     {
-        
+
         Schema::dropIfExists('site_admines');
     }
 };

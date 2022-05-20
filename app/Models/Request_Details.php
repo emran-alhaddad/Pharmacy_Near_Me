@@ -9,19 +9,19 @@ class Request_Details extends Model
 {
     use HasFactory;
 
-    
+
     public $timestamps = false;
-    
+
     protected $fillable = [
         'request_id',
         'quantity',
         'stats',
         'drug_image',
         'drug_title',
-         'repeat_every',
-         'accept_alternative',
-         'repeat_until'
-       
+        'repeat_every',
+        'accept_alternative',
+        'repeat_until'
+
 
     ];
 

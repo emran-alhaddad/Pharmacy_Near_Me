@@ -8,12 +8,14 @@
         <div class="container">
             <div class="row">
                 <div class="mx-auto col-lg-9 col-xl-9 col-md-10">
+                @foreach($infoSite as $infoSites)
                     <div class="text-center hero-content">
-                        <h1 class="mb-30 wow fadeInUp" data-wow-delay=".2s">أهلا بك في موقع علاجي </h1>
-                        <p class="wow fadeInUp" data-wow-delay=".4s">نسعى لتحقيق أحلام عملائنا ، من خلال الجمع بين أفكارهم
-                            وحاجاتهم تجاربهم وتجربتنا الخاصة.</p><br>
+                        <h1 class="mb-30 wow fadeInUp" data-wow-delay=".2s">{{$infoSites->address_main}} </h1>
+                        <p class="wow fadeInUp" data-wow-delay=".4s"> {{$infoSites->descripe_main}}  </p><br>
                     </div>
                     {{-- <img class="img-fluid" src="{{ asset('Front/assets/images/1.png') }}"> --}}
+
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -96,31 +98,25 @@
             </div>
 
             <div class="row justify-content-center">
-                <div class="col-lg-4 col-md-6 col-sm-8 col-11">
-                    <div class="single-service d-flex justify-content-between shadow">
-                        <div class="icon">
-                            <i class="lni lni-gift"></i>
-                        </div>
-                        <div class="service-content">
-                            <h3>الحصول على علاجك بسرعه </h3>
-                            <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
-                        </div>
-                    </div>
-                </div>
+
+            @foreach($services as $service)
 
                 <div class="col-lg-4 col-md-6 col-sm-8 col-11">
                     <div class="single-service d-flex justify-content-between shadow">
                         <div class="icon">
                             <i class="lni lni-gift"></i>
+                            <!-- <img src="{{asset("/uploads/service/$service->image")}}"  alt=""> -->
                         </div>
                         <div class="service-content">
-                            <h3>الحصول على علاجك بسرعه </h3>
-                            <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
+                            <h3>{{$service->title}} </h3>
+                            <p> {{$service->descripe}}</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 col-sm-8 col-11">
+            @endforeach
+
+                <!-- <div class="col-lg-4 col-md-6 col-sm-8 col-11">
                     <div class="single-service d-flex justify-content-between shadow">
                         <div class="icon">
                             <i class="lni lni-gift"></i>
@@ -130,9 +126,9 @@
                             <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="col-lg-4 col-md-6 col-sm-8 col-11">
+                <!-- <div class="col-lg-4 col-md-6 col-sm-8 col-11">
                     <div class="single-service d-flex justify-content-between shadow">
                         <div class="icon">
                             <i class="lni lni-gift"></i>
@@ -142,9 +138,9 @@
                             <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="col-lg-4 col-md-6 col-sm-8 col-11">
+                <!-- <div class="col-lg-4 col-md-6 col-sm-8 col-11">
                     <div class="single-service d-flex justify-content-between shadow">
                         <div class="icon">
                             <i class="lni lni-gift"></i>
@@ -154,9 +150,9 @@
                             <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="col-lg-4 col-md-6 col-sm-8 col-11">
+                <!-- <div class="col-lg-4 col-md-6 col-sm-8 col-11">
                     <div class="single-service d-flex justify-content-between shadow">
                         <div class="icon">
                             <i class="lni lni-gift"></i>
@@ -166,7 +162,19 @@
                             <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
                         </div>
                     </div>
-                </div>
+                </div> -->
+
+                <!-- <div class="col-lg-4 col-md-6 col-sm-8 col-11">
+                    <div class="single-service d-flex justify-content-between shadow">
+                        <div class="icon">
+                            <i class="lni lni-gift"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>الحصول على علاجك بسرعه </h3>
+                            <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
+                        </div>
+                    </div>
+                </div> -->
             </div>
         </div>
     </section>
