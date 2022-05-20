@@ -29,18 +29,9 @@
                     </div>
                 </span>
             </a>
-<<<<<<< HEAD
-   {{--
-    <h5 class="my-3">{{ Auth::user()->name }}</h5>
-    
-    <h5 class="my-3">{{ $user->email }}</h5>
+       {{--<h5 class="my-3">{{ Auth::user()->name }}</h5>
 
-   --}}    
-=======
-        <h5 class="my-3">{{ Auth::user()->name }}</h5>
-
-        <h5 class="my-3">{{ $user->email }}</h5>
->>>>>>> f245f2dacda9df124ae96876fa3782f7e8385344
+        <h5 class="my-3">{{ $user->email }}</h5>--}} 
     </div>
 
     <div class="menu-inner-shadow"></div>
