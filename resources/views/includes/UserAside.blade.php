@@ -42,7 +42,7 @@
         </a>
         </li>
         <li class="menu-item">
-        <a href="{{ route('chat-user') }}" class="menu-link"><i class="bx bx-message-alt me-1"></i>
+        <a href="{{ route('inbox.index') }}" class="menu-link"><i class="bx bx-message-alt me-1"></i>
             <div data-i18n="Account">الرسائل</div>
         </a>
         </li>

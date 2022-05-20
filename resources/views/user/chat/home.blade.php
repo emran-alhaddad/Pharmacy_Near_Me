@@ -1,5 +1,5 @@
 
-@extends('layouts.app')
+@extends('layouts.masterUser3')
 
 @section('content')
 <div class="container">

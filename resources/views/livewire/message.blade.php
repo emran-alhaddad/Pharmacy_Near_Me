@@ -73,7 +73,7 @@ if (!function_exists('isVideo'))
                     @if(isset($clicked_user)) {{ $clicked_user->name }}
 
                     @elseif(auth()->user()->is_active == true)
-                        Select a user to see the chat
+                     .
                     @elseif($admin->is_online)
                         <i class="fa fa-circle text-success"></i> We are online
                     @else
@@ -113,7 +113,7 @@ if (!function_exists('isVideo'))
                                 No messages to show
                             @endif
                             @if(!isset($clicked_user) and auth()->user()->is_active == true)
-                                Click on a user to see the messages
+                               اضغط على احد الاشخاص لمشاهدة المحادثة
                             @endif
                         @endif
                     </div>
@@ -121,17 +121,17 @@ if (!function_exists('isVideo'))
                     <div class="card-footer">
                         <form wire:submit.prevent="SendMessage" enctype="multipart/form-data">
                             <div wire:loading wire:target='SendMessage'>
-                                Sending message . . . 
+                               ارسال الرسالة . . . 
                             </div>
                             <div wire:loading wire:target="file">
-                                Uploading file . . .
+                             تحميل الملف . . .
                             </div>
                             @if($file)
                                 <div class="mb-2">
                                    You have an uploaded file <button type="button" wire:click="resetFile" class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Remove {{ $file->getClientOriginalName() }}</button>
                                 </div>
                             @else
-                                No file is uploaded.
+                               لا يوجد ملفات محملة
                             @endif
                             <div class="row">
                                 <div class="col-md-7">
@@ -148,7 +148,7 @@ if (!function_exists('isVideo'))
                                 </div>
                                 @endif
                                 <div class="col-md-4">
-                                    <button class="btn btn-primary d-inline-block w-100"><i class="far fa-paper-plane"></i> Send</button>
+                                    <button class="btn btn-submit btn-hover  me-2 w-100"><i class="far fa-paper-plane"></i> ارسال</button>
                                 </div>
                             </div>
                         </form>
