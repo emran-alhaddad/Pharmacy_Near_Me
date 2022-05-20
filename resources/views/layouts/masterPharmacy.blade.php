@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head>
+
+<head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <title> Pharmacy- Dashboard</title>
     <meta name="description" content="" />
     <!-- Icons -->
-    <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/fonts/boxicons.css')}}" />
+    <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/fonts/boxicons.css') }}" />
     <!-- Core CSS -->
-    <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/css/core.css')}}" />
-    <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/css/theme-default.css')}}" />
-    <link rel="stylesheet" href="{{ asset('pharmacy/assets/css/demo.css')}}" />
-    <link rel="stylesheet" href="{{ asset('pharmacy/assets/css/chat.css')}}" />
-    <script src="{{ asset('pharmacy/assets/js/config.js')}}"></script>
+    <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/css/core.css') }}" />
+    <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/css/theme-default.css') }}" />
+    <link rel="stylesheet" href="{{ asset('pharmacy/assets/css/demo.css') }}" />
+    <link rel="stylesheet" href="{{ asset('pharmacy/assets/css/chat.css') }}" />
+    <script src="{{ asset('pharmacy/assets/js/config.js') }}"></script>
 
     {{-- Front Style start --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.rtl.min.css"
@@ -37,7 +37,8 @@
         html::-webkit-scrollbar-thumb {
             background: linear-gradient(60deg, var(--main-color) 0%, var(--secondary-color) 100%);
         }
-                body {
+
+        body {
             font-family: "Tajawal", sans-serif;
             font-weight: normal;
             font-style: normal;
@@ -64,7 +65,8 @@
             --fs-p: 1.7rem;
             --fs-span: 1rem;
         }
-      .navbar-brand {
+
+        .navbar-brand {
             padding: 0;
             width: 100%;
             max-width: 155px;
@@ -97,89 +99,88 @@
             color: #fff;
             /* background-color: #ffffff; */
         }
+
         .back-to-top.btn-hover {
-    position: fixed;
-    z-index: 99999;
-}
+            position: fixed;
+            z-index: 99999;
+        }
 
-.back-to-top:hover {
-    color: #fff;
-}
+        .back-to-top:hover {
+            color: #fff;
+        }
 
-*:focus {
-    outline: none;
-}
-
-
-/*===== All Button Style =====*/
-
-.main-btn {
-    display: inline-block;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    user-select: none;
-    border: 0;
-    padding: 16px 38px;
-    font-weight: 600;
-    font-size: 18px;
-    border-radius: var(--radius);
-    color: #fff;
-    cursor: pointer;
-    z-index: 5;
-    background: var(--main-color);
-    transition: all 0.4s ease-out 0s;
-}
-
-.main-btn:hover {
-    color: #fff;
-}
-
-.btn-hover {
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-}
-
-.btn-hover::after {
-    content: '';
-    position: absolute;
-    width: 0%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.1);
-    top: 0;
-    left: 0;
-    z-index: -1;
-    transition: all 0.3s ease-out 0s;
-}
-
-.btn-hover:hover::after {
-    width: 100%;
-}
+        *:focus {
+            outline: none;
+        }
 
 
+        /*===== All Button Style =====*/
+
+        .main-btn {
+            display: inline-block;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            user-select: none;
+            border: 0;
+            padding: 16px 38px;
+            font-weight: 600;
+            font-size: 18px;
+            border-radius: var(--radius);
+            color: #fff;
+            cursor: pointer;
+            z-index: 5;
+            background: var(--main-color);
+            transition: all 0.4s ease-out 0s;
+        }
+
+        .main-btn:hover {
+            color: #fff;
+        }
+
+        .btn-hover {
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .btn-hover::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            top: 0;
+            left: 0;
+            z-index: -1;
+            transition: all 0.3s ease-out 0s;
+        }
+
+        .btn-hover:hover::after {
+            width: 100%;
+        }
 
     </style>
     {{-- Front Style end --}}
-  </head>
+</head>
 
-  <body style="direction: rtl;">
+<body style="direction: rtl;">
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
-      <div class="layout-container mx-sm-3">
+        <div class="layout-container mx-sm-3">
             <!-- Menu -->
-                @include('includes.pharmacy.PharmacyAside')
+            @include('includes.pharmacy.PharmacyAside')
             <!-- / Menu -->
 
             <!-- Layout container -->
             <div class="layout-page">
                 <!-- Navbar -->
-                    @include('includes.pharmacy.PharmacyNav')
+                @include('includes.pharmacy.PharmacyNav')
                 <!-- / Navbar -->
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
-                     @yield('content')
+                    @yield('content')
 
 
                 </div>
@@ -193,15 +194,17 @@
 
 
     <!-- Core JS -->
-    <script src="{{ asset('pharmacy/assets/vendor/js/bootstrap.js')}}"></script>
-    <script src="{{ asset('pharmacy/assets/vendor/js/menu.js')}}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="{{ asset('pharmacy/assets/vendor/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('pharmacy/assets/vendor/js/menu.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!-- Main JS -->
 
-    <script src="{{ asset('pharmacy/assets/js/main.js')}}"></script>
+    <script src="{{ asset('pharmacy/assets/js/main.js') }}"></script>
 
     <!-- Page JS -->
-    <script src="{{ asset('pharmacy/assets/js/pages-account-settings-account.js')}}"></script>
+    <script src="{{ asset('pharmacy/assets/js/pages-account-settings-account.js') }}"></script>
 
-  </body>
+</body>
+
 </html>
