@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="{{ asset('pharmacy/assets/css/demo.css')}}" />
     <link rel="stylesheet" href="{{ asset('pharmacy/assets/css/chat.css')}}" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <script src="{{ asset('pharmacy/assets/js/config.js')}}"></script>
 
     {{-- Front Style start --}}
