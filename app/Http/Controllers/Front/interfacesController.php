@@ -35,11 +35,15 @@ class interfacesController extends Controller
 
     public function contact()
     {
+        $infoSite = DB::table('site_admines')->get();// يحتوي على معلومات التواصل الاجتماعي وااسم الموقع وشعار الموقع
         return view('front.contact', [
             'cities' => City::get(),
-            'zones' => zone::get()
+            'zones' => zone::get(),
+            'infoSite'=>$infoSite
         ]);
     }
+
+
 
     public function pharmacy($search = null)
     {
@@ -79,7 +83,7 @@ class interfacesController extends Controller
 
     public function searchPharmacies(Request $request)
     {
-        
+
         $qry = QueryController::pharmacies();
 
         if (!empty($request->name_Pharmacy)) $qry->where('users.name', $request->name_Pharmacy);
@@ -95,7 +99,7 @@ class interfacesController extends Controller
     public function add_order($id)
     {
         $pharmacy = QueryController::pharmacies()->where('users.id', $id)->first();
-        return view('front.add_order', [ 
+        return view('front.add_order', [
             'pharmacy' => $pharmacy,
         ]);
     }
