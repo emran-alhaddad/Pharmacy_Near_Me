@@ -36,9 +36,10 @@
                 <div class="col-lg-6 col-12">
                     <div class="about-left">
                         <div class="section-title align-left">
+                        @foreach($infoSite as $infoSites)
                             <span class="wow fadeInDown heading" data-wow-delay=".2s">ماذا نقدم </span>
-                            <h2 class="wow fadeInUp" data-wow-delay=".4s">موقع يلبي تطلعاتك </h2>
-                            <p class="wow fadeInUp" data-wow-delay=".6s">علاجي هو موقع وسيط يربط بين الصيدلية ك مقدم خدمة وبين المستخدم اللذي يتطلع للحصول على خدمة من الصيدلية يمكنك الاطلاع على التفاصيل ضمن الفئة التي تنمتمي اليها في الأسفل  ا </p>
+                            <h2 class="wow fadeInUp" data-wow-delay=".4s">{{$infoSites->title_about}} </h2>
+                            <p class="wow fadeInUp" data-wow-delay=".6s"> {{$infoSites->descripe_about}}  </p>
                         </div>
                         <div class="about-tab wow fadeInUp" data-wow-delay=".4s">
                             <!-- Nav Tab  -->
@@ -55,7 +56,7 @@
                                 <!-- Tab 1 -->
                                 <div class="tab-pane fade show active shadow  p-3" id="t-tab1" role="tabpanel">
                                     <div class="tab-content">
-                                        <p>أهلا بك معنا , عزيزي المستخدم بصفتك زائر لنا في الموقع بامكانك تصفح الصيدليات المشتركة لدينا في الموقع وتصفح الصفحات المتاحه , كما يمكنك اضافة اعلان أو التواصل معنا وللمزيد من الصلاحيات قم بالتسجيل الان و ابدأ بلا بل بلا</p>
+                                        <p>{{$infoSites->descripe_ser_client}} </p>
                                         <ul>
                                             <li><i class="lni lni-checkmark-circle"></i>البحث عن تصفح الصيدليات في الموقع</li>
                                             <li><i class="lni lni-checkmark-circle"></i> اضافة اعلان</li>
@@ -67,7 +68,7 @@
                                 <!-- Tab 2 -->
                                 <div class="tab-pane fade shadow  p-3" id="t-tab2" role="tabpanel">
                                     <div class="tab-content">
-                                        <p>هل أنت صاحب صيدلية ؟! ماذا تنتظر انضم لنا وكن من الرواد في عملك بامكانك تحقيق ربح أكبر و بلا بلا بلا</p>
+                                        <p>{{$infoSites->descripe_ser_phar}}  </p>
 
                                     </div>
                                 </div>
@@ -75,8 +76,7 @@
                                 <!-- Tab 3 -->
                                 <div class="tab-pane fade shadow p-3" id="t-tab3" role="tabpanel">
                                     <div class="tab-content">
-                                       <p>أهلا بك معنا , عزيزي المستخدم بصفتك زائر لنا في الموقع بامكانك تصفح الصيدليات المشتركة لدينا في الموقع وتصفح الصفحات المتاحه , كما يمكنك اضافة اعلان أو التواصل معنا وللمزيد من الصلاحيات قم بالتسجيل الان و ابدأ بلا بل بلا</p>
-
+                                       <p>{{$infoSites->descripe_ser_user}} </p>
                                         <ul>
                                              <li><i class="lni lni-checkmark-circle"></i>البحث عن تصفح الصيدليات في الموقع</li>
                                             <li><i class="lni lni-checkmark-circle"></i> اضافة اعلان</li>
@@ -91,6 +91,7 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
                 <div class="col-lg-6 col-12 pt-5 mt-5 ">
                     <div class="about-right wow fadeInRight" data-wow-delay=".4s">
                         <img src="{{ asset('Front/assets/images/about/علاجي-01-3.svg') }}" alt="#">
