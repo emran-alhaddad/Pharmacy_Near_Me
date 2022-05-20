@@ -1,7 +1,6 @@
 <?php
 
 namespace Tests\Unit;
-
 use  App\Http\Controllers\Front\interfacesController;
 
 use Illuminate\Http\Request;
@@ -107,4 +106,5 @@ class userTest extends TestCase
     $respones->assertStatus(302);
     $respones->assertRedirect('/login');
   }
+
 }

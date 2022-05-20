@@ -8,6 +8,7 @@ use App\Models\City;
 use App\Models\zone;
 use Illuminate\Http\Request;
 use App\Models\Pharmacy;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Utils\SystemUtils;
 use Illuminate\Support\Facades\Auth;
@@ -18,11 +19,17 @@ class interfacesController extends Controller
     public function index()
     {
         $pharmacies =  QueryController::pharmacies(6)->get();
-
+        $services = DB::table('sevices_models')->get();// يحتوي على الخدمات التي يقدمها الموقع
+        $infoSite = DB::table('site_admines')->get();// يحتوي على معلومات التواصل الاجتماعي وااسم الموقع وشعار الموقع
+        $ads=DB::table('advertisings')->get();
+        // return $ads;
         return view('front.index', [
             'pharmacies' => $pharmacies,
             'cities' => City::get(),
-            'zones' => zone::get()
+            'zones' => zone::get(),
+            'ads'=>$ads,
+            'infoSite'=>$infoSite,
+            'services'=>$services
         ]);
     }
 
@@ -46,10 +53,11 @@ class interfacesController extends Controller
     }
 
     public function about()
-    {
+    {      $infoSite = DB::table('site_admines')->get();// يحتوي على معلومات التواصل الاجتماعي وااسم الموقع وشعار الموقع
         return view('front.about', [
             'cities' => City::get(),
-            'zones' => zone::get()
+            'zones' => zone::get(),
+            'infoSite'=>$infoSite
         ]);
     }
 
@@ -71,6 +79,7 @@ class interfacesController extends Controller
 
     public function searchPharmacies(Request $request)
     {
+        
         $qry = QueryController::pharmacies();
 
         if (!empty($request->name_Pharmacy)) $qry->where('users.name', $request->name_Pharmacy);
@@ -86,7 +95,7 @@ class interfacesController extends Controller
     public function add_order($id)
     {
         $pharmacy = QueryController::pharmacies()->where('users.id', $id)->first();
-        return view('front.add_order', [
+        return view('front.add_order', [ 
             'pharmacy' => $pharmacy,
         ]);
     }

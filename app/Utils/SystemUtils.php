@@ -50,8 +50,8 @@ class SystemUtils extends UploadingUtils
     
     return SystemUtils::returnPath($request->image,$path);
   }
-
-  public static function  insertLicense(Request $request ,$path)
+ 
+  public static function  insertLicense( $request ,$path)
   {
 
     $request->validate(['license' => 'required|image|mimes:png,jpg'],[

@@ -204,7 +204,7 @@
 
         <div class="row gy-2 mb-1" style="margin-top:3rem;">
         <div class="col-4">
-            <form action="{{ route('client-orders-store') }}" method="POST">
+            <form action="{{ route('client-orders-store') }}" enctype="multipart/form-data" method="POST">
             @csrf
             <input type="hidden" name="client_id" value="{{ Auth::user()->id }}">
             <input type="hidden" name="pharmacy_id" value="{{ $pharmacy->id }}">
@@ -365,11 +365,12 @@
       var drugs = {
             'data': []
         };
+        var file=[];
 
         function addRequestDetail() {
 
             var data = $("#data");
-            var drug_image = $(".drug_image");
+            var drug_image = $(".drug_image")[0];
             var drug_title = $("#drug_title");
             var quantity = $("#quantity");
             var accept_alternative = $("#accept_alternative");
@@ -380,13 +381,20 @@
             var order_details_table = $("#order_details_table");
 
             var drug = {};
+            // array to save the file image 
+           
             var repeat_every = 0;
             var drug_title_image = "";
              drug_title_image = "";
-
-            if (drug_image.val() != "")  {
-                drug.drug_image =  drug_image;
-                drug_title_image = "<img width='50px' src='"+window.URL.createObjectURL(drug_image.prop('files')[0])+"' >";
+            
+            // if (drug_image.val() != "") 
+            if( drug_image.files.length === 1)
+             {
+                drug.drug_image =  drug_image.val;
+                console.log( drug_image.files[0]);
+                // file.push(drug_image.files[0]);
+               
+               // drug_title_image = "<img width='50px' src='"+window.URL.createObjectURL(drug_image.prop('files')[0])+"' >";
             }
             else {
                 if (drug_title.val() == "") {
@@ -416,7 +424,7 @@
             if (repeat_every > 0) drug.repeat_every = repeat_every;
 
             if (Date.parse(repeat_until.val())) drug.repeat_until = repeat_until.val();
-            console.log(drug);
+            // console.log(drug);
             if (!drug) {
                 $("#alert_msg").html("يجب عليك إدخال البيانات قبل إدخالها ");
                 $("#alert_msg").css("display","block");

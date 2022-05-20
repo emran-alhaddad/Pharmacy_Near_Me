@@ -374,7 +374,7 @@
                     _token: token,
                     email: email
                 },
-                url: "{{ route('client-email-code') }}",
+                url: "{{ route('client-email-code') }}", 
                 success: function(data) {
                     $("#hiddenEmail").val($("#currentEmail").val());
                     if (data['type'] != 'danger')
