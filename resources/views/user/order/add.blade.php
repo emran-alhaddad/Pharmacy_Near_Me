@@ -4,20 +4,24 @@
 
     <!-- order Section -->
     <section class="col-lg-9 col-md-8 col-12" id="ord">
-        <div id="alert_msg" class="alert alert-danger hide" role="alert">
+        {{-- <div id="alert_msg" class="alert alert-danger hide" role="alert">
 
         </div>
         <div id="success_msg" class="alert alert-success hide" role="alert">
 
-        </div>
+        </div> --}}
         @if (session('error'))
-            <div class="alert alert-danger" role="alert">
-                {{ session('error') }}
+            <div class="alert alert-danger alert-dismissible text-center mt-2 fade show" role="alert">
+                {!! session('error') !!}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
             </div>
         @endif
         @if (session('status'))
-            <div class="alert alert-success" role="alert">
-                {{ session('status') }}
+            <div class="alert alert-success alert-dismissible text-center mt-2 fade show" role="alert">
+                {!! session('status') !!}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
             </div>
         @endif
         <form action="{{ route('client-orders-store') }}" method="POST">
@@ -65,15 +69,15 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-sm-3">
                              <a class=" btn btn-outline-primary" role="button " data-toggle="modal" data-target="#rep">
-تكرار الطلبية
+                            تكرار الطلبية
                         </a>
                         </div>
-                       
+
                     </div>
-                    <hr>
+                    <hr> --}}
                     <div class="row">
                         <button type="button" onclick="addRequestDetail()" class="col-12 p-2 m-2 log-btn ">اضافة</button>
                     </div>
@@ -94,7 +98,7 @@
                                 <div class="col-3">صورة العلاج </div>
                                 <div class="col-2">الكمية </div>
                                 <div class="col-2">أقبل البدائل </div>
-                                <div class="col-2">التكرار كل </div>
+                                {{-- <div class="col-2">التكرار كل </div> --}}
 
                             </div>
                             <hr>
@@ -116,7 +120,7 @@
     <div class="modal fade" id="rep" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-body fw-bold d-flex justify-content-lg-center align-items-center flex-column">
+                {{-- <div class="modal-body fw-bold d-flex justify-content-lg-center align-items-center flex-column">
                     <h3 class="fs-4">تكرار الطلبية كل </h3>
                     <div class="col">
                         <div class="d-inline-block p-2">
@@ -141,7 +145,7 @@
 
                     </div>
 
-                </div>
+                </div> --}}
                 <div class="modal-footer">
                     <button type="button" class="btn" data-dismiss="modal">
                         تم
@@ -244,17 +248,18 @@
 
         var file = document.getElementById('someId');
         $("#drug_image").on('change', function(e) {
-                var ext = this.value.match(/\.([^\.]+)$/)[1];
-                switch (ext) {
-                    case 'jpg':
-                    case 'png':
-                        break;
-                    default:
-                        $("#alert_msg").html("يجب أن تكون صورة الروشتة بأحد الصيغ التالية png او jpg فقط");
-                        $("#alert_msg").removeClass("hide");
-                        $("#success_msg").addClass("hide");
-                        this.value = '';
-                }});
+            var ext = this.value.match(/\.([^\.]+)$/)[1];
+            switch (ext) {
+                case 'jpg':
+                case 'png':
+                    break;
+                default:
+                    $("#alert_msg").html("يجب أن تكون صورة الروشتة بأحد الصيغ التالية png او jpg فقط");
+                    $("#alert_msg").removeClass("hide");
+                    $("#success_msg").addClass("hide");
+                    this.value = '';
+            }
+        });
     </script>
 
 

@@ -3,8 +3,6 @@
 @section('content')
     {{-- action={{route('_admin-create-customer')}} --}}
 
-
-
     <style>
         .card {
             margin-top: 12em;
@@ -75,17 +73,18 @@
                 @endforeach
 
                 @if (session('error'))
-                    <div class="alert alert-danger" role="alert">
+                    <div class="alert alert-danger alert-dismissible text-center mt-2 fade show" role="alert">
                         {{ session()->get('error') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
                     </div>
                 @elseif(session('state'))
-                    <div class="alert alert-success" role="alert">
+                    <div class="alert alert-success alert-dismissible text-center mt-2 fade show" role="alert">
                         {{ session()->get('state') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
                     </div>
                 @endif
-
-
-
 
             </div>
 

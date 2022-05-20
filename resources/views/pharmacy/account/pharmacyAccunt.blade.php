@@ -7,17 +7,18 @@
     <!-- Content -->
     <div class="container-xxl flex-grow-1 container-p-y">
 
-        <div id="alert">
-        </div>
-
         @if (session('error'))
-            <div class="alert alert-danger" role="alert">
-                {{ session('error') }}
+            <div class="alert alert-danger alert-dismissible text-center mt-2 fade show" role="alert">
+                {!! session('error') !!}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
             </div>
         @endif
         @if (session('status'))
-            <div class="alert alert-success" role="alert">
-                {{ session('status') }}
+            <div class="alert alert-success alert-dismissible text-center mt-2 fade show" role="alert">
+                {!! session('status') !!}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
             </div>
         @endif
         <!-- <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">اعدادات الحساب  /</span> البروفايل</h4> -->
@@ -101,10 +102,9 @@
                                             @method('put')
                                             <label for="license">
                                                 <img src="{{ asset('uploads/license/' . $pharmacy->license) }}"
-                                                     class="d-block rounded" height="150" width="150"
-                                                    id="uploadedLicense" />
-                                                <input type="file" onchange="editImage(this,'uploadedLicense')" name="license" id="license"
-                                                    hidden />
+                                                    class="d-block rounded" height="150" width="150" id="uploadedLicense" />
+                                                <input type="file" onchange="editImage(this,'uploadedLicense')"
+                                                    name="license" id="license" hidden />
                                             </label>
 
                                             <div class="button-wrapper mt-2">
@@ -142,7 +142,8 @@
                         @error('name')
                             <div class="invalid-feedback d-block">
                                 {{ $message }}
-                            </div>                        @enderror
+                            </div>
+                        @enderror
                     </div>
 
                     <div class="row">
@@ -181,8 +182,8 @@
                             <div class="mb-3 col-lg-6 col-sm-12">
                                 <label for="phone" class="form-label">رقم الهاتف </label>
                                 <input class="form-control rounded @error('phone') border-danger @enderror"
-                                    value="{{ $pharmacy->user->phone }}" type="text" placeholder="رقم الهاتف" name="phone"
-                                    autofocus />
+                                    value="{{ $pharmacy->user->phone }}" type="text" placeholder="رقم الهاتف"
+                                    name="phone" autofocus />
                                 @error('phone')
                                     <div class="invalid-feedback d-block">
                                         {{ $message }}
@@ -482,7 +483,7 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    
+
     <script>
         $("#sendEmailCode").on('submit', function(e) {
             e.preventDefault();
@@ -517,18 +518,15 @@
 
         })
 
-        function editImage(event,target)
-        {
-            
+        function editImage(event, target) {
+
             var file = event.files[0];
             var fileType = file["type"];
             var validImageTypes = ["image/jpg", "image/png"];
             if ($.inArray(fileType, validImageTypes) < 0) {
                 $(event).val("");
                 $('#alert').html("<div class='alert alert-danger' role='alert'>نوع الصورة غير مقبول</div>");
-            }
-            else
-            {
+            } else {
                 let img = document.getElementById(target);
                 img.src = window.URL.createObjectURL(event.files[0]);
             }
@@ -545,22 +543,20 @@
 
         });
 
-$(document).ready(function(){
-        @error('modal')
-   $("#{{ $message }}").modal('show');
-   @enderror
-   @error('email')
-   $("#edit-email").modal('show');
-   @enderror
-   @error('new_password')
-   $("#edit-password").modal('show');
-   @enderror
-   @error('new_password_confirmed')
-   $("#edit-password").modal('show');
-   @enderror
-});
-        
-        
+        $(document).ready(function() {
+            @error('modal')
+                $("#{{ $message }}").modal('show');
+            @enderror
+            @error('email')
+                $("#edit-email").modal('show');
+            @enderror
+            @error('new_password')
+                $("#edit-password").modal('show');
+            @enderror
+            @error('new_password_confirmed')
+                $("#edit-password").modal('show');
+            @enderror
+        });
     </script>
 
 @stop
