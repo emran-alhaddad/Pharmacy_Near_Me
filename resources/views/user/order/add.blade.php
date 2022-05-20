@@ -11,13 +11,17 @@
 
         </div> --}}
         @if (session('error'))
-            <div class="alert alert-danger" role="alert">
-                {{ session('error') }}
+            <div class="alert alert-danger alert-dismissible text-center mt-2 fade show" role="alert">
+                {!! session('error') !!}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
             </div>
         @endif
         @if (session('status'))
-            <div class="alert alert-success" role="alert">
-                {{ session('status') }}
+            <div class="alert alert-success alert-dismissible text-center mt-2 fade show" role="alert">
+                {!! session('status') !!}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
             </div>
         @endif
         <form action="{{ route('client-orders-store') }}" method="POST">
@@ -244,17 +248,18 @@
 
         var file = document.getElementById('someId');
         $("#drug_image").on('change', function(e) {
-                var ext = this.value.match(/\.([^\.]+)$/)[1];
-                switch (ext) {
-                    case 'jpg':
-                    case 'png':
-                        break;
-                    default:
-                        $("#alert_msg").html("يجب أن تكون صورة الروشتة بأحد الصيغ التالية png او jpg فقط");
-                        $("#alert_msg").removeClass("hide");
-                        $("#success_msg").addClass("hide");
-                        this.value = '';
-                }});
+            var ext = this.value.match(/\.([^\.]+)$/)[1];
+            switch (ext) {
+                case 'jpg':
+                case 'png':
+                    break;
+                default:
+                    $("#alert_msg").html("يجب أن تكون صورة الروشتة بأحد الصيغ التالية png او jpg فقط");
+                    $("#alert_msg").removeClass("hide");
+                    $("#success_msg").addClass("hide");
+                    this.value = '';
+            }
+        });
     </script>
 
 
