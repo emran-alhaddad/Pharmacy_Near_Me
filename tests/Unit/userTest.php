@@ -23,12 +23,17 @@ class userTest extends TestCase
   // public function testApplication()
   // {
 
-  //   $array=['name_Pharmacy'=> 'pahr'];
-  //  // $array = new Request($array);
-  //   // $query=new interfacesController();/pharmacies/search
-  //   // $result=$query->searchPharmacies($array);
-  //   // $result=$this->call('post', '/pharmacies/search',$array);
-  //   $result=$this->call('post', 'http://127.0.0.1:8000/pharmacies/search',$array);
+   
+
+    public function test_login_redirect_to_dashboard_user ()
+    {
+      $respones=$this->post('/login',[
+        'email'=>'client@gmail.com',
+        'password'=>'client'
+      ]);
+      $respones->assertStatus(302);
+      $respones->assertRedirect('/client');
+    }
 
   //   // dd($result);
   //   //  dd($result[]);
@@ -54,15 +59,7 @@ class userTest extends TestCase
     $respones->assertRedirect('/_admin');
   }
 
-  public function test_login_redirect_to_dashboard_user()
-  {
-    $respones = $this->post('/login', [
-      'email' => 'client@gmail.com',
-      'password' => 'client'
-    ]);
-    $respones->assertStatus(302);
-    $respones->assertRedirect('/client');
-  }
+ 
 
   public function test_login_redirect_to_dashboard_phar()
   {
@@ -96,15 +93,52 @@ class userTest extends TestCase
     $respones->assertRedirect('/login');
   }
 
-  public function test_unath_user_connot_access_to_client_dashboard()
-  {
-    // $respones=$this->post('/login',[
-    //   'email'=>'phar@gmail.com',
-    //   'password'=>'phar'
-    // ]);
-    $respones = $this->get('/client');
-    $respones->assertStatus(302);
-    $respones->assertRedirect('/login');
-  }
+  
+
+    public function test_unath_user_connot_access_to_client_dashboard()
+    {
+      // $respones=$this->post('/login',[
+      //   'email'=>'phar@gmail.com',
+      //   'password'=>'phar'
+      // ]);
+      $respones=$this->get('/client');
+      $respones->assertStatus(302);
+      $respones->assertRedirect('/login');
+    }
+
+    public function test_index_to_show_pharmcy ()
+    {
+      $respones=$this->get('/');
+      $respones->assertSee('أهلا بك في موقع علاجي');
+      $respones->assertStatus(200);
+      
+
+    }
+    public function test_serach_pharmacy_by_name_that_is_exit()
+    { 
+      $respones=$this->post('/pharmacies/search',[
+        'name_Pharmacy'=>'صيدلية الرأفة.',
+      ]);
+      $respones->assertSee('صيدلية الرأفة.');
+    }
+
+    public function test_serach_pharmacy_by_name_that_is_not_exit()
+    { 
+      $respones=$this->post('/pharmacies/search',[
+        'name_Pharmacy'=>'صيدلية اللواحة تس',
+      ]);
+      $respones->assertSee('لا يوجد صيدليات مطابقة للبحث');
+    }
+
+    public function test_auth_user_can_apply_to_pharmacy()
+    { 
+      // $user=[  'email'=>'client@gmail.com','password'=>'client'];
+      // $user=User::factory()->create();
+      // $user = User::findOrFail(1);
+      // $respones=$this->actingAs($user)->get('/pharmacy/{id}/add-order');
+      // $respones->assertStatus(302);
+
+      
+    }
 
 }

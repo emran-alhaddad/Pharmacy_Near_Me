@@ -80,3 +80,10 @@ class ComplaintController extends Controller
     return back()->with('status', 'تم حذف الشكوى بنجاح');
     }
 }
+
+
+
+
+
+
+

@@ -17,6 +17,13 @@ class ComplaintsController extends Controller
 
          return view('admin.Complaints.show_Complaints')->with('coms',$complaint);
     }
+
+    public function showalert($id)
+    {
+        $complaint=Complaint::with(['pharmacy.user','client.user'])->where('id',$id)->get();
+        // return $complaint;
+        return view('admin.Complaints.show_Complaints')->with('coms',$complaint);
+    }
     // public function createComplaints(Request $request)
     // {
 
