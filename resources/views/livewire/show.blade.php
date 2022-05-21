@@ -40,7 +40,7 @@ if (!function_exists('isVideo'))
 
 
 <div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center m-5">
         @if(auth()->user()->is_active == true)
             <div class="col-md-4">
                 <div class="card">
@@ -55,7 +55,7 @@ if (!function_exists('isVideo'))
                                 @endphp
                                 <a href="{{ route('inbox.show', $user->id) }}" class="text-dark link">
                                     <li class="list-group-item" wire:click="getUser({{ $user->id }})" id="user_{{ $user->id }}">
-                                        <img class="img-fluid avatar" src="https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png">
+                                        <img class="img-fluid avatar" src="http://127.0.0.1:8000/uploads/avaters/client/avater.png">
                                         @if($user->is_online) <i class="fa fa-circle text-success online-icon"></i> @endif {{ $user->name }}
                                         @if(filled($not_seen))
                                             <div class="badge badge-success rounded">{{ $not_seen->count() }}</div>
@@ -124,10 +124,10 @@ if (!function_exists('isVideo'))
                             </div>
                             @if(empty($file))
                                 <div class="col-md-1">
-                                    <button type="button" class="border" id="file-area">
+                                    <button type="button" class=" btn btn-outline-secondary" id="file-area">
                                         <label>
                                             <i class="fa fa-file-upload"></i>
-                                            <input type="file" wire:model="file">
+                                            <input type="file" wire:model="file" style="border:none;">
                                         </label>
                                     </button>
                                 </div>

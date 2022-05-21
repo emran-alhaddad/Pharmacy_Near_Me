@@ -39,12 +39,12 @@ if (!function_exists('isVideo'))
 ?>
 
 <div>
-    <div class="row justify-content-center" wire:poll="mountComponent()">
+    <div class="row justify-content-center m-5" wire:poll="mountComponent()">
         @if(auth()->user()->is_active == true)
             <div class="col-md-4" wire:init>
                 <div class="card">
                     <div class="card-header">
-                        Users
+                        المستخدمين
                     </div>
                     <div class="card-body chatbox p-0">
                         <ul class="list-group list-group-flush" wire:poll="render">
@@ -54,7 +54,7 @@ if (!function_exists('isVideo'))
                                 @endphp
                                 <a href="{{ route('inbox.show', $user->id) }}" class="text-dark link">
                                     <li class="list-group-item" wire:click="getUser({{ $user->id }})" id="user_{{ $user->id }}">
-                                        <img class="img-fluid avatar" src="https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png">
+                                        <img class="img-fluid avatar" src="http://127.0.0.1:8000/uploads/avaters/client/avater.png">
                                         @if($user->is_online) <i class="fa fa-circle text-success online-icon"></i> @endif {{ $user->name }}
                                         @if(filled($not_seen))
                                             <div class="badge badge-success rounded">{{ $not_seen->count() }}</div>
@@ -138,8 +138,8 @@ if (!function_exists('isVideo'))
                                     <input wire:model="messages" class="form-control input shadow-none w-100 d-inline-block" placeholder="Type a message" @if(!$file) required @endif>
                                 </div>
                                 @if(empty($file))
-                                <div class="col-md-1">
-                                    <button type="button" class="border" id="file-area">
+                                <div class="col-md-1 btn btn-submit btn-hover">
+                                    <button type="button" class="border " id="file-area">
                                         <label>
                                             <i class="fa fa-file-upload"></i>
                                             <input type="file" wire:model="file">
