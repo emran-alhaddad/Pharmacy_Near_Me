@@ -22,8 +22,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\UpdateEmail;
-
-
+use App\Utils\SystemUtils;
 
 class PharmacyController extends Controller
 {
@@ -107,6 +106,13 @@ class PharmacyController extends Controller
         $obj_json_durg = json_decode($allReplies);
         $allReplies = $obj_json_durg->data;
 
+        if ($request->hasFile('images')) {
+
+            $images = SystemUtils::addImages($request, SystemUtils::REPLY_IMAGE_PATH);
+            $images = array_reverse($images);
+        }
+
+
         $all_replies_saved = false;
         foreach ($allReplies as $oneReply) {
             $Rep_Details = new Reply_Details();
@@ -116,7 +122,7 @@ class PharmacyController extends Controller
             if (isset($oneReply->drug_price)) {
                 $Rep_Details->drug_price = $oneReply->drug_price;
             } else if (isset($oneReply->alt_drug_title) || isset($oneReply->alt_drug_image)) {
-                if (isset($oneReply->alt_drug_image)) $Rep_Details->alt_drug_image = $oneReply->alt_drug_image;
+                if (isset($oneReply->alt_drug_image)) $Rep_Details->alt_drug_image = array_pop($images);
                 else $Rep_Details->alt_drug_title = $oneReply->alt_drug_title;
                 $Rep_Details->alt_drug_price = $oneReply->alt_drug_price;
             } else {

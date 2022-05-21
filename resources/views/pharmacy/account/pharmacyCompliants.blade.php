@@ -53,6 +53,15 @@
                                                     </button>
                                                 </td>
                                             @endif
+                                            @if ($compliant->order_reference)
+                                                <td>
+                                                    <i class="fab fa-angular fa-lg text-danger me-3"></i>
+                                                    <a type="button" class=" btn btn-submit btn-hover  me-2 " 
+                                                        href="{{ route('pharmacy-order-details',$compliant->order_reference) }}">
+                                                        عرض الطلبية
+                                                    </button>
+                                                </td>
+                                            @endif
 
 
                                         </tr>

@@ -3,17 +3,27 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Payment\PaymentController;
 use App\Models\City;
+use App\Models\Order;
+use App\Models\OrderPayment;
+use App\Models\Payment;
+use App\Models\Pharmacy;
 use App\Models\Reply;
 use App\Models\Reply_Details;
 use App\Models\Request_Details;
 use App\Models\User;
 use App\Models\Request as OrderRequest;
 use App\Models\zone;
+use App\Utils\DeleveryState;
 use App\Utils\ReplyState;
 use App\Utils\RequestState;
+use App\Utils\SystemUtils;
+use App\Utils\UploadingUtils;
+use App\Utils\UserUtils;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -23,9 +33,11 @@ class OrderController extends Controller
         $requests = OrderRequest::with(['details', 'pharmacy.user', 'replies.details'])
             ->where('client_id', Auth::id())->orderByDesc('id')->get();
         $client = User::with('client')->where('id', Auth::id())->firstOrFail();
+        $pharmacies = Pharmacy::with('user')->get();
         return view('user.myorder', [
             'requests' => $requests,
-            'user' => $client
+            'user' => $client,
+            'pharmacies' => $pharmacies
         ]);
     }
 
@@ -57,14 +69,18 @@ class OrderController extends Controller
         $obj_json_durg = json_decode($allDurg);
         $allDurg = $obj_json_durg->data;
 
+        if ($request->hasFile('images')) {
 
+            $images = SystemUtils::addImages($request, SystemUtils::REQUEST_IMAGE_PATH);
+            $images = array_reverse($images);
+        }
 
         foreach ($allDurg as $durg) {
             $Req_Details = new Request_Details();
-            
+
             $Req_Details->request_id = $id;
             if (isset($durg->drug_title)) $Req_Details->drug_title = $durg->drug_title;
-            if (isset($durg->drug_image)) $Req_Details->drug_image = $durg->drug_image;
+            if (isset($durg->drug_image)) $Req_Details->drug_image = array_pop($images);
             if (isset($durg->quantity)) $Req_Details->quantity = $durg->quantity;
 
             $Req_Details->accept_alternative = $durg->accept_alternative;
@@ -82,7 +98,7 @@ class OrderController extends Controller
     }
 
 
-    public function reject($id)
+    public function reject($id, $msg = "")
     {
         $order = OrderRequest::where('id', $id)->first();
         $reply = Reply::where('request_id', $id)->first();
@@ -91,7 +107,39 @@ class OrderController extends Controller
         $reply->update();
         $order->update();
 
-        return back()->with('status', 'لقد تم رفض الطلبية ' . $id . ' بنجاح');
+        if ($msg) {
+            $order_paid = Order::where('order_reference', $id)->first();
+            $order_paid->rejected = 1;
+            $order_paid->update();
+
+            $order_payment = OrderPayment::where('order_id', $order_paid->id)->first();
+            $order_payment->delivery_state = DeleveryState::REJECTED;
+            $order_payment->update();
+        }
+
+        return back()->with('status', 'لقد تم رفض الطلبية ' . $id  . $msg . ' بنجاح');
+    }
+
+
+    public function delivered($id)
+    {
+        $order = OrderRequest::where('id', $id)->first();
+        $reply = Reply::where('request_id', $id)->first();
+        $reply->state = ReplyState::ACCEPTED;
+        $order->state = RequestState::FINISHED;
+        $reply->update();
+        $order->update();
+
+        $order_paid = Order::where('order_reference', $id)->first();
+        $order_paid->rejected = 0;
+        $order_paid->update();
+
+        $order_payment = OrderPayment::where('order_id', $order_paid->id)->first();
+        $order_payment->delivery_state = DeleveryState::DELIVERED;
+        $order_payment->update();
+
+
+        return back()->with('status', 'لقد تم تأكيد وصول الطلبية ' . $id  . ' بنجاح');
     }
 
     public function toggleReplyDetails($id, $state)
@@ -107,11 +155,10 @@ class OrderController extends Controller
                 break;
             default:
                 $reply_detail->state = ReplyState::WAIT_ACCEPTANCE;
-
         }
 
-        return $reply_detail->update();
+        $reply_detail->update();
+        $request_id = Request_Details::where('id',$reply_detail->request_details_id)->first()->request_id;
+        return PaymentController::getProducts($request_id)['total_price'];
     }
-
-    
 }

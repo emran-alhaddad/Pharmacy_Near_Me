@@ -22,8 +22,18 @@ class UploadingUtils
       if(!Str::endsWith($oldName, UserUtils::AVATER_IMAGE_DEFAULT))
       @unlink($oldName);
     }
+
     if ($dataImage != null) {
-      $truck_img = time() . rand(1111111111, 9999999999) . '.' . $dataImage->extension();
+      
+      $extention = "";
+      if($dataImage->extension()) $extention = $dataImage->extension();
+      else
+      {
+        $img = $dataImage->getClientOriginalName();
+        $extention = substr($img,strpos($img,'.'));
+      } 
+
+      $truck_img = time() . rand(1111111111, 9999999999) . '.' . $extention;
       $dataImage->move(public_path($pathImage), $truck_img);
       return  $truck_img;
     } else {

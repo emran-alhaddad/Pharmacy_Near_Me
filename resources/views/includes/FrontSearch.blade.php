@@ -65,14 +65,14 @@
     @endif
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
 <script>
     $(function() {
         $("select[name='city']").change(function() {
             $.ajax({
                 method: 'get',
-                url: "/select/city/"+$(this).val()+"/zones",
+                url: "/select/city/" + $(this).val() + "/zones",
                 success: function(data) {
                     $("select[name='zone']").html(data);
                 }
@@ -80,5 +80,7 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
             });
         });
     });
+
+    
 </script>
 <!--====== SEARCH PART END ======-->

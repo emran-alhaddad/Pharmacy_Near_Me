@@ -33,6 +33,7 @@ class ComplaintController extends Controller
 
   public function store(Request $request)
   {
+
     $request->validate(
       ['message' => 'required'],
     [
@@ -45,6 +46,14 @@ class ComplaintController extends Controller
     $complaint->save();
     if (!$complaint->save())
       return back()->with('error', 'لم يتم إضافة هذه الشكوى');
+
+      if($request->has('order') && $request->order)
+      {
+        $complaint->order_reference = $request->order;
+        $complaint->update();
+        $order = new OrderController();
+        return $order->reject($request->order, ' وإضافة شكوى عليها ');
+      }
     return back()->with('status', 'تم إضافة شكوى جديدة بنجاح');
   }
 

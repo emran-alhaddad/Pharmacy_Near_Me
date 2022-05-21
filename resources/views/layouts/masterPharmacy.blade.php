@@ -5,7 +5,7 @@
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
-    <title> Pharmacy- Dashboard</title>
+    <title>لوحة تحكم الصيدلية</title>
     <meta name="description" content="" />
     <!-- Icons -->
     <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/fonts/boxicons.css')}}" />

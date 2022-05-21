@@ -1,7 +1,7 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme shadow  my-3 mb-4 rounded-3">
     <div class="app-brand demo">
         <a href=" {{ route('index') }}" class="app-brand-link">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href=" {{ route('index') }}">
                 <img src="{{ asset('Front/assets/images/about/علاجي-01-3.svg') }}" id="logo" alt="Logo">
             </a>
         </a>
