@@ -22,13 +22,12 @@ return new class extends Migration
             // $table->timestamps();
 
             $table->id();
-            $table->unsignedBigInteger('client_id');
-            $table->unsignedBigInteger('pharmacy_id');
-            $table->foreign('client_id')->references('id')->on('users');
-            $table->foreign('pharmacy_id')->references('id')->on('users');
+            $table->unsignedBigInteger('sender_id');
+            $table->unsignedBigInteger('receiver_id')->nullable();
+            $table->foreign('sender_id')->references('id')->on('users');
             $table->string('message');
             $table->string('type');
-            $table->string('link');
+            $table->string('is_active')->default(1);
             $table->timestamps();
 
         });

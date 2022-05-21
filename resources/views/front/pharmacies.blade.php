@@ -39,7 +39,7 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="grid" role="tabpanel" aria-labelledby="grid-tab">
                                 <div class="row">
-                                    @foreach ($pharmacies as $pharmacy)
+                                    @forelse ($pharmacies as $pharmacy)
                                         <div class="col-lg-6 col-md-6 ">
                                             <div class="single-pharmacy col-12 shadow p-3 bg-white radius">
                                                 <div class="pharmacy-img p-2 col-12 ">
@@ -67,7 +67,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach
+                                        @empty
+                                        <div class="alert alert-danger" role="alert">
+                                            لا يوجد صيدليات مطابقة للبحث
+                                            </div>
+                                    @endforelse
                                 </div>
                             </div>
                         </div>

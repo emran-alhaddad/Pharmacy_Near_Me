@@ -55,9 +55,9 @@
                             </div>
                             <div class="single-info">
 
-                                <ul>
+                                {{-- <ul>
                                     <li class="text-white py-2"><i class="lni lni-map pl-2 "></i>  {{$infoSites->website}} </li>
-                                </ul>
+                                </ul> --}}
                             </div>
                             <div class="contact-social">
                                 <h5>تابعنا على</h5>

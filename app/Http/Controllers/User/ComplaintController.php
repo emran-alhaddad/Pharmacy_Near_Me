@@ -50,18 +50,6 @@ class ComplaintController extends Controller
     else{
 
         $Notify = new NotificationsController();
-        // $user = User::find($complaint->client_id);
-        // $phar = User::find($complaint->pharmacy_id);
-        // $data =[
-
-        //     'client_name'=>  $user->name,
-        //     'pharmacy_name'=> $phar->name,
-        //     // 'message'=> $complaint->message,
-
-        // ];
-
-
-
         $Notify -> ComplaintsNotification($complaint);
 
         return back()->with('status', 'تم إضافة شكوى جديدة بنجاح');
@@ -80,3 +68,10 @@ class ComplaintController extends Controller
     return back()->with('status', 'تم حذف الشكوى بنجاح');
     }
 }
+
+
+
+
+
+
+

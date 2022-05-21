@@ -49,7 +49,7 @@ Route::post('/pharmacies/search', [Front\interfacesController::class, 'searchPha
 Route::get('/select/city/{id}/zones', [Front\interfacesController::class, 'getCityZones'])->name('city-zones');
 
 /* backend front  route */
-Route::get('/front/showinfor',[Front\HomeController::class,'indexInfo'])->name('front_showinfor');
+Route::get('/front/showinfor',[Front\HomeController::class,'indexInfo'])->name('front_showinfor'); 
 
 // // // PHARMACY TEST ROUTES
 // Route::get('/account', [Pharmacy\PharmacyController::class, 'account'])->name('profile');
@@ -206,7 +206,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/_admin/add_Complaints/{id}', [Admin\ComplaintsController::class, 'addComplaints'])->name('admin-add_Complaints');
         Route::get('/_admin/edit_Complaints', [Admin\ComplaintsController::class, 'editComplaints'])->name('admin-edit_Complaints');
         Route::post('/_admin/create_Complaints/{id}', [Admin\ComplaintsController::class, 'relpay'])->name('admin-create_Complaints');
-
+        Route::get('/_admin/showalert/{id}', [Admin\ComplaintsController::class, 'showalert'])->name('admin-showalert');
 
         Route::get('/_admin/show_Zones', [Admin\ZonesController::class, 'showZones'])->name('admin-show_Zones');
         Route::get('/_admin/add_zone', [Admin\ZonesController::class, 'addZones'])->name('admin-add_Zones');
@@ -247,7 +247,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/_admin/update/phar_license', [Admin\PharController::class, 'doUpdataLicense'])->name('_admin-phar_licenes');
         Route::post('/_admin/update/phar_email', [Admin\PharController::class, 'updateEmail'])->name('_admin-phar_email');
         Route::post('/_admin/update/check_email', [Admin\PharController::class, 'checkUpdateEmail'])->name('_admin-phar_check_email');
-
+        Route::get('/_admin/showPharsAlert/{id}', [Admin\PharController::class, 'showPharsAlert'])->name('admin-showPharsAlert');
 
 
         Route::get('/_admin/show_PaymentMethods', [Admin\PaymentMethodsCotroller::class, 'showPaymentMethods'])->name('admin-show_PaymentMethods');

@@ -26,7 +26,7 @@ class WebSiteSeeder extends Seeder
             $user->logo ='logo.jpeg'; 
             $user->twitter ='https://www.twitter.com/';
             $user->whatsup ='736990516';
-            $user->google ='Pharmicy@gmail.com';
+            $user->email ='Pharmicy@gmail.com';
             $user->phone ='736990516';
             $user->facebook ='https://www.facebook.com/';
             $user->title_about ='موقع يلبي تطلعاتك';
