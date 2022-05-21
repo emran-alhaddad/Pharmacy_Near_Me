@@ -20,7 +20,7 @@ class Reply_Details extends Model
         'state'
     ];
 
-    public function request()
+    public function reply()
     {
         $this->belongsTo(Reply::class,'reply_id');
     }

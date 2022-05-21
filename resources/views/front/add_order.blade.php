@@ -197,14 +197,15 @@
 
     {{-- <script>
 
-    </script>
+    </style>
+    <script></script>
 
     <div class="container-xxl flex-grow-1 container-p-y" style="direction:rtl;">
         <!-- Order  -->
 
         <div class="row gy-2 mb-1" style="margin-top:3rem;">
-        <div class="col-4">
-            <form action="{{ route('client-orders-store') }}" enctype="multipart/form-data" method="POST">
+            <div class="col-4">
+                <form action="{{ route('client-orders-store') }}" enctype="multipart/form-data" method="POST">
             @csrf
             <input type="hidden" name="client_id" value="{{ Auth::user()->id }}">
             <input type="hidden" name="pharmacy_id" value="{{ $pharmacy->id }}">
@@ -212,36 +213,35 @@
         <button id="send_request_btn" style="visibility:hidden;"  type="submit" class="main-btn btn-hover mt-5 mb-1"> ارسال الطلبية
                             بالكامل </button>
             </form>
-        </div>
-        </div>
-        <div class="row mt-2">
-        <div class="card">
-            <h5 class="card-header"> المنتجات المندرجة ضمن طلبك</h5>
-            <div class="table-responsive text-nowrap">
-                <table class="table table-hover">
-
-                    <thead>
-                        <tr>
-                            <th>اسم /صورة العلاج</th>
-                            <th>الكمية </th>
-                            <th>اقبل بديل </th>
-                            <th>كرر الطلبية كل</th>
-                            <th>حتى تاريخ </th>
-                            <!-- <th>تقديم عرض</th> -->
-                        </tr>
-                    </thead>
-                    <tbody id="order_details_table">
-
-
-                    </tbody>
-                </table>
             </div>
         </div>
+        <div class="row mt-2">
+            <div class="card">
+                <h5 class="card-header"> المنتجات المندرجة ضمن طلبك</h5>
+                <div class="table-responsive text-nowrap">
+                    <table class="table table-hover">
+
+                        <thead>
+                            <tr>
+                                <th>اسم /صورة العلاج</th>
+                                <th>الكمية </th>
+                                <th>اقبل بديل </th>
+                                <th>كرر الطلبية كل</th>
+                                <th>حتى تاريخ </th>
+                            </tr>
+                        </thead>
+                        <tbody id="order_details_table">
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="container">
-    <div id="alert_msg" class="alert alert-danger mt-2 mb-2" style="display:none" role="alert">
+        <div id="alert_msg" class="alert alert-danger mt-2 mb-2" style="display:none" role="alert">
 
         </div>
         <div id="success_msg" class="alert alert-success mt-2 mb-2" style="display:none" role="alert">
@@ -260,9 +260,9 @@
 
         <div class="picture-container">
             <div class="picture">
-                <img src="{{ asset('admin/img/work/plus.jpg') }}" class="picture-src" id="wizardPicturePreview"
+                <img src="{{ asset('admin/img/work/plus.jpg') }}" width="50px" class="picture-src" id="wizardPicturePreview"
                     title="">
-                <input type="file" id="wizard-picture"  class="drug_image">
+                <input type="file" id="wizard-picture" name="image" class="drug_image">
             </div>
             <h6 class="">اختر صورة </h6>
 
@@ -297,7 +297,7 @@
                     <div class="box-style sidebar-pharmacy">
 
                         <li class="list-group-item">
-                            <input class="form-check-input me-1" type="checkbox" id="accept_alternative" >
+                            <input class="form-check-input me-1" type="checkbox" id="accept_alternative">
                             اقبل بديل في حالة عدم توفره
                         </li>
                         <li class="list-group-item">
@@ -346,8 +346,9 @@
 
                         <li class="list-group-item mt-2">
                             <div class="row justify-content-center gy-2 m-3">
-                        <button  onclick="addRequestDetail()" class="main-btn btn-hover">اضافة المنتج الى الطلبية </button>
-                    </div>
+                                <button onclick="addRequestDetail()" class="main-btn btn-hover">اضافة المنتج الى الطلبية
+                                </button>
+                            </div>
                         </li>
 
 
@@ -359,10 +360,10 @@
         </div>
     </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
-
-      var drugs = {
+        var drugs = {
             'data': []
         };
         var file=[];
@@ -385,22 +386,17 @@
            
             var repeat_every = 0;
             var drug_title_image = "";
-             drug_title_image = "";
-            
-            // if (drug_image.val() != "") 
-            if( drug_image.files.length === 1)
-             {
-                drug.drug_image =  drug_image.val;
-                console.log( drug_image.files[0]);
-                // file.push(drug_image.files[0]);
-               
-               // drug_title_image = "<img width='50px' src='"+window.URL.createObjectURL(drug_image.prop('files')[0])+"' >";
-            }
-            else {
+            drug_title_image = "";
+
+            if (drug_image.val() != "") {
+                drug.drug_image = drug_image.val();
+                drug_title_image = "<img width='50px' src='" + window.URL.createObjectURL(drug_image.prop('files')[0]) +"' >";
+
+            } else {
                 if (drug_title.val() == "") {
                     $("#alert_msg").html("يجب عليك إدخال اسم العلاج أو صورة الروشتة");
-                    $("#alert_msg").css("display","block");
-                    $("#success_msg").css("display","none");
+                    $("#alert_msg").css("display", "block");
+                    $("#success_msg").css("display", "none");
                     return;
                 }
                 drug.drug_title = drug_title_image = drug_title.val();
@@ -408,8 +404,8 @@
 
             if (quantity.val() < 1) {
                 $("#alert_msg").html(" كمية العلاج مرفوضة");
-                $("#alert_msg").css("display","block");
-                $("#success_msg").css("display","none");
+                $("#alert_msg").css("display", "block");
+                $("#success_msg").css("display", "none");
                 return;
             }
 
@@ -427,8 +423,8 @@
             // console.log(drug);
             if (!drug) {
                 $("#alert_msg").html("يجب عليك إدخال البيانات قبل إدخالها ");
-                $("#alert_msg").css("display","block");
-                $("#success_msg").css("display","none");
+                $("#alert_msg").css("display", "block");
+                $("#success_msg").css("display", "none");
                 return;
             }
 
@@ -442,24 +438,28 @@
             data.val(JSON.stringify(drugs));
 
             $("#success_msg").html("تم إضافة العلاج بنجاح");
-            $("#success_msg").css("display","block");
-            $("#alert_msg").css("display","none");
+            $("#success_msg").css("display", "block");
+            $("#alert_msg").css("display", "none");
 
             accept_alt = drug.accept_alternative == 1 ? "نعم" : "لا";
 
             order_details_table.html(order_details_table.html() +
-                        "<tr>"+
-                            "<td><i class='fab fa-angular fa-lg text-danger me-3'></i> <strong> " + drug_title_image + " </strong></td>"+
-                            "<td><i class='fab fa-angular fa-lg text-danger me-3'></i> <strong>" + quantity.val() + "</strong></td>"+
-                            "<td><span class='badge bg-label-warning me-1'>" + accept_alt + " </span></td>"+
-                            "<td><i class='fab fa-angular fa-lg text-danger me-3'></i> <strong>" + repeat_every + " يوم</strong></td>"+
-                            "<td><i class='fab fa-angular fa-lg text-danger me-3'></i> <strong>"+repeat_until.val()+"</strong></td>"+
-                        "</tr>");
+                "<tr>" +
+                "<td><i class='fab fa-angular fa-lg text-danger me-3'></i> <strong> " + drug_title_image +
+                " </strong></td>" +
+                "<td><i class='fab fa-angular fa-lg text-danger me-3'></i> <strong>" + quantity.val() +
+                "</strong></td>" +
+                "<td><span class='badge bg-label-warning me-1'>" + accept_alt + " </span></td>" +
+                "<td><i class='fab fa-angular fa-lg text-danger me-3'></i> <strong>" + repeat_every +
+                " يوم</strong></td>" +
+                "<td><i class='fab fa-angular fa-lg text-danger me-3'></i> <strong>" + repeat_until.val() +
+                "</strong></td>" +
+                "</tr>");
 
             if ($("#data").val())
-                $("#send_request_btn").css("visibility","visible");
+                $("#send_request_btn").css("visibility", "visible");
             else
-            $("#send_request_btn").css("visibility","hidden");
+                $("#send_request_btn").css("visibility", "hidden");
 
             $(".drug_image").val("");
             $("#drug_title").val("");
@@ -470,33 +470,50 @@
             $("#year").val("");
             $("#repeat_until").val("");
             $("#accept_repeate").prop('checked', false);
-            $("#repeate_form").css("display","none");
-             window.scrollTo(0, 0);
+            $("#repeate_form").css("display", "none");
+            window.scrollTo(0, 0);
 
         }
+
+
+        let file = document.querySelector(".drug_image");
+        let back = document.getElementById("images");
+        let dt = new DataTransfer();
+
 
         $(".drug_image").on('change', function(e) {
             var ext = this.value.match(/\.([^\.]+)$/)[1];
             switch (ext) {
                 case 'jpg':
                 case 'png':
-                $("#alert_msg").css("display","none");
-                    $("#success_msg").css("display","none");
+                    let files = this.files;
+                    for (let i = 0; i < files.length; i++) {
+                        let f = files[i];
+                        dt.items.add(
+                            new File(
+                                [f.slice(0, f.size, f.type)],
+                                f.name
+                            ));
+                    }
+                    back.files = dt.files;
+                    $("#alert_msg").css("display", "none");
+                    $("#success_msg").css("display", "none");
                     break;
                 default:
                     $("#alert_msg").html("يجب أن تكون صورة الروشتة بأحد الصيغ التالية png او jpg فقط");
-                    $("#alert_msg").css("display","block");
-                    $("#success_msg").css("display","none");
+                    $("#alert_msg").css("display", "block");
+                    $("#success_msg").css("display", "none");
                     this.value = '';
             }
             window.scrollTo(0, 0);
         });
 
+
         $("#accept_repeate").on("change", function(e) {
-            if($("#accept_repeate").is(":checked"))
-            $("#repeate_form").css("display","block");
+            if ($("#accept_repeate").is(":checked"))
+                $("#repeate_form").css("display", "block");
             else
-            $("#repeate_form").css("display","none");
+                $("#repeate_form").css("display", "none");
         });
 
 

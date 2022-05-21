@@ -51,13 +51,15 @@ class ComplaintController extends Controller
 
         $Notify = new NotificationsController();
         $Notify -> ComplaintsNotification($complaint);
-
-        return back()->with('status', 'تم إضافة شكوى جديدة بنجاح');
+        if($request->has('order') && $request->order)
+        {
+          $complaint->order_reference = $request->order;
+          $complaint->update();
+          $order = new OrderController();
+          return $order->reject($request->order, ' وإضافة شكوى عليها ');
+        }
+      return back()->with('status', 'تم إضافة شكوى جديدة بنجاح');
     }
-
-
-
-
     }
 
     public function delete($id)

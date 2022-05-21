@@ -10,7 +10,7 @@
                 <th scope="col">العمليات</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="request_body">
             @foreach ($requests as $request)
                 @if ($request->state == \App\Utils\RequestState::ACCEPTED)
                     <tr>
@@ -18,15 +18,15 @@
                         <td>{{ $request->pharmacy->user->name }}</td>
                         <td>{{ $request->created_at->diffForHumans() }}</td>
                         <td>
-                            {{ $request->replies->details->sum('drug_price') }}
+                            ${{ \App\Http\Controllers\Payment\PaymentController::getProducts($request->id)['total_price'] }}
                         </td>
                         <td><span class="badge bg-warning text-dark" style="background-color:rgb(240, 225, 15);">في
                                 انتضار الدفع</span></td>
-                        <td><a class=" btn btn-submit btn-hover me-2" href="javascript:void(0);" data-bs-toggle="collapse" role="button"
-                                data-bs-target="#details{{ $request->id }}">
+                        <td><a class=" btn btn-submit btn-hover me-2" href="javascript:void(0);"
+                                data-bs-toggle="collapse" role="button" data-bs-target="#details{{ $request->id }}">
                                 عرض التفاصيل
                             </a></td>
-                        <td><a class="btn btn-success" href="{{ route('user-payment',$request->id) }}">
+                        <td><a class="btn btn-success" href="{{ route('user-payment', $request->id) }}">
                                 دفع
                             </a></td>
                         <td><a href="{{ route('client-orders-reject', $request->id) }}" class="btn btn-danger">
@@ -51,7 +51,17 @@
                                         <tbody>
                                             @foreach ($request->details as $requestDetails)
                                                 <tr>
-                                                    <td>{{ $requestDetails->drug_title }}</td>
+                                                    <td>
+                                                        @if ($requestDetails->drug_image)
+                                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom"
+                                                                data-bs-placement="top" class="avatar pull-up"
+                                                                title="صورة العلاج " style="list-style-type: none;">
+                                                                <img src="{{ asset('uploads/requests/' . $requestDetails->drug_image) }}"
+                                                                    alt="Avatar" class="rounded-circle">
+                                                            </li>
+                                                        @endif
+                                                        <strong>{{ $requestDetails->drug_title }}</strong>
+                                                    </td>
                                                     <td>{{ $requestDetails->quantity }}</td>
                                                     <td>
                                                         @if ($requestDetails->accept_alternative)
@@ -90,7 +100,20 @@
                                                                             @if ($requestDetails->id == $replyDetails->request_details_id)
                                                                                 <tr>
                                                                                     @if ($replyDetails->drug_price)
-                                                                                        <td>{{ $requestDetails->drug_title }}
+                                                                                        <td>
+                                                                                            @if ($requestDetails->drug_image)
+                                                                                                <li data-bs-toggle="tooltip"
+                                                                                                    data-popup="tooltip-custom"
+                                                                                                    data-bs-placement="top"
+                                                                                                    class="avatar pull-up"
+                                                                                                    title="صورة العلاج "
+                                                                                                    style="list-style-type: none;">
+                                                                                                    <img src="{{ asset('uploads/requests/' . $requestDetails->drug_image) }}"
+                                                                                                        alt="Avatar"
+                                                                                                        class="rounded-circle">
+                                                                                                </li>
+                                                                                            @endif
+                                                                                            <strong>{{ $requestDetails->drug_title }}</strong>
                                                                                         </td>
                                                                                         <td>{{ $requestDetails->quantity }}
                                                                                         </td>
@@ -100,7 +123,20 @@
                                                                                         <td>{{ $replyDetails->drug_price }}
                                                                                         </td>
                                                                                     @else
-                                                                                        <td>{{ $replyDetails->alt_drug_title }}
+                                                                                        <td>
+                                                                                            @if ($replyDetails->alt_drug_image)
+                                                                                                <li data-bs-toggle="tooltip"
+                                                                                                    data-popup="tooltip-custom"
+                                                                                                    data-bs-placement="top"
+                                                                                                    class="avatar pull-up"
+                                                                                                    title="صورة العلاج "
+                                                                                                    style="list-style-type: none;">
+                                                                                                    <img src="{{ asset('uploads/replies/' . $replyDetails->alt_drug_image) }}"
+                                                                                                        alt="Avatar"
+                                                                                                        class="rounded-circle">
+                                                                                                </li>
+                                                                                            @endif
+                                                                                            <strong>{{ $replyDetails->alt_drug_title }}</strong>
                                                                                         </td>
                                                                                         <td>{{ $requestDetails->quantity }}
                                                                                         </td>
@@ -151,12 +187,12 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
             state = "{{ \App\Utils\ReplyState::ACCEPTED }}";
 
         var url = "/client/reply-details/" + $(this).attr('data-id') + "/toggle/" + state;
-
+        var item = $(this);
         $.ajax({
             method: 'get',
             url: url,
             success: function(data) {
-                alert(data);
+                $(item.parents().eq(13).prev().children()[3]).html("$"+data);
             }
         });
     });

@@ -113,6 +113,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/user/payment/{id}/pay', [PaymentController::class, 'pay'])->name('user-payment-pay');
     Route::get('/user/payment/success/{info}', [PaymentController::class, 'success'])->name('user-payment-success');
+    Route::get('/user/payment/success/', [PaymentController::class, 'done'])->name('user-payment-done');
     Route::get('/user/payment/cancel/{cancel}', [PaymentController::class, 'cancel'])->name('user-payment-cancel');
 
 
@@ -138,6 +139,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/client/orders/create', [User\OrderController::class, 'create'])->name('client-orders-create');
         Route::post('/client/orders/store', [User\OrderController::class, 'store'])->name('client-orders-store');
         Route::get('/client/order/{id}/reject', [User\OrderController::class, 'reject'])->name('client-orders-reject');
+        Route::get('/client/order/{id}/delivered', [User\OrderController::class, 'delivered'])->name('client-orders-delivered');
         Route::get('/client/reply-details/{id}/toggle/{state}', [User\OrderController::class, 'toggleReplyDetails'])->name('client-reply-details-toggle');
     
 

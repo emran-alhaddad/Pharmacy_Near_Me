@@ -104,5 +104,96 @@
     </div>
     </div>
 
+<!-- addCompliant Modal -->
+    <div id="addCompliant" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"> اضافة شكوى</h5>
 
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    @error('error')
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
+                    @error('status')
+                        <div class="alert alert-success" role="alert">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
+                    <form action="{{ route('client-compliants-store') }}" method="POST" class="g-3">
+                        @csrf
+                        <input type="hidden" name="order" id="order" />
+                        <input type="hidden" name="pharmacy_id" id="pharmacy_id" />
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0"> المشتكى عليه </h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <div class="input-group mb-3">
+
+                                    <div class="dropdown col-12">
+                                        <select id="pharmacy" name="pharmacy" disabled
+                                            class=" rounded form-control">
+                                            @foreach ($pharmacies as $pharmacy)
+                                                <option value="{{ $pharmacy->user_id }}">
+                                                    {{ $pharmacy->user->name }}
+                                                </option>
+                                            @endforeach
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">نص الشكوى </h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <div class="input-group mb-3 rounded">
+                                    <textarea value="{{ old('message') }}" name="message"
+                                        class="form-control rounded @error('name') border-danger @enderror">
+
+                            </textarea>
+                                    @error('message')
+                                        <div class="invalid-feedback d-block">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                            <button class="btn-danger radius text-center p-2 col-12 mt-2" type="submit">
+                                ارسال الشكوى
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+    function reject(order, pharmacy) {
+        $('#order').val(order);
+        $('#pharmacy_id').val(pharmacy);
+        $('#pharmacy').val(pharmacy).change();
+    }
+</script>
 @stop

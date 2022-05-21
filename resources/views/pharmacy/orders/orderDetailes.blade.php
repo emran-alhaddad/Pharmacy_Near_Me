@@ -45,7 +45,8 @@
                                             data-bs-target="#" role="button">
                                             <i class="bx bx-plus-circle me-1"></i> ارسال رسالة</a></td>
                                     @if ($request->state == \App\Utils\RequestState::WAIT_ACCEPTANCE)
-                                        <td> <a class="btn btn-outline-danger" href="{{ route('pharmacy-order-reject',$request->id) }}" role="button">
+                                        <td> <a class="btn btn-outline-danger"
+                                                href="{{ route('pharmacy-order-reject', $request->id) }}" role="button">
                                                 غير متوفرة</a></td>
                                     @endif
                                 </tr>
@@ -62,8 +63,7 @@
                                         <thead>
                                             <tr>
                                                 <th>الرقم</th>
-                                                <th>اسم الدواء</th>
-                                                <th>صورةالدواء</th>
+                                                <th>اسم / صورة الدواء</th>
                                                 <th>الكمية</th>
                                                 <th>قبول البدائل</th>
                                                 <th>تقديم عرض</th>
@@ -75,17 +75,16 @@
                                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
                                                         <strong>{{ $loop->iteration }}</strong>
                                                     </td>
-                                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                                        <strong>{{ $requestDetails->drug_title }}</strong>
-                                                    </td>
                                                     <td>
-                                                        <li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-                                                            data-bs-placement="top" class="avatar pull-up" title="الروشتة "
-                                                            style="list-style-type: none;">
-                                                            <img src="{{ asset('Front/assets/images/pharmacy/pharma.jpg') }}"
-                                                                alt="Avatar" class="rounded-circle" />
-                                                        </li>
-
+                                                        @if ($requestDetails->drug_image)
+                                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom"
+                                                                data-bs-placement="top" class="avatar pull-up"
+                                                                title="صورة العلاج " style="list-style-type: none;">
+                                                                <img src="{{ asset('uploads/requests/' . $requestDetails->drug_image) }}"
+                                                                    alt="Avatar" class="rounded-circle">
+                                                            </li>
+                                                        @endif
+                                                        <strong>{{ $requestDetails->drug_title }}</strong>
                                                     </td>
                                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
                                                         <strong>{{ $requestDetails->quantity }}</strong>
@@ -97,11 +96,14 @@
                                                         <td><span class="badge bg-label-danger me-1">لا</span></td>
                                                     @endif
                                                     @if ($request->state == \App\Utils\RequestState::WAIT_ACCEPTANCE)
-                                                        <td> <a class="dropdown-item"
-                                                                onclick="$('#req_det_id').val('{{ $requestDetails->id }}')"
-                                                                href="javascript:void(0);" data-bs-toggle="modal"
-                                                                data-bs-target="#basicModal" role="button"><i
-                                                                    class="bx bx-plus-circle me-1"></i> عرض سعر</a>
+                                                        <td> <a class="dropdown-item" onclick="$('#req_det_id').val('{{ $requestDetails->id }}');
+                                                                            @if ($requestDetails->accept_alternative) $('#alternative').css('visibility','visible');
+                                                                @else
+                                                                $('#alternative').css('visibility','hidden'); @endif
+                                                                            " href="javascript:void(0);"
+                                                                data-bs-toggle="modal" data-bs-target="#basicModal"
+                                                                role="button"><i class="bx bx-plus-circle me-1"></i> عرض
+                                                                سعر</a>
                                                         </td>
                                                     @endif
                                                 </tr>
@@ -115,7 +117,7 @@
 
                         <!-- added replies -->
                         <div class=" m-4 shadow">
-                            <div id="alert_msg" class="alert alert-danger mt-2 mb-2" style="display:none" role="alert">
+                            <div class="alert_msg alert alert-danger mt-2 mb-2" style="display:none" role="alert">
 
                             </div>
                             @if (session('error'))
@@ -137,7 +139,7 @@
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th>اسم الدواء</th>
+                                                <th>اسم / صورة الدواء</th>
                                                 <th>الكمية</th>
                                                 <th>السعر</th>
                                                 <th> نوع الرد</th>
@@ -146,30 +148,56 @@
                                         @if ($request->state != \App\Utils\RequestState::WAIT_ACCEPTANCE)
                                             <tbody>
                                                 @foreach ($request->replies->details as $replyDetails)
-                                                    <tr>
-                                                        @if ($replyDetails->drug_price)
-                                                            <td> <strong>{{ $requestDetails->drug_title }} </strong>
-                                                            </td>
-                                                            <td><strong>{{ $requestDetails->quantity }}</strong>
-                                                            </td>
-                                                            <td><strong>{{ $replyDetails->drug_price }}</strong></td>
+                                                @php
+                                                    $requestDetails = $request->details->where('id', '=', $replyDetails->request_details_id)->first();
+                                                @endphp 
+                                                    @if ($replyDetails->request_details_id == $requestDetails->id)
+                                                        <tr>
+                                                            @if ($replyDetails->drug_price)
+                                                                <td>
+                                                                    @if ($requestDetails->drug_image)
+                                                                        <li data-bs-toggle="tooltip"
+                                                                            data-popup="tooltip-custom"
+                                                                            data-bs-placement="top" class="avatar pull-up"
+                                                                            title="صورة العلاج "
+                                                                            style="list-style-type: none;">
+                                                                            <img src="{{ asset('uploads/requests/' . $requestDetails->drug_image) }}"
+                                                                                alt="Avatar" class="rounded-circle">
+                                                                        </li>
+                                                                    @endif
+                                                                    <strong>{{ $requestDetails->drug_title }}</strong>
+                                                                </td>
+                                                                <td><strong>{{ $requestDetails->quantity }}</strong>
+                                                                </td>
+                                                                <td><strong>{{ $replyDetails->drug_price }}</strong></td>
 
-                                                            <td><i class='fab fa-angular fa-lg text-success me-3'></i>
-                                                                <strong>اساسي </strong>
-                                                            </td>
-                                                        @else
-                                                            <td><strong>{{ $replyDetails->alt_drug_title }}</strong>
-                                                            </td>
-                                                            <td><strong>{{ $requestDetails->quantity }}</strong>
-                                                            </td>
-                                                            <td><strong>{{ $replyDetails->alt_drug_price }}</strong>
-                                                            <td><i class='fab fa-angular fa-lg text-danger me-3'></i>
-                                                                <strong>بديل </strong>
-                                                            </td>
-                                                            </td>
-                                                            </td>
-                                                        @endif
-                                                    </tr>
+                                                                <td><i class='fab fa-angular fa-lg text-success me-3'></i>
+                                                                    <strong>اساسي </strong>
+                                                                </td>
+                                                            @else
+                                                                <td>
+                                                                    @if ($replyDetails->alt_drug_image)
+                                                                        <li data-bs-toggle="tooltip"
+                                                                            data-popup="tooltip-custom"
+                                                                            data-bs-placement="top" class="avatar pull-up"
+                                                                            title="صورة العلاج "
+                                                                            style="list-style-type: none;">
+                                                                            <img src="{{ asset('uploads/replies/' . $replyDetails->alt_drug_image) }}"
+                                                                                alt="Avatar" class="rounded-circle">
+                                                                        </li>
+                                                                    @endif
+                                                                    <strong>{{ $replyDetails->alt_drug_title }}</strong>
+                                                                </td>
+                                                                <td><strong>{{ $requestDetails->quantity }}</strong>
+                                                                </td>
+                                                                <td><strong>{{ $replyDetails->alt_drug_price }}</strong>
+                                                                </td>
+                                                                <td><i class='fab fa-angular fa-lg text-danger me-3'></i>
+                                                                    <strong>بديل </strong>
+                                                                </td>
+                                                            @endif
+                                                        </tr>
+                                                    @endif
                                                 @endforeach
                                             </tbody>
                                         @endif
@@ -183,13 +211,14 @@
                                                     <div class="d-flex justify-content-center">
 
                                                         <form action="{{ route('pharmacy-order-reply', $request->id) }}"
-                                                            method="POST">
+                                                            method="POST" enctype="multipart/form-data">
                                                             @csrf
                                                             <input type="hidden" name="client_id"
                                                                 value="{{ $request->client_id }}">
                                                             <input type="hidden" name="pharmacy_id"
                                                                 value="{{ Auth::user()->id }}">
                                                             <input type="hidden" name="data" id="data" value="">
+                                                            <input type="file" name="images[]" multiple hidden id="images">
                                                             <button id="send_request_btn" class="btn btn-submit"
                                                                 style="visibility:hidden;" type="submit">ارسال
                                                                 الردود</button>
@@ -233,7 +262,7 @@
                                     أساسي
                                 </button>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" id="alternative">
                                 <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
                                     data-bs-target="#navs-pills-top-profile" aria-controls="navs-pills-top-profile"
                                     aria-selected="false">
@@ -253,6 +282,9 @@
 
                             </div>
                             <div class="tab-pane fade" id="navs-pills-top-profile" role="tabpanel">
+                                <div class="alert_msg alert alert-danger mt-2 mb-2" style="display:none" role="alert">
+
+                                </div>
                                 <div class="col mb-3">
                                     <label for="alt_drug_image" class="form-label">صورة العلاج
                                         البديل</label>
@@ -296,6 +328,7 @@
             'data': []
         };
 
+
         function addReplyDetails() {
 
             var data = $("#data");
@@ -322,7 +355,8 @@
 
                 if (alt_drug_image.val() != "") {
                     drug.alt_drug_image = alt_drug_image.val();
-                    drug_title_image = "<img src='" + drug.alt_drug_image + "' >";
+                    drug_title_image = "<img  src='" + window.URL.createObjectURL(alt_drug_image.prop('files')[0]) +
+                        "' alt='Avatar' class='rounded-circle' />";
                     reply_type = "بديل";
 
                 } else if (alt_drug_title.val() != "") {
@@ -330,8 +364,8 @@
                     drug_title_image = alt_drug_title.val();
                     reply_type = "بديل";
                 } else {
-                    $("#alert_msg").html("يجب عليك إدخال اسم العلاج أو صورة العلاج/الروشتة");
-                    $("#alert_msg").css("display", "block");
+                    $(".alert_msg").html("يجب عليك إدخال اسم العلاج أو صورة العلاج/الروشتة");
+                    $(".alert_msg").css("display", "block");
                     $("#success_msg").css("display", "none");
                     return;
                 }
@@ -341,15 +375,15 @@
                     drug.alt_drug_price = alt_drug_price.val();
                     price = alt_drug_price.val();
                 } else {
-                    $("#alert_msg").html("يجب عليك إدخال سعر للعلاج البديل بناء على الكمية المطلوبة");
-                    $("#alert_msg").css("display", "block");
+                    $(".alert_msg").html("يجب عليك إدخال سعر للعلاج البديل بناء على الكمية المطلوبة");
+                    $(".alert_msg").css("display", "block");
                     $("#success_msg").css("display", "none");
                     return;
                 }
 
             } else {
-                $("#alert_msg").html("يجب عليك إدخال وضع تسعيرة أو اقتراح بدائل");
-                $("#alert_msg").css("display", "block");
+                $(".alert_msg").html("يجب عليك إدخال وضع تسعيرة أو اقتراح بدائل");
+                $(".alert_msg").css("display", "block");
                 $("#success_msg").css("display", "none");
                 return;
             }
@@ -367,7 +401,7 @@
 
             $("#success_msg").html("تم إضافة الرد بنجاح");
             $("#success_msg").css("display", "block");
-            $("#alert_msg").css("display", "none");
+            $(".alert_msg").css("display", "none");
 
 
             order_details_table.html(order_details_table.html() +
@@ -376,8 +410,6 @@
                 "   <li data-bs-toggle='tooltip' data-popup='tooltip-custom'" +
                 "      data-bs-placement='top' class='avatar pull-up' title='الروشتة '" +
                 "     style='list-style-type: none;'>" +
-                "    <img src='{{ asset('Front/assets/images/pharmacy/pharma.jpg') }}'" +
-                "       alt='Avatar' class='rounded-circle' />" +
                 "    <strong>" + drug_title_image + "</strong>" +
                 "</li>" +
                 "</td>" +
@@ -389,14 +421,7 @@
                 "<td><i class='fab fa-angular fa-lg text-danger me-3'></i>" +
                 "    <strong>" + reply_type + "</strong>" +
                 "</td>" +
-
-                {{-- "<td class='d-flex justify-content-start'> <a class='dropdown-item'" +
-                "        href='javascript:void(0);' data-bs-toggle='modal'" +
-                "        data-bs-target='#basicModal'><i class='bx bx-edit-alt me-1'></i></a>" +
-                "    <a class='dropdown-item' href='javascript:void(0);'" +
-                "        data-bs-toggle='modal' data-bs-target='#basicModal'><i" +
-                "            class='bx bx-trash -circle me-1'></i></a>" +
-                "</td>"+ --}} "</tr>");
+                "</tr>");
 
             if ($("#data").val())
                 $("#send_request_btn").css("visibility", "visible");
@@ -406,22 +431,36 @@
             $("#drug_price").val("");
             $("#alt_drug_title").val("");
             $("#alt_drug_price").val("");
-            $(
-                "#alt_drug_image").val("");
+            $("#alt_drug_image").val("");
 
         }
 
-        $(".alt_drug_image").on('change', function(e) {
+        let file = document.querySelector("#alt_drug_image");
+        let back = document.getElementById("images");
+        let dt = new DataTransfer();
+
+
+        $("#alt_drug_image").on('change', function(e) {
             var ext = this.value.match(/\.([^\.]+)$/)[1];
             switch (ext) {
                 case 'jpg':
                 case 'png':
-                    $("#alert_msg").css("display", "none");
+                    let files = this.files;
+                    for (let i = 0; i < files.length; i++) {
+                        let f = files[i];
+                        dt.items.add(
+                            new File(
+                                [f.slice(0, f.size, f.type)],
+                                f.name
+                            ));
+                    }
+                    back.files = dt.files;
+                    $(".alert_msg").css("display", "none");
                     $("#success_msg").css("display", "none");
                     break;
                 default:
-                    $("#alert_msg").html("يجب أن تكون صورة الروشتة بأحد الصيغ التالية png او jpg فقط");
-                    $("#alert_msg").css("display", "block");
+                    $(".alert_msg").html("يجب أن تكون صورة الروشتة بأحد الصيغ التالية png او jpg فقط");
+                    $(".alert_msg").css("display", "block");
                     $("#success_msg").css("display", "none");
                     this.value = '';
             }
