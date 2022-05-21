@@ -29,9 +29,9 @@
                     </div>
                 </span>
             </a>
-        <h5 class="my-3">{{ Auth::user()->name }}</h5>
+       {{--<h5 class="my-3">{{ Auth::user()->name }}</h5>
 
-        <h5 class="my-3">{{ $user->email }}</h5>
+        <h5 class="my-3">{{ $user->email }}</h5>--}} 
     </div>
 
     <div class="menu-inner-shadow"></div>
@@ -42,7 +42,7 @@
         </a>
         </li>
         <li class="menu-item">
-        <a href="{{ route('chat-user') }}" class="menu-link"><i class="bx bx-message-alt me-1"></i>
+        <a href="{{ route('inbox.index') }}" class="menu-link"><i class="bx bx-message-alt me-1"></i>
             <div data-i18n="Account">الرسائل</div>
         </a>
         </li>

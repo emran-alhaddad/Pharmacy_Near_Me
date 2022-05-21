@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="{{ asset('pharmacy/assets/css/demo.css')}}" />
     <link rel="stylesheet" href="{{ asset('pharmacy/assets/css/chat.css')}}" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <script src="{{ asset('pharmacy/assets/js/config.js')}}"></script>
 
     {{-- Front Style start --}}
@@ -351,6 +355,6 @@
     <!-- Page JS -->
     <script src="{{ asset('pharmacy/assets/js/pages-account-settings-account.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-   
+    @livewireScripts
   </body>
 </html>
