@@ -132,6 +132,7 @@ class interfacesController extends Controller
             $Notify -> licenseNotification($id);
             return redirect()->route('login')->with('status', '.تم ارسال الرخصة الى الادمن سيتم إرسال إشعار إلى بريدك الإلكتروني عند إكتمال العملية');
 
+            
         }
         return redirect()->route('login')->with('error', '!!حدث خطا');
     }
