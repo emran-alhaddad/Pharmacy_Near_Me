@@ -26,6 +26,9 @@ use PhpParser\Node\Expr\Cast\Object_;
 
 class PaymentController extends Controller
 {
+    /**
+     * The index function which is used for posting the data to the api
+     */
 
     public static function getProducts($id)
     {
@@ -72,7 +75,7 @@ class PaymentController extends Controller
 
                         $products[] = $product;
                     }
-            // ! The return value of the order_reference from the api is 0, So that our order data dosn't return back
+
             return array(
                 'order_reference' => $request->id,
                 'total_price' => $total_price,
@@ -85,9 +88,6 @@ class PaymentController extends Controller
             return redirect()->route('index')->with('error', 'حدث خطأ غير متوقع ' . $ex->getMessage());
         }
     }
-    /**
-     * The index function which is used for posting Our Order data to the api
-     */
 
     public function index($id)
     {
@@ -129,15 +129,12 @@ class PaymentController extends Controller
             ]
 
         ];
-        // return $data;
 
-        // connect To the server block start
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
             CURLOPT_URL => "https://waslpayment.com/api/test/merchant/payment_order",
             CURLOPT_RETURNTRANSFER => true,
-            // CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
             CURLOPT_TIMEOUT => 30000,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
@@ -153,13 +150,11 @@ class PaymentController extends Controller
         $response = curl_exec($curl);
         $err = curl_error($curl);
         curl_close($curl);
-        // connection To the server end
 
-        // error Case
         if ($err) {
             echo " Error #:" . $err;
         }
-        // TODO success Case => better make it function latter
+        // todo success Case => should make it function latter
         else {
 
             $response = json_decode($response, true);
@@ -267,8 +262,7 @@ class PaymentController extends Controller
 
 
     /**
-     * This function is used to show the cancel page with
-     * @param cancel
+     * This function is used to show the cancel page 
      */
     public function cancel()
     {
