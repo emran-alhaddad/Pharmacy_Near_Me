@@ -57,14 +57,13 @@ class SystemUtils extends UploadingUtils
     return SystemUtils::returnPath($request->image, $path);
   }
 
-  public static function addImages(request $request, $path)
+  public static function addImages(Request $request, $path)
   {
 
       $input=$request->all();
       $images=array();
       if($files=$request->file('images')){
           foreach($files as $file){
-              $name=$file->getClientOriginalName();
               $images[]= SystemUtils::returnPath($file, $path);
           }
       }

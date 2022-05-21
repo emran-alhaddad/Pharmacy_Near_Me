@@ -43,15 +43,9 @@
         integrity="sha384-+qdLaIRZfNu4cVPK/PxJJEy0B0f3Ugv8i482AKY7gwXwhaCroABd086ybrVKTa0q" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="{{ asset('shared/js/main.js') }}"></script>
+    <script src="{{ asset('shared/css/main.css') }}"></script>
 
-    <script>
-        $(function() {
-            $("img").on('click', function() {
-                $('#image_show').attr('src', $(this).attr('src'));
-                $('#show_image').modal('show');
-            });
-        });
-    </script>
     <style>
         html {
             /* direction:rtl; */
@@ -213,19 +207,8 @@
             }
         });
     </script>
-<<<<<<< HEAD
 
-=======
->>>>>>> main-backup
-
-    <!-- Show Image modal -->
-    <div class="modal fade" id="show_image" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" style="max-width:50vw; max-height:50vh">
-            <div class="modal-content">
-                <img src="" id="image_show" class="img-fluid" />
-            </div>
-        </div>
-    </div>
+    @include('shared.image-view')
 </body>
 
 </html>

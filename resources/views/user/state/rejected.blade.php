@@ -45,7 +45,7 @@
                                                                 data-bs-placement="top" class="avatar pull-up"
                                                                 title="صورة العلاج " style="list-style-type: none;">
                                                                 <img src="{{ asset('uploads/requests/' . $details->drug_image) }}"
-                                                                    alt="Avatar" class="rounded-circle">
+                                                                    alt="Avatar" class="rounded-circle image_show">
                                                             </li>
                                                         @endif
                                                         <strong>{{ $details->drug_title }}</strong>

@@ -33,7 +33,7 @@
     <section class="card">
         <div class="banner-area"></div>
         <div class=" radius search-area">
-            <img src="{{ asset('uploads/avaters/pharmacy/' . $pharmacy->avater) }}" class="radius"
+            <img src="{{ asset('uploads/avaters/pharmacy/' . $pharmacy->avater) }}" class="radius image_show"
                 alt="Pharmacy Logo">
         </div>
         <div class="card-body">
