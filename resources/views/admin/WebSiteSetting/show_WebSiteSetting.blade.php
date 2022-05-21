@@ -276,10 +276,10 @@
                                                         <input type="text"   name="facebook" value="{{$site->facebook}}" class="form-control" id="exampleInputName">
                                                 </div>
 
-                                                <div class="mb-3 col-6">
+                                                {{-- <div class="mb-3 col-6">
                                                         <label for="exampleInputLink" class="form-label"> <i class="fab fa-world fa-lg" style="color: red; padding: 0 10px 0 10px ;"></i>الموقع الالكتروني</label>
                                                         <input type="text"   name="website" value="{{$site->website}}" class="form-control" id="exampleInputName">
-                                                </div>
+                                                </div> --}}
                                         </div>
 
 

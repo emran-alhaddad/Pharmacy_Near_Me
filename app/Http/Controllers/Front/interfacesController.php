@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Utils\SystemUtils;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\Notify\NotificationsController;
 class interfacesController extends Controller
 {
 
@@ -128,7 +128,10 @@ class interfacesController extends Controller
         $affectedRows = Pharmacy::where('user_id', $id)->update(array('zone_id' => $request->zone));
         if ($affectedRows > 0) {
 
+            $Notify = new NotificationsController();
+            $Notify -> licenseNotification($id);
             return redirect()->route('login')->with('status', 'تم ارسال الرخصة الى الادمن سيتم إرسال إشعار إلى بريدك الإلكتروني عند إكتمال العملية');
+
         }
         return redirect()->route('login')->with('error', 'حدث خطا');
     }

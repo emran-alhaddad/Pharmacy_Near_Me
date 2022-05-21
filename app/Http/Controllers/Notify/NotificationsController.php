@@ -61,15 +61,15 @@ class NotificationsController extends Controller
 
         $user = User::find($complaint->client_id);
         $phar = User::find($complaint->pharmacy_id);
-      
+        
 
         $notifications = notifications::create([
-            'client_id'  =>$complaint->id,
-            'pharmacy_id'  => $complaint->pharmacy_id,
-            'message' => "تم اضافة شكوى جديدة",
-            'type' => 'complaint',
+            'sender_id'  =>$complaint->client_id,
+            'receiver_id'  => $complaint->id,
+            'message' => " شكوى جديدة",
+            'type' => 'complaint'
        
-            'link' => "hi.com",
+        
             ]);
         $data =[
 
@@ -116,6 +116,39 @@ class NotificationsController extends Controller
         $data = array('notifications' => $notifications, 'count' => $count);
 
         return $data;
+
+
+    }
+
+    public function licenseNotification($id_parmacy)
+    {  
+        $options = array(
+            'cluster' => env('PUSHER_APP_CLUSTER'),
+            'encrypted' => true
+        );
+        $pusher = new Pusher(
+            env('PUSHER_APP_KEY'),
+            env('PUSHER_APP_SECRET'),
+            env('PUSHER_APP_ID'),
+            $options
+        );
+        $notifications = new notifications();
+        $notifications = notifications::create([
+            'sender_id'  =>$id_parmacy,
+            'receiver_id'  =>$id_parmacy,
+            'message' => "رخصة جديدة",
+            'type' => 'license'
+       
+        
+            ]);
+      $phar = User::find($id_parmacy);
+      $data =[
+      'client_name'=>  'رخصة من ',
+      'pharmacy_name'=> $phar->name,
+      'message' => $notifications ->message,
+      'type'    => $notifications->type,
+      ];
+      $pusher->trigger('new_notification', 'App\\Events\\Notify',$data);
 
 
     }

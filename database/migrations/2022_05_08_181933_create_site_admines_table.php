@@ -30,7 +30,6 @@ return new class extends Migration
             $table->string('facebook');
             $table->string('twitter');
             $table->string('whatsup');
-            $table->string('website');
             $table->string('phone');
 
 

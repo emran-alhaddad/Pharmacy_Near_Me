@@ -244,7 +244,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/_admin/update/phar_license', [Admin\PharController::class, 'doUpdataLicense'])->name('_admin-phar_licenes');
         Route::post('/_admin/update/phar_email', [Admin\PharController::class, 'updateEmail'])->name('_admin-phar_email');
         Route::post('/_admin/update/check_email', [Admin\PharController::class, 'checkUpdateEmail'])->name('_admin-phar_check_email');
-
+        Route::get('/_admin/showPharsAlert/{id}', [Admin\PharController::class, 'showPharsAlert'])->name('admin-showPharsAlert');
 
 
         Route::get('/_admin/show_PaymentMethods', [Admin\PaymentMethodsCotroller::class, 'showPaymentMethods'])->name('admin-show_PaymentMethods');
