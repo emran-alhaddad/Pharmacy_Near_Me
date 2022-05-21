@@ -130,13 +130,11 @@ class PaymentController extends Controller
 
         ];
 
-        // return $data;
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
             CURLOPT_URL => "https://waslpayment.com/api/test/merchant/payment_order",
             CURLOPT_RETURNTRANSFER => true,
-            // CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
             CURLOPT_TIMEOUT => 30000,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
@@ -156,7 +154,7 @@ class PaymentController extends Controller
         if ($err) {
             echo " Error #:" . $err;
         }
-        // success Case => should make it function latter
+        // todo success Case => should make it function latter
         else {
 
             $response = json_decode($response, true);
@@ -264,8 +262,7 @@ class PaymentController extends Controller
 
 
     /**
-     * This function is used to show the cancel page with
-     * @param cancel
+     * This function is used to show the cancel page 
      */
     public function cancel()
     {
