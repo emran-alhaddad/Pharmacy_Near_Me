@@ -108,9 +108,9 @@ public function checkSocialMieda($request)
 
     $this->validationTwitter($request);
     }
-    if($request->filled('google'))
+    if($request->filled('email'))
     {
-        $this->validationGoogle($request);
+        $this->validationemail($request);
     }
 }
 public function validationFacebook($request)
@@ -138,15 +138,15 @@ $siteadmine->update(array('twitter' => $request->twitter));
 
 }
 
-public function validationGoogle($request)
+public function validationemail($request)
 {
 Validator::validate($request->all(),
-['google' => ['email'] ],
+['email' => ['email'] ],
 
-['google.email'=>'يجب ادخال رابط جوجل بطريقة صحيحة']
+['email.email'=>'يجب ادخال رابط جوجل بطريقة صحيحة']
 );
 $siteadmine=new SiteAdmine();
-$siteadmine->update(array('google' => $request->google));
+$siteadmine->update(array('email' => $request->email));
 
 }
 

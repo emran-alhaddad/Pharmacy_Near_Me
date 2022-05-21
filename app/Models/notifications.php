@@ -10,11 +10,10 @@ class notifications extends Model
     use HasFactory;
 
     protected $fillable = [
-        'client_id',
-        'pharmacy_id',
+        'sender_id',
+        'receiver_id',
         'message',
         'type',
-        'link',
     ];
 
     public function pharmacy()

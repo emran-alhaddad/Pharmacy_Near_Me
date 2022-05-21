@@ -67,6 +67,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @empty
                                         <div class="alert alert-danger" role="alert">
                                             لا يوجد صيدليات مطابقة للبحث
                                             </div>

@@ -40,6 +40,17 @@ class PharController extends Controller
         return view('admin.Phars.add_Phars')->with(['city'=>CitiesController::getCity(),'zone'=>ZonesController::getZone()]);
     }
 
+    public function showPharsAlert($id){
+      $phar = DB::table('pharmacies')
+      ->join('users', 'users.id', '=', 'pharmacies.user_id')
+      ->join('zones', 'zones.id', '=', 'pharmacies.zone_id')
+      ->join('cities', 'cities.id', '=', 'zones.city_id')
+      ->select('users.*', 'zones.name AS Zname','pharmacies.*' ,'cities.name AS Cname')
+      ->where('users.id',$id)
+      ->get();
+      return view('admin.Phars.show_Phars')->with('phars',$phar);
+    }
+
 
     public function activity($id,$state)
     {
