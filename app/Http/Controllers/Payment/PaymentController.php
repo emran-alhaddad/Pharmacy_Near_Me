@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\Register\RegisterController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\WalletController;
 use App\Models\Admin;
+use App\Models\Advertising;
 use App\Models\City;
 use App\Models\Order;
 use App\Models\OrderDetails;
@@ -58,7 +59,7 @@ class PaymentController extends Controller
                         if ($repDetails->drug_price) {
 
                             $product['id'] = $reqDetails->id;
-                            if ($reqDetails->drug_image) $product['drug_image'] = SystemUtils::REQUEST_IMAGE_PATH.$reqDetails->drug_image;
+                            if ($reqDetails->drug_image) $product['drug_image'] = SystemUtils::REQUEST_IMAGE_PATH . $reqDetails->drug_image;
                             if ($reqDetails->drug_title) $product['drug_title'] = $reqDetails->drug_title;
                             $product['drug_price'] = $repDetails->drug_price;
                             $total_price += ($repDetails->drug_price * $reqDetails->quantity);
@@ -66,7 +67,7 @@ class PaymentController extends Controller
 
                             $product['id'] = $repDetails->id;
                             if ($repDetails->alt_drug_title) $product['drug_title'] = $repDetails->alt_drug_title;
-                            if ($repDetails->alt_drug_image) $product['drug_image'] = SystemUtils::REPLY_IMAGE_PATH.$repDetails->alt_drug_image;
+                            if ($repDetails->alt_drug_image) $product['drug_image'] = SystemUtils::REPLY_IMAGE_PATH . $repDetails->alt_drug_image;
                             $product['drug_price'] = $repDetails->alt_drug_price;
                             $total_price += ($repDetails->alt_drug_price * $reqDetails->quantity);
                         } else
@@ -89,6 +90,47 @@ class PaymentController extends Controller
         }
     }
 
+    public static function getAdvertising($id)
+    {
+        try {
+
+            $ads = Advertising::with('owner')
+                ->where('id', $id)->first();
+
+            if (!$ads)
+                return redirect()->route('index')->with('error', 'بيانات غير صحيحة');
+
+
+            $total_products = 1;
+            $total_price = 0;
+            $products = [];
+            $product = [];
+            $product['id'] = $ads->id;
+            $product['quantity'] = 1;
+            if ($ads->price) {
+                $product['drug_price'] = $total_price = $ads->price;
+            }
+            if ($ads->descripe) $product['drug_title'] = $ads->descripe;
+            if ($ads->image) $product['drug_image'] = "ads/" . $ads->image;
+
+            $products[] = $product;
+
+
+            return array(
+                'order_reference' => $ads->id,
+                'total_price' => $total_price,
+                'total_products' => $total_products,
+                'client_id' => $ads->owner->id,
+                'pharmacy_id' => $ads->owner->id,
+                'products' => $products,
+                'is_advertising' => true,
+                'ads_owner' => $ads->owner
+            );
+        } catch (\Exception $ex) {
+            return redirect()->route('index')->with('error', 'حدث خطأ غير متوقع ' . $ex->getMessage());
+        }
+    }
+
     public function index($id)
     {
         return view('payment.payment', [
@@ -98,9 +140,21 @@ class PaymentController extends Controller
         ]);
     }
 
+    public function index2($id)
+    {
+        return view('payment.payment', [
+            'cities' => City::get(),
+            'zones' => zone::get(),
+            'request' => self::getAdvertising($id),
+        ]);
+    }
+
     public function pay(Request $request, $id)
     {
         $order = self::getProducts($id);
+        if ($request->has('is_advertising'))
+            $order = self::getAdvertising($id);
+
         $products = [];
         foreach ($order['products'] as $product) {
             if (!isset($product['drug_title'])) $product['drug_title'] = "Test";
@@ -111,21 +165,30 @@ class PaymentController extends Controller
                 "unit_amount" => $product['drug_price']
             );
         }
+        $success = "http://127.0.0.1:8000/user/payment/success";
+        $cancel = "http://127.0.0.1:8000/user/payment/cancel";
+        if($request->has('is_advertising') )
+        {
+            $success = "http://127.0.0.1:8000/user/payment/ads/success";
+            $cancel = "http://127.0.0.1:8000/user/payment/ads/cancel";
+        }
+
         $data = [
             "order_reference" => $order['order_reference'],
             "products" => $products,
             "currency" => "YER",
             "total_amount" => $order['total_price'],
-            "success_url" => "http://127.0.0.1:8000/user/payment/success",
-            "cancel_url" => "http://127.0.0.1:8000/user/payment/cancel",
+            "success_url" => $success,
+            "cancel_url" => $cancel,
             "metadata" => [
                 "name" => $request->name,
                 "email" => $request->email,
-                "address" => $request->address,
-                "city" => $request->city,
-                "zone" => $request->zone,
+                "address" => $request->address ? $request->address : "",
+                "city" => $request->city ? $request->city : "",
+                "zone" => $request->zone ? $request->zone : "",
                 "client_id" => $order['client_id'],
                 "pharmacy_id" => $order['pharmacy_id'],
+                "is_advertising" => $request->has('is_advertising') ? true : false
             ]
 
         ];
@@ -184,10 +247,40 @@ class PaymentController extends Controller
             $pharmacy_id = $client_info['pharmacy_id'];
 
 
+            if (isset($client_info['is_advertising']) && $client_info['is_advertising']) {
+
+                $reciver = User::find(Admin::first()->user_id);
+                // Create Wallet To User with the name of the wasel bank
+                RegisterController::createWallet($reciver);
+                $reciver->wallet->name = $card_type;
+
+                // Deposite the mony to reciver wallet andn notify him
+                $reciver->deposit(floatval($paid_amount));
+                WalletController::notifyDeposit(
+                    $reciver,
+                    WalletController::depositMessage($card_holder, $reciver, floatval($paid_amount))['reciver_message']
+                );
+
+                $adds = Advertising::find($order_reference)->first();
+                $adds->is_active = 1;
+                $adds->update();
+
+                return view('payment.successPay', [
+                    'client' => $client_info,
+                    'pharmacy' => $client_info,
+                    'order_reference' => $order_reference,
+                    'products' => $products,
+                    'paid_amount' => $paid_amount,
+                    'created_at' => Carbon::parse($created_at)->diffForHumans(),
+                    'is_advertising' => true
+                ]);
+            }
+
             // get users Info
             $sender = Auth::user();
             $reciver = User::find(Admin::first()->user_id);
             $target_user = User::find($pharmacy_id);
+
 
 
             // Insert Order To DataBase

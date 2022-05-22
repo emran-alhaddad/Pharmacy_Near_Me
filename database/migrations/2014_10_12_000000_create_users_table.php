@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('avater')->default('avater.png');
             $table->integer('is_active')->default(0);
-            $table->rememberToken()->nullable();;
+            $table->rememberToken()->nullable();
             $table->timestamps();
         });
     }

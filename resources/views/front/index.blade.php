@@ -8,13 +8,12 @@
         <div class="container">
             <div class="row">
                 <div class="mx-auto col-lg-9 col-xl-9 col-md-10">
-                @foreach($infoSite as $infoSites)
-                    <div class="text-center hero-content">
-                        <h1 class="mb-30 wow fadeInUp" data-wow-delay=".2s">{{$infoSites->address_main}} </h1>
-                        <p class="wow fadeInUp" data-wow-delay=".4s"> {{$infoSites->descripe_main}}  </p><br>
-                    </div>
-                    {{-- <img class="img-fluid" src="{{ asset('Front/assets/images/1.png') }}"> --}}
-
+                    @foreach ($infoSite as $infoSites)
+                        <div class="text-center hero-content">
+                            <h1 class="mb-30 wow fadeInUp" data-wow-delay=".2s">{{ $infoSites->address_main }} </h1>
+                            <p class="wow fadeInUp" data-wow-delay=".4s"> {{ $infoSites->descripe_main }} </p><br>
+                        </div>
+                        {{-- <img class="img-fluid" src="{{ asset('Front/assets/images/1.png') }}"> --}}
                     @endforeach
                 </div>
             </div>
@@ -99,82 +98,80 @@
 
             <div class="row justify-content-center">
 
-            @foreach($services as $service)
-
-                <div class="col-lg-4 col-md-6 col-sm-8 col-11">
-                    <div class="single-service d-flex justify-content-between shadow">
-                        <div class="icon">
-                            <i class="lni lni-gift"></i>
-                            <!-- <img src="{{asset("/uploads/service/$service->image")}}"  alt=""> -->
-                        </div>
-                        <div class="service-content">
-                            <h3>{{$service->title}} </h3>
-                            <p> {{$service->descripe}}</p>
+                @foreach ($services as $service)
+                    <div class="col-lg-4 col-md-6 col-sm-8 col-11">
+                        <div class="single-service d-flex justify-content-between shadow">
+                            <div class="icon">
+                                <i class="lni lni-gift"></i>
+                                <!-- <img src="{{ asset("/uploads/service/$service->image") }}"  alt=""> -->
+                            </div>
+                            <div class="service-content">
+                                <h3>{{ $service->title }} </h3>
+                                <p> {{ $service->descripe }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-            @endforeach
+                @endforeach
 
                 <!-- <div class="col-lg-4 col-md-6 col-sm-8 col-11">
-                    <div class="single-service d-flex justify-content-between shadow">
-                        <div class="icon">
-                            <i class="lni lni-gift"></i>
+                        <div class="single-service d-flex justify-content-between shadow">
+                            <div class="icon">
+                                <i class="lni lni-gift"></i>
+                            </div>
+                            <div class="service-content">
+                                <h3>الحصول على علاجك بسرعه </h3>
+                                <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
+                            </div>
                         </div>
-                        <div class="service-content">
-                            <h3>الحصول على علاجك بسرعه </h3>
-                            <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
-                        </div>
-                    </div>
-                </div> -->
+                    </div> -->
 
                 <!-- <div class="col-lg-4 col-md-6 col-sm-8 col-11">
-                    <div class="single-service d-flex justify-content-between shadow">
-                        <div class="icon">
-                            <i class="lni lni-gift"></i>
+                        <div class="single-service d-flex justify-content-between shadow">
+                            <div class="icon">
+                                <i class="lni lni-gift"></i>
+                            </div>
+                            <div class="service-content">
+                                <h3>الحصول على علاجك بسرعه </h3>
+                                <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
+                            </div>
                         </div>
-                        <div class="service-content">
-                            <h3>الحصول على علاجك بسرعه </h3>
-                            <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
-                        </div>
-                    </div>
-                </div> -->
+                    </div> -->
 
                 <!-- <div class="col-lg-4 col-md-6 col-sm-8 col-11">
-                    <div class="single-service d-flex justify-content-between shadow">
-                        <div class="icon">
-                            <i class="lni lni-gift"></i>
+                        <div class="single-service d-flex justify-content-between shadow">
+                            <div class="icon">
+                                <i class="lni lni-gift"></i>
+                            </div>
+                            <div class="service-content">
+                                <h3>الحصول على علاجك بسرعه </h3>
+                                <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
+                            </div>
                         </div>
-                        <div class="service-content">
-                            <h3>الحصول على علاجك بسرعه </h3>
-                            <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
-                        </div>
-                    </div>
-                </div> -->
+                    </div> -->
 
                 <!-- <div class="col-lg-4 col-md-6 col-sm-8 col-11">
-                    <div class="single-service d-flex justify-content-between shadow">
-                        <div class="icon">
-                            <i class="lni lni-gift"></i>
+                        <div class="single-service d-flex justify-content-between shadow">
+                            <div class="icon">
+                                <i class="lni lni-gift"></i>
+                            </div>
+                            <div class="service-content">
+                                <h3>الحصول على علاجك بسرعه </h3>
+                                <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
+                            </div>
                         </div>
-                        <div class="service-content">
-                            <h3>الحصول على علاجك بسرعه </h3>
-                            <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
-                        </div>
-                    </div>
-                </div> -->
+                    </div> -->
 
                 <!-- <div class="col-lg-4 col-md-6 col-sm-8 col-11">
-                    <div class="single-service d-flex justify-content-between shadow">
-                        <div class="icon">
-                            <i class="lni lni-gift"></i>
+                        <div class="single-service d-flex justify-content-between shadow">
+                            <div class="icon">
+                                <i class="lni lni-gift"></i>
+                            </div>
+                            <div class="service-content">
+                                <h3>الحصول على علاجك بسرعه </h3>
+                                <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
+                            </div>
                         </div>
-                        <div class="service-content">
-                            <h3>الحصول على علاجك بسرعه </h3>
-                            <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
-                        </div>
-                    </div>
-                </div> -->
+                    </div> -->
             </div>
         </div>
     </section>
@@ -198,24 +195,31 @@
                         <h5 class="heading p-3" style="font-size: 1.6rem;">قدم طلب لنشر اعلانك في المنصة
                         </h5>
                     </div>
-                    <form action="">
+                    <form action="{{ route('add-advertising-request') }}" method="POST">
+                        @csrf
                         <div class="p-3">
                             <div class="input-group mb-3">
                                 <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
                                         class="bi bi-person-plus-fill text-white"></i></span>
-                                <input type="text" class="form-control rounded" placeholder="الإسم الرباعي">
+                                <input type="text" name="name" class="form-control rounded" placeholder="الإسم الرباعي">
                             </div>
                             <div class="input-group mb-3 rounded">
                                 <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
                                         class="bi bi-envelope-fill text-white align-content-end"></i></span>
-                                <input type="email" class=" rounded form-control" style="text-align:right"
+                                <input type="email" value="{{ old('email') }}" name="email" style="text-align:right"
+                                    class=" rounded form-control @error('email') border-danger @enderror"
                                     placeholder="البريدالالكتروني">
+                                @error('email')
+                                    <div class="invalid-feedback d-block">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="input-group mb-3 rounded">
                                 <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
                                         class="bi bi-telephone-fill text-white align-content-end"></i></span>
-                                <input type="email" class=" rounded form-control" style="text-align:right"
+                                <input type="tel" name="phone" class=" rounded form-control" style="text-align:right"
                                     placeholder="رقم الهاتف ">
                             </div>
 

@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('descripe')->nullable();;
             $table->string('url')->nullable();;
             $table->string('image')->nullable();;
-          
             $table->tinyInteger('position');
             $table->datetime('startAt');
             $table->datetime('endAt');
+            $table->double('price')->nullable();
             $table->integer('is_active')->default(0);
             $table->timestamps();
 
