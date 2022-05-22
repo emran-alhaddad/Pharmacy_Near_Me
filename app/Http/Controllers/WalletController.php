@@ -86,20 +86,13 @@ class WalletController extends Controller
     {
         try {
 
-            if ($from->balance <= 0) return "Low Cash"; //return back()->with('error','النقدية منخفضة');
-            $list_products = "";
+            if ($from->balance <= 0) return back()->with('error', 'النقدية منخفضة');
             if ($tax != 0) {
-                $amount = $amount - $amount * $tax;
-                $list_products .= "وذلك مقابل الطلبية التالية";
-                $list_products .= " <br> <ol>";
-                foreach ($products as $product) {
-                    $list_products .= "<li>" . $product['drug_title'] . " : " . $product['quantity'] . " -------- " . $product['drug_price'] . "<li>";
-                }
-                $list_products .= "</ol>";
+                $amount = $amount - ($amount * $tax);
             }
 
-            $from->transfer($to, $amount, array('message' => $list_products, 'target_user' => $target_user));
-            $transfer_msg = self::transferMessages($from, $to, $amount, $list_products);
+            $from->transfer($to, $amount, array('data' => self::formateData($products, $amount), 'target_user' => $target_user));
+            $transfer_msg = self::transferMessages($from, $to, $amount, $products);
             self::notifyTransfer($from, $transfer_msg['sender_message']);
             self::notifyTransfer($to, $transfer_msg['reciver_message']);
             $from->wallet->refreshBalance();
@@ -130,21 +123,47 @@ class WalletController extends Controller
     }
 
 
-    public static function transferMessages($sender, $reciver, $amount, $products = "")
+    public static function transferMessages($sender, $reciver, $amount, $products = [])
     {
         return [
             'sender_message' =>
-            ' تم تحويل ' . $amount . ' $ من حسابك إلى حساب ' . $reciver->name . " رصيدك " . $sender->balance  . "$" . $products,
+            ' تم تحويل ' . $amount . ' $ من حسابك إلى حساب ' . $reciver->name . " رصيدك " . $sender->balance  . "$" . self::formateData($products, $amount),
             'reciver_message' =>
-            'أودع/ ' . $sender->name . '<br> لحسابك ' . $amount . "$  رصيدك " . $reciver->balance . "$" . $products  
+            'أودع/ ' . $sender->name . '<br> لحسابك ' . $amount . "$  رصيدك " . $reciver->balance . "$" . self::formateData($products, $amount)
         ];
     }
 
-    public static function depositMessage($sender, $reciver, $amount)
+    public static function depositMessage($sender, $reciver, $amount, $data = [])
     {
+
         return [
             'reciver_message' =>
-            'أودع/ ' . $sender . '<br> لحسابك ' . $amount . "$  رصيدك " . $reciver->balance . "$"
+            'أودع/ ' . $sender . '<br> لحسابك ' . $amount . "$  رصيدك " .
+                $reciver->balance . "$"  . self::formateData($data, $amount)
         ];
+    }
+
+    public static function formateData($data, $amount)
+    {
+        try {
+            $products = "";
+            foreach ($data as $product) {
+                $products .= "<tr>";
+                if (isset($product['product_name'])) $products .= "<td>" . $product['product_name'] . "</td>";
+                if (isset($product['quantity'])) $products .= "<td>" . $product['quantity'] . "</td>";
+                if (isset($product['unit_amount'])) $products .= "<td>" . $product['unit_amount'] . "</td>";
+                $products .= "</tr>";
+
+                if (end($data) == $product)
+                    $products .= "<tr> <td colspan='10'>" . $amount . " </td></tr>";
+            }
+
+            if ($products != "")
+                $products = "<br><br> وذلك مقابل <br> <table>" . $products . "</table>";
+
+            return $products;
+        } catch (\Throwable $th) {
+            dd($th);
+        }
     }
 }

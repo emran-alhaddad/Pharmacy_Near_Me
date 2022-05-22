@@ -19,7 +19,20 @@ class AdminsSeeder extends Seeder
     public function run()
     {
 
-            $user = new User();
+        $user = new User();
+        $user->name = "عمران الحداد";
+        $user->email = 'alhaddademran@gmail.com';
+        $user->password = Hash::make('admin');
+        $user->email_verified_at = Carbon::now()->timestamp;
+        $user->is_active = 1;
+        if ($user->save()) {
+            $user->attachRole('admin');
+            Admin::create([
+                'user_id' => $user->id,
+            ]);
+        }
+
+        $user = new User();
             $user->name = "عمران الحداد";
             $user->email = 'admin@gmail.com';
             $user->password = Hash::make('admin');

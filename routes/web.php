@@ -96,6 +96,8 @@ Route::get('auth/verify_email/{token}', [CustomAuth\VerifyEmailController::class
 Route::post('advertisings/add', [Front\interfacesController::class, 'addAdvertisingRequest'])->name('add-advertising-request');
 Route::get('advertisings/create/{token}', [Front\interfacesController::class, 'createAdvertisingRequest']);
 Route::post('advertisings/store', [Front\interfacesController::class, 'storeAdvertisingRequest'])->name('store-advertising-request');
+
+// Payment Of Adds
 Route::get('/user/payment/ads/{id}', [PaymentController::class, 'index2'])->name('user-payment-ads');
 Route::post('/user/payment/ads/{id}/pay', [PaymentController::class, 'pay'])->name('user-payment-ads-pay');
 Route::get('/user/payment/ads/success/{info}', [PaymentController::class, 'success'])->name('user-payment-ads-success');
@@ -113,9 +115,7 @@ Route::get('/transfer/{sender}/{reciver}/{amount}', function ($id1, $id2, $amoun
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/pharmacy/{id}/add-order', [Front\interfacesController::class, 'add_order'])->name('add-order');
-
     Route::get('/user/payment/{id}', [PaymentController::class, 'index'])->name('user-payment');
-
     Route::post('/user/payment/{id}/pay', [PaymentController::class, 'pay'])->name('user-payment-pay');
     Route::get('/user/payment/success/{info}', [PaymentController::class, 'success'])->name('user-payment-success');
     Route::get('/user/payment/cancel/{cancel}', [PaymentController::class, 'cancel'])->name('user-payment-cancel');

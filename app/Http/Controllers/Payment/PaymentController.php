@@ -13,10 +13,12 @@ use App\Models\OrderDetails;
 use App\Models\OrderPayment;
 use App\Models\Payment;
 use App\Models\Pharmacy;
+use App\Models\Reply;
 use App\Models\zone;
 use Illuminate\Http\Request;
 use App\Models\Request as OrderRequest;
 use App\Models\User;
+use App\Utils\DeleveryState;
 use App\Utils\ReplyState;
 use App\Utils\RequestState;
 use App\Utils\SystemUtils;
@@ -41,8 +43,8 @@ class PaymentController extends Controller
             if (!$request)
                 return redirect()->route('index')->with('error', 'طلبيتك غير موجودة');
 
-            if ($request->state != RequestState::ACCEPTED)
-                return redirect()->route('index')->with('error', 'طلبية غير صالحة للدفع');
+            // if ( in_array($request->state, [RequestState::ACCEPTED , RequestState::ACCEPTED)
+            //     return redirect()->route('index')->with('error', 'طلبية غير صالحة للدفع');
 
 
             $total_products = $request->replies->details->where('state', 1)->count();
@@ -167,8 +169,7 @@ class PaymentController extends Controller
         }
         $success = "http://127.0.0.1:8000/user/payment/success";
         $cancel = "http://127.0.0.1:8000/user/payment/cancel";
-        if($request->has('is_advertising') )
-        {
+        if ($request->has('is_advertising')) {
             $success = "http://127.0.0.1:8000/user/payment/ads/success";
             $cancel = "http://127.0.0.1:8000/user/payment/ads/cancel";
         }
@@ -196,7 +197,7 @@ class PaymentController extends Controller
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://waslpayment.com/api/test/merchant/payment_order",
+            CURLOPT_URL => "https://waslpayment.com/api/v1/merchant/payment_order",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_MAXREDIRS => 10,
             CURLOPT_TIMEOUT => 30000,
@@ -255,10 +256,11 @@ class PaymentController extends Controller
                 $reciver->wallet->name = $card_type;
 
                 // Deposite the mony to reciver wallet andn notify him
-                $reciver->deposit(floatval($paid_amount));
+                $reciver->deposit(floatval($paid_amount), ['meta' => $products]);
                 WalletController::notifyDeposit(
                     $reciver,
-                    WalletController::depositMessage($card_holder, $reciver, floatval($paid_amount))['reciver_message']
+                    WalletController::depositMessage($card_holder, $reciver, floatval($paid_amount))['reciver_message'],
+                    $products
                 );
 
                 $adds = Advertising::find($order_reference)->first();
@@ -329,7 +331,8 @@ class PaymentController extends Controller
             $sender->deposit(floatval($paid_amount));
             WalletController::notifyDeposit(
                 $sender,
-                WalletController::depositMessage($card_holder, $sender, floatval($paid_amount))['reciver_message']
+                WalletController::depositMessage($card_holder, $sender, floatval($paid_amount))['reciver_message'],
+                $products
             );
 
             // Make Payment from client to admin 
@@ -349,6 +352,44 @@ class PaymentController extends Controller
         } catch (\Exception $ex) {
             // return redirect()->route('index')->with('error', 'حصلت مشكلة غير متوقعة عند اكتمال الدفع من الموقع' . $ex->getMessage());
             return $ex;
+        }
+    }
+
+
+    public function completePay($id)
+    {
+        try {
+            $order = OrderRequest::where('id', $id)->first();
+            $reply = Reply::where('request_id', $id)->first();
+            $order_paid = Order::where('order_reference', $id)->first();
+            $order_payment = OrderPayment::where('order_id', $order_paid->id)->first();
+
+            $sender = User::where('id',$order_paid->admin_id)->first();
+            $reciever = User::where('id',$order_paid->pharmacy_id)->first();
+            $data = self::getProducts($id);
+            // Make Payment from admin to pharmacy
+            $paied = WalletController::pay($sender, $reciever, 
+            floatval($data['total_price']), $order_payment->client_id, 0.10, 
+            $data['products']);
+
+            if($paied)
+            {
+                $reply->state = ReplyState::ACCEPTED;
+                $order->state = RequestState::FINISHED;
+                $reply->update();
+                $order->update();
+    
+                $order_paid->rejected = 0;
+                $order_paid->update();
+    
+                $order_payment->delivery_state = DeleveryState::DELIVERED;
+                $order_payment->update();
+                return true;
+            }
+            else
+            return false;
+        } catch (\Exception $ex) {
+            return redirect()->route('index')->with('error', 'حصلت مشكلة غير متوقعة عند اكتمال الدفع من الموقع' . $ex->getMessage());
         }
     }
 

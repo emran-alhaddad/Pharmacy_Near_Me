@@ -4,26 +4,21 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Payment\PaymentController;
-use App\Models\City;
 use App\Models\Order;
 use App\Models\OrderPayment;
-use App\Models\Payment;
 use App\Models\Pharmacy;
 use App\Models\Reply;
 use App\Models\Reply_Details;
 use App\Models\Request_Details;
 use App\Models\User;
 use App\Models\Request as OrderRequest;
-use App\Models\zone;
 use App\Utils\DeleveryState;
 use App\Utils\ReplyState;
 use App\Utils\RequestState;
 use App\Utils\SystemUtils;
-use App\Utils\UploadingUtils;
-use App\Utils\UserUtils;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+
 
 class OrderController extends Controller
 {
@@ -97,7 +92,6 @@ class OrderController extends Controller
         return redirect()->route('client-orders')->with('status', 'تم إرسال الطلبية الى الصيدلية بنجاح');
     }
 
-
     public function reject($id, $msg = "")
     {
         $order = OrderRequest::where('id', $id)->first();
@@ -123,23 +117,10 @@ class OrderController extends Controller
 
     public function delivered($id)
     {
-        $order = OrderRequest::where('id', $id)->first();
-        $reply = Reply::where('request_id', $id)->first();
-        $reply->state = ReplyState::ACCEPTED;
-        $order->state = RequestState::FINISHED;
-        $reply->update();
-        $order->update();
-
-        $order_paid = Order::where('order_reference', $id)->first();
-        $order_paid->rejected = 0;
-        $order_paid->update();
-
-        $order_payment = OrderPayment::where('order_id', $order_paid->id)->first();
-        $order_payment->delivery_state = DeleveryState::DELIVERED;
-        $order_payment->update();
-
-
+        $payment = new PaymentController();
+        if($payment->completePay($id))
         return back()->with('status', 'لقد تم تأكيد وصول الطلبية ' . $id  . ' بنجاح');
+        return back()->with('error', 'لم يتم تأكيد وصول الطلبية ' . $id );
     }
 
     public function toggleReplyDetails($id, $state)

@@ -19,8 +19,23 @@ class ClientsSeeder extends Seeder
      */
     public function run()
 
-    {    $user = new User();
-        $user->name = " اسامة مجفوظ";
+    {    
+        
+        $user = new User();
+        $user->name = " اسامة محفوظ";
+        $user->email = 'alwafy0516@gmail.com';
+        $user->password = Hash::make('client');
+        $user->email_verified_at = Carbon::now()->timestamp;
+        $user->is_active = 1;
+        if ($user->save()) {
+            $user->attachRole('client');
+            Client::create([
+                'user_id' => $user->id
+            ]); 
+        }
+
+        $user = new User();
+        $user->name = " اسامة الوافي";
         $user->email = 'client@gmail.com';
         $user->password = Hash::make('client');
         $user->email_verified_at = Carbon::now()->timestamp;
@@ -31,6 +46,8 @@ class ClientsSeeder extends Seeder
                 'user_id' => $user->id
             ]); 
         }
+
+        
         
         
         $filePathName=base_path().'\names\users.txt';

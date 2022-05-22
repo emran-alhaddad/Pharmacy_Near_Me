@@ -17,7 +17,7 @@ class CompliantsSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 22; $i <= 27; $i++) {
+        for ($i = 23; $i <= 28; $i++) {
             for ($j = 1; $j <= 10; $j++) {
 
                 $complaint = new Complaint();

@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Request as OrderRequest;
 use Carbon\Carbon;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -18,12 +17,12 @@ class RequestsSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 22; $i <= 27; $i++) {
+        for ($i = 23; $i <= 28; $i++) {
 
             for ($j = 0; $j < 10; $j++) {
                 $order_request = new OrderRequest();
                 $order_request->client_id = $i;
-                $order_request->pharmacy_id = $i - 21;
+                $order_request->pharmacy_id = $i - 22;
                 if ($order_request->save()) {
                     for ($k = 1; $k < 3; $k++) {
                         DB::table('request__details')->insert([
