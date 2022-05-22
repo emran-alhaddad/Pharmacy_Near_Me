@@ -55,11 +55,12 @@ class interfacesController extends Controller
     public function pharmacy($search = null)
     {
         $pharmacies =  !$search ? QueryController::pharmacies()->paginate(4) : $search;
-
+        $ads=DB::table('advertisings')->get();
         return view('front.pharmacies', [
             'pharmacies' => $pharmacies,
             'cities' => City::get(),
-            'zones' => zone::get()
+            'zones' => zone::get(),
+            'ads'  =>   $ads
         ]);
     }
 

@@ -29,7 +29,7 @@
                             <th> على من الشكوى </th>
                             <th>تاريخ تقديم الشكوى</th>
                             <th>محتوى الشكوى</th>
-                            
+
                             <th>العمليات</th>
                         </tr>
                     </thead>
@@ -43,19 +43,19 @@
                             <td>{{$com->pharmacy->user->name}}</td>
                             <td> {{$com->created_at}}</td>
                             <td>{{$com->message}}</td>
-                        
+
                             {{-- <td>
                                 <button class="btn btn-success text-white" >مفعل</button>
                             </td> --}}
 
                             <td>
                                 @if ($com->replay==null)
-                                <a href={{route('admin-add_Complaints',['id'=>$com->id])}}>  <button class="btn btn-primary text-white" >رد على الشكوى</button></a>
+                                <a href={{route('admin-add_Complaints',['id'=>$com->id])}}>  <button class="btn badge btn-primary text-white" >رد على الشكوى</button></a>
                                 @else
 
 
 
-                                <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal{{$com->id}}">عرض الرد</button>
+                                <button class="btn badge btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal{{$com->id}}">عرض الرد</button>
                                 @endif
                                 <div class="modal"  id="exampleModal{{$com->id}}"  tabindex="-1">
                                         <div class="modal-dialog">

@@ -49,7 +49,7 @@
                     </div>
                 @endif
 
-                <div class="card shadow col-12 p-3">
+                <!-- <div class="card shadow col-12 p-3">
                     <div class="container">
                         <div class="d-flex justify-content-between">
                             <a class="navbar-brand col-6 my-3" href="{{ route('index') }}">
@@ -114,12 +114,12 @@
 
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
     </section>
 
 
-    {{-- <!--====== SEARCH PART START ======-->
+    <!--====== SEARCH PART START ======-->
     @include('includes.FrontSearch')
     <!--====== SEARCH PART END ======-->
 
@@ -134,7 +134,7 @@
                         @foreach($infoSite as $infoSites)
                             <span class="wow fadeInDown heading" data-wow-delay=".2s">ماذا نقدم </span>
                             <h2 class="wow fadeInUp" data-wow-delay=".4s">{{$infoSites->title_about}} </h2>
-                            <p class="wow fadeInUp" data-wow-delay=".6s"> {{$infoSites->descripe_about}}  </p>
+                            <p class="wow fadeInUp" data-wow-delay=".6s"> {!! $infoSites->descripe_about !!}  </p>
                         </div>
                         <div class="about-tab wow fadeInUp" data-wow-delay=".4s">
                             <!-- Nav Tab  -->
@@ -151,7 +151,7 @@
                                 <!-- Tab 1 -->
                                 <div class="tab-pane fade show active shadow  p-3" id="t-tab1" role="tabpanel">
                                     <div class="tab-content">
-                                        <p>{{$infoSites->descripe_ser_client}} </p>
+                                        <p>{!! $infoSites->descripe_ser_client !!}</p>
                                         <ul>
                                             <li><i class="lni lni-checkmark-circle"></i>البحث عن تصفح الصيدليات في الموقع
                                             </li>
@@ -164,7 +164,7 @@
                                 <!-- Tab 2 -->
                                 <div class="tab-pane fade shadow  p-3" id="t-tab2" role="tabpanel">
                                     <div class="tab-content">
-                                        <p>{{$infoSites->descripe_ser_phar}}  </p>
+                                        <p>{!! $infoSites->descripe_ser_phar !!}  </p>
 
                                     </div>
                                 </div>
@@ -172,7 +172,7 @@
                                 <!-- Tab 3 -->
                                 <div class="tab-pane fade shadow p-3" id="t-tab3" role="tabpanel">
                                     <div class="tab-content">
-                                       <p>{{$infoSites->descripe_ser_user}} </p>
+                                        <p>{!! $infoSites->descripe_ser_user !!} </p>
                                         <ul>
                                             <li><i class="lni lni-checkmark-circle"></i>البحث عن تصفح الصيدليات في الموقع
                                             </li>
@@ -198,7 +198,7 @@
             </div>
         </div>
     </section>
-    <!-- /End About Us Area --> --}}
+    <!-- /End About Us Area -->
 
 
 @stop
