@@ -34,9 +34,9 @@
 
     </style>
 
-    <section class="my-5 d-flex justify-content-center p-4">
+    <section class="my-5 d-flex justify-content-center">
 
-        <div class="card my-5 p-2 d-flex justify-content-center shadow radius">
+        <div class="card p-5 my-5 d-flex justify-content-center shadow radius">
             <div id="alert-error" class="alert alert-danger mt-2 mb-2" style="display:none" role="alert">
 
             </div>
@@ -65,8 +65,8 @@
                 <label for="request-image" class="form-label text-center w-100"
                     style="background-color: #f8f8f8; border: 1px solid #01497c; cursor:pointer">
                     <img id="request-image-preview" data-src="{{ asset('admin/img/work/plus.jpg') }}"
-                     src="{{ asset('admin/img/work/plus.jpg') }}" class="img-fluid"
-                        style="height: 120px;" title="إضغط لإختيار صورة الروشتة">
+                        src="{{ asset('admin/img/work/plus.jpg') }}" class="img-fluid" style="height: 120px;"
+                        title="إضغط لإختيار صورة الروشتة">
                     <input class="form-control drug_image file-change" type="file" hidden id="request-image"
                         data-extentions="jpg,png" data-preview="request-image-preview" />
                 </label>
@@ -97,11 +97,11 @@
                             <input class="form-check-input me-1 p-2 " type="checkbox" id="accept_alternative">
                             اقبل بديل في حالة عدم توفره
                         </li>
-                        <li class="list-group-item m-1 radius ">
+                        {{-- <li class="list-group-item m-1 radius ">
                             <input class="form-check-input p-2 me-1 " type="checkbox" id="accept_repeate">
                             اريد تكرار هذا الطلب بشكل تلقائي
                         </li>
-                        {{-- Order repeat --}}
+
                         <li class="list-group-item mt-5 radius" id="repeate_form" style="display:none">
                             <div class="row">
                                 <div class="col-sm-3">
@@ -136,7 +136,7 @@
 
 
                             </div>
-                        </li>
+                        </li> --}}
                         <div class="row justify-content-center gy-2 m-3 ">
                             <button onclick="addRequestDetail()" class="main-btn btn-hover">اضافة المنتج الى الطلبية
                             </button>
@@ -159,8 +159,8 @@
                                         <th>اسم /صورة العلاج</th>
                                         <th>الكمية </th>
                                         <th>اقبل بديل </th>
-                                        <th>كرر الطلبية كل</th>
-                                        <th>حتى تاريخ </th>
+                                        {{-- <th>كرر الطلبية كل</th>
+                                        <th>حتى تاريخ </th> --}}
                                     </tr>
                                 </thead>
                                 <tbody id="order_details_table">
@@ -170,8 +170,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row gy-2 mb-1" style="margin-top:3rem;">
-                    <div class="col-4">
+                <div class="row">
+                    <div class="col-12">
                         <form action="{{ route('client-orders-store') }}" enctype="multipart/form-data" method="POST">
                             @csrf
                             <input type="hidden" name="client_id" value="{{ Auth::user()->id }}">
@@ -179,13 +179,11 @@
                             <input type="hidden" name="data" id="data" value="">
                             <input type="file" name="images[]" multiple hidden id="images">
                             <button id="send_request_btn" style="visibility:hidden;" type="submit"
-                                class="main-btn btn-hover mt-5 mb-1"> ارسال الطلبية </button>
+                                class="main-btn btn-hover col-12"> ارسال الطلبية </button>
                         </form>
                     </div>
                 </div>
             </div>
-
-
         </div>
 
 
@@ -217,7 +215,8 @@
 
             if (drug_image.val() != "") {
                 drug.drug_image = drug_image.val();
-                drug_title_image = "<img class='image_show' width='50px' src='" + window.URL.createObjectURL(drug_image.prop('files')[0]) +"' >";
+                drug_title_image = "<img class='image_show' width='50px' src='" + window.URL.createObjectURL(drug_image
+                    .prop('files')[0]) + "' >";
 
             } else {
                 if (drug_title.val() == "") {
@@ -244,9 +243,9 @@
             if (month.val()) repeat_every += parseInt(month.val()) * 30;
             if (day.val()) repeat_every += parseInt(day.val());
 
-            if (repeat_every > 0) drug.repeat_every = repeat_every;
+            // if (repeat_every > 0) drug.repeat_every = repeat_every;
 
-            if (Date.parse(repeat_until.val())) drug.repeat_until = repeat_until.val();
+            // if (Date.parse(repeat_until.val())) drug.repeat_until = repeat_until.val();
             console.log(drug);
             if (!drug) {
                 $("#alert-error").html("يجب عليك إدخال البيانات قبل إدخالها ");
@@ -292,12 +291,12 @@
                 "<td><span class='badge bg-success me-1'>" + accept_alt + " </span></td>" :
                 "<td><span class='badge bg-danger me-1'>" + accept_alt + " </span></td>";
 
-            row +=
-                "<td><i class='fab fa-angular fa-lg text-danger me-3'></i> <strong>" + repeat_every +
-                " يوم</strong></td>" +
-                "<td><i class='fab fa-angular fa-lg text-danger me-3'></i> <strong>" + repeat_until.val() +
-                "</strong></td>" +
-                "</tr>";
+            // row +=
+            //     "<td><i class='fab fa-angular fa-lg text-danger me-3'></i> <strong>" + repeat_every +
+            //     " يوم</strong></td>" +
+            //     "<td><i class='fab fa-angular fa-lg text-danger me-3'></i> <strong>" + repeat_until.val() +
+            //     "</strong></td>" +
+            //     "</tr>";
 
             order_details_table.html(order_details_table.html() + row);
 
@@ -310,14 +309,14 @@
             $("#drug_title").val("");
             $("#quantity").val(1);
             $("#accept_alternative").prop('checked', false);
-            $("#day").val("");
-            $("#month").val("");
-            $("#year").val("");
-            $("#repeat_until").val("");
-            $("#accept_repeate").prop('checked', false);
-            $("#repeate_form").css("display", "none");
-            $("#request-image-preview").attr("src",$("#request-image-preview").attr("data-src"));
-            
+            // $("#day").val("");
+            // $("#month").val("");
+            // $("#year").val("");
+            // $("#repeat_until").val("");
+            // $("#accept_repeate").prop('checked', false);
+            // $("#repeate_form").css("display", "none");
+            $("#request-image-preview").attr("src", $("#request-image-preview").attr("data-src"));
+
             window.scrollTo(0, 1000);
 
         }
