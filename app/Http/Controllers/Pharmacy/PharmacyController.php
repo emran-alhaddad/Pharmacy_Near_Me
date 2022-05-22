@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\UpdateEmail;
 use App\Utils\SystemUtils;
+use App\Http\Controllers\Notify\NotificationsController;
+
 
 class PharmacyController extends Controller
 {
@@ -141,7 +143,14 @@ class PharmacyController extends Controller
         if ($order_req->update()) {
 
             if ($all_replies_saved)
+            {
+
+                $Notify = new NotificationsController();
+                $Notify -> replyAccesptFromPharToCustomerNotification($id,$reply->id);
                 return redirect()->route('pharmacy-orders')->with('status', 'تم إرسال الرد الى العميل بنجاح');
+              
+
+            }   
             else
                 return back()->with('error', 'لم نتمكن من إضافة الرد !!!');
         } else
@@ -154,7 +163,8 @@ class PharmacyController extends Controller
         $order = OrderRequest::where('id', $id)->first();
         $order->state = RequestState::REJECTED;
         $order->update();
-
+        $Notify = new NotificationsController();
+        $Notify -> replyRejectFromPharToCustomerNotification($id);
         return redirect()->route('pharmacy-orders')->with('status', 'لقد تم رفض الطلبية ' . $id . ' بنجاح');
     }
 
@@ -402,4 +412,13 @@ class PharmacyController extends Controller
 
         return back()->with('status', 'تم التعديل بنجاح');
     }
+
+    // public function showOrdersWaitAcceptance($id)
+    // {
+    //     $requests = OrderRequest::with(['details', 'client.user'])->where('requests.id',$id)->get();
+
+    // return view('pharmacy.orders.manageOrders', [
+    //     'requests' => $requests
+    // ]);
+    // }
 }

@@ -22,6 +22,7 @@ use App\Utils\SystemUtils;
 use App\Utils\UploadingUtils;
 use App\Utils\UserUtils;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Notify\NotificationsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -93,6 +94,8 @@ class OrderController extends Controller
                 return back()->with('error', 'لم نتمكن من إضافة طلبيتك !!!');
             }
         }
+        $Notify = new NotificationsController();
+        $Notify -> AddOrderToParNotification( $paramicy,$client,$id);
 
         return redirect()->route('client-orders')->with('status', 'تم إرسال الطلبية الى الصيدلية بنجاح');
     }
@@ -116,7 +119,8 @@ class OrderController extends Controller
             $order_payment->delivery_state = DeleveryState::REJECTED;
             $order_payment->update();
         }
-
+        $Notify = new NotificationsController();
+        $Notify -> rejectUserOrderNotification($id);
         return back()->with('status', 'لقد تم رفض الطلبية ' . $id  . $msg . ' بنجاح');
     }
 
@@ -160,6 +164,24 @@ class OrderController extends Controller
         $reply_detail->update();
         $request_id = Request_Details::where('id',$reply_detail->request_details_id)->first()->request_id;
         return PaymentController::getProducts($request_id)['total_price'];
+    }
+
+    public function returnAccepttouser($id,$stateTap)
+    { 
+        $requests = OrderRequest::with(['details', 'pharmacy.user', 'replies.details'])
+        ->where('requests.id',$id)->get();
+       // return $requests[0]->pharmacy_id;
+    $client = User::with('client')->where('id', $requests[0]->client_id)->firstOrFail();
+    $pharmacies = Pharmacy::with('user')->where('user_id', $requests[0]->pharmacy_id)->get();
+  
+   
+    
+    return view('user.myorder', [
+            'requests' => $requests,
+            'user' => $client,
+            'pharmacies' => $pharmacies,
+            'tapState'=> $stateTap,
+        ]);
     }
 
 }

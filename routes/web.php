@@ -135,6 +135,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/client/avater/update', [User\ClientController::class, 'updateAvater'])->name('client-avater-update');
         // Client Orders
         Route::get('/client/orders', [User\OrderController::class, 'index'])->name('client-orders');
+        Route::get('/client/orders/notifacation/{id}/{stateTap}', [User\OrderController::class, 'returnAccepttouser'])->name('client-orders_notifacation');
+        
         Route::get('/client/orders/create', [User\OrderController::class, 'create'])->name('client-orders-create');
         Route::post('/client/orders/store', [User\OrderController::class, 'store'])->name('client-orders-store');
         Route::get('/client/order/{id}/reject', [User\OrderController::class, 'reject'])->name('client-orders-reject');
@@ -165,6 +167,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         // Pharmacy Orders
         Route::get('/_pharmacy/orders', [Pharmacy\PharmacyController::class, 'orders'])->name('pharmacy-orders');
+        // Route::get('/_pharmacy/orders/#wait-payment/{id}', [Pharmacy\PharmacyController::class, 'showOrdersWaitAcceptance'])->name('pharmacy-orders-wait-acceptance');
         Route::get('/_pharmacy/order/{id}', [Pharmacy\PharmacyController::class, 'detailes'])->name('pharmacy-order-details');
         Route::post('/_pharmacy/order/{id}/reply', [Pharmacy\PharmacyController::class, 'reply'])->name('pharmacy-order-reply');
         Route::get('/_pharmacy/order/{id}/reject', [Pharmacy\PharmacyController::class, 'reject'])->name('pharmacy-order-reject');

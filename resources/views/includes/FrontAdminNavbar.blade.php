@@ -34,7 +34,7 @@
 </head>
 
 <body class="overlay-scrollbar">
-
+<div class="wrapNav">
     <div class="navbar">
         <ul class="navbar-nav">
             <li class="nav-item ps-3"><a class="nav-link">
@@ -114,11 +114,13 @@
                 class="rounded-circle img-fluid" style="width: 60px;">
         </a>
 
-
-
+     
     </div>
+    <div class="alert alert-secondary " id="alert_Not" role="alert"></div>
 
+</div>
 
+ 
 
 
     <!-- <li class="dropdown dropdown-notifications">
@@ -147,12 +149,13 @@
             encrypted: true
         });
 
-        var channel = pusher.subscribe('new_notification');
-
-        channel.bind('App\\Events\\Notify', function(data) {
-            const audio = new Audio('{{ asset('/uploads/aduio/alert.mp3') }}');
-            audio.play();
-            var node = document.createElement('li');
+    var channel = pusher.subscribe('new_notification');
+   
+    channel.bind('App\\Events\\Notify', function(data) {
+        const audio = new Audio('{{asset("/uploads/aduio/alert.mp3")}}');
+        audio.play();
+        document.getElementById('alert_Not').innerTEXT=data.message;
+        var node = document.createElement('li');
             // <li class="list-group-item list-group-item-action dropdown-notifications-item">
             //         <div class="d-flex">
             //             <div class="flex-grow-1">

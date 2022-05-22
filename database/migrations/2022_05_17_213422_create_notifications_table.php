@@ -24,9 +24,13 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('sender_id');
             $table->unsignedBigInteger('receiver_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('request_id')->nullable();
             $table->foreign('sender_id')->references('id')->on('users');
             $table->string('message');
             $table->string('type');
+            $table->string('nameFrom')->nullable();
+            $table->string('nameTo')->nullable();
             $table->string('is_active')->default(1);
             $table->timestamps();
 
