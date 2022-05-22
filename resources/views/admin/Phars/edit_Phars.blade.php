@@ -24,7 +24,7 @@
                     {{ session('status') }}
                 </div>
             @endif
-                      
+
                 @foreach ($errors->all() as $error)
                 <div class="alert alert-danger" role="alert">{{ $error }}</div>
               @endforeach
@@ -33,7 +33,7 @@
 
 
         <div class="row g-3">
-            <div class="mb-3 col-8"> 
+            <div class="mb-3 col-8">
                     <label for="exampleInputName" class="form-label">اسم الصيدلية</label>
             <input type="text" name="name" value="{{$phar->name}}" class="form-control" id="exampleInputName">
             </div>
@@ -45,7 +45,7 @@
 
                     <div class="d-flex justify-content-start align-items-sm-center gap-4">
                     <img
-                        src="{{asset("/uploads/pharmacy/$phar->avater")}}" 
+                        src="{{asset("/uploads/pharmacy/$phar->avater")}}"
                         alt="user-avatar"
                         class="d-block rounded"
                         height="100"
@@ -53,17 +53,17 @@
                         id="uploadedAvatar"/>
                     <div class="button-wrapper">
                         <button type="" id="btn_update_avater" class="d-none d-sm-block"  >تعديل صورة الصيدلي</button>
-                        
+
                         <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                           
-                        
+
+
                         <i class="bx bx-upload d-block d-sm-none"></i>
                         <input type="file"
-                            
+
                             id="update_avater"
                             class="account-file-input"
-                            
-                           
+
+
                             name="avater"
                         />
                         </label>
@@ -91,7 +91,7 @@
                         @else
                         <option value="{{$c->id}}" > {{$c->name}} </option>
                         @endif
-                      @endforeach  
+                      @endforeach
                         {{-- <option selected> تعز </option>
                         <option value="1">عدن</option>
                         <option value="2">صنعاء</option>
@@ -110,7 +110,7 @@
                         @else
                         <option value="{{$c->id}}" > {{$c->name}} </option>
                         @endif
-                      @endforeach 
+                      @endforeach
                         {{-- <option selected> الروضة </option>
                         <option value="1">المسبح</option>
                         <option value="2">بيرباشا</option>
@@ -235,8 +235,8 @@
 
             <button  id="submit_button"  type="submit" class="btn btn-primary">تعديل</button>
     </form>
-    
-    
+
+
 
             </div>
 
@@ -244,7 +244,7 @@
                 <form  enctype="multipart/form-data"  method="POST" action={{route("_admin-phar_licenes")}} class="card" style="width: 18rem;">
                     @csrf
                     <input type="file"  name="license" id="license_img" onchange="edit(event,'license_id')" class="account-file-input invisible" />
-                <input type="hidden" name="id" value="{{$phar->id}}"> 
+                <input type="hidden" name="id" value="{{$phar->id}}">
                     <label for="license_img" class="" tabindex="0">
                     <img
                         src="{{asset("/uploads/license/$phar->license")}}"
@@ -255,65 +255,65 @@
                         id="license_id"/>
                     </label>
                     <div class="button-wrapper">
-                     
+
                         <button type="submit"  class="btn btn-primary me-2 mb-4" tabindex="0">
                         <span class="d-none d-sm-block">تعديل صورة الرخصة</span>
                         <i class="bx bx-upload d-block d-sm-none"></i>
                         </button>
-                       
-                        
+
+
                     </div>
-                   
+
                 </form>
                 <div class="mb-3 ">
                     {{-- <label for="upload-image" class="form-label"> --}}
-                   
-               
-        
-        
+
+
+
+
                     <div class=" align-items-start align-items-sm-center gap-4">
-                      <form action="{{route('_admin-phar_avater')}}" enctype="multipart/form-data" method="POST" class="card" style="width: 18rem;">
+                    <form action="{{route('_admin-phar_avater')}}" enctype="multipart/form-data" method="POST" class="card" style="width: 18rem;">
                         @csrf
                         <input class="form-control invisible" onchange="edit(event,'img_avater')" name="avatar"  type="file" id="upload-image">
-                      <input type="hidden" name="id" value="{{$phar->id}}">
-                        <label for="upload-image" class="form-label">
-                           <img    
-                               src="{{asset("/uploads/avaters/pharmacy/$phar->avater")}}"
-                               alt="user-avatar"
-                               class="d-block rounded card-img-top"
-                               height="100"
-                               width="100"
-                               id="img_avater"/>
-                            </label> 
+                        <input type="hidden" name="id" value="{{$phar->id}}">
+                            <label for="upload-image" class="form-label">
+                            <img
+                                src="{{asset("/uploads/avaters/pharmacy/$phar->avater")}}"
+                                alt="user-avatar"
+                                class="d-block rounded card-img-top"
+                                height="100"
+                                width="100"
+                                id="img_avater"/>
+                                </label>
 
-                           <div class="button-wrapper card-body">
-                               <button type="submit" for="upload-image" class="btn btn-primary me-2 mb-4" tabindex="0">
-                               <span class="d-none d-sm-block">  تعديل صورة اللوجو</span>
-                               <i class="bx bx-upload d-block d-sm-none"></i>
-                               </button>
-                               {{-- <input
-                                   type="file"
-                                
-                                   id="upload-image"
-                                   class="account-file-input"
-                                   hidden
-                                   accept="image/png, image/jpeg"
-                                   name="image"
-                               /> --}}
-                              
-                           </div>
-                           </div>
-                       </form>
-        
-        
-        
-        
-        
-        
-        
+                            <div class="button-wrapper card-body">
+                                <button type="submit" for="upload-image" class="btn btn-primary me-2 mb-4" tabindex="0">
+                                <span class="d-none d-sm-block">  تعديل صورة اللوجو</span>
+                                <i class="bx bx-upload d-block d-sm-none"></i>
+                                </button>
+                                {{-- <input
+                                    type="file"
+
+                                    id="upload-image"
+                                    class="account-file-input"
+                                    hidden
+                                    accept="image/png, image/jpeg"
+                                    name="image"
+                                /> --}}
+
+                            </div>
+                            </div>
+                        </form>
+
+
+
+
+
+
+
                   </div>
-        
-               
+
+
 
 
     </div>
@@ -322,8 +322,8 @@
 
 
            </div>
-         
-           
+
+
         </div>  {{-- end--}}
 </div>
 
@@ -415,7 +415,7 @@
                     <form action="{{ route('_admin-phar_check_email') }}" method="POST" class="g-3">
 
                         @csrf
-                       
+
 
                         <input id="hiddenEmail" type="hidden" name="email">
                         <div class="row">
@@ -483,7 +483,7 @@
                                 </div>
                                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
                                 integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-                        
+
 
 
 
@@ -495,7 +495,7 @@
         var out=document.getElementById(id);
         out.src=URL.createObjectURL(event.target.files[0]);
     }
-   
+
         $(window).on('load', function() {
             @error('modal')
                 $("#{{ $message }}").modal('show');
@@ -503,7 +503,7 @@
 
         });
         var formData={};
-        
+
         $("#sendEmailCode").on('submit', function(e) {
             e.preventDefault();
             // var formData=new FormData($('#sendEmailCode')[0]);
@@ -544,19 +544,19 @@
 
 
 // $(document).ready(function() {
-   
-//  $("document").on('submit','update_image',function(event) { 
+
+//  $("document").on('submit','update_image',function(event) {
 //     event.preventDefault();
 //     alert('dasd');
 //     var formData=new FormData($('#update_image')[0]);
-   
+
 //     $.ajax({
 //      type:'post',
 //      url:"{{route('_admin-phar_avater')}}",
 //      enctype:'multipart/form-data',
 //      data:formData,
 //     success:function(data)
-//     { 
+//     {
 //         // data.forEach(function (serv) {
 //         console.log(data);
 
@@ -565,5 +565,5 @@
 //     });
 // });
 // });
-                                    </script>  
-                                                            
+                                    </script>
+

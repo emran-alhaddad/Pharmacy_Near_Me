@@ -92,11 +92,13 @@
                         <!-- adds box -->
                         <div class="box-style add-box shadow">
                             <h3 class="mb-30">اعلانات</h3>
+                            @foreach($ads as $ad)
                             <div class="image">
                                 <a href="javascript:void(0)" class="d-block">
-                                    <img src="Front/assets/images/pharmacy/ad-img.jpg" alt="" class="w-100">
+                                    <img src="{{asset("/uploads/ads/$ad->image")}}"  alt="" class="w-100">
                                 </a>
                             </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

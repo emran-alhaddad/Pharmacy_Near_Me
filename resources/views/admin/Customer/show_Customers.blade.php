@@ -50,12 +50,12 @@
 
                           @if ($customer->is_active==1)
 
-                        <td>  <a href={{route('admin-activity', ['id' => $customer->id , 'stats'=>0])}}>   <button class="btn btn-success text-white" >مفعل</button></a></td>
+                        <td>  <a href={{route('admin-activity', ['id' => $customer->id , 'stats'=>0])}}>   <button class="btn badge btn-success text-white" >مفعل</button></a></td>
 
 
                           @else
 
-                            <td>  <a href={{route('admin-activity', ['id' => $customer->id ,'stats'=>1])}}> <button class="btn btn-danger text-white" >موقف</button></a></td>
+                            <td>  <a href={{route('admin-activity', ['id' => $customer->id ,'stats'=>1])}}> <button class="btn badge btn-danger text-white" >موقف</button></a></td>
 
                           @endif
 

@@ -37,26 +37,29 @@
 
                     <tbody>
                         @foreach ($zones as $zone)
-                        
+
                         <tr>
-                        <td>{{$zone->name}}</td> 
-                        <td>{{$zone->Cname}}</td> 
+                        <td>{{$zone->name}}</td>
+                        <td>{{$zone->Cname}}</td>
                         @if ($zone->is_active==1)
 
-                        <td>  <a href={{route('admin-activity_zone', ['id' => $zone->id , 'state'=>0])}}>   <button class="btn btn-success text-white" >مفعل</button></a></td>
+                        <td>  <a href={{route('admin-activity_zone', ['id' => $zone->id , 'state'=>0])}}>   <button class="btn badge btn-success text-white" >مفعل</button></a></td>
 
-                          @else
+                        @else
 
-                            <td>  <a href={{route('admin-activity_zone', ['id' => $zone->id ,'state'=>1])}}> <button class="btn btn-danger text-white" >موقف</button></a></td>
+                            <td>  <a href={{route('admin-activity_zone', ['id' => $zone->id ,'state'=>1])}}> <button class="btn badge btn-danger text-white" >موقف</button></a></td>
 
-                          @endif
+                        @endif
 
-                           
-                              
 
-                           
-                          <td> <a href={{route('admin-edit_zone', ['id' => $zone->id]);}}>  <button class="btn " ><i class="fas fa-pen" id="edit"></i></button></a></td>
-                            {{-- <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" id="delete"><i class="fas fa-trash"></i></button> --}}
+
+
+
+                            <td> <a href={{route('admin-edit_zone', ['id' => $zone->id]);}}>  <button class="btn " ><i class="fas fa-pen" id="edit"></i></button></a>
+
+                                <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" id="delete"><i class="fas fa-trash"></i></button>
+                            </td>
+
 
                                     <div class="modal"  id="exampleModal"  tabindex="-1">
                                         <div class="modal-dialog">
@@ -75,7 +78,7 @@
                                         </div>
                                     </div>
 
-                            </td> 
+                            </td>
 
 
                         </tr>

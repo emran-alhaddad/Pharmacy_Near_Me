@@ -30,10 +30,10 @@
         });
     </script> -->
 
-
+    <script src="https://kit.fontawesome.com/44a26292a7.js" crossorigin="anonymous"></script>
 </head>
 
-<body class="overlay-scrollbar">
+<body class="overlay">
 
     <div class="navbar">
         <ul class="navbar-nav">
@@ -50,7 +50,7 @@
         <li class=" dropdown dropdown-notifications">
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown"
                 data-bs-auto-close="outside" aria-expanded="false">
-                <i class="fas fa-bell"></i>
+                <i class="fas fa-bell" id="bell"></i>
                 <span class="badge bg-danger rounded-pill badge-notifications">
                     {{ \App\Http\Controllers\Notify\NotificationsController::getNotification()['count'] }}
                 </span>
@@ -110,8 +110,8 @@
         </form>
 
         <a href="/_admin/profile">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                class="rounded-circle img-fluid" style="width: 60px;">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+            class="rounded-circle img-fluid" style="width: 2.5rem;" id="admin-avatar" >
         </a>
 
 

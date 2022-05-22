@@ -44,8 +44,8 @@ public function update(Request $request)
 public function updateContact(Request $request)
 {  $this->checkSocialMieda($request);
     $affected=DB::table('site_admines')
-        ->update(['facebook'=>$request->facebook,'twitter'=>$request->twitter,'email'=>$request->email,
-                'website'=>$request->website,'phone'=>$request->phone, 'whatsup'=>$request->whatsup]);
+    ->update(['facebook'=>$request->facebook,'twitter'=>$request->twitter,'email'=>$request->email,
+    'website'=>$request->website,'phone'=>$request->phone, 'whatsup'=>$request->whatsup]);
     if($affected>0)
     {
         return back()->with('status','تم  تعديل بيانات الموقع ');
