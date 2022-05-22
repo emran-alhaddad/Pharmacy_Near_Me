@@ -8,7 +8,7 @@
 					</div> <span> لوحة التحكم </span>
             </a>
         </li>
-
+        <!-- <i class="fa-solid fa-house-medical"></i> -->
         <li>
         <li class="sidebar-nav-item "><a href="/_admin/show_WebSiteSetting"
 				class="sidebar-nav-link">
@@ -19,7 +19,7 @@
 			<li class="sidebar-nav-item "><a href="/_admin/show_Phars"
 				class="sidebar-nav-link">
 					<div>
-						<i class="fab fa-accusoft"></i>
+                    <i class="fa-solid fa-house-medical"></i>
 					</div> <span >ادارة الصيدليات</span>
 			</a></li>
 			<li class="sidebar-nav-item"><a href="/_admin/show_ads"
@@ -52,28 +52,28 @@
             <li class="sidebar-nav-item"><a href="/_admin/show_Cities"
 				class="sidebar-nav-link">
 					<div>
-						<i class="fas fa-car"></i>
+                    <i class="fa-solid fa-city"></i>
 					</div> <span>ادارة المدن</span>
 			</a></li>
 
             <li class="sidebar-nav-item"><a href="/_admin/show_Zones"
 				class="sidebar-nav-link">
 					<div>
-						<i class="fas fa-home"></i>
+                    <i class="fa-solid fa-map"></i>
 					</div> <span>ادارة المربعات  السكنية</span>
 			</a></li>
 
             <li class="sidebar-nav-item"><a href="/_admin/show_Accounts"
 				class="sidebar-nav-link">
 					<div>
-						<i class="fas fa-check"></i>
+                    <i class="fa-solid fa-users"></i>
 					</div> <span>ادارة الحسابات</span>
 			</a></li>
 
             <li class="sidebar-nav-item"><a href="/_admin/show_PaymentMethods"
 				class="sidebar-nav-link">
 					<div>
-						<i class="fas fa-coins"></i>
+                    <i class="fa-solid fa-sack-dollar"></i>
 					</div> <span>ادارة  طرق  الدفع</span>
 			</a></li>
 
@@ -94,7 +94,7 @@
 			<li class="sidebar-nav-item"><a href="/logout"
 				class="sidebar-nav-link">
 					<div>
-						<i class="fas fa-lightbulb"></i>
+                    <i class="fa-solid fa-right-from-bracket"></i>
 					</div> <span>تسجيل خروج</span>
 			</a></li>
 

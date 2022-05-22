@@ -48,11 +48,12 @@ class interfacesController extends Controller
     public function pharmacy($search = null)
     {
         $pharmacies =  !$search ? QueryController::pharmacies()->paginate(4) : $search;
-
+        $ads=DB::table('advertisings')->get();
         return view('front.pharmacies', [
             'pharmacies' => $pharmacies,
             'cities' => City::get(),
-            'zones' => zone::get()
+            'zones' => zone::get(),
+            'ads'  =>   $ads
         ]);
     }
 
@@ -128,11 +129,11 @@ class interfacesController extends Controller
         $affectedRows = Pharmacy::where('user_id', $id)->update(array('zone_id' => $request->zone));
         if ($affectedRows > 0) {
 
-            $Notify = new NotificationsController(); 
+            $Notify = new NotificationsController();
             $Notify -> licenseNotification($id);
             return redirect()->route('login')->with('status', '.تم ارسال الرخصة الى الادمن سيتم إرسال إشعار إلى بريدك الإلكتروني عند إكتمال العملية');
 
-            
+
         }
         return redirect()->route('login')->with('error', '!!حدث خطا');
     }

@@ -25,7 +25,7 @@
                 <table class="table">
 
                         <thead>
-                           
+
                         <tr>
                             <th> اسم الصيدلية</th>
                             <th> المدينة</th>
@@ -42,13 +42,13 @@
 
                     <tbody>
                         @foreach ($phars as $phar)
-                           
-                        
+
+
                         <tr>
 
-                          
-                         
-                        
+
+
+
                             <td>{{ $phar->name }}</td>
                          <td>{{  $phar->Cname }}</td>
                          <td>{{  $phar->Zname}}</td>
@@ -57,16 +57,16 @@
                          <td>{{  $phar->phone}}</td>
                          {{-- <td>{{  $phar->$phone}}</td>
                          <td>{{  $phar->$phone}}</td> --}}
-                         
-                        
-
-                            
-                               
-
-                            
 
 
-                           
+
+
+
+
+
+
+
+
                             <td>  <img src={{asset("/uploads/avaters/pharmacy/$phar->avater")}} alt="avatar"
                                     class="rounded-circle img-fluid" style="width: 50px;">
                             </td>
@@ -75,21 +75,21 @@
                             <td>  <img src={{asset("/uploads/license/$phar->license")}} alt="avatar"
                                     class="rounded-circle img-fluid" style="width: 50px;">
                             </td>
-                           
+
                           @if ($phar->is_active==1)
-                        
-                          <td> <a href={{route('admin-activity', ['id' => $phar->id,'stats'=>0]);}} >   <button class="btn btn-success text-white" >مفعل</button></a></td>
-                           
-                                
-                            @else 
-                          
-                              <td><a href={{route('admin-activity', ['id' => $phar->id,'stats'=>1]);}} > <button class="btn btn-danger text-white" >موقف</button></a></td>
-                          
+
+                          <td> <a href={{route('admin-activity', ['id' => $phar->id,'stats'=>0]);}} >   <button class="btn badge btn-success text-white" >مفعل</button></a></td>
+
+
+                            @else
+
+                              <td><a href={{route('admin-activity', ['id' => $phar->id,'stats'=>1]);}} > <button class="btn badge btn-danger text-white" >موقف</button></a></td>
+
                             @endif
 
                             <td>
                                 <a href={{route('admin-edit_Phars', ['id' => $phar->id]);}}>  <button class="btn"><i class="fas fa-pen" id="edit"></i></button></a>
-                            <button class="btn badge bg-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button>
+                                <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" id="delete"><i class="fas fa-trash"></i></button>   
                                 <!-- <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">حذف</button> -->
 
 
@@ -100,7 +100,7 @@
                                                 <h5 class="modal-title">حذف </h5>
                                             </div>
                                             <div class="modal-body">
-                                                </p> هل تريد حقا حذف الاعلان ؟</p>
+                                                </p> هل تريد حقا حذف الصيدلية ؟</p>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">لا</button>

@@ -116,65 +116,6 @@
 
             @endforeach
 
-                <!-- <div class="col-lg-4 col-md-6 col-sm-8 col-11">
-                    <div class="single-service d-flex justify-content-between shadow">
-                        <div class="icon">
-                            <i class="lni lni-gift"></i>
-                        </div>
-                        <div class="service-content">
-                            <h3>الحصول على علاجك بسرعه </h3>
-                            <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
-                        </div>
-                    </div>
-                </div> -->
-
-                <!-- <div class="col-lg-4 col-md-6 col-sm-8 col-11">
-                    <div class="single-service d-flex justify-content-between shadow">
-                        <div class="icon">
-                            <i class="lni lni-gift"></i>
-                        </div>
-                        <div class="service-content">
-                            <h3>الحصول على علاجك بسرعه </h3>
-                            <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
-                        </div>
-                    </div>
-                </div> -->
-
-                <!-- <div class="col-lg-4 col-md-6 col-sm-8 col-11">
-                    <div class="single-service d-flex justify-content-between shadow">
-                        <div class="icon">
-                            <i class="lni lni-gift"></i>
-                        </div>
-                        <div class="service-content">
-                            <h3>الحصول على علاجك بسرعه </h3>
-                            <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
-                        </div>
-                    </div>
-                </div> -->
-
-                <!-- <div class="col-lg-4 col-md-6 col-sm-8 col-11">
-                    <div class="single-service d-flex justify-content-between shadow">
-                        <div class="icon">
-                            <i class="lni lni-gift"></i>
-                        </div>
-                        <div class="service-content">
-                            <h3>الحصول على علاجك بسرعه </h3>
-                            <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
-                        </div>
-                    </div>
-                </div> -->
-
-                <!-- <div class="col-lg-4 col-md-6 col-sm-8 col-11">
-                    <div class="single-service d-flex justify-content-between shadow">
-                        <div class="icon">
-                            <i class="lni lni-gift"></i>
-                        </div>
-                        <div class="service-content">
-                            <h3>الحصول على علاجك بسرعه </h3>
-                            <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </section>
@@ -228,12 +169,17 @@
                 </div>
             </div>
 
+
+        @foreach($ads as $ads)
+
             <div class="radius col-sm-8" style=" direction: rtl; ">
                 <div class="col-md-12 col-sm-12 shadow-lg bg-light radius box-style">
-                    <img src="Front/assets/images/pharmacy/mainAdds.jpg" style="width: 100%; max-height: 20rem"
+                    <img src="{{asset("/uploads/ads/$ads->image")}}"  alt="" style="width: 100%; max-height: 20rem"
                         class="radius">
                 </div>
             </div>
+
+        @endforeach
 
         </div>
     </section>
