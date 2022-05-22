@@ -91,10 +91,12 @@ class WalletController extends Controller
                 $amount = $amount - ($amount * $tax);
             }
 
-            $from->transfer($to, $amount, array('data' => self::formateData($products, $amount), 'target_user' => $target_user));
             $transfer_msg = self::transferMessages($from, $to, $amount, $products);
             self::notifyTransfer($from, $transfer_msg['sender_message']);
             self::notifyTransfer($to, $transfer_msg['reciver_message']);
+
+            $from->transfer($to, $amount, array('data' => self::formateData($products, $amount), 'target_user' => $target_user));
+            
             $from->wallet->refreshBalance();
             $to->wallet->refreshBalance();
             return true;

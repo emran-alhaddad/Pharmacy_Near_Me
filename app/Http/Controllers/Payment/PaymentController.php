@@ -256,12 +256,13 @@ class PaymentController extends Controller
                 $reciver->wallet->name = $card_type;
 
                 // Deposite the mony to reciver wallet andn notify him
-                $reciver->deposit(floatval($paid_amount), ['meta' => $products]);
                 WalletController::notifyDeposit(
                     $reciver,
                     WalletController::depositMessage($card_holder, $reciver, floatval($paid_amount))['reciver_message'],
                     $products
                 );
+                $reciver->deposit(floatval($paid_amount), ['meta' => $products]);
+                
 
                 $adds = Advertising::find($order_reference)->first();
                 $adds->is_active = 1;
@@ -320,6 +321,8 @@ class PaymentController extends Controller
             }
 
             if (!$order_details_saved) {
+                $order_payment->delete();
+                $order->delete();
                 return redirect()->route('index')->with('error', 'one order details not saved !!!');
             }
 
@@ -328,12 +331,13 @@ class PaymentController extends Controller
             $sender->wallet->name = $card_type;
 
             // Deposite the mony to client wallet andn notify him
-            $sender->deposit(floatval($paid_amount));
             WalletController::notifyDeposit(
                 $sender,
                 WalletController::depositMessage($card_holder, $sender, floatval($paid_amount))['reciver_message'],
                 $products
             );
+            $sender->deposit(floatval($paid_amount));
+            
 
             // Make Payment from client to admin 
             WalletController::pay($sender, $reciver, floatval($paid_amount), $target_user->id, 0, $products);
