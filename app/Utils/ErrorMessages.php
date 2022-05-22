@@ -9,6 +9,7 @@ class ErrorMessages
   CONST REGISTER_FAILD =  "حدث خطأ غير متوقع ... لم نتمكن من تسجيل حسابك !! يرجى المحاولة مرة أخرى";
   CONST EMAIL_VERIFY =  'يجب عليك اولا تأكيد البريد الألكتروني عن طريق الضغط على الرابط المرسل الى بريدك الالكتروني أو إعادة تأكيد ' . "<a href='/resend-email-activation'>البريد الإلكتروني</a>";
   CONST EMAIL_VERIFY_EXPIRED = ' انتهت صلاحية رابط التفعيل هذا اعد تأكيد' . "<a href='/resend-email-activation'>البريد الإلكتروني</a>";
+  CONST ADDS_REQUEST_EXPIRED = ' انتهت صلاحية رابط تقديم طلب الإعلان هذا اعد إنشاء طلب جديد';
   CONST EMAIL_ACTIVATE = 'حسابك يحتاج تفعيل من مدير الموقع ... لتقديم طلب الى مدير الموقع اضغط على هذا ';
   CONST EMAIL_NOT_FOUND = "البريد الإلكتروني الذي أدخلته غير متوفر ";
   CONST TOKEN_NOT_FOUND = "أن البريد الإلكتروني الذي أدخلتة ليس بريدك";

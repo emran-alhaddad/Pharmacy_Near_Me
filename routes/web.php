@@ -51,11 +51,7 @@ Route::get('/select/city/{id}/zones', [Front\interfacesController::class, 'getCi
 /* backend front  route */
 Route::get('/front/showinfor',[Front\HomeController::class,'indexInfo'])->name('front_showinfor'); 
 
-// // // PHARMACY TEST ROUTES
-// Route::get('/account', [Pharmacy\PharmacyController::class, 'account'])->name('profile');
-// Route::get('/settings', [Pharmacy\PharmacyController::class, 'settings'])->name('settings');
-// Route::get('/detail', [Pharmacy\PharmacyController::class, 'detailes'])->name('orderData');
-// Route::get('/order', [Pharmacy\PharmacyController::class, 'order'])->name('order');
+
 
 
 
@@ -95,6 +91,15 @@ Route::get('auth/google/callback', [Social\GoogleController::class, 'callback'])
 
 // Email Verification
 Route::get('auth/verify_email/{token}', [CustomAuth\VerifyEmailController::class, 'verify']);
+
+// Adds Request 
+Route::post('advertisings/add', [Front\interfacesController::class, 'addAdvertisingRequest'])->name('add-advertising-request');
+Route::get('advertisings/create/{token}', [Front\interfacesController::class, 'createAdvertisingRequest']);
+Route::post('advertisings/store', [Front\interfacesController::class, 'storeAdvertisingRequest'])->name('store-advertising-request');
+Route::get('/user/payment/ads/{id}', [PaymentController::class, 'index2'])->name('user-payment-ads');
+Route::post('/user/payment/ads/{id}/pay', [PaymentController::class, 'pay'])->name('user-payment-ads-pay');
+Route::get('/user/payment/ads/success/{info}', [PaymentController::class, 'success'])->name('user-payment-ads-success');
+Route::get('/user/payment/ads/cancel/{cancel}', [PaymentController::class, 'cancel'])->name('user-payment-ads-cancel');
 
 // This Code will Used By Hadeel after payment process
 Route::get('/transfer/{sender}/{reciver}/{amount}', function ($id1, $id2, $amount) {

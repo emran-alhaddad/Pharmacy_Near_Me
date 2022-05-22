@@ -6,8 +6,10 @@
     <section id="pay" class="contact-us section  radius search-area" style="direction: rtl; z-index: 00000000;">
         <div class="container">
             <div class="contact-head wow fadeInUp" data-wow-delay=".4s">
-                <form action="{{ route('user-payment-pay', $request['order_reference']) }}" method="post"
-                    class="row p-2  shadow radius">
+                <form
+                    @if (!isset($request['is_advertising'])) action="{{ route('user-payment-pay', $request['order_reference']) }}"
+                @else  action="{{ route('user-payment-ads-pay', $request['order_reference']) }}" @endif
+                    method="post" class="row p-2  shadow radius">
 
                     <div class="text-center banner-area ">
                         <h3 class="heading text-white">عملية الدفع</h3>
@@ -41,8 +43,10 @@
                                             <span class="input-group-text rounded"
                                                 style="background-color: var(--main-color)"><i
                                                     class="bi bi-person-fill text-white"></i></span>
-                                            <input value="{{ Auth::user()->name }}" type="text" placeholder="اسم المستخدم"
-                                                name="name"
+                                            <input
+                                                @if (isset($request['is_advertising'])) value="{{ $request['ads_owner']->name }}"
+                                                   @else value="{{ Auth::user()->name }}" @endif
+                                                type="text" placeholder="اسم المستخدم" name="name"
                                                 class="form-control rounded @error('name') border-danger @enderror">
                                             @error('name')
                                                 <div class="invalid-feedback d-block">
@@ -55,7 +59,9 @@
                                             <span class="input-group-text rounded"
                                                 style="background-color: var(--main-color)"><i
                                                     class="bi bi-envelope-fill text-white"></i></span>
-                                            <input type="email" value="{{ Auth::user()->email }}"
+                                            <input type="email"
+                                                @if (isset($request['is_advertising'])) value="{{ $request['ads_owner']->email }}"
+                                                   @else value="{{ Auth::user()->email }}" @endif
                                                 placeholder="example@example.com" name="email"
                                                 class="form-control rounded @error('email') border-danger @enderror">
                                             @error('email')
@@ -64,41 +70,46 @@
                                                 </div>
                                             @enderror
                                         </div>
+                                        @if (!isset($request['is_advertising']))
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text rounded"
+                                                    style="background-color: var(--main-color)"><i
+                                                        class="lni lni-map-marke text-white"></i></span>
+                                                <input type="address" value="" placeholder="وصف العنوان " name="address"
+                                                    class="form-control rounded @error('address') border-danger @enderror">
+                                                @error('address')
+                                                    <div class="invalid-feedback d-block">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
 
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text rounded"
-                                                style="background-color: var(--main-color)"><i
-                                                    class="lni lni-map-marke text-white"></i></span>
-                                            <input type="address" value="" placeholder="وصف العنوان " name="address"
-                                                class="form-control rounded @error('address') border-danger @enderror">
-                                            @error('address')
-                                                <div class="invalid-feedback d-block">
-                                                    {{ $message }}
+                                            <div class="input-group mb-3 rounded">
+                                                <div class="dropdown col-12">
+                                                    <select name="city" id="location" class="col-12 rounded form-control">
+                                                        <option value="none" selected disabled> المدينة </option>
+                                                        @foreach ($cities as $city)
+                                                            <option value="{{ $city->id }}">{{ $city->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
-                                            @enderror
-                                        </div>
-
-                                        <div class="input-group mb-3 rounded">
-                                            <div class="dropdown col-12">
-                                                <select name="city" id="location" class="col-12 rounded form-control">
-                                                    <option value="none" selected disabled> المدينة </option>
-                                                    @foreach ($cities as $city)
-                                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
-                                                    @endforeach
-                                                </select>
                                             </div>
-                                        </div>
 
-                                        <div class="input-group mb-3 rounded">
-                                            <div class="dropdown col-12">
-                                                <select name="zone" id="category" class="col-12 rounded form-control">
-                                                    <option value="none" selected disabled> الحي </option>
-                                                    @foreach ($zones as $zone)
-                                                        <option value="{{ $zone->id }}">{{ $zone->name }}</option>
-                                                    @endforeach
-                                                </select>
+                                            <div class="input-group mb-3 rounded">
+                                                <div class="dropdown col-12">
+                                                    <select name="zone" id="category" class="col-12 rounded form-control">
+                                                        <option value="none" selected disabled> الحي </option>
+                                                        @foreach ($zones as $zone)
+                                                            <option value="{{ $zone->id }}">{{ $zone->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @else
+                                            <input type="hidden" name="is_advertising" value="true" />
+                                        @endif
 
                                     </div>
                                 </div>
@@ -135,9 +146,10 @@
                                                                     @if (isset($product['drug_image']))
                                                                         <div>
 
-                                                                            <img src="{{ asset('uploads/'.$product['drug_image']) }}"
+                                                                            <img src="{{ asset('uploads/' . $product['drug_image']) }}"
                                                                                 class="img-fluid rounded-pill border border-dark p-2"
-                                                                                alt="Shopping item" style="width: 65px; cursor:pointer;">
+                                                                                alt="Shopping item"
+                                                                                style="width: 65px; cursor:pointer;">
                                                                         </div>
                                                                     @endif
                                                                     @if (isset($product['drug_title']))
