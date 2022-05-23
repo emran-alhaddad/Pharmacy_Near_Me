@@ -1,34 +1,34 @@
-
 @extends('layouts.masterFront')
 
-    @section('content')
+@section('content')
 
 
-	<!--====== HERO PART START ======-->
-	<section class="banner-area bg_cover shadow" style="direction: rtl;">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="banner-content">
-						<h3 class="text-white py-3">يمكنك التواصل معنا عبر المعلومات الوارادة في هذه الصفحة </h3>
-						<nav aria-label="breadcrumb">
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item py-1 text-white"><a href="{{ route('index') }}"> الرئيسية</a></li>
-								<li class="breadcrumb-item active p-1" aria-current="page">  تواصل معنا   </li>
-							</ol>
-						</nav>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--====== HERO PART END ======-->
+    <!--====== HERO PART START ======-->
+    <section class="banner-area bg_cover shadow" style="direction: rtl;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="banner-content">
+                        <h3 class="text-white py-3">يمكنك التواصل معنا عبر المعلومات الوارادة في هذه الصفحة </h3>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item py-1 text-white"><a href="{{ route('index') }}"> الرئيسية</a>
+                                </li>
+                                <li class="breadcrumb-item active p-1" aria-current="page"> تواصل معنا </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== HERO PART END ======-->
 
- 	<!--====== SEARCH PART START ======-->
-        @include('includes.FrontSearch')
-	<!--====== SEARCH PART END ======-->
+    <!--====== SEARCH PART START ======-->
+    @include('includes.FrontSearch')
+    <!--====== SEARCH PART END ======-->
 
-  <!-- Start Contact Area -->
+    <!-- Start Contact Area -->
     <section id="contact-us" class="contact-us section pt-5 radius" style="direction: rtl;">
         <div class="container">
             <div class="contact-head wow fadeInUp" data-wow-delay=".4s">
@@ -42,15 +42,17 @@
                             </div>
                             <div class="single-info py-2">
 
-                            @foreach($infoSite as $infoSites)
-
-                                <ul>
-                                    <li class="text-white py-2"><i class="lni lni-phone pl-2"></i>{{$infoSites->phone}}</li>
-                                </ul>
+                                @foreach ($infoSite as $infoSites)
+                                    <ul>
+                                        <li class="text-white py-2"><i
+                                                class="lni lni-phone pl-2"></i>{{ $infoSites->phone }}</li>
+                                    </ul>
                             </div>
                             <div class="single-info">
                                 <ul>
-                                    <li class="text-white pb-2"><a href="mailto:{{$infoSites->email}}" class="text-white"> <i class="lni lni-envelope pl-2"></i> {{$infoSites->email}}</a></li>
+                                    <li class="text-white pb-2"><a href="mailto:{{ $infoSites->email }}"
+                                            class="text-white"> <i class="lni lni-envelope pl-2"></i>
+                                            {{ $infoSites->email }}</a></li>
                                 </ul>
                             </div>
                             <div class="single-info">
@@ -65,19 +67,20 @@
                                     <li class="p-1">
                                         <a href="#" class="text-white ">
                                             <span class="icon-1"><i class="lni lni-facebook-filled pr-1"></i></span>
-                                            <span>{{$infoSites->facebook}} </span>
+                                            <span>{{ $infoSites->facebook }} </span>
                                         </a>
                                     </li>
                                     <li class="p-1">
-										<a href="#" class="text-white">
-                                            <span class="icon-1"><i class="lni lni-twitter-original pr-1"></i></span>
-                                            <span> {{$infoSites->twitter}} </span>
+                                        <a href="#" class="text-white">
+                                            <span class="icon-1"><i
+                                                    class="lni lni-twitter-original pr-1"></i></span>
+                                            <span> {{ $infoSites->twitter }} </span>
                                         </a>
                                     </li>
                                     <li class="p-1">
-										<a href="#" class="text-white">
+                                        <a href="#" class="text-white">
                                             <span class="icon-1"><i class="lni lni-whatsapp pr-1"></i></span>
-                                            <span> {{$infoSites->whatsup}} </span>
+                                            <span> {{ $infoSites->whatsup }} </span>
                                         </a>
                                     </li>
 
@@ -85,7 +88,6 @@
                             </div>
                         </div>
                     </div>
-
                     @endforeach
 
                     <div class="col-lg-7 col-12 radius p-5 ">
@@ -104,7 +106,8 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-6 py-2">
                                         <div class="form-group">
-                                            <input name="name" class="radius border" type="text" placeholder="الاسم الكامل  " required="required">
+                                            <input name="name" class="radius border" type="text"
+                                                placeholder="الاسم الكامل  " required="required">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-6 py-2">
@@ -115,13 +118,13 @@
                                     </div>
                                     <div class="col-lg-6 col-6 py-2">
                                         <div class="form-group">
-                                            <input name="email"class="radius border" type="email" placeholder="thng@example.com "
-                                                required="required">
+                                            <input name="email" class="radius border" type="email"
+                                                placeholder="thng@example.com " required="required">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-6 py-2">
                                         <div class="form-group">
-                                            <input name="phone"class="radius border" type="text" placeholder="رقم الهاتف "
+                                            <input name="phone" class="radius border" type="text" placeholder="رقم الهاتف "
                                                 required="required">
                                         </div>
                                     </div>
@@ -148,4 +151,4 @@
 
 
 
-    @stop
+@stop

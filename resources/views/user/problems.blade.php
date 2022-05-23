@@ -1,4 +1,4 @@
-@extends('layouts.masterUser2')
+@extends('layouts.masterUser')
 
 @section('content')
 
@@ -20,14 +20,8 @@
         <!-- Content -->
 
         <div class="container-xxl flex-grow-1 container-p-y">
-
-
-
-
-
-
             <!-- added complaints -->
-            <div class=" mt-5">
+            <div>
                 <div class="card">
                     <h5 class="card-header"> عرض الشكاوي </h5>
                     <div class="table-responsive text-nowrap">
@@ -53,23 +47,14 @@
                                             <td>
                                                 <div class="row">
 
-                                                    <div class="col">
+                                                    <div class="col-6">
                                                         <a class="btn btn-outline-danger text-secondary"
                                                             href="{{ route('client-compliants-delete', $compliant->id) }}"
                                                             role="button">
                                                             حــذف
                                                         </a>
                                                     </div>
-
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <p id="replay_massage">
-
-
-                                                    <div class="col">
+                                                    <div class="col-6">
                                                         @if ($compliant->replay)
                                                             <button type="button" class="btn btn-submit btn-hover me-2 "
                                                                 data-bs-toggle="modal" data-bs-target="#exampleModal2"
@@ -81,6 +66,7 @@
                                                         @endif
                                                     </div>
                                                 </div>
+
                                             </td>
 
 
@@ -100,7 +86,7 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel"> عرض الرد</h5>
+                                            <h5 class="modal-title col-12" id="exampleModalLabel"> عرض الرد</h5>
 
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>

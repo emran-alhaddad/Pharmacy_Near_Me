@@ -26,7 +26,7 @@
                                             aria-expanded="false"
                                             aria-controls="collapseExample"> تفاصيل الطلبية</a></td>
                                             <td>
-                                        
+
                                             </td>
                                         </tr>
                                         <tr>
@@ -41,7 +41,7 @@
                                             aria-expanded="false"
                                             aria-controls="collapseExample"> تفاصيل الطلب</a></td>
                                             <td>
-                                        
+
                                             </td>
                                         </tr>
                                     </tbody>

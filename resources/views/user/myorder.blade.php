@@ -1,4 +1,4 @@
-@extends('layouts.masterUser2')
+@extends('layouts.masterUser')
 
 @section('content')
 
@@ -104,7 +104,7 @@
     </div>
     </div>
 
-<!-- addCompliant Modal -->
+    <!-- addCompliant Modal -->
     <div id="addCompliant" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -140,8 +140,7 @@
                                 <div class="input-group mb-3">
 
                                     <div class="dropdown col-12">
-                                        <select id="pharmacy" name="pharmacy" disabled
-                                            class=" rounded form-control">
+                                        <select id="pharmacy" name="pharmacy" disabled class=" rounded form-control">
                                             @foreach ($pharmacies as $pharmacy)
                                                 <option value="{{ $pharmacy->user_id }}">
                                                     {{ $pharmacy->user->name }}
@@ -190,10 +189,10 @@
     </div>
 
     <script>
-    function reject(order, pharmacy) {
-        $('#order').val(order);
-        $('#pharmacy_id').val(pharmacy);
-        $('#pharmacy').val(pharmacy).change();
-    }
-</script>
+        function reject(order, pharmacy) {
+            $('#order').val(order);
+            $('#pharmacy_id').val(pharmacy);
+            $('#pharmacy').val(pharmacy).change();
+        }
+    </script>
 @stop

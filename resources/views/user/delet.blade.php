@@ -284,8 +284,6 @@
         </div>
     </div>
 
-
-
     <div class="collapse mt-5" id="collapseExample">
         <div class="card">
             <h5 class="card-header"> تفاصيل الطلبية</h5>
@@ -421,3 +419,4 @@
             </div>
         </div>
     </div>
+</div>

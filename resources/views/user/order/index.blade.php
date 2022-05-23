@@ -1,4 +1,4 @@
-@extends('layouts.masterUser2')
+@extends('layouts.masterUser')
 
 @section('content')
     <style>
@@ -63,6 +63,5 @@
             @include('user.order.state.rejected')
         </div>
     </section>
-
 
 @stop

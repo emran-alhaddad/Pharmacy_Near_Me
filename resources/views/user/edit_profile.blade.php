@@ -1,4 +1,4 @@
-@extends('layouts.masterUser2')
+@extends('layouts.masterUser')
 
 @section('content')
 
@@ -6,20 +6,20 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <div id="alert">
         </div>
-         @if (session('error'))
-                <div class="alert alert-danger alert-dismissible text-center mt-2 fade show" role="alert">
-                    {!! session('error') !!}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                </div>
-            @endif
-            @if (session('status'))
-                <div class="alert alert-success alert-dismissible text-center mt-2 fade show" role="alert">
-                    {!! session('status') !!}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                </div>
-            @endif
+        @if (session('error'))
+            <div class="alert alert-danger alert-dismissible text-center mt-2 fade show" role="alert">
+                {!! session('error') !!}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            </div>
+        @endif
+        @if (session('status'))
+            <div class="alert alert-success alert-dismissible text-center mt-2 fade show" role="alert">
+                {!! session('status') !!}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            </div>
+        @endif
         <!-- <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">اعدادات الحساب  /</span> البروفايل</h4> -->
 
         <div class="row">

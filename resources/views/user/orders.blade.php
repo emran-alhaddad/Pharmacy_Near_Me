@@ -1,8 +1,8 @@
-@extends('layouts.masterUser2')
+@extends('layouts.masterUser')
 
 @section('content')
     <!-- Content -->
-    <div class="container-xxl flex-grow-1 container-p-y">
+    <section class="container-xxl flex-grow-1 container-p-y ">
         @if (session('error'))
             <div class="alert alert-danger alert-dismissible text-center mt-2 fade show" role="alert">
                 {!! session('error') !!}
@@ -18,7 +18,7 @@
             </div>
         @endif
         <!-- Order  -->
-        <div class="card">
+        <div class="card ">
             <h5 class="card-header"> الطلبات</h5>
             <div class="table-responsive text-nowrap">
                 <table class="table table-hover">
@@ -66,7 +66,7 @@
         <!-- Order  -->
 
         <!-- Order Details  -->
-        <div class="collapse mt-5" id="collapseExample">
+        <div class="collapse mt-5 col-12" id="collapseExample">
             <div class="card">
                 <h5 class="card-header"> تفاصيل الطلبية</h5>
                 <div class="table-responsive text-nowrap">
@@ -212,7 +212,7 @@
         <!-- added replies -->
         <div class=" mt-5">
             <div class="card">
-                <h5 class="card-header">الردود المضافة </h5>
+                <h5 class="card-header">عروض السعر المضافة </h5>
                 <div class="table-responsive text-nowrap">
                     <table class="table table-hover">
                         <thead>
@@ -287,7 +287,7 @@
             </div>
         </div>
 
-    </div>
+    </section>
     <!-- / Content -->
 
 @stop

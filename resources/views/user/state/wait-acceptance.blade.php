@@ -1,4 +1,4 @@
-<div id="wait-accept" class="tab-pane active">
+<div id="wait-accept col-12" class="tab-pane active">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -17,8 +17,8 @@
                         <td>{{ $request->pharmacy->user->name }}</td>
                         <td>{{ $request->created_at->diffForHumans() }}</td>
                         <td><span class="badge bg-warning text-dark">انتضار القبول</span></td>
-                        <td><a class=" btn btn-submit btn-hover me-2" 
-                                data-bs-toggle="collapse" role="button" data-bs-target="#details{{ $request->id }}">
+                        <td><a class=" btn btn-submit btn-hover me-2" data-bs-toggle="collapse" role="button"
+                                data-bs-target="#details{{ $request->id }}">
                                 عرض التفاصيل
                             </a></td>
                     </tr>

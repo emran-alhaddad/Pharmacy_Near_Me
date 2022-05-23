@@ -32,11 +32,11 @@
                         <div class="card-header">
                             <p class="" style="font-size: 30px;">فاتورة دفع </p>
                             <button class="btn btn-primary" id="print_bill">
-                            طباعة الفاتورة
+                                طباعة الفاتورة
                             </button>
                         </div>
                         <div class="card-body mx-4">
-                            <div class="container" >
+                            <div class="container">
 
                                 <div class="row">
                                     <ul class="list-unstyled d-flec flex-row">
@@ -74,8 +74,8 @@
                                 </div>
 
                                 <div class="text-center p-4" role="button">
-                                <a><u class="text-info">العودة للبروفايل </u></a>
-                            </div>
+                                    <a><u class="text-info">العودة للبروفايل </u></a>
+                                </div>
 
                             </div>
                         </div>
@@ -86,18 +86,18 @@
         </div>
     </section>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script>
-
-        $(document).on('click', '#print_bill', function () {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $(document).on('click', '#print_bill', function() {
 
             let pdf = new jsPDF();
             let section = $('#bill');
-            let page = function () {
+            let page = function() {
                 pdf.save('bill.pdf');
             };
             pdf.addHTML(section, page);
