@@ -27,37 +27,37 @@
     <div class="menu-inner-shadow"></div>
     <ul class="menu-inner py-1">
         <li class="menu-item">
-        <a href="{{ route('index') }}" class="menu-link"><i class="bx bx-home-alt me-1"></i>
+        <a href="{{ route('index') }}" class="menu-link"><i class="bx bx-home-alt ms-2"></i>
             <div data-i18n="Account">الرئيسية</div>
         </a>
         </li>
         <li class="menu-item">
-        <a href="#" class="menu-link"><i class="bx bx-message-alt me-1"></i>
+        <a href="#" class="menu-link"><i class="bx bx-message-alt ms-2"></i>
             <div data-i18n="Account">الرسائل</div>
         </a>
         </li>
         <li class="menu-item">
-        <a href="{{ route('client-orders') }}" class="menu-link"><i class="bx bx-shopping-bag me-1"></i>
+        <a href="{{ route('client-orders') }}" class="menu-link"><i class="bx bx-shopping-bag ms-2"></i>
             <div data-i18n="Account">ادارة الطلبات</div>
         </a>
         </li>
         <li class="menu-item">
-        <a href="#" class="menu-link"><i class="bx bx-notification  me-1"></i>
+        <a href="#" class="menu-link"><i class="bx bx-notification  ms-2"></i>
             <div data-i18n="Account">الاشعارات</div>
         </a>
         </li>
         <li class="menu-item">
-        <a href="#" class="menu-link"><i class="bx bx-chat me-1"></i>
+        <a href="#" class="menu-link"><i class="bx bx-chat ms-2"></i>
             <div data-i18n="Account">الشكاوي</div>
         </a>
         </li>
         <li class="menu-item">
-        <a href="{{ route('client-dashboard') }}" class="menu-link"><i class="bx bx-user me-1"></i>
+        <a href="{{ route('client-dashboard') }}" class="menu-link"><i class="bx bx-user ms-2"></i>
             <div data-i18n="Account">البروفايل</div>
         </a>
         </li>
         <li class="menu-item">
-        <a href="{{ route('logout') }}" class="menu-link"><i class="bx bx-power-off me-1"></i>
+        <a href="{{ route('logout') }}" class="menu-link"><i class="bx bx-power-off ms-2"></i>
             <div data-i18n="Account">تسجيل خروج</div>
         </a>
         </li>
@@ -104,39 +104,39 @@
     <div class="menu-inner-shadow"></div>
     <ul class="menu-inner py-1">
         <li class="menu-item">
-            <a href="{{ route('index') }}" class="menu-link"><i class="bx bx-home-alt me-1"></i>
+            <a href="{{ route('index') }}" class="menu-link"><i class="bx bx-home-alt ms-2"></i>
                 <div data-i18n="Account">الرئيسية</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="{{ route('inbox.index') }}" class="menu-link"><i class="bx bx-message-alt me-1"></i>
+            <a href="{{ route('inbox.index') }}" class="menu-link"><i class="bx bx-message-alt ms-2"></i>
                 <div data-i18n="Account">الرسائل</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="{{ route('myorder') }}" class="menu-link"><i class="bx bx-shopping-bag me-1"></i>
+            <a href="{{ route('myorder') }}" class="menu-link"><i class="bx bx-shopping-bag ms-2"></i>
                 <div data-i18n="Account">طلبياتي </div>
             </a>
         </li>
         <li class="menu-item">
 
         <li class="menu-item">
-            <a href="{{ route('problems') }}" class="menu-link"><i class="bx bx-chat me-1"></i>
+            <a href="{{ route('problems') }}" class="menu-link"><i class="bx bx-chat ms-2"></i>
                 <div data-i18n="Account">الشكاوي</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="{{ route('client-dashboard') }}" class="menu-link"><i class="bx bx-user me-1"></i>
+            <a href="{{ route('client-dashboard') }}" class="menu-link"><i class="bx bx-user ms-2"></i>
                 <div data-i18n="Account">البروفايل</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="{{ route('bag-user') }}" class="menu-link"><i class="bx bx-notification  me-1"></i>
+            <a href="{{ route('bag-user') }}" class="menu-link"><i class="bx bx-notification  ms-2"></i>
                 <div data-i18n="Account">محفظتي</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="{{ route('logout') }}" class="menu-link"><i class="bx bx-power-off me-1"></i>
+            <a href="{{ route('logout') }}" class="menu-link"><i class="bx bx-power-off ms-2"></i>
                 <div data-i18n="Account">تسجيل خروج</div>
             </a>
         </li>

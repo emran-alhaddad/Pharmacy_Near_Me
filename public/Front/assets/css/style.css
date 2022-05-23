@@ -1734,7 +1734,7 @@ section {
     right: -60px;
 }
 
-.header-btn .main-btn.account-btn::after {
+/* .header-btn .main-btn.account-btn::after {
     content: '';
     position: absolute;
     display: block;
@@ -1749,7 +1749,7 @@ section {
     transition: all 0.3s ease-out 0s;
     border-bottom: 2px solid var(--main-color);
     border-right: 2px solid var(--main-color);
-}
+} */
 
 @media (max-width: 767px) {
     .header-btn .main-btn.account-btn {

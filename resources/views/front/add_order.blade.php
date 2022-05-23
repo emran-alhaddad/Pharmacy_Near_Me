@@ -34,70 +34,71 @@
 
     </style>
 
-    <section class="my-5 d-flex justify-content-center">
+    <section class="d-flex justify-content-center">
+        <div class="my-5 col-12 col-sm-6">
 
-        <div class="card p-5 my-5 d-flex justify-content-center shadow radius">
-            <div id="alert-error" class="alert alert-danger mt-2 mb-2" style="display:none" role="alert">
+            <div class="card p-5 my-5 d-flex justify-content-center shadow radius">
+                <div id="alert-error" class="alert alert-danger mt-2 mb-2" style="display:none" role="alert">
 
-            </div>
-            <div id="alert-success" class="alert alert-success mt-2 mb-2" style="display:none" role="alert">
-
-            </div>
-            @if (session('error'))
-                <div class="alert alert-danger alert-dismissible text-center mt-2 fade show" role="alert">
-                    {!! session('error') !!}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
                 </div>
-            @endif
-            @if (session('status'))
-                <div class="alert alert-success alert-dismissible text-center mt-2 fade show" role="alert">
-                    {!! session('status') !!}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
+                <div id="alert-success" class="alert alert-success mt-2 mb-2" style="display:none" role="alert">
+
                 </div>
-            @endif
-            <div class="mb-3">
-                <h2 class="text-center divider mb-5">
-                    لتقديم طلب دواء قم بإضافة
-                </h2>
-                <h5 class="text-center">صورة الروشتة</h5>
-                <label for="request-image" class="form-label text-center w-100"
-                    style="background-color: #f8f8f8; border: 1px solid #01497c; cursor:pointer">
-                    <img id="request-image-preview" data-src="{{ asset('admin/img/work/plus.jpg') }}"
-                        src="{{ asset('admin/img/work/plus.jpg') }}" class="img-fluid" style="height: 120px;"
-                        title="إضغط لإختيار صورة الروشتة">
-                    <input class="form-control drug_image file-change" type="file" hidden id="request-image"
-                        data-extentions="jpg,png" data-preview="request-image-preview" />
-                </label>
-            </div>
-
-            <div class=" col-12">
-                <h2 class="text-center divider">
-                    او
-                </h2>
-            </div>
-            <div class="form-group p-2" style="direction:rtl;">
-                <div class="row px-2">
-                    <div class="col-lg-8 col-sm-12">
-                        <label for="usr"> اسم العلاج</label>
-                        <input type="text" class="form-control" id="drug_title">
-
+                @if (session('error'))
+                    <div class="alert alert-danger alert-dismissible text-center mt-2 fade show" role="alert">
+                        {!! session('error') !!}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
                     </div>
-                    <div class="col-lg-4 col-sm-12">
-                        <label for="usr">الكمــــية</label>
-                        <input class="form-control" type="number" min=1 id="quantity" value="1">
-
+                @endif
+                @if (session('status'))
+                    <div class="alert alert-success alert-dismissible text-center mt-2 fade show" role="alert">
+                        {!! session('status') !!}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
                     </div>
+                @endif
+                <div class="mb-3">
+                    <h2 class="text-center divider mb-5">
+                        لتقديم طلب دواء قم بإضافة
+                    </h2>
+                    <h5 class="text-center">صورة الروشتة</h5>
+                    <label for="request-image" class="form-label text-center w-100"
+                        style="background-color: #f8f8f8; border: 1px solid #01497c; cursor:pointer">
+                        <img id="request-image-preview" data-src="{{ asset('admin/img/work/plus.jpg') }}"
+                            src="{{ asset('admin/img/work/plus.jpg') }}" class="img-fluid" style="height: 120px;"
+                            title="إضغط لإختيار صورة الروشتة">
+                        <input class="form-control drug_image file-change" type="file" hidden id="request-image"
+                            data-extentions="jpg,png" data-preview="request-image-preview" />
+                    </label>
                 </div>
-                <div class="row px-2">
-                    <ul class="p-2">
 
-                        <li class="list-group-item m-1 radius">
-                            <input class="form-check-input me-1 p-2 " type="checkbox" id="accept_alternative">
-                            اقبل بديل في حالة عدم توفره
-                        </li>
-                        {{-- <li class="list-group-item m-1 radius ">
+                <div class=" col-12">
+                    <h2 class="text-center divider">
+                        او
+                    </h2>
+                </div>
+                <div class="form-group p-2" style="direction:rtl;">
+                    <div class="row px-2">
+                        <div class="col-lg-8 col-sm-12">
+                            <label for="usr"> اسم العلاج</label>
+                            <input type="text" class="form-control" id="drug_title">
+
+                        </div>
+                        <div class="col-lg-4 col-sm-12">
+                            <label for="usr">الكمــــية</label>
+                            <input class="form-control" type="number" min=1 id="quantity" value="1">
+
+                        </div>
+                    </div>
+                    <div class="row px-2">
+                        <ul class="p-2">
+
+                            <li class="list-group-item m-1 radius">
+                                <input class="form-check-input me-1 p-2 " type="checkbox" id="accept_alternative">
+                                اقبل بديل في حالة عدم توفره
+                            </li>
+                            {{-- <li class="list-group-item m-1 radius ">
                             <input class="form-check-input p-2 me-1 " type="checkbox" id="accept_repeate">
                             اريد تكرار هذا الطلب بشكل تلقائي
                         </li>
@@ -137,56 +138,57 @@
 
                             </div>
                         </li> --}}
-                        <div class="row justify-content-center gy-2 m-3 ">
-                            <button onclick="addRequestDetail()" class="main-btn btn-hover">اضافة المنتج الى الطلبية
-                            </button>
-                        </div>
-                    </ul>
+                            <div class="row justify-content-center gy-2 m-3 ">
+                                <button onclick="addRequestDetail()" class="main-btn btn-hover">اضافة المنتج الى الطلبية
+                                </button>
+                            </div>
+                        </ul>
+                    </div>
                 </div>
-            </div>
 
-            <div class="container flex-grow-1" style="direction:rtl;">
-                <!-- Order  -->
-                <div class="">
-                    <div class="box-style">
-                        <h5 class="card-header" style="background-color: var(--hover-main); color:#fff"> المنتجات
-                            المندرجة ضمن طلبك</h5>
-                        <div class="table-responsive text-nowrap">
-                            <table class="table table-hover">
+                <div class="container flex-grow-1" style="direction:rtl;">
+                    <!-- Order  -->
+                    <div class="">
+                        <div class="box-style">
+                            <h5 class="card-header" style="background-color: var(--hover-main); color:#fff"> المنتجات
+                                المندرجة ضمن طلبك</h5>
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-hover">
 
-                                <thead>
-                                    <tr>
-                                        <th>اسم /صورة العلاج</th>
-                                        <th>الكمية </th>
-                                        <th>اقبل بديل </th>
-                                        {{-- <th>كرر الطلبية كل</th>
+                                    <thead>
+                                        <tr>
+                                            <th>اسم /صورة العلاج</th>
+                                            <th>الكمية </th>
+                                            <th>اقبل بديل </th>
+                                            {{-- <th>كرر الطلبية كل</th>
                                         <th>حتى تاريخ </th> --}}
-                                    </tr>
-                                </thead>
-                                <tbody id="order_details_table">
+                                        </tr>
+                                    </thead>
+                                    <tbody id="order_details_table">
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <form action="{{ route('client-orders-store') }}" enctype="multipart/form-data" method="POST">
+                                @csrf
+                                <input type="hidden" name="client_id" value="{{ Auth::user()->id }}">
+                                <input type="hidden" name="pharmacy_id" value="{{ $pharmacy->id }}">
+                                <input type="hidden" name="data" id="data" value="">
+                                <input type="file" name="images[]" multiple hidden id="images">
+                                <button id="send_request_btn" style="visibility:hidden;" type="submit"
+                                    class="main-btn btn-hover col-12"> ارسال الطلبية </button>
+                            </form>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12">
-                        <form action="{{ route('client-orders-store') }}" enctype="multipart/form-data" method="POST">
-                            @csrf
-                            <input type="hidden" name="client_id" value="{{ Auth::user()->id }}">
-                            <input type="hidden" name="pharmacy_id" value="{{ $pharmacy->id }}">
-                            <input type="hidden" name="data" id="data" value="">
-                            <input type="file" name="images[]" multiple hidden id="images">
-                            <button id="send_request_btn" style="visibility:hidden;" type="submit"
-                                class="main-btn btn-hover col-12"> ارسال الطلبية </button>
-                        </form>
-                    </div>
-                </div>
             </div>
+
+
         </div>
-
-
     </section>
 
     <script>

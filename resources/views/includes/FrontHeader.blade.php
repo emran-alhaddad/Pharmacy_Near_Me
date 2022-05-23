@@ -31,21 +31,27 @@
 
                             <!-- In LogIn Case  -->
                             @if (auth()->user())
-                                <li>
+
+                                <li class="justify-center">
                                     <a href="#" class="main-btn account-btn">
-                                        <span class="d-md-none"><i class="lni lni-user"></i></span>
-                                        <span class="d-none d-md-block">البروفايل</span>
+                                        <span class=""><i class="fas fa-user"></i></span>
+                                        {{-- <span class="d-none d-md-block">البروفايل</span> --}}
                                     </a>
-                                    <ul class="dropdown-nav dir" style="height: auto;">
+                                    <ul class="dropdown-nav dir rounded p-3" style="height: auto;">
                                         @if (auth()->user()->hasRole('admin'))
-                                            <li><a href="{{ route('admin-dashboard') }}">لوحة التحكم</a></li>
+                                            <li class="btn-hover"><a href="{{ route('admin-dashboard') }}"> <i
+                                                        class="fas fa-user me-2"></i>لوحة التحكم</a></li>
                                         @elseif (auth()->user()->hasRole('pharmacy'))
-                                            <li><a href="{{ route('pharmacy-dashboard') }}">لوحة التحكم</a></li>
+                                            <li class="btn-hover"><a href="{{ route('pharmacy-dashboard') }}"> <i
+                                                        class="fas fa-user me-2"></i>لوحة التحكم</a></li>
                                         @else
-                                            <li><a href="{{ route('client-dashboard') }}">لوحة التحكم</a></li>
+                                            <li class="btn-hover"><a href="{{ route('client-dashboard') }}"> <i
+                                                        class="fas fa-user me-2"></i>لوحة التحكم</a></li>
                                         @endif
 
-                                        <li><a href="{{ route('logout') }}">تسجيل خروج</a></li>
+                                        <li class="btn-hover"><a href="{{ route('logout') }}"> <i
+                                                    class="fas fa-sign-out-alt me-2"></i>
+                                                تسجيل خروج</a></li>
                                     </ul>
                                 </li>
                             @else
