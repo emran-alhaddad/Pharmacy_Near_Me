@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en" dir="rtl" >
 
 <head>
@@ -98,10 +98,7 @@
                 <a href="#" class="nav-item nav-link active"><i class="bi bi-chat"></i></a>
                 <a href="#" class="nav-item nav-link active"><i class="bi bi-gear"></i></a>
                 <a href="#" class="nav-item nav-link active"><i class="bi bi-bell"></i></a>
-
             </div>
         </div>
     </div>
-</nav>
-
-
+</nav> --}}

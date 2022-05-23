@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('pharmacy/assets/css/demo.css') }}" />
     <link rel="stylesheet" href="{{ asset('pharmacy/assets/css/chat.css') }}" />
     <script src="{{ asset('pharmacy/assets/js/config.js') }}"></script>
+    <script src="{{ asset('pharmacy/assets/vendor/js/helpers.js') }}"></script>
 
 
 
@@ -30,8 +31,8 @@
 
 
     {{-- Front Style start --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.rtl.min.css"
-        integrity="sha384-+qdLaIRZfNu4cVPK/PxJJEy0B0f3Ugv8i482AKY7gwXwhaCroABd086ybrVKTa0q" crossorigin="anonymous">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.rtl.min.css"
+        integrity="sha384-+qdLaIRZfNu4cVPK/PxJJEy0B0f3Ugv8i482AKY7gwXwhaCroABd086ybrVKTa0q" crossorigin="anonymous"> --}}
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
     <script src="{{ asset('shared/js/main.js') }}"></script>
@@ -108,13 +109,13 @@
         .btn-submit {
             border: var(--border);
             border-radius: var(--radius);
-            color: #ffffff;
-            background-color: var(--main-color);
+            background-color: #ffffff;
+            color: var(--main-color);
         }
 
         .btn-submit :hover {
-            color: #fff;
-            /* background-color: #ffffff; */
+            color: var(--secondary-color);
+            /* background-color: var(--secondary-color); */
         }
 
         .back-to-top.btn-hover {

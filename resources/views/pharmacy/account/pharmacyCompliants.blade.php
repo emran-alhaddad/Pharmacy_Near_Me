@@ -5,7 +5,7 @@
 
 
     <div class="content-wrapper">
-         @if (session('error'))
+        @if (session('error'))
             <div class="alert alert-danger alert-dismissible text-center mt-2 fade show" role="alert">
                 {!! session('error') !!}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
@@ -34,8 +34,7 @@
                                     <th>المشتكي </th>
                                     <th>تاريخ الشكوى</th>
                                     <th>محتوى الشكوى</th>
-
-                                    <th>العمليات </th>
+                                    <th>الردود </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,8 +49,8 @@
                                             @if ($compliant->replay)
                                                 <td>
                                                     <i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                                    <button type="button" class=" btn btn-submit btn-hover  me-2 " data-bs-toggle="modal"
-                                                        data-bs-target="#exampleModal2"
+                                                    <button type="button" class=" btn btn-submit btn-hover  me-2 "
+                                                        data-bs-toggle="modal" data-bs-target="#exampleModal2"
                                                         onclick="$('#replay_massage').text('{{ $compliant->replay }}');">
                                                         عرض الرد
                                                     </button>
@@ -60,10 +59,10 @@
                                             @if ($compliant->order_reference)
                                                 <td>
                                                     <i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                                    <a type="button" class=" btn btn-submit btn-hover  me-2 " 
-                                                        href="{{ route('pharmacy-order-details',$compliant->order_reference) }}">
+                                                    <a type="button" class=" btn btn-submit btn-hover  me-2 "
+                                                        href="{{ route('pharmacy-order-details', $compliant->order_reference) }}">
                                                         عرض الطلبية
-                                                    </button>
+                                                        </button>
                                                 </td>
                                             @endif
 
@@ -83,21 +82,19 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"> عرض الرد</h5>
-
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title fw-bold col-12" id="exampleModalLabel"> عرض الرد</h5>
+                        <button type="button" class="btn-close p-2 " data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="row">
                             <p id="replay_massage">
                             </p>
                         </div>
-                        <div class="row">
-                            <button class="btn-submit radius text-center p-2 col-12 mt-2" data-bs-dismiss="modal">
-                                تم
-                            </button>
-                        </div>
-
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn-submit radius text-center p-2 col-12 mt-2" data-bs-dismiss="modal">
+                            تم
+                        </button>
                     </div>
 
                 </div>

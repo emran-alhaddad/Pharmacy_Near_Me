@@ -25,20 +25,15 @@
 
         <div class="row">
             <div class="col-md-12">
-                <ul class="nav nav-pills flex-column flex-md-row mb-3">
+                {{-- <ul class="nav nav-pills flex-column flex-md-row mb-3">
                     <li class="nav-item">
 
-                        <button type="submit" class="btn btn-submit me-2"> <a href="{{ route('pharmacy-account') }}"
-                                style="color:#fff;"><i class="bx bx-user me-1"></i> البروفايل</a></button>
+                        <button type="submit" class="btn btn-submit me-2"> <a href="{{ route('pharmacy-account') }}"><i
+                                    class="bx bx-user me-1"></i> البروفايل</a></button>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('pharmacy-settings') }}"><i class="bx bx-cog me-1"></i>
-                            الاعدادات</a>
-                    </li>
-
-                </ul>
+                </ul> --}}
                 <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="col-12 col-sm-12">
                         <div class="card mb-4">
                             <h5 class="card-header">تفاصيل البروفايل</h5>
                             <!-- Account -->
@@ -47,18 +42,18 @@
                                     <div class="col-lg-4 col-md-4 col-sm-12">
                                         <div class="d-flex flex-column h-100 justify-content-evenly">
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                                            <button type="button" class="btn btn-submit" data-bs-toggle="modal"
                                                 data-bs-target="#edit-password">
                                                 تغيير كلمة المرور
                                             </button>
 
-                                            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                                            <button type="button" class="btn btn-submit" data-bs-toggle="modal"
                                                 data-bs-target="#edit-email">
                                                 تغيير البريد
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-12">
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
                                         <form action="{{ route('pharmacy-avater-update') }}" method="POST"
                                             class="d-flex flex-column flex-wrap justify-content-center align-content-center"
                                             enctype="multipart/form-data" class="d-flex flex-row">
@@ -82,13 +77,36 @@
                                         </form>
                                     </div>
 
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <form action="{{ route('pharmacy-license-update') }}" method="POST"
+                                            class="d-flex flex-column flex-wrap justify-content-center align-content-center"
+                                            enctype="multipart/form-data" class="d-flex flex-row">
+                                            @csrf
+                                            @method('put')
+                                            <label for="license">
+                                                <img src="{{ asset('uploads/license/' . $pharmacy->license) }}"
+                                                    class="d-block rounded" height="150" width="150" id="uploadedLicense" />
+                                                <input type="file" onchange="editImage(this,'uploadedLicense')"
+                                                    name="license" id="license" hidden />
+                                            </label>
+
+                                            <div class="button-wrapper mt-2">
+                                                <button type="submit" class=" btn btn-submit mb-4 .text-white "
+                                                    tabindex="0">
+                                                    <span class="d-none d-sm-block ">تغيير صورة الرخصة </span>
+
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+
                                 </div>
 
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-6 col-md-6 col-sm-12">
+                    {{-- <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="card mb-4">
                             <h5 class="card-header">تفاصيل البروفايل</h5>
                             <!-- Account -->
@@ -121,7 +139,7 @@
 
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
 
@@ -129,82 +147,111 @@
 
         </div>
 
-        <form action="{{ route('pharmacy-dashboard-update') }}" method="POST">
-            @csrf
-            @method('put')
-            <div class="row">
-                <div class="mb-3 col-lg-6 col-md-12 col-sm-12">
-                    <div class="mb-3 col">
-                        <label for="firstName" class="form-label">اسم الصيدلية </label>
-                        <input class="form-control rounded @error('name') border-danger @enderror"
-                            value="{{ $pharmacy->user->name }}" type="text" placeholder="اسم المستخدم" name="name"
-                            autofocus />
-                        @error('name')
-                            <div class="invalid-feedback d-block">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
-                    <div class="row">
-                        <div class="mb-3 col-lg-6 col-sm-12">
-
-                            <div class="input-group mb-3 rounded">
-                                <label for="city" class="form-label">المدينة</label>
-                                <div class="dropdown col-12">
-                                    <select name="city_id" class="col-12 rounded form-control">
-                                        @foreach ($cities as $city)
-                                            <option value="{{ $city->id }}"
-                                                @if ($pharmacy->zone->city_id == $city->id) selected @endif>
-                                                {{ $city->name }}
-                                        @endforeach
-
-                                    </select>
+        <div class="card p-5">
+            <h5 class="card-header">تفاصيل الصيدلية</h5>
+            <form action="{{ route('pharmacy-dashboard-update') }}" method="POST">
+                @csrf
+                @method('put')
+                <div class="row">
+                    <div class="mb-3 col-lg-6 col-md-12 col-sm-12">
+                        <div class="mb-3 col">
+                            <label for="firstName" class="form-label">اسم الصيدلية </label>
+                            <input class="form-control rounded @error('name') border-danger @enderror"
+                                value="{{ $pharmacy->user->name }}" type="text" placeholder="اسم المستخدم" name="name"
+                                autofocus />
+                            @error('name')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
                                 </div>
-                            </div>
+                            @enderror
                         </div>
-                        <div class="mb-3 col-lg-6 col-sm-12">
-                            <div class="input-group mb-3 rounded">
-                                <label for="zone_id" class="form-label">الحي السكني</label>
-                                <div class="dropdown col-12">
-                                    <select name="zone_id" class="col-12 rounded form-control">
-                                        @foreach ($zones as $zone)
-                                            <option value="{{ $zone->id }}"
-                                                @if ($pharmacy->zone_id == $zone->id) selected @endif>
-                                                {{ $zone->name }}
-                                        @endforeach
 
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="mb-3 col-lg-6 col-sm-12">
-                                <label for="phone" class="form-label">رقم الهاتف </label>
-                                <input class="form-control rounded @error('phone') border-danger @enderror"
-                                    value="{{ $pharmacy->user->phone }}" type="text" placeholder="رقم الهاتف"
-                                    name="phone" autofocus />
-                                @error('phone')
-                                    <div class="invalid-feedback d-block">
-                                        {{ $message }}
+                                <div class="input-group mb-3 rounded">
+                                    <label for="city" class="form-label">المدينة</label>
+                                    <div class="dropdown col-12">
+                                        <select name="city_id" class="col-12 rounded form-control">
+                                            @foreach ($cities as $city)
+                                                <option value="{{ $city->id }}"
+                                                    @if ($pharmacy->zone->city_id == $city->id) selected @endif>
+                                                    {{ $city->name }}
+                                            @endforeach
+
+                                        </select>
                                     </div>
-                                @enderror
+                                </div>
                             </div>
                             <div class="mb-3 col-lg-6 col-sm-12">
-                                <label for="whatsup" class="form-label">واتساب</label>
-                                <input class="form-control rounded @error('whatsup') border-danger @enderror"
-                                    value="{{ $pharmacy->whatsup }}" type="tel" placeholder="واتساب" name="whatsup"
-                                    autofocus />
-                                @error('whatsup')
-                                    <div class="invalid-feedback d-block">
-                                        {{ $message }}
+                                <div class="input-group mb-3 rounded">
+                                    <label for="zone_id" class="form-label">الحي السكني</label>
+                                    <div class="dropdown col-12">
+                                        <select name="zone_id" class="col-12 rounded form-control">
+                                            @foreach ($zones as $zone)
+                                                <option value="{{ $zone->id }}"
+                                                    @if ($pharmacy->zone_id == $zone->id) selected @endif>
+                                                    {{ $zone->name }}
+                                            @endforeach
+
+                                        </select>
                                     </div>
-                                @enderror
+                                </div>
                             </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="mb-3 col-lg-6 col-md-12 col-sm-12">
+                        <div class="row mb-3">
+                            <label for="address" class="form-label">وصف عنوان الصيدلية</label>
+                            <textarea rows=1 class="form-control rounded @error('address') border-danger @enderror"
+                                name="address">{{ $pharmacy->address }}</textarea>
+                            @error('address')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="description" class="form-label">وصف الصيدلية </label>
+                            <textarea rows=1 class="form-control rounded @error('description') border-danger @enderror"
+                                name="description">{{ $pharmacy->description }}</textarea>
+                            @error('description')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="mb-3 col-lg-6 col-sm-12">
+                            <label for="phone" class="form-label">رقم الهاتف </label>
+                            <input class="form-control rounded @error('phone') border-danger @enderror"
+                                value="{{ $pharmacy->user->phone }}" type="text" placeholder="رقم الهاتف" name="phone"
+                                autofocus />
+                            @error('phone')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3 col-lg-6 col-sm-12">
+                            <label for="whatsup" class="form-label">واتساب</label>
+                            <input class="form-control rounded @error('whatsup') border-danger @enderror"
+                                value="{{ $pharmacy->whatsup }}" type="tel" placeholder="واتساب" name="whatsup"
+                                autofocus />
+                            @error('whatsup')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="row">
-                        <div class="mb-3 col">
+                        <div class="mb-3 col-lg-6 col-sm-12">
                             <label for="facebook" class="form-label">فيسبوك </label>
                             <input class="form-control rounded @error('facebook') border-danger @enderror"
                                 value="{{ $pharmacy->facebook }}" type="url" placeholder="فيسبوك" name="facebook"
@@ -215,9 +262,7 @@
                                 </div>
                             @enderror
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="mb-3 col">
+                        <div class="mb-3 col-lg-6 col-sm-12">
                             <label for="twitter" class="form-label">تويتر </label>
                             <input class="form-control rounded @error('twitter') border-danger @enderror"
                                 value="{{ $pharmacy->twitter }}" type="url" placeholder="تويتر" name="twitter"
@@ -229,7 +274,8 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="row">
+
+                    {{-- <div class="row">
                         <div class="mb-3 col">
                             <label for="google" class="form-label">الموقع الإلكتروني </label>
                             <input class="form-control rounded @error('google') border-danger @enderror"
@@ -241,42 +287,16 @@
                                 </div>
                             @enderror
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
-                <div class="mb-3 col-lg-6 col-md-12 col-sm-12">
-                    <div class="row mb-3">
-                        <label for="address" class="form-label">وصف عنوان الصيدلية</label>
-                        <textarea rows=3 class="form-control rounded @error('address') border-danger @enderror"
-                            name="address">{{ $pharmacy->address }}</textarea>
-                        @error('address')
-                            <div class="invalid-feedback d-block">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
-                    <div class="row mb-3">
-                        <label for="description" class="form-label">وصف الصيدلية </label>
-                        <textarea rows=7 class="form-control rounded @error('description') border-danger @enderror"
-                            name="description">{{ $pharmacy->description }}</textarea>
-                        @error('description')
-                            <div class="invalid-feedback d-block">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
+                <div class="mt-2 ">
+                    <button type="submit" class=" btn btn-submit btn-hover  me-2 ">حفظ التغيرات</button>
+                    <button type="reset" class="btn btn-outline-secondary">الغاء</button>
                 </div>
-            </div>
-    </div>
-    </div>
-    <div class="mt-2">
 
-        <button type="submit" class=" btn btn-submit btn-hover  me-2 ">حفظ التغيرات</button>
-        <button type="reset" class="btn btn-outline-secondary">الغاء</button>
-    </div>
-
-    </form>
+            </form>
+        </div>
     </div>
 
     <!-- /Account -->
@@ -296,13 +316,14 @@
                 <div class="modal-header">
 
 
-                    <h4 class="modal-title fw-bold text-center col-10" id="exampleModalLabel">
+                    <h4 class="modal-title fw-bold text-center col-12" id="exampleModalLabel">
                         تغيير كلمة المرور
                     </h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
                 <div class="modal-body">
+
                     @error('error')
                         <div class="alert alert-danger" role="alert">
                             {{ $message }}
@@ -325,7 +346,7 @@
                             <div class="col-sm-9 text-secondary">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
-                                            class="bi bi-person-plus-fill text-white"></i></span>
+                                            class="bi bi-key-fill text-white"></i></span>
                                     <input value="{{ old('password') }}" type="password"
                                         placeholder="كلمة المرور القديمة" name="password"
                                         class="form-control rounded @error('password') border-danger @enderror">
@@ -346,7 +367,7 @@
                             <div class="col-sm-9 text-secondary">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
-                                            class="bi bi-person-plus-fill text-white"></i></span>
+                                            class="bi bi-key-fill text-white"></i></span>
                                     <input type="password" placeholder="كلمة المرور الجديدة" name="new_password"
                                         class="form-control rounded @error('new_password') border-danger @enderror">
                                     @error('new_password')
@@ -366,7 +387,7 @@
                             <div class="col-sm-9 text-secondary">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
-                                            class="bi bi-person-plus-fill text-white"></i></span>
+                                            class="bi bi-key-fill text-white"></i></span>
                                     <input type="password" placeholder="تأكيد كلمة المرور الجديدة"
                                         name="new_password_confirmed"
                                         class="form-control rounded @error('new_password_confirmed') border-danger @enderror">
@@ -398,7 +419,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content p-3">
                 <div class="modal-header">
-                    <h4 class="modal-title fw-bold text-center col-10" id="exampleModalLabel">
+                    <h4 class="modal-title fw-bold text-center col-12" id="exampleModalLabel">
                         تبديل البريد الالكتروني
                     </h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -411,16 +432,16 @@
                         <div id="sendEmailCodeMessage" role='alert'>
                         </div>
                         @csrf
-                        <div class="col">
+                        <div class="col-12">
                             <div class="row">
-                                <div class="col-sm-2">
-                                    <h6 class="mb-0">البريد الإلكتروني</h6>
+                                <div class="col-12">
+                                    <h6 class="mb-3">البريد الإلكتروني</h6>
                                 </div>
-                                <div class="col-sm-6 text-secondary">
+                                <div class="col-sm-12 text-secondary">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text rounded"
                                             style="background-color: var(--main-color)"><i
-                                                class="bi bi-person-plus-fill text-white"></i></span>
+                                                class="bi bi-envelope-fill text-white"></i></span>
                                         <input value="{{ $pharmacy->user->email }}" id='currentEmail' type="email"
                                             placeholder="البريد الإلكتروني" name="email"
                                             class="form-control rounded @error('email') border-danger @enderror">
@@ -433,9 +454,9 @@
 
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-12">
                                     <button id="send_email_code_btn" class="btn-submit radius text-center p-2 col-12 mt-2">
-                                        ارسال رمز التحقق
+                                        اطلب رمز التحقق
                                     </button>
                                 </div>
                             </div>
@@ -450,13 +471,13 @@
 
                         <input id="hiddenEmail" type="hidden" name="email">
                         <div class="row">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">رمز التحقق</h6>
+                            <div class="col-sm-12">
+                                <h6 class="mb-3">ادخل رمز التحقق </h6>
                             </div>
-                            <div class="col-sm-9 text-secondary">
+                            <div class="col-sm-12 text-secondary">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text rounded" style="background-color: var(--main-color)"><i
-                                            class="bi bi-person-plus-fill text-white"></i></span>
+                                            class="bi bi-envelope  text-white"></i></span>
                                     <input type="text" placeholder="رمز التحقق" name="code"
                                         class="form-control rounded @error('code') border-danger @enderror">
                                     @error('code')

@@ -3,252 +3,251 @@
 @section('content')
     <!-- Content -->
     <div class="container-xxl flex-grow-1 container-p-y">
-        <div class="row">
 
-            <div class=" mt-5" id="">
-                <div class="card">
-                    <div class="table-responsive text-nowrap">
-                        <!-- Order clint  -->
-                        <table class="table table-hover shadow">
-                            <thead>
+        <div class="card shadow radius">
+            <h5 class="card-header"> حالة الطلبية</h5>
+            <!-- Order clint  -->
+            <table class="table table-responsive text-nowrap table-hover radius p-5">
+                <thead class="card-header p-5">
+                    <tr class="m-5">
+                        <th>1</th>
+                        <th data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
+                            class="avatar pull-up" title="بروفايل العميل" style="list-style-type: none;">
+                            <img src="{{ asset('uploads/avaters/client/' . $request->client->user->avater) }}" />
+                        </th>
+                        <th>{{ $request->client->user->name }}</th>
+
+                        <td><span
+                                class="badge text-black me-1"><strong>{{ $request->created_at->diffForHumans() }}</strong></span>
+                            </th>
+                        <td><span
+                                class="badge text-black me-1"><strong>{{ $request->created_at->diffForHumans() }}</strong></span>
+                        </td>
+
+                        @if ($request->state == \App\Utils\RequestState::WAIT_ACCEPTANCE)
+                            <td><span class="badge bg-label-secondary me-1">في
+                                    انتظارالقبول</span></td>
+                        @elseif ($request->state == \App\Utils\RequestState::ACCEPTED)
+                            <td><span class="badge bg-label-warning me-1">في انتظار الدفع</span>
+                            </td>
+                        @elseif ($request->state == \App\Utils\RequestState::WAIT_DELIVERY)
+                            <td><span class="badge bg-label-info me-1">في انتظار التوصيل</span>
+                            </td>
+                        @elseif ($request->state == \App\Utils\RequestState::FINISHED)
+                            <td><span class="badge bg-label-success me-1">مكتملة</span></td>
+                        @elseif ($request->state == \App\Utils\RequestState::REJECTED)
+                            <td><span class="badge bg-label-danger me-1">غير متوفرة</span></td>
+                        @elseif ($request->state == \App\Utils\RequestState::NOT_COMPLETED)
+                            <td><span class="badge bg-label-danger me-1">مرفوضه من قبل
+                                    العميل</span>
+                            </td>
+                        @endif
+                        <td> <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#"
+                                role="button">
+                                <i class="bx bx-plus-circle me-1"></i> ارسال رسالة</a></td>
+                        @if ($request->state == \App\Utils\RequestState::WAIT_ACCEPTANCE)
+                            <td> <a class="btn btn-outline-danger"
+                                    href="{{ route('pharmacy-order-reject', $request->id) }}" role="button">
+                                    غير متوفرة</a></td>
+                        @endif
+
+                    </tr>
+                </thead>
+            </table>
+            <!-- Order clint  -->
+        </div>
+        <!-- Order Details  -->
+        <div class="shadow my-4" id="">
+            <div class="card">
+                <h5 class="card-header"> تفاصيل الطلبية</h5>
+                <div class="table-responsive text-nowrap">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>الرقم</th>
+                                <th>اسم / صورة الدواء</th>
+                                <th>الكمية</th>
+                                <th>قبول البدائل</th>
+                                <th>ٍتقديم عرض سعر </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($request->details as $requestDetails)
                                 <tr>
-                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>1</strong></td>
+                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+                                        <strong>{{ $loop->iteration }}</strong>
+                                    </td>
                                     <td>
-                                        <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                            class="avatar pull-up" title="بروفايل العميل" style="list-style-type: none;">
-                                            <img src="{{ asset('uploads/avaters/client/' . $request->client->user->avater) }}"
-                                                alt="Avatar" class="rounded-circle image_show" />
-                                        </li>
+                                        @if ($requestDetails->drug_image)
+                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
+                                                class="avatar pull-up" title="صورة العلاج " style="list-style-type: none;">
+                                                <img src="{{ asset('uploads/requests/' . $requestDetails->drug_image) }}"
+                                                    alt="Avatar" class="rounded-circle image_show">
+                                            </li>
+                                        @endif
+                                        <strong>{{ $requestDetails->drug_title }}</strong>
+                                    </td>
+                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+                                        <strong>{{ $requestDetails->quantity }}</strong>
+                                    </td>
 
-                                    </td>
-                                    <td><i
-                                            class="fab fa-angular fa-lg text-danger me-3"></i>{{ $request->client->user->name }}
-                                    </td>
-                                    <td><span
-                                            class="badge text-black me-1"><strong>{{ $request->created_at->diffForHumans() }}</strong></span>
-                                    </td>
-
-                                    @if ($request->state == \App\Utils\RequestState::WAIT_ACCEPTANCE)
-                                        <td><span class="badge bg-label-secondary me-1">في انتظارالقبول</span></td>
-                                    @elseif ($request->state == \App\Utils\RequestState::ACCEPTED)
-                                        <td><span class="badge bg-label-warning me-1">في انتظار الدفع</span></td>
-                                    @elseif ($request->state == \App\Utils\RequestState::WAIT_DELIVERY)
-                                        <td><span class="badge bg-label-info me-1">في انتظار التوصيل</span></td>
-                                    @elseif ($request->state == \App\Utils\RequestState::FINISHED)
-                                        <td><span class="badge bg-label-success me-1">مكتملة</span></td>
-                                    @elseif ($request->state == \App\Utils\RequestState::REJECTED)
-                                        <td><span class="badge bg-label-danger me-1">غير متوفرة</span></td>
-                                    @elseif ($request->state == \App\Utils\RequestState::NOT_COMPLETED)
-                                        <td><span class="badge bg-label-danger me-1">مرفوضه من قبل العميل</span></td>
+                                    @if ($requestDetails->accept_alternative)
+                                        <td><span class="badge bg-label-success me-1">نعم</span></td>
+                                    @else
+                                        <td><span class="badge bg-label-danger me-1">لا</span></td>
                                     @endif
-                                    <td> <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                            data-bs-target="#" role="button">
-                                            <i class="bx bx-plus-circle me-1"></i> ارسال رسالة</a></td>
                                     @if ($request->state == \App\Utils\RequestState::WAIT_ACCEPTANCE)
-                                        <td> <a class="btn btn-outline-danger"
-                                                href="{{ route('pharmacy-order-reject', $request->id) }}" role="button">
-                                                غير متوفرة</a></td>
-                                    @endif
-                                </tr>
-                            </thead>
-                        </table>
-                        <!-- Order clint  -->
-
-                        <!-- Order Details  -->
-                        <div class=" m-4 shadow" id="">
-                            <div class="card">
-                                <h5 class="card-header"> تفاصيل الطلبية</h5>
-                                <div class="table-responsive text-nowrap">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>الرقم</th>
-                                                <th>اسم / صورة الدواء</th>
-                                                <th>الكمية</th>
-                                                <th>قبول البدائل</th>
-                                                <th>تقديم عرض</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($request->details as $requestDetails)
-                                                <tr>
-                                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                                        <strong>{{ $loop->iteration }}</strong>
-                                                    </td>
-                                                    <td>
-                                                        @if ($requestDetails->drug_image)
-                                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-                                                                data-bs-placement="top" class="avatar pull-up"
-                                                                title="صورة العلاج " style="list-style-type: none;">
-                                                                <img src="{{ asset('uploads/requests/' . $requestDetails->drug_image) }}"
-                                                                    alt="Avatar" class="rounded-circle image_show">
-                                                            </li>
-                                                        @endif
-                                                        <strong>{{ $requestDetails->drug_title }}</strong>
-                                                    </td>
-                                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                                        <strong>{{ $requestDetails->quantity }}</strong>
-                                                    </td>
-
-                                                    @if ($requestDetails->accept_alternative)
-                                                        <td><span class="badge bg-label-success me-1">نعم</span></td>
-                                                    @else
-                                                        <td><span class="badge bg-label-danger me-1">لا</span></td>
-                                                    @endif
-                                                    @if ($request->state == \App\Utils\RequestState::WAIT_ACCEPTANCE)
-                                                        <td> <a class="dropdown-item" onclick="$('#req_det_id').val('{{ $requestDetails->id }}');
-                                                                                    @if ($requestDetails->accept_alternative) $('#alternative').css('visibility','visible');
+                                        <td> <a class="dropdown-item"
+                                                onclick="$('#req_det_id').val('{{ $requestDetails->id }}');
+                                                                                                                                                                                                                                                                    @if ($requestDetails->accept_alternative) $('#alternative').css('visibility','visible');
                                                                 @else
                                                                 $('#alternative').css('visibility','hidden'); @endif
-                                                                                    " href="javascript:void(0);"
-                                                                data-bs-toggle="modal" data-bs-target="#basicModal"
-                                                                role="button"><i class="bx bx-plus-circle me-1"></i> عرض
-                                                                سعر</a>
-                                                        </td>
-                                                    @endif
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /Order Details  -->
-
-                        <!-- added replies -->
-                        <div class=" m-4 shadow">
-                            <div class="alert_msg alert alert-danger mt-2 mb-2" style="display:none" role="alert">
-
-                            </div>
-                            @if (session('error'))
-                                <div class="alert alert-danger mt-2 mb-2" role="alert">
-                                    {{ session('error') }}
-                                </div>
-                            @endif
-                            @if (session('status'))
-                                <div class="alert alert-success mt-2 mb-2" role="alert">
-                                    {{ session('status') }}
-                                </div>
-                            @endif
-                            <div id="success_msg" class="alert alert-success mt-2 mb-2" style="display:none" role="alert">
-
-                            </div>
-                            <div class="card">
-                                <h5 class="card-header">الردود المضافة </h5>
-                                <div class="table-responsive text-nowrap">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>اسم / صورة الدواء</th>
-                                                <th>الكمية</th>
-                                                <th>السعر</th>
-                                                <th> نوع الرد</th>
-                                            </tr>
-                                        </thead>
-                                        @if ($request->state != \App\Utils\RequestState::WAIT_ACCEPTANCE)
-                                            <tbody>
-                                                @foreach ($request->replies->details as $replyDetails)
-                                                    @php
-                                                        $requestDetails = $request->details->where('id', '=', $replyDetails->request_details_id)->first();
-                                                    @endphp
-                                                    @if ($replyDetails->request_details_id == $requestDetails->id)
-                                                        <tr>
-                                                            @if ($replyDetails->drug_price)
-                                                                <td>
-                                                                    @if ($requestDetails->drug_image)
-                                                                        <li data-bs-toggle="tooltip"
-                                                                            data-popup="tooltip-custom"
-                                                                            data-bs-placement="top" class="avatar pull-up"
-                                                                            title="صورة العلاج "
-                                                                            style="list-style-type: none;">
-                                                                            <img src="{{ asset('uploads/requests/' . $requestDetails->drug_image) }}"
-                                                                                alt="Avatar" class="rounded-circle image_show">
-                                                                        </li>
-                                                                    @endif
-                                                                    <strong>{{ $requestDetails->drug_title }}</strong>
-                                                                </td>
-                                                                <td><strong>{{ $requestDetails->quantity }}</strong>
-                                                                </td>
-                                                                <td><strong>{{ $replyDetails->drug_price }}</strong></td>
-
-                                                                <td><i class='fab fa-angular fa-lg text-success me-3'></i>
-                                                                    <strong>اساسي </strong>
-                                                                </td>
-                                                            @else
-                                                                <td>
-                                                                    @if ($replyDetails->alt_drug_image)
-                                                                        <li data-bs-toggle="tooltip"
-                                                                            data-popup="tooltip-custom"
-                                                                            data-bs-placement="top" class="avatar pull-up"
-                                                                            title="صورة العلاج "
-                                                                            style="list-style-type: none;">
-                                                                            <img src="{{ asset('uploads/replies/' . $replyDetails->alt_drug_image) }}"
-                                                                                alt="Avatar" class="rounded-circle image_show">
-                                                                        </li>
-                                                                    @endif
-                                                                    <strong>{{ $replyDetails->alt_drug_title }}</strong>
-                                                                </td>
-                                                                <td><strong>{{ $requestDetails->quantity }}</strong>
-                                                                </td>
-                                                                <td><strong>{{ $replyDetails->alt_drug_price }}</strong>
-                                                                </td>
-                                                                <td><i class='fab fa-angular fa-lg text-danger me-3'></i>
-                                                                    <strong>بديل </strong>
-                                                                </td>
-                                                            @endif
-                                                        </tr>
-                                                    @endif
-                                                @endforeach
-                                            </tbody>
-                                        @endif
-
-                                        <tbody id="order_details_table">
-
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td colspan="7">
-                                                    <div class="d-flex justify-content-center">
-
-                                                        <form action="{{ route('pharmacy-order-reply', $request->id) }}"
-                                                            method="POST" enctype="multipart/form-data">
-                                                            @csrf
-                                                            <input type="hidden" name="client_id"
-                                                                value="{{ $request->client_id }}">
-                                                            <input type="hidden" name="pharmacy_id"
-                                                                value="{{ Auth::user()->id }}">
-                                                            <input type="hidden" name="data" id="data" value="">
-                                                            <input type="file" name="images[]" multiple hidden id="images">
-                                                            <button id="send_request_btn" class="btn btn-submit"
-                                                                style="visibility:hidden;" type="submit">ارسال
-                                                                الردود</button>
-                                                        </form>
-
-                                                    </div>
-
-                                                </td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /added replies -->
-                    </div>
+                                                                                                                                                                                                                                                                    "
+                                                href="javascript:void(0);" data-bs-toggle="modal"
+                                                data-bs-target="#basicModal" role="button">اضافة سعر
+                                            </a>
+                                        </td>
+                                    @endif
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <!-- Order Details  -->
         </div>
+        <!-- /Order Details  -->
+
+        <!-- added replies -->
+        <div class="shadow">
+            <div class="alert_msg alert alert-danger mt-2 mb-2" style="display:none" role="alert">
+
+            </div>
+            @if (session('error'))
+                <div class="alert alert-danger alert-dismissible text-center mt-2 fade show" role="alert">
+                    {!! session('error') !!}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+            @endif
+            @if (session('status'))
+                <div class="alert alert-success alert-dismissible text-center mt-2 fade show" role="alert">
+                    {!! session('status') !!}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+            @endif
+            <div id="success_msg" class="alert alert-success mt-2 mb-2" style="display:none" role="alert">
+
+            </div>
+            <div class="card">
+                <h5 class="card-header">عروض السعر المضافة </h5>
+                <div class="table-responsive text-nowrap">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>اسم / صورة الدواء</th>
+                                <th>الكمية</th>
+                                <th>السعر</th>
+                                <th> نوع العرض</th>
+                            </tr>
+                        </thead>
+                        @if ($request->state != \App\Utils\RequestState::WAIT_ACCEPTANCE)
+                            <tbody>
+                                @foreach ($request->replies->details as $replyDetails)
+                                    @php
+                                        $requestDetails = $request->details->where('id', '=', $replyDetails->request_details_id)->first();
+                                    @endphp
+                                    @if ($replyDetails->request_details_id == $requestDetails->id)
+                                        <tr>
+                                            @if ($replyDetails->drug_price)
+                                                <td>
+                                                    @if ($requestDetails->drug_image)
+                                                        <li data-bs-toggle="tooltip" data-popup="tooltip-custom"
+                                                            data-bs-placement="top" class="avatar pull-up"
+                                                            title="صورة العلاج " style="list-style-type: none;">
+                                                            <img src="{{ asset('uploads/requests/' . $requestDetails->drug_image) }}"
+                                                                alt="Avatar" class="rounded-circle image_show">
+                                                        </li>
+                                                    @endif
+                                                    <strong>{{ $requestDetails->drug_title }}</strong>
+                                                </td>
+                                                <td><strong>{{ $requestDetails->quantity }}</strong>
+                                                </td>
+                                                <td><strong>{{ $replyDetails->drug_price }}</strong></td>
+
+                                                <td><i class='fab fa-angular fa-lg text-success me-3'></i>
+                                                    <strong>اساسي </strong>
+                                                </td>
+                                            @else
+                                                <td>
+                                                    @if ($replyDetails->alt_drug_image)
+                                                        <li data-bs-toggle="tooltip" data-popup="tooltip-custom"
+                                                            data-bs-placement="top" class="avatar pull-up"
+                                                            title="صورة العلاج " style="list-style-type: none;">
+                                                            <img src="{{ asset('uploads/replies/' . $replyDetails->alt_drug_image) }}"
+                                                                alt="Avatar" class="rounded-circle image_show">
+                                                        </li>
+                                                    @endif
+                                                    <strong>{{ $replyDetails->alt_drug_title }}</strong>
+                                                </td>
+                                                <td><strong>{{ $requestDetails->quantity }}</strong>
+                                                </td>
+                                                <td><strong>{{ $replyDetails->alt_drug_price }}</strong>
+                                                </td>
+                                                <td><i class='fab fa-angular fa-lg text-danger me-3'></i>
+                                                    <strong>بديل </strong>
+                                                </td>
+                                            @endif
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            </tbody>
+                        @endif
+
+                        <tbody id="order_details_table">
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <div class="d-flex justify-content-center">
+
+                                        <form action="{{ route('pharmacy-order-reply', $request->id) }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="client_id" value="{{ $request->client_id }}">
+                                            <input type="hidden" name="pharmacy_id" value="{{ Auth::user()->id }}">
+                                            <input type="hidden" name="data" id="data" value="">
+                                            <input type="file" name="images[]" multiple hidden id="images">
+                                            <button id="send_request_btn" class="btn btn-submit" style="visibility:hidden;"
+                                                type="submit">ارسال
+                                                عرض السعر</button>
+                                        </form>
+
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /added replies -->
+
+        <!-- Order Details  -->
+
+
+        <!--/ Content -->
+        <input type="hidden" id="req_det_id" value="">
     </div>
-    <!--/ Content -->
-    <input type="hidden" id="req_det_id" value="">
 
     <!--modal  -->
     <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header d-flex justify-content-between">
-                    <h5 class="modal-title" id="exampleModalLabel1">انشاء عرض
+                    <h5 class="modal-title col-12" id="exampleModalLabel1">انشاء عرض
                         سعر </h5>
                     <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -335,7 +334,7 @@
         var drugs = {
             'data': []
         };
-let dataTransfere = new DataTransfer();
+        let dataTransfere = new DataTransfer();
 
         function addReplyDetails() {
 

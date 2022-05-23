@@ -114,64 +114,64 @@
                 @endforeach
 
                 <!-- <div class="col-lg-4 col-md-6 col-sm-8 col-11">
-                        <div class="single-service d-flex justify-content-between shadow">
-                            <div class="icon">
-                                <i class="lni lni-gift"></i>
-                            </div>
-                            <div class="service-content">
-                                <h3>الحصول على علاجك بسرعه </h3>
-                                <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
-                            </div>
-                        </div>
-                    </div> -->
+                                                                                                                                            <div class="single-service d-flex justify-content-between shadow">
+                                                                                                                                                <div class="icon">
+                                                                                                                                                    <i class="lni lni-gift"></i>
+                                                                                                                                                </div>
+                                                                                                                                                <div class="service-content">
+                                                                                                                                                    <h3>الحصول على علاجك بسرعه </h3>
+                                                                                                                                                    <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
+                                                                                                                                                </div>
+                                                                                                                                            </div>
+                                                                                                                                        </div> -->
 
                 <!-- <div class="col-lg-4 col-md-6 col-sm-8 col-11">
-                        <div class="single-service d-flex justify-content-between shadow">
-                            <div class="icon">
-                                <i class="lni lni-gift"></i>
-                            </div>
-                            <div class="service-content">
-                                <h3>الحصول على علاجك بسرعه </h3>
-                                <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
-                            </div>
-                        </div>
-                    </div> -->
+                                                                                                                                            <div class="single-service d-flex justify-content-between shadow">
+                                                                                                                                                <div class="icon">
+                                                                                                                                                    <i class="lni lni-gift"></i>
+                                                                                                                                                </div>
+                                                                                                                                                <div class="service-content">
+                                                                                                                                                    <h3>الحصول على علاجك بسرعه </h3>
+                                                                                                                                                    <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
+                                                                                                                                                </div>
+                                                                                                                                            </div>
+                                                                                                                                        </div> -->
 
                 <!-- <div class="col-lg-4 col-md-6 col-sm-8 col-11">
-                        <div class="single-service d-flex justify-content-between shadow">
-                            <div class="icon">
-                                <i class="lni lni-gift"></i>
-                            </div>
-                            <div class="service-content">
-                                <h3>الحصول على علاجك بسرعه </h3>
-                                <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
-                            </div>
-                        </div>
-                    </div> -->
+                                                                                                                                            <div class="single-service d-flex justify-content-between shadow">
+                                                                                                                                                <div class="icon">
+                                                                                                                                                    <i class="lni lni-gift"></i>
+                                                                                                                                                </div>
+                                                                                                                                                <div class="service-content">
+                                                                                                                                                    <h3>الحصول على علاجك بسرعه </h3>
+                                                                                                                                                    <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
+                                                                                                                                                </div>
+                                                                                                                                            </div>
+                                                                                                                                        </div> -->
 
                 <!-- <div class="col-lg-4 col-md-6 col-sm-8 col-11">
-                        <div class="single-service d-flex justify-content-between shadow">
-                            <div class="icon">
-                                <i class="lni lni-gift"></i>
-                            </div>
-                            <div class="service-content">
-                                <h3>الحصول على علاجك بسرعه </h3>
-                                <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
-                            </div>
-                        </div>
-                    </div> -->
+                                                                                                                                            <div class="single-service d-flex justify-content-between shadow">
+                                                                                                                                                <div class="icon">
+                                                                                                                                                    <i class="lni lni-gift"></i>
+                                                                                                                                                </div>
+                                                                                                                                                <div class="service-content">
+                                                                                                                                                    <h3>الحصول على علاجك بسرعه </h3>
+                                                                                                                                                    <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
+                                                                                                                                                </div>
+                                                                                                                                            </div>
+                                                                                                                                        </div> -->
 
                 <!-- <div class="col-lg-4 col-md-6 col-sm-8 col-11">
-                        <div class="single-service d-flex justify-content-between shadow">
-                            <div class="icon">
-                                <i class="lni lni-gift"></i>
-                            </div>
-                            <div class="service-content">
-                                <h3>الحصول على علاجك بسرعه </h3>
-                                <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
-                            </div>
-                        </div>
-                    </div> -->
+                                                                                                                                            <div class="single-service d-flex justify-content-between shadow">
+                                                                                                                                                <div class="icon">
+                                                                                                                                                    <i class="lni lni-gift"></i>
+                                                                                                                                                </div>
+                                                                                                                                                <div class="service-content">
+                                                                                                                                                    <h3>الحصول على علاجك بسرعه </h3>
+                                                                                                                                                    <p>من خلال تسهيل عملية البحث عن الصيدليه وتسهيل عملية الطلب بالاضافة الى وجود خدمة التوصيل </p>
+                                                                                                                                                </div>
+                                                                                                                                            </div>
+                                                                                                                                        </div> -->
             </div>
         </div>
     </section>
@@ -233,10 +233,21 @@
             </div>
 
             <div class="radius col-sm-8" style=" direction: rtl; ">
-                <div class="col-md-12 col-sm-12 shadow-lg bg-light radius box-style">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="Front/assets/images/pharmacy/mainAdd.jpg"
+                        style="width: 100%; max-height: 24rem" alt="Adds image">
+                    {{-- <div class="card-img-overlay p-4">
+                        <h5 class="card-title px-5 pt-5">عنوان الاعلان</h5>
+                        <p class="card-text heading ">محتوى وصغ الاعلان
+                            <br> <span class="card-text p-5">اخر تحديث قبل 4 دقائق</span>
+                        </p>
+
+                    </div> --}}
+                </div>
+                {{-- <div class="col-md-12 col-sm-12 shadow-lg bg-light radius box-style">
                     <img src="Front/assets/images/pharmacy/mainAdds.jpg" style="width: 100%; max-height: 20rem"
                         class="radius">
-                </div>
+                </div> --}}
             </div>
 
         </div>

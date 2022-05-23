@@ -26,8 +26,8 @@
                             البروفايل</a>
                     </li>
                     <li class="nav-item btn-submit">
-                        <a class="nav-link text-white" href="{{ route('pharmacy-settings') }}"><i
-                                class="bx bx-cog me-1"></i> الاعدادات</a>
+                        <a class="nav-link" href="{{ route('pharmacy-settings') }}"><i class="bx bx-cog me-1"></i>
+                            الاعدادات</a>
                     </li>
                 </ul>
                 <!-- email -->

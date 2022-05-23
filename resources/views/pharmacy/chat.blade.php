@@ -90,7 +90,7 @@
                             <i class="bi bi-list-ul"></i>
                             </a>
                         </li>
-                   
+
                         <li class="nav-item">
                             <a href="/phar_profile" class="nav-link">
                             <i class="bi bi-arrow-right-circle"></i>
@@ -185,21 +185,21 @@
 
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head>
+
+<head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <title> Pharmacy- Dashboard</title>
     <meta name="description" content="" />
     <!-- Icons -->
-    <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/fonts/boxicons.css')}}" />
+    <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/fonts/boxicons.css') }}" />
     <!-- Core CSS -->
-    <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/css/core.css')}}" />
-    <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/css/theme-default.css')}}" />
-    <link rel="stylesheet" href="{{ asset('pharmacy/assets/css/demo.css')}}" />
-    <link rel="stylesheet" href="{{ asset('pharmacy/assets/css/chat.css')}}" />
-    <script src="{{ asset('pharmacy/assets/js/config.js')}}"></script>
+    <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/css/core.css') }}" />
+    <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/css/theme-default.css') }}" />
+    <link rel="stylesheet" href="{{ asset('pharmacy/assets/css/demo.css') }}" />
+    <link rel="stylesheet" href="{{ asset('pharmacy/assets/css/chat.css') }}" />
+    <script src="{{ asset('pharmacy/assets/js/config.js') }}"></script>
 
     {{-- Front Style start --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.rtl.min.css"
@@ -222,7 +222,8 @@
         html::-webkit-scrollbar-thumb {
             background: linear-gradient(60deg, var(--main-color) 0%, var(--secondary-color) 100%);
         }
-                body {
+
+        body {
             font-family: "Tajawal", sans-serif;
             font-weight: normal;
             font-style: normal;
@@ -249,7 +250,8 @@
             --fs-p: 1.7rem;
             --fs-span: 1rem;
         }
-      .navbar-brand {
+
+        .navbar-brand {
             padding: 0;
             width: 100%;
             max-width: 155px;
@@ -285,143 +287,141 @@
 
     </style>
     {{-- Front Style end --}}
-  </head>
+</head>
 
-  <body style="direction: rtl;">
+<body style="direction: rtl;">
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
-        
-      <div class="layout-container mx-sm-3">
+
+        <div class="layout-container mx-sm-3">
             <!-- Menu -->
-                @include('includes.pharmacy.PharmacyAside')
+            @include('includes.pharmacy.PharmacyAside')
             <!-- / Menu -->
 
             <!-- Layout container -->
             <div class="layout-page">
                 <!-- Navbar -->
-                    @include('includes.pharmacy.PharmacyNav')
+                @include('includes.pharmacy.PharmacyNav')
                 <!-- / Navbar -->
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
-                     @yield('content')
-                     <div class="container-xxl flex-grow-1 container-p-y">
+                    @yield('content')
+                    <div class="container-xxl flex-grow-1 container-p-y">
 
-<h1 class="h3 mb-3">الرسائل</h1>
+                        <h1 class="h3 mb-3">الرسائل</h1>
 
-<div class="card ">
-                <div class="row g-0 ">
-                   
-                        <div class="py-2 px-4 border-bottom d-none d-lg-block">
-                            <div class="d-flex align-items-center py-1">
-                                <div class="position-relative">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
+                        <div class="card ">
+                            <div class="row g-0 ">
+
+                                <div class="py-2 px-4 border-bottom d-none d-lg-block">
+                                    <div class="d-flex align-items-center py-1">
+                                        <div class="position-relative">
+                                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png"
+                                                class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
+                                        </div>
+                                        <div class="flex-grow-1 pl-3">
+                                            <strong> محمد ناصر </strong>
+                                            <div class="text-muted small"><em>يكتب ...</em></div>
+                                        </div>
+
+                                    </div>
                                 </div>
-                                <div class="flex-grow-1 pl-3">
-                        <strong>  محمد ناصر </strong>
-                        <div class="text-muted small"><em>يكتب ...</em></div>
+
+                                <div class="position-relative">
+                                    <div class="chat-messages p-4">
+
+                                        <div class="chat-message-right pb-4">
+                                            <div>
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                                                    class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
+                                                <div class="text-muted small text-nowrap mt-2">2:33 am</div>
+                                            </div>
+                                            <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+                                                <div class="font-weight-bold mb-1">صيدلية الامل</div>
+                                                العلاج الذي تم طلبه يوجد لدينا بديلا عنه
+                                            </div>
+                                        </div>
+
+                                        <div class="chat-message-left pb-4">
+                                            <div>
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png"
+                                                    class="rounded-circle mr-1" alt="Sharon Lessman" width="40"
+                                                    height="40">
+                                                <div class="text-muted small text-nowrap mt-2">2:34 am</div>
+                                            </div>
+                                            <div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
+                                                <div class="font-weight-bold mb-1"> انت</div>
+                                                ولكن هل العلاج يحمل نفس الكفاءة ومن شركة مضمونه
+                                            </div>
+                                        </div>
+
+                                        <div class="chat-message-right mb-4">
+                                            <div>
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                                                    class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
+                                                <div class="text-muted small text-nowrap mt-2">2:35 am</div>
+                                            </div>
+                                            <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+                                                <div class="font-weight-bold mb-1">صيدلية الامل</div>
+                                                نعم نفس الكفاءة والسعر
+                                            </div>
+                                        </div>
+
+                                        <div class="chat-message-left pb-4">
+                                            <div>
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png"
+                                                    class="rounded-circle mr-1" alt="Sharon Lessman" width="40"
+                                                    height="40">
+                                                <div class="text-muted small text-nowrap mt-2">2:36 am</div>
+                                            </div>
+                                            <div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
+                                                <div class="font-weight-bold mb-1"> انت</div>
+                                                اذا انا موافق
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+                                </div>
+
+                                <div class="flex-grow-0 py-3 px-4 border-top">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="  اكتب هنا">
+                                        <button type="submit" class="btn btn-submit me-2">ارسال <i
+                                                class="lni lni-search-alt"></i></button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
-                   
                 </div>
+                </main>
+
+
             </div>
-
-            <div class="position-relative">
-                <div class="chat-messages p-4">
-
-                    <div class="chat-message-right pb-4">
-                        <div>
-                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
-                            <div class="text-muted small text-nowrap mt-2">2:33 am</div>
-                        </div>
-                        <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                            <div class="font-weight-bold mb-1">صيدلية الامل</div>
-                          العلاج الذي تم طلبه يوجد لدينا بديلا عنه  
-                        </div>
-                    </div>
-
-                    <div class="chat-message-left pb-4">
-                        <div>
-                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
-                            <div class="text-muted small text-nowrap mt-2">2:34 am</div>
-                        </div>
-                        <div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
-                            <div class="font-weight-bold mb-1"> انت</div>
-                            ولكن هل العلاج يحمل نفس الكفاءة ومن شركة مضمونه
-                        </div>
-                    </div>
-
-                    <div class="chat-message-right mb-4">
-                        <div>
-                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
-                            <div class="text-muted small text-nowrap mt-2">2:35 am</div>
-                        </div>
-                        <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                            <div class="font-weight-bold mb-1">صيدلية الامل</div>
-                           نعم نفس الكفاءة والسعر
-                        </div>
-                    </div>
-
-                    <div class="chat-message-left pb-4">
-                        <div>
-                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
-                            <div class="text-muted small text-nowrap mt-2">2:36 am</div>
-                        </div>
-                        <div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
-                            <div class="font-weight-bold mb-1"> انت</div>
-                          اذا انا موافق 
-                        </div>
-                    </div>
-
-               
-
-
-                </div>
-            </div>
-
-            <div class="flex-grow-0 py-3 px-4 border-top">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="  اكتب هنا">
-                    <button type="submit" class="btn btn-submit me-2">ارسال <i class="lni lni-search-alt"></i></button>
-                </div>
-            </div>
-
         </div>
     </div>
-</div>
-</div>
-</main>
 
-
-                </div>
-            </div>
-        </div>
-        
-        <!-- Overlay -->
-        <div class="layout-overlay layout-menu-toggle"></div>
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
     </div>
 
 
 
 
     <!-- Core JS -->
-    <script src="{{ asset('pharmacy/assets/vendor/js/bootstrap.js')}}"></script>
-    <script src="{{ asset('pharmacy/assets/vendor/js/menu.js')}}"></script>
+    <script src="{{ asset('pharmacy/assets/vendor/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('pharmacy/assets/vendor/js/menu.js') }}"></script>
     <!-- Main JS -->
-    <script src="{{ asset('pharmacy/assets/js/main.js')}}"></script>
+    <script src="{{ asset('pharmacy/assets/js/main.js') }}"></script>
 
     <!-- Page JS -->
-    <script src="{{ asset('pharmacy/assets/js/pages-account-settings-account.js')}}"></script>
+    <script src="{{ asset('pharmacy/assets/js/pages-account-settings-account.js') }}"></script>
 
-  </body>
+</body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
