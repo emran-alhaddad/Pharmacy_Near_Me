@@ -1,25 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
-
-
 //use App\Events\MessageSent;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use App\Models\User;
-use App\Models\Message;
+use \App\Models\Message;
 //use Illuminate\Support\Facades\Auth;
 
-class ChatController extends Controller
+class InboxController extends Controller
 {
 
     public function index() {
         // Show just the users and not the admins as well
-        $users = User::where('is_active', true)->get();
+        $users = User::where('is_active', true)->orderBy('id', 'DESC')->get();
 
         if (auth()->user()->is_active == true) {
-            $messages = Message::where('user_id', auth()->id())->orWhere('receiver', auth()->id())->get();
+            $messages = Message::where('user_id', auth()->id())->orWhere('receiver', auth()->id())->orderBy('id', 'DESC')->get();
         }
 
         return view('user.chat.home', [
@@ -36,15 +33,15 @@ class ChatController extends Controller
         $sender = User::findOrFail($id);
 
         $users = User::with(['message' => function($query) {
-            return $query->orderBy('created_at', 'ASC');
-        }])->where('is_active', true)
-            ->orderBy('id', 'ASC')
+            return $query->orderBy('created_at', 'DESC');
+        }])->where('is_active', false)
+            ->orderBy('id', 'DESC')
             ->get();
 
         if (auth()->user()->is_active == true) {
-            $messages = Message::where('user_id', auth()->id())->orWhere('receiver', auth()->id())->get();
+            $messages = Message::where('user_id', auth()->id())->orWhere('receiver', auth()->id())->orderBy('id', 'DESC')->get();
         } else {
-            $messages = Message::where('user_id', $sender)->orWhere('receiver', $sender)->get();
+            $messages = Message::where('user_id', $sender)->orWhere('receiver', $sender)->orderBy('id', 'DESC')->get();
         }
 
         return view('user.chat.show', [

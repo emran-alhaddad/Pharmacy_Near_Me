@@ -16,6 +16,15 @@
                     <i class="fas fa-gear"></i>
 					</div> <span >ادارة الموقع</span>
 			</a></li>
+
+			<li class="sidebar-nav-item "><a href="_admin/wallet"
+				class="sidebar-nav-link">
+					<div>
+                    <i class="fas fa-gear"></i>
+					</div> <span > محفظتي</span>
+			</a></li>
+
+			
 			<li class="sidebar-nav-item "><a href="/_admin/show_Phars"
 				class="sidebar-nav-link">
 					<div>

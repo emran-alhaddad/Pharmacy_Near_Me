@@ -28,17 +28,17 @@ class Show extends Component
 
     public function mountComponent() {
         if (auth()->user()->is_active == false) {
-            $this->messages = \App\Models\Messages::where('user_id', auth()->id())
+            $this->messages = \App\Models\Message::where('user_id', auth()->id())
                                                     ->orWhere('receiver', auth()->id())
                                                     ->orderBy('id', 'DESC')
                                                     ->get();
         } else {
-            $this->messages = \App\Models\Messages::where('user_id', $this->sender->id)
+            $this->messages = \App\Models\Message::where('user_id', $this->sender->id)
                                                     ->orWhere('receiver', $this->sender->id)
                                                     ->orderBy('id', 'DESC')
                                                     ->get();
         }
-        $not_seen = \App\Models\Messages::where('user_id', $this->sender->id)->where('receiver', auth()->id());
+        $not_seen = \App\Models\Message::where('user_id', $this->sender->id)->where('receiver', auth()->id());
         $not_seen->update(['is_seen' => true]);
     }
 
@@ -48,7 +48,7 @@ class Show extends Component
     }
 
     public function SendMessage() {
-        $new_message = new \App\Models\Messages();
+        $new_message = new \App\Models\Message();
         $new_message->message = $this->message;
         $new_message->user_id = auth()->id();
         $new_message->receiver = $this->sender->id;
