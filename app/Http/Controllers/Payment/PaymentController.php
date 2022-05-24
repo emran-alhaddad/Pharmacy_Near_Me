@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use PhpParser\Node\Expr\Cast\Object_;
-
+use App\Http\Controllers\Notify\NotificationsController;
 class PaymentController extends Controller
 {
     /**
@@ -372,6 +372,8 @@ class PaymentController extends Controller
             $request = OrderRequest::find($order_reference);
             $request->state = RequestState::WAIT_DELIVERY;
             $request->update();
+            $Notify = new NotificationsController();
+            $Notify -> paymentCompletedSuccessfully($order_reference);
             return view('payment.successPay', [
                 'client' => $client_info,
                 'pharmacy' => $target_user,
@@ -380,6 +382,7 @@ class PaymentController extends Controller
                 'paid_amount' => $paid_amount,
                 'created_at' => Carbon::parse($created_at)->diffForHumans()
             ]);
+
         } catch (\Exception $ex) {
             // return redirect()->route('index')->with('error', 'حصلت مشكلة غير متوقعة عند اكتمال الدفع من الموقع' . $ex->getMessage());
             return $ex;

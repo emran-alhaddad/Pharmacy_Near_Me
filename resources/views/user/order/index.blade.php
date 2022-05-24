@@ -68,22 +68,22 @@
 
 
     
-    @isset($tapState)
+    @if(isset())
     <script>
-        alert('sadddad');
-        const tap = document.querySelectorAll('.nav-tabs li ');
-        const tapAttr= document.querySelectorAll('.nav-tabs li a');
-        for(i=0;i<tap.length ;i++)
-        {
-            tap[i].classList.remove('active');
-        }
+        // alert('sadddad');
+        // const tap = document.querySelectorAll('.nav-tabs li ');
+        // const tapAttr= document.querySelectorAll('.nav-tabs li a');
+        // for(i=0;i<tap.length ;i++)
+        // {
+        //     tap[i].classList.remove('active');
+        // }
     
-        for(i=0;i<tap.length ;i++)
-        { alert({{$tapState}});
-            if(tapAttr[i].getAttribute('href')=={{$tapState}})
-            tap[i].classList.toggle('active');
+        // for(i=0;i<tap.length ;i++)
+        // { alert({{$tapState}});
+        //     if(tapAttr[i].getAttribute('href')=={{$tapState}})
+        //     tap[i].classList.toggle('active');
             
-        }
+        // }
 
         //   console.log(tap);
                 // alert(tap[1].getAttribute('data-bs-target'));
