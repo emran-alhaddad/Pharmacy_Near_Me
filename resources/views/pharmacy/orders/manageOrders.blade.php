@@ -64,20 +64,24 @@
 
     </div>
 
-    @isset($tapState)
+    @if(session('tapState'))
     <script>
-        const tap = document.querySelectorAll('.nav-item button');
-        for(i=0;i<tap.length ;i++)
-        {
-            tap[i].classList.remove('active');
-        }
+        // const tap = document.querySelectorAll('.nav-item button');
+        // for(i=0;i<tap.length ;i++)
+        // {
+        //     tap[i].classList.remove('active');
+        // }
     
-        for(i=0;i<tap.length ;i++)
-        {
-            if(tap[i].getAttribute('data-bs-target')=={{$tapState}})
-            tap[i].classList.toggle('active');
+        // for(i=0;i<tap.length ;i++)
+        // {   
+        //     if(tap[i].getAttribute('data-bs-target')=="#{{ session()->get('tapState') }}")
+        //     tap[i].classList.toggle('active');
             
-        }
+        // }
+        $(document).ready(function(){
+        $("button[data-bs-target=\'#{{ session('tapState') }}\']").trigger('click');
+
+    });
 
         //   console.log(tap);
                 // alert(tap[1].getAttribute('data-bs-target'));
@@ -85,7 +89,7 @@
     // tap[1].classList.toggle('active');
     </script>
         
-    @endisset
+    @endif
         
    
 

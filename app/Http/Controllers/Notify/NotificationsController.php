@@ -66,11 +66,12 @@ class NotificationsController extends Controller
 
         $user = User::find($complaint->client_id);
         $phar = User::find($complaint->pharmacy_id);
+        $admin=User::where('name','admin')->first();
         
 
         $notifications = notifications::create([
-            'sender_id'  =>$complaint->client_id,
-            'receiver_id'  => $complaint->id,
+            'sender_id'  =>$complaint->id,
+            'receiver_id'  => $admin->id,
             'nameFrom'=>$user->name,
             'nameTo'=>$phar->name,
             'message' => " شكوى جديدة",
@@ -80,8 +81,10 @@ class NotificationsController extends Controller
             ]);
         $data =[
 
-            'client_name'=>  $user->name,
-            'pharmacy_name'=> $phar->name,
+            // 'client_name'=>  $user->name,
+            // 'pharmacy_name'=> $phar->name,
+            'receiver_id'  => $admin->id,
+            'nameFrom'=>$user->name,
             'message' => $notifications ->message,
             'type'    => $notifications->type,
 
@@ -114,10 +117,10 @@ class NotificationsController extends Controller
     }
 
 
-    public static function getNotification()
+    public static function getNotification($id)
     {
-        $admin_id = 28;
-        $notifications = notifications::get();
+        
+        $notifications = notifications::where([['id', '=', $id],['is_active','=',1]])->get();
         $count = count($notifications);
         $data = array('notifications' => $notifications, 'count' => $count);
         return $data;
@@ -137,12 +140,13 @@ class NotificationsController extends Controller
         //     env('PUSHER_APP_ID'),
         //     $options
         // );
+        $admin=User::where('name','admin')->first();
         $pusher=$this->returnPusher();
         $phar = User::find($id_parmacy);
         $notifications = new notifications();
         $notifications = notifications::create([
             'sender_id'  =>$id_parmacy,
-            'receiver_id'  =>$id_parmacy,
+            'receiver_id'  =>$admin->id,
             'nameFrom'=>$phar->name,
             'message' => " من رخصة جديدة",
             'type' => 'license'
@@ -151,8 +155,10 @@ class NotificationsController extends Controller
             ]);
       $phar = User::find($id_parmacy);
       $data =[
-      'client_name'=>  'رخصة من ',
-      'pharmacy_name'=> $phar->name,
+    //   'client_name'=>  'رخصة من ',
+    //   'pharmacy_name'=> $phar->name,
+    'receiver_id'  =>$admin->id,
+    'nameFrom'=>$phar->name,
       'message' => $notifications ->message,
       'type'    => $notifications->type,
       ];
@@ -169,23 +175,25 @@ class NotificationsController extends Controller
 
         $notifications = new notifications();
         $notifications = notifications::create([
-            'user_id'=>$phar_id,
+            // 'user_id'=>$phar_id,
             'sender_id'  =>$client_id,
             'receiver_id'  =>$phar_id,
             'nameFrom'=>$client->name,
             'request_id'=>$request_id,
             'nameTo'=>$phar->name,
             'message' => " جديدة طلبية",
-            'type' => 'newOrder'
+            'type' => 'wait-acceptance'
        
         
             ]);
 
             $data =[
-                'user_id'=>$phar_id,
-                'client_name'=>  ' طلبية ',
+                // 'user_id'=>$phar_id,
+                'receiver_id'  =>$phar_id,
+                'nameFrom'=>$client->name,
+                'request_id'=>$request_id,
                 'pharmacy_name'=> $phar->name,
-                'message' => $notifications ->message,
+                'message' => " جديدة طلبية",
                 'type'    => $notifications->type,
                 ];
 
@@ -224,27 +232,32 @@ class NotificationsController extends Controller
 
         $notifications = new notifications();
         $notifications = notifications::create([
-            'user_id'=>$client->id,
+            // 'user_id'=>$client->id,
             'sender_id'  =>$phar->id,
             'receiver_id'  =>$client->id, 
             'nameFrom'=>$phar->name,
             'request_id'=>$idRequest,
             // 'nameTo'=>$phar->name,
             'message' => "رد من الصيدلية",
-            'type' => 'offerPrice'
+            'type' => 'wait-pay'
        
         
             ]);
             $data =[
-                'user_id'=>$client->user_id,
-                'client_name'=>  ' قبول  ',
+            //     'user_id'=>$client->user_id,
+            //     'client_name'=>  ' قبول  ',
+            'receiver_id'  =>$client->id, 
+            'nameFrom'=>$phar->name,
+            'request_id'=>$idRequest,
                 'pharmacy_name'=> $phar->name,
                 'message' => $notifications ->message,
-                'type'    => $notifications->type,
+                'type' => 'wait-pay'
                 ];
 
             $pusher->trigger('new_notification', 'App\\Events\\Notify',$data);
     }
+
+    // ارسال اشعار الى الصيدلية بان المستخدم رفض عرض السعر
     public function rejectUserOrderNotification($idRequest)
     {
         $pusher=$this->returnPusher();
@@ -254,19 +267,31 @@ class NotificationsController extends Controller
 
         $notifications = new notifications();
         $notifications = notifications::create([
-            'user_id'=>$client->user_id,
-            'sender_id'  =>$phar->user_id,
-            'receiver_id'  =>$client->user_id,
-            'nameFrom'=>$phar->name,
+            // 'user_id'=>$phar->id,
+            'sender_id'  =>$client->id,
+            'receiver_id'  =>$phar->id,
+            'nameFrom'=>$client->name,
             'request_id'=>$idRequest,
             // 'nameTo'=>$phar->name,
-            'message' => "رد من الصيدلية",
-            'type' => 'reject'
+            'message' => " رفض العرض",
+            'type' => 'not-completed'
        
         
             ]);
 
+            $data =[
+                'receiver_id'  =>$phar->id,
+                'nameFrom'=>$client->name,
+                'request_id'=>$idRequest,
+                'pharmacy_name'=> $client->name,
+                'message' => $notifications ->message,
+                'type' => 'not-completed"'
+                ];
+
+            $pusher->trigger('new_notification', 'App\\Events\\Notify',$data);
+
     }
+    // ارسال اشعار من صيدلية الى المستخدم لا يوجد الطلبية
     public function replyRejectFromPharToCustomerNotification($idRequest)
     {
         $pusher=$this->returnPusher();
@@ -276,32 +301,94 @@ class NotificationsController extends Controller
 
         $notifications = new notifications();
         $notifications = notifications::create([
-            'user_id'=>$client->user_id,
-            'sender_id'  =>$phar->user_id,
-            'receiver_id'  =>$client->user_id,
+            // 'user_id'=>$client->id,
+            'sender_id'  =>$phar->id,
+            'receiver_id'  =>$client->id,
             'nameFrom'=>$phar->name,
             'request_id'=>$idRequest,
             // 'nameTo'=>$phar->name,
-            'message' => "رد من الصيدلية",
-            'type' => 'reject'
+            'message' => "غير متوفرة",
+            'type' => 'rejected'
        
         
             ]);   
             $data =[
-                'user_id'=>$client->user_id,
+                'receiver_id'  =>$client->id,
                 'client_name'=>  ' رفض  ',
-                'pharmacy_name'=> $phar->name,
+                'nameFrom'=>$phar->name,
+                'request_id'=>$idRequest,
                 'message' => $notifications ->message,
-                'type'    => $notifications->type,
+                'type' => 'rejected'
                 ];
 
             $pusher->trigger('new_notification', 'App\\Events\\Notify',$data);
     }
-    // public static function getnewOrder(){
+    // ارسال اشعار الى الصيدلية بان المستخدم قام بالدفع بنجاح
+    public function paymentCompletedSuccessfully($idRequest)
+    {
+        $pusher=$this->returnPusher();
+        $request=CustormerRequest::find($idRequest);
+        $phar = User::find($request->pharmacy_id);
+        $client = User::find($request->client_id);
+
+        $notifications = new notifications();
+        $notifications = notifications::create([
+            // 'user_id'=>$phar->id,
+            'sender_id'  =>$client->id,
+            'receiver_id'  =>$phar->id,
+            'nameFrom'=>$client->name,
+            'request_id'=>$idRequest,
+            'nameTo'=>$phar->name,
+            'message' => " تمت عملية الدفع بنجاح",
+            'type' => 'wait-delivery'
+       
         
-    //     $notifications = notifications::where('type','newOrder')->get();
-    //     $count = count($notifications);
-    //     $data = array('newOrder' => $notifications, 'count' => $count);
-    //     return $data;
-    // }
+            ]);
+
+            $data =[
+                'receiver_id'  =>$phar->id,
+                'nameFrom'=>$client->name,
+                'request_id'=>$idRequest,
+                // 'pharmacy_name'=> $client->name,
+                'message' => " تمت عملية الدفع بنجاح",
+                'type' => 'wait-delivery'
+                ];
+
+            $pusher->trigger('new_notification', 'App\\Events\\Notify',$data);
+
+    }
+    // ارسال اشعار الى الصيدلية بان تم قبول الطلبية
+    public function ConfirmArrivalOrderAfterPayment($idRequest)
+    {
+        $pusher=$this->returnPusher();
+        $request=CustormerRequest::find($idRequest);
+        $phar = User::find($request->pharmacy_id);
+        $client = User::find($request->client_id);
+
+        $notifications = new notifications();
+        $notifications = notifications::create([
+            // 'user_id'=>$phar->id,
+            'sender_id'  =>$client->id,
+            'receiver_id'  =>$phar->id,
+            'nameFrom'=>$client->name,
+            'request_id'=>$idRequest,
+            'nameTo'=>$phar->name,
+            'message' => " تمت عملية التوصيل بنجاح",
+            'type' => 'completed'
+       
+        
+            ]);
+
+            $data =[
+                'receiver_id'  =>$phar->id,
+                'nameFrom'=>$client->name,
+                'request_id'=>$idRequest,
+                // 'pharmacy_name'=> $client->name,
+                'message' => " تمت عملية التوصيل بنجاح",
+                'type' => 'completed'
+                ];
+
+            $pusher->trigger('new_notification', 'App\\Events\\Notify',$data);   
+    }
+   
 }

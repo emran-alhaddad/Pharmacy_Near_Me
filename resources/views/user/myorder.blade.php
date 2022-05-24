@@ -197,26 +197,14 @@
         $('#pharmacy').val(pharmacy).change();
     }
   
-       
-    @isset($tapState)
-        
-   
-    const tap = document.querySelectorAll('.nav-item button');
-   
-        for(i=0;i<tap.length ;i++)
-        {
-            tap[i].classList.remove('active');
-        }
-        tap[1].classList.toggle('active');
-        tap[1].classList.remove('active');
-    
-        for(i=0;i<tap.length ;i++)
-        {
-            if(tap[i].getAttribute('data-bs-target')== "#{{$tapState}}")
-            tap[i].classList.toggle('active');
-            
-        }
-    @endisset    
+     
+    @if(session('tapState'))
+    $(document).ready(function(){
+        $("button[data-bs-target=\'#{{ session('tapState') }}\']").trigger('click');
+
+    });
+
+    @endif   
    
 
        

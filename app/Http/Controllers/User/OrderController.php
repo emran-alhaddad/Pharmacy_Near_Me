@@ -123,7 +123,11 @@ class OrderController extends Controller
     {
         $payment = new PaymentController();
         if($payment->completePay($id))
+        {
+        $Notify = new NotificationsController();
+        $Notify -> ConfirmArrivalOrderAfterPayment($id);
         return back()->with('status', 'لقد تم تأكيد وصول الطلبية ' . $id  . ' بنجاح');
+        }
         return back()->with('error', 'لم يتم تأكيد وصول الطلبية ' . $id );
     }
 
@@ -151,18 +155,18 @@ class OrderController extends Controller
     { 
         $requests = OrderRequest::with(['details', 'pharmacy.user', 'replies.details'])
         ->where('requests.id',$id)->get();
-       // return $requests[0]->pharmacy_id;
+       // return $requests[0]->pharmacy_id; 
     $client = User::with('client')->where('id', $requests[0]->client_id)->firstOrFail();
     $pharmacies = Pharmacy::with('user')->where('user_id', $requests[0]->pharmacy_id)->get();
-  
+    return redirect()->route('client-orders')->with( ['tapState' => $stateTap] );
    
     
-    return view('user.myorder', [
-            'requests' => $requests,
-            'user' => $client,
-            'pharmacies' => $pharmacies,
-            'tapState'=> $stateTap,
-        ]);
+    // return view('user.myorder', [
+    //         'requests' => $requests,
+    //         'user' => $client,
+    //         'pharmacies' => $pharmacies,
+    //         'tapState'=> $stateTap,
+    //     ]);
     }
 
 }
