@@ -20,8 +20,8 @@ return new class extends Migration
             $table->unsignedBigInteger('receiver');
             $table->foreign('receiver')->references('id')->on('users');
             $table->boolean('is_seen')->default(0);
-            $table->string('file_name')->nullable();
-            $table->string('file')->nullable();
+           // $table->string('file_name')->nullable();
+           // $table->string('file')->nullable();
             $table->timestamps();
         });
     }

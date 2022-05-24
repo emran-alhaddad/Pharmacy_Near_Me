@@ -14,6 +14,7 @@
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.10",
         "mcamara/laravel-localization": "^1.7",
+        "munafio/chatify": "^1.4",
         "pusher/pusher-php-server": "^7.0",
         "santigarcor/laratrust": "^7.1"
     },

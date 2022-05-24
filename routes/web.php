@@ -3,8 +3,6 @@
 use App\Http\Controllers\User;
 use App\Http\Controllers\Admin;
 use App\Http\Controllers\Pharmacy;
-use App\Http\Controllers\ChatController;
-
 use App\Http\Controllers\Front;
 use App\Http\Controllers\Auth\Login;
 use App\Http\Controllers\Auth\Register;
@@ -196,7 +194,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         // Admin Dashboard
         Route::get('/_admin/', [Admin\AdminController::class, 'index'])->name('admin-dashboard');
-        Route::get('/_admin/wallet', [WalletController::class, 'index'])->name('admin-bag');
+        Route::get('/_admin/wallet', [Admin\WalletController::class, 'index'])->name('admin-bag');
 
 
         Route::get('/_admin/profile', [Admin\AdminController::class, 'showProfile'])->name('admin-profile');
@@ -320,10 +318,6 @@ Route::get('/checkout-order/test/cancel/{cancel}', [Payment\PaymentController::c
 Route::get('/checkout-order/test/cancel', [Payment\PaymentController::class, 'viewCancel'])->name('viewCancel');
 
 Route::get('send', [Notify\NotificationsController::class, 'registerNotification'])->name('viewCancel');
-   //chat routs
-   Route::group(['middleware' => 'auth'], function () {
-    Route::get('/inbox', [ChatController::class, 'index'])->name('inbox.index');
-    Route::get('/inbox/{id}', [ChatController::class, 'show'])->name('inbox.show');
-});
+
 
 

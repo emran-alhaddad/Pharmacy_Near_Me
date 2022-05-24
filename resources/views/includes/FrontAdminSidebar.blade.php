@@ -8,6 +8,14 @@
 					</div> <span> لوحة التحكم </span>
             </a>
         </li>
+
+		<li class="sidebar-nav-item"><a href="/home"
+				class="sidebar-nav-link">
+					<div>
+						<i class="fas fa-home"></i>
+					</div> <span> الصفحة الرئيسية  </span>
+            </a>
+        </li>
         <!-- <i class="fa-solid fa-house-medical"></i> -->
         <li>
         <li class="sidebar-nav-item "><a href="/_admin/show_WebSiteSetting"
@@ -16,6 +24,15 @@
                     <i class="fas fa-gear"></i>
 					</div> <span >ادارة الموقع</span>
 			</a></li>
+
+			<li class="sidebar-nav-item "><a href="/_admin/wallet"
+				class="sidebar-nav-link">
+					<div>
+                    <i class="fas fa-wallet"></i>
+					</div> <span > محفظتي</span>
+			</a></li>
+
+			
 			<li class="sidebar-nav-item "><a href="/_admin/show_Phars"
 				class="sidebar-nav-link">
 					<div>
