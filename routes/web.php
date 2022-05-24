@@ -3,8 +3,6 @@
 use App\Http\Controllers\User;
 use App\Http\Controllers\Admin;
 use App\Http\Controllers\Pharmacy;
-use App\Http\Controllers\ChatController;
-
 use App\Http\Controllers\Front;
 use App\Http\Controllers\Auth\Login;
 use App\Http\Controllers\Auth\Register;
@@ -319,10 +317,6 @@ Route::get('/checkout-order/test/cancel/{cancel}', [Payment\PaymentController::c
 Route::get('/checkout-order/test/cancel', [Payment\PaymentController::class, 'viewCancel'])->name('viewCancel');
 
 Route::get('send', [Notify\NotificationsController::class, 'registerNotification'])->name('viewCancel');
-   //chat routs
-   Route::group(['middleware' => 'auth'], function () {
-    Route::get('/inbox', [ChatController::class, 'index'])->name('inbox.index');
-    Route::get('/inbox/{id}', [ChatController::class, 'show'])->name('inbox.show');
-});
+
 
 
