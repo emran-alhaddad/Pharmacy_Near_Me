@@ -193,7 +193,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         // Admin Dashboard
         Route::get('/_admin/', [Admin\AdminController::class, 'index'])->name('admin-dashboard');
-        Route::get('/_admin/wallet', [WalletController::class, 'index'])->name('admin-bag');
+        Route::get('/_admin/wallet', [Admin\WalletController::class, 'index'])->name('admin-bag');
 
 
         Route::get('/_admin/profile', [Admin\AdminController::class, 'showProfile'])->name('admin-profile');
