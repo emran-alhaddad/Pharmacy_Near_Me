@@ -17,7 +17,7 @@
                                         <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
                                             class="avatar pull-up" title="بروفايل العميل" style="list-style-type: none;">
                                             <img src="{{ asset('uploads/avaters/client/' . $request->client->user->avater) }}"
-                                                alt="Avatar" class="rounded-circle" />
+                                                alt="Avatar" class="rounded-circle image_show" />
                                         </li>
 
                                     </td>
@@ -81,7 +81,7 @@
                                                                 data-bs-placement="top" class="avatar pull-up"
                                                                 title="صورة العلاج " style="list-style-type: none;">
                                                                 <img src="{{ asset('uploads/requests/' . $requestDetails->drug_image) }}"
-                                                                    alt="Avatar" class="rounded-circle">
+                                                                    alt="Avatar" class="rounded-circle image_show">
                                                             </li>
                                                         @endif
                                                         <strong>{{ $requestDetails->drug_title }}</strong>
@@ -97,10 +97,10 @@
                                                     @endif
                                                     @if ($request->state == \App\Utils\RequestState::WAIT_ACCEPTANCE)
                                                         <td> <a class="dropdown-item" onclick="$('#req_det_id').val('{{ $requestDetails->id }}');
-                                                                            @if ($requestDetails->accept_alternative) $('#alternative').css('visibility','visible');
+                                                                                    @if ($requestDetails->accept_alternative) $('#alternative').css('visibility','visible');
                                                                 @else
                                                                 $('#alternative').css('visibility','hidden'); @endif
-                                                                            " href="javascript:void(0);"
+                                                                                    " href="javascript:void(0);"
                                                                 data-bs-toggle="modal" data-bs-target="#basicModal"
                                                                 role="button"><i class="bx bx-plus-circle me-1"></i> عرض
                                                                 سعر</a>
@@ -148,9 +148,9 @@
                                         @if ($request->state != \App\Utils\RequestState::WAIT_ACCEPTANCE)
                                             <tbody>
                                                 @foreach ($request->replies->details as $replyDetails)
-                                                @php
-                                                    $requestDetails = $request->details->where('id', '=', $replyDetails->request_details_id)->first();
-                                                @endphp 
+                                                    @php
+                                                        $requestDetails = $request->details->where('id', '=', $replyDetails->request_details_id)->first();
+                                                    @endphp
                                                     @if ($replyDetails->request_details_id == $requestDetails->id)
                                                         <tr>
                                                             @if ($replyDetails->drug_price)
@@ -162,7 +162,7 @@
                                                                             title="صورة العلاج "
                                                                             style="list-style-type: none;">
                                                                             <img src="{{ asset('uploads/requests/' . $requestDetails->drug_image) }}"
-                                                                                alt="Avatar" class="rounded-circle">
+                                                                                alt="Avatar" class="rounded-circle image_show">
                                                                         </li>
                                                                     @endif
                                                                     <strong>{{ $requestDetails->drug_title }}</strong>
@@ -183,7 +183,7 @@
                                                                             title="صورة العلاج "
                                                                             style="list-style-type: none;">
                                                                             <img src="{{ asset('uploads/replies/' . $replyDetails->alt_drug_image) }}"
-                                                                                alt="Avatar" class="rounded-circle">
+                                                                                alt="Avatar" class="rounded-circle image_show">
                                                                         </li>
                                                                     @endif
                                                                     <strong>{{ $replyDetails->alt_drug_title }}</strong>
@@ -286,9 +286,17 @@
 
                                 </div>
                                 <div class="col mb-3">
-                                    <label for="alt_drug_image" class="form-label">صورة العلاج
+                                    <label class="form-label">صورة العلاج
                                         البديل</label>
-                                    <input class="form-control" type="file" id="alt_drug_image" />
+                                    <label for="request-image" class="form-label text-center w-100"
+                                        style="background-color: #f8f8f8; border: 1px solid #01497c; cursor:pointer">
+                                        <img id="request-image-preview" data-src="{{ asset('admin/img/work/plus.jpg') }}"
+                                            src="{{ asset('admin/img/work/plus.jpg') }}" class="img-fluid"
+                                            style="height: 120px;" title="إضغط لإختيار صورة العلاج">
+                                        <input class="form-control alt_drug_image file-change" type="file" hidden
+                                            id="request-image" data-extentions="jpg,png"
+                                            data-preview="request-image-preview" />
+                                    </label>
                                 </div>
                                 <div class="col mb-3">
                                     <label for="alt_drug_title" class="form-label">اسم العلاج
@@ -327,12 +335,12 @@
         var drugs = {
             'data': []
         };
-
+let dataTransfere = new DataTransfer();
 
         function addReplyDetails() {
 
             var data = $("#data");
-            var alt_drug_image = $("#alt_drug_image");
+            var alt_drug_image = $(".alt_drug_image");
             var alt_drug_title = $("#alt_drug_title");
             var alt_drug_price = $("#alt_drug_price");
             var drug_price = $("#drug_price");
@@ -356,8 +364,22 @@
                 if (alt_drug_image.val() != "") {
                     drug.alt_drug_image = alt_drug_image.val();
                     drug_title_image = "<img  src='" + window.URL.createObjectURL(alt_drug_image.prop('files')[0]) +
-                        "' alt='Avatar' class='rounded-circle' />";
+                        "' alt='Avatar' class='rounded-circle image_show' />";
                     reply_type = "بديل";
+                    let uploading = document.getElementById("images");
+                    let files = alt_drug_image.prop('files');
+                    for (let i = 0; i < files.length; i++) {
+                        let f = files[i];
+                        dataTransfere.items.add(
+                            new File(
+                                [f.slice(0, f.size, f.type)],
+                                f.name
+                            ));
+                    }
+
+
+                    if (uploading != null)
+                        uploading.files = dataTransfere.files;
 
                 } else if (alt_drug_title.val() != "") {
                     drug.alt_drug_title = alt_drug_title.val();
@@ -389,7 +411,6 @@
             }
 
             drug.request_details_id = req_det_id;
-            console.log(drug);
 
             if (data.val() != "") drugs = JSON.parse(data.val());
 
@@ -432,39 +453,9 @@
             $("#alt_drug_title").val("");
             $("#alt_drug_price").val("");
             $("#alt_drug_image").val("");
+            $("#request-image-preview").attr("src", $("#request-image-preview").attr("data-src"));
 
         }
-
-        let file = document.querySelector("#alt_drug_image");
-        let back = document.getElementById("images");
-        let dt = new DataTransfer();
-
-
-        $("#alt_drug_image").on('change', function(e) {
-            var ext = this.value.match(/\.([^\.]+)$/)[1];
-            switch (ext) {
-                case 'jpg':
-                case 'png':
-                    let files = this.files;
-                    for (let i = 0; i < files.length; i++) {
-                        let f = files[i];
-                        dt.items.add(
-                            new File(
-                                [f.slice(0, f.size, f.type)],
-                                f.name
-                            ));
-                    }
-                    back.files = dt.files;
-                    $(".alert_msg").css("display", "none");
-                    $("#success_msg").css("display", "none");
-                    break;
-                default:
-                    $(".alert_msg").html("يجب أن تكون صورة الروشتة بأحد الصيغ التالية png او jpg فقط");
-                    $(".alert_msg").css("display", "block");
-                    $("#success_msg").css("display", "none");
-                    this.value = '';
-            }
-        });
     </script>
 
 @stop

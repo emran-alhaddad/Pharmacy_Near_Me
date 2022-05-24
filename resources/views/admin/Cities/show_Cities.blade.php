@@ -33,23 +33,23 @@
 
                     <tbody>
                         @foreach ($cities as $city)
-                        
+
                         <tr>
-                        <td>{{$city->name}}</td> 
+                        <td>{{$city->name}}</td>
                         @if ($city->is_active==1)
 
-                        <td>  <a href={{route('admin-activity_Cities', ['id' => $city->id , 'state'=>0])}}>   <button class="btn btn-success text-white" >مفعل</button></a></td>
+                        <td>  <a href={{route('admin-activity_Cities', ['id' => $city->id , 'state'=>0])}}>   <button class="btn badge btn-success text-white" >مفعل</button></a></td>
 
 
                           @else
 
-                            <td>  <a href={{route('admin-activity_Cities', ['id' => $city->id ,'state'=>1])}}> <button class="btn btn-danger text-white" >موقف</button></a></td>
+                            <td>  <a href={{route('admin-activity_Cities', ['id' => $city->id ,'state'=>1])}}> <button class="btn badge btn-danger text-white" >موقف</button></a></td>
 
                           @endif
 
                             <td>
-                                <a href={{route('admin-edit_Cities', ['id' => $city->id]);}} >  <button class="btn btn-primary text-white" ><i class="fas fa-pen" id="edit"></i></button></a>
-                                <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-trash"></i></button>
+                                <a href={{route('admin-edit_Cities', ['id' => $city->id]);}} >   <button class="btn" ><i class="fas fa-pen" id="edit"></i></button></a>
+                                <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" id="delete"><i class="fas fa-trash"></i></button>
                                     <div class="modal"  id="exampleModal"  tabindex="-1">
                                         <div class="modal-dialog">
                                             <div class="modal-content">

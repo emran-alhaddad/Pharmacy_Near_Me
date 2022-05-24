@@ -42,20 +42,22 @@
                             </div>
                             <div class="single-info py-2">
 
+                            @foreach($infoSite as $infoSites)
+
                                 <ul>
-                                    <li class="text-white py-2"><i class="lni lni-phone pl-2"></i> +697 777 777 777</li>
+                                    <li class="text-white py-2"><i class="lni lni-phone pl-2"></i>{{$infoSites->phone}}</li>
                                 </ul>
                             </div>
                             <div class="single-info">
                                 <ul>
-                                    <li class="text-white pb-2"><a href="mailto:pharmacy.neer.me@gmail.com" class="text-white"> <i class="lni lni-envelope pl-2"></i> pharmacy.neer.me@gmail.com</a></li>
+                                    <li class="text-white pb-2"><a href="mailto:{{$infoSites->email}}" class="text-white"> <i class="lni lni-envelope pl-2"></i> {{$infoSites->email}}</a></li>
                                 </ul>
                             </div>
                             <div class="single-info">
 
-                                <ul>
-                                    <li class="text-white py-2"><i class="lni lni-map pl-2 "></i>  موقع وسيط ع الانترنت </li>
-                                </ul>
+                                {{-- <ul>
+                                    <li class="text-white py-2"><i class="lni lni-map pl-2 "></i>  {{$infoSites->website}} </li>
+                                </ul> --}}
                             </div>
                             <div class="contact-social">
                                 <h5>تابعنا على</h5>
@@ -63,19 +65,19 @@
                                     <li class="p-1">
                                         <a href="#" class="text-white ">
                                             <span class="icon-1"><i class="lni lni-facebook-filled pr-1"></i></span>
-                                            <span>pharmacy.neer.me@facebook.com </span>
+                                            <span>{{$infoSites->facebook}} </span>
                                         </a>
                                     </li>
                                     <li class="p-1">
 										<a href="#" class="text-white">
                                             <span class="icon-1"><i class="lni lni-twitter-original pr-1"></i></span>
-                                            <span> pharmacy.neer.me@twitter.com </span>
+                                            <span> {{$infoSites->twitter}} </span>
                                         </a>
                                     </li>
                                     <li class="p-1">
 										<a href="#" class="text-white">
-                                            <span class="icon-1"><i class="lni lni-linkedin-original pr-1"></i></span>
-                                            <span> pharmacy.neer.me@linkedin.com </span>
+                                            <span class="icon-1"><i class="lni lni-whatsapp pr-1"></i></span>
+                                            <span> {{$infoSites->whatsup}} </span>
                                         </a>
                                     </li>
 
@@ -83,6 +85,8 @@
                             </div>
                         </div>
                     </div>
+
+                    @endforeach
 
                     <div class="col-lg-7 col-12 radius p-5 ">
                         <div class="form-main mt-10">

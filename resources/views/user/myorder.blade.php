@@ -7,13 +7,17 @@
 
         <div class="row mb-2 mt-2">
             @if (session('error'))
-                <div class="alert alert-danger" role="alert">
-                    {{ session('error') }}
+                <div class="alert alert-danger alert-dismissible text-center mt-2 fade show" role="alert">
+                    {!! session('error') !!}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
                 </div>
             @endif
             @if (session('status'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
+                <div class="alert alert-success alert-dismissible text-center mt-2 fade show" role="alert">
+                    {!! session('status') !!}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
                 </div>
             @endif
         </div>
@@ -100,7 +104,7 @@
     </div>
     </div>
 
-<!-- addCompliant Modal -->
+    <!-- addCompliant Modal -->
     <div id="addCompliant" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -136,8 +140,7 @@
                                 <div class="input-group mb-3">
 
                                     <div class="dropdown col-12">
-                                        <select id="pharmacy" name="pharmacy" disabled
-                                            class=" rounded form-control">
+                                        <select id="pharmacy" name="pharmacy" disabled class=" rounded form-control">
                                             @foreach ($pharmacies as $pharmacy)
                                                 <option value="{{ $pharmacy->user_id }}">
                                                     {{ $pharmacy->user->name }}
@@ -186,10 +189,17 @@
     </div>
 
     <script>
-    function reject(order, pharmacy) {
-        $('#order').val(order);
-        $('#pharmacy_id').val(pharmacy);
-        $('#pharmacy').val(pharmacy).change();
-    }
-</script>
+        function reject(order, pharmacy) {
+            $('#order').val(order);
+            $('#pharmacy_id').val(pharmacy);
+            $('#pharmacy').val(pharmacy).change();
+        }
+
+
+        @if (session('tapState'))
+            $(document).ready(function() {
+                $("button[data-bs-target=\'#{{ session('tapState') }}\']").trigger("click");
+            });
+        @endif
+    </script>
 @stop

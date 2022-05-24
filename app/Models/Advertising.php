@@ -12,7 +12,6 @@ class Advertising extends Model
     protected $fillable = [
         'admin_id',
         'descripe',
-       
         'image',
         'url',
         'is_active',
@@ -21,4 +20,9 @@ class Advertising extends Model
         'endAt',
         
     ];
+
+    public function owner()
+    {
+        return $this->hasOne(AdvertisingOwner::class,'advertising_id');
+    }
 }

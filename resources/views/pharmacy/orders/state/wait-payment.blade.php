@@ -25,7 +25,7 @@
                                         data-bs-placement="top" class="avatar pull-up"
                                         title="الروشتة " style="list-style-type: none;">
                                         <img src="{{ asset('uploads/avaters/client/' . $request->client->user->avater) }}"
-                                            alt="Avatar" class="rounded-circle">
+                                            alt="Avatar" class="rounded-circle image_show">
                                         <strong>{{ $request->client->user->name }}</strong>
                                     </li>
 

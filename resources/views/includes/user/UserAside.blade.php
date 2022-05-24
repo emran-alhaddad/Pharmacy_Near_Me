@@ -27,6 +27,11 @@
     <div class="menu-inner-shadow"></div>
     <ul class="menu-inner py-1">
         <li class="menu-item">
+        <a href="{{ route('index') }}" class="menu-link"><i class="bx bx-home-alt me-1"></i>
+            <div data-i18n="Account">الرئيسية</div>
+        </a>
+        </li>
+        <li class="menu-item">
         <a href="#" class="menu-link"><i class="bx bx-message-alt me-1"></i>
             <div data-i18n="Account">الرسائل</div>
         </a>

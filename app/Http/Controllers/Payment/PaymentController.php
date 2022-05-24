@@ -6,22 +6,26 @@ use App\Http\Controllers\Auth\Register\RegisterController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\WalletController;
 use App\Models\Admin;
+use App\Models\Advertising;
 use App\Models\City;
 use App\Models\Order;
 use App\Models\OrderDetails;
 use App\Models\OrderPayment;
 use App\Models\Payment;
 use App\Models\Pharmacy;
+use App\Models\Reply;
 use App\Models\zone;
 use Illuminate\Http\Request;
 use App\Models\Request as OrderRequest;
 use App\Models\User;
+use App\Utils\DeleveryState;
 use App\Utils\ReplyState;
 use App\Utils\RequestState;
 use App\Utils\SystemUtils;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 use PhpParser\Node\Expr\Cast\Object_;
 
 class PaymentController extends Controller
@@ -35,13 +39,13 @@ class PaymentController extends Controller
         try {
 
             $request = OrderRequest::with(['details', 'replies.details'])
-                ->where(['client_id' => Auth::id(), 'id' => $id])->first();
+                ->where([ 'id' => $id])->first();
 
             if (!$request)
                 return redirect()->route('index')->with('error', 'طلبيتك غير موجودة');
 
-            if ($request->state != RequestState::ACCEPTED)
-                return redirect()->route('index')->with('error', 'طلبية غير صالحة للدفع');
+            // if (!in_array($request->state, [RequestState::ACCEPTED, RequestState::WAIT_DELIVERY]))
+            //     return redirect()->route('index')->with('error', 'طلبية غير صالحة للدفع');
 
 
             $total_products = $request->replies->details->where('state', 1)->count();
@@ -49,7 +53,7 @@ class PaymentController extends Controller
             $total_price = 0;
             foreach ($request->details as $reqDetails)
                 foreach ($request->replies->details as $repDetails)
-                    if ($reqDetails->id == $repDetails->request_details_id && $repDetails->state == ReplyState::ACCEPTED) {
+                    if ($reqDetails->id == $repDetails->request_details_id ) {
                         $product = [];
 
                         if ($reqDetails->quantity) $product['quantity'] = $reqDetails->quantity;
@@ -58,7 +62,7 @@ class PaymentController extends Controller
                         if ($repDetails->drug_price) {
 
                             $product['id'] = $reqDetails->id;
-                            if ($reqDetails->drug_image) $product['drug_image'] = SystemUtils::REQUEST_IMAGE_PATH.$reqDetails->drug_image;
+                            if ($reqDetails->drug_image) $product['drug_image'] = SystemUtils::REQUEST_IMAGE_PATH . $reqDetails->drug_image;
                             if ($reqDetails->drug_title) $product['drug_title'] = $reqDetails->drug_title;
                             $product['drug_price'] = $repDetails->drug_price;
                             $total_price += ($repDetails->drug_price * $reqDetails->quantity);
@@ -66,7 +70,7 @@ class PaymentController extends Controller
 
                             $product['id'] = $repDetails->id;
                             if ($repDetails->alt_drug_title) $product['drug_title'] = $repDetails->alt_drug_title;
-                            if ($repDetails->alt_drug_image) $product['drug_image'] = SystemUtils::REPLY_IMAGE_PATH.$repDetails->alt_drug_image;
+                            if ($repDetails->alt_drug_image) $product['drug_image'] = SystemUtils::REPLY_IMAGE_PATH . $repDetails->alt_drug_image;
                             $product['drug_price'] = $repDetails->alt_drug_price;
                             $total_price += ($repDetails->alt_drug_price * $reqDetails->quantity);
                         } else
@@ -89,6 +93,47 @@ class PaymentController extends Controller
         }
     }
 
+    public static function getAdvertising($id)
+    {
+        try {
+
+            $ads = Advertising::with('owner')
+                ->where('id', $id)->first();
+
+            if (!$ads)
+                return redirect()->route('index')->with('error', 'بيانات غير صحيحة');
+
+
+            $total_products = 1;
+            $total_price = 0;
+            $products = [];
+            $product = [];
+            $product['id'] = $ads->id;
+            $product['quantity'] = 1;
+            if ($ads->price) {
+                $product['drug_price'] = $total_price = $ads->price;
+            }
+            if ($ads->descripe) $product['drug_title'] = $ads->descripe;
+            if ($ads->image) $product['drug_image'] = "ads/" . $ads->image;
+
+            $products[] = $product;
+
+
+            return array(
+                'order_reference' => $ads->id,
+                'total_price' => $total_price,
+                'total_products' => $total_products,
+                'client_id' => $ads->owner->id,
+                'pharmacy_id' => $ads->owner->id,
+                'products' => $products,
+                'is_advertising' => true,
+                'ads_owner' => $ads->owner
+            );
+        } catch (\Exception $ex) {
+            return redirect()->route('index')->with('error', 'حدث خطأ غير متوقع ' . $ex->getMessage());
+        }
+    }
+
     public function index($id)
     {
         return view('payment.payment', [
@@ -98,12 +143,25 @@ class PaymentController extends Controller
         ]);
     }
 
+    public function index2($id)
+    {
+        return view('payment.payment', [
+            'cities' => City::get(),
+            'zones' => zone::get(),
+            'request' => self::getAdvertising($id),
+        ]);
+    }
+
     public function pay(Request $request, $id)
     {
         $order = self::getProducts($id);
+        if ($request->has('is_advertising'))
+            $order = self::getAdvertising($id);
+
         $products = [];
         foreach ($order['products'] as $product) {
-            if (!isset($product['drug_title'])) $product['drug_title'] = "Test";
+            if (!isset($product['drug_title'])) $product['drug_title'] = "منتج ذو صورة";
+
             $products[] = array(
                 "id" => $product['id'],
                 "product_name" => $product['drug_title'],
@@ -111,21 +169,29 @@ class PaymentController extends Controller
                 "unit_amount" => $product['drug_price']
             );
         }
+        $success = "http://127.0.0.1:8000/user/payment/success";
+        $cancel = "http://127.0.0.1:8000/user/payment/cancel";
+        if ($request->has('is_advertising')) {
+            $success = "http://127.0.0.1:8000/user/payment/ads/success";
+            $cancel = "http://127.0.0.1:8000/user/payment/ads/cancel";
+        }
+
         $data = [
             "order_reference" => $order['order_reference'],
             "products" => $products,
             "currency" => "YER",
             "total_amount" => $order['total_price'],
-            "success_url" => "http://127.0.0.1:8000/user/payment/success",
-            "cancel_url" => "http://127.0.0.1:8000/user/payment/cancel",
+            "success_url" => $success,
+            "cancel_url" => $cancel,
             "metadata" => [
                 "name" => $request->name,
                 "email" => $request->email,
-                "address" => $request->address,
-                "city" => $request->city,
-                "zone" => $request->zone,
+                "address" => $request->address ? $request->address : "",
+                "city" => $request->city ? $request->city : "",
+                "zone" => $request->zone ? $request->zone : "",
                 "client_id" => $order['client_id'],
                 "pharmacy_id" => $order['pharmacy_id'],
+                "is_advertising" => $request->has('is_advertising') ? true : false
             ]
 
         ];
@@ -133,7 +199,7 @@ class PaymentController extends Controller
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://waslpayment.com/api/test/merchant/payment_order",
+            CURLOPT_URL => "https://waslpayment.com/api/v1/merchant/payment_order",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_MAXREDIRS => 10,
             CURLOPT_TIMEOUT => 30000,
@@ -184,10 +250,45 @@ class PaymentController extends Controller
             $pharmacy_id = $client_info['pharmacy_id'];
 
 
+            if (isset($client_info['is_advertising']) && $client_info['is_advertising']) {
+
+                $reciver = User::find(Admin::first()->user_id);
+                // Create Wallet To User with the name of the wasel bank
+                RegisterController::createWallet($reciver);
+                $reciver->wallet->name = $card_type;
+
+                // Deposite the mony to reciver wallet andn notify him
+                WalletController::notifyDeposit(
+                    $reciver,
+                    WalletController::depositMessage($card_holder, $reciver, floatval($paid_amount))['reciver_message'],
+                    $products
+                );
+                $reciver->deposit(floatval($paid_amount), [
+                    'card_holder' => $card_holder,
+                    'data' => WalletController::formateData($products, floatval($paid_amount))
+                ]);
+
+
+                $adds = Advertising::find($order_reference)->first();
+                $adds->is_active = 1;
+                $adds->update();
+
+                return view('payment.successPay', [
+                    'client' => $client_info,
+                    'pharmacy' => $client_info,
+                    'order_reference' => $order_reference,
+                    'products' => $products,
+                    'paid_amount' => $paid_amount,
+                    'created_at' => $created_at,
+                    'is_advertising' => true
+                ]);
+            }
+
             // get users Info
             $sender = Auth::user();
             $reciver = User::find(Admin::first()->user_id);
             $target_user = User::find($pharmacy_id);
+
 
 
             // Insert Order To DataBase
@@ -208,6 +309,7 @@ class PaymentController extends Controller
             $order_payment->admin_id = $reciver->id;
             $order_payment->order_id = $order->id;
             if (!$order_payment->save()) {
+                $order->delete();
                 return redirect()->route('index')->with('error', 'order_payment not saved !!!');
             }
 
@@ -225,6 +327,8 @@ class PaymentController extends Controller
             }
 
             if (!$order_details_saved) {
+                $order_payment->delete();
+                $order->delete();
                 return redirect()->route('index')->with('error', 'one order details not saved !!!');
             }
 
@@ -233,14 +337,37 @@ class PaymentController extends Controller
             $sender->wallet->name = $card_type;
 
             // Deposite the mony to client wallet andn notify him
-            $sender->deposit(floatval($paid_amount));
             WalletController::notifyDeposit(
                 $sender,
-                WalletController::depositMessage($card_holder, $sender, floatval($paid_amount))['reciver_message']
+                WalletController::depositMessage(
+                    $card_holder,
+                    $sender,
+                    floatval($paid_amount),
+                    $products
+                )['reciver_message']
             );
 
+            $sender->deposit(
+                floatval($paid_amount),
+                [
+                    'card_holder' => $card_holder,
+                    'data' => WalletController::formateData(
+                        $products,
+                        floatval($paid_amount)
+                    )
+                ]
+            );
+
+
             // Make Payment from client to admin 
-            WalletController::pay($sender, $reciver, floatval($paid_amount), $target_user->id, 0, $products);
+            WalletController::pay(
+                $sender,
+                $reciver,
+                floatval($paid_amount),
+                $target_user->id,
+                0,
+                $products
+            );
 
             $request = OrderRequest::find($order_reference);
             $request->state = RequestState::WAIT_DELIVERY;
@@ -256,6 +383,89 @@ class PaymentController extends Controller
         } catch (\Exception $ex) {
             // return redirect()->route('index')->with('error', 'حصلت مشكلة غير متوقعة عند اكتمال الدفع من الموقع' . $ex->getMessage());
             return $ex;
+        }
+    }
+
+
+    public function completePay($id)
+    {
+        try {
+            $order = OrderRequest::where('id', $id)->first();
+            $reply = Reply::where('request_id', $id)->first();
+            $order_paid = Order::where('order_reference', $id)->first();
+            $order_payment = OrderPayment::where('order_id', $order_paid->id)->first();
+
+            $sender = User::where('id', $order_paid->admin_id)->first();
+            $reciever = User::where('id', $order_paid->pharmacy_id)->first();
+            $data = self::getProducts($id);
+
+            // Make Payment from admin to pharmacy
+            $paied = WalletController::pay(
+                $sender,
+                $reciever,
+                floatval($data['total_price']),
+                $order_payment->client_id,
+                0.10,
+                $data['products']
+            );
+
+            if ($paied) {
+                $reply->state = ReplyState::ACCEPTED;
+                $order->state = RequestState::FINISHED;
+                $reply->update();
+                $order->update();
+
+                $order_paid->rejected = 0;
+                $order_paid->update();
+
+                $order_payment->delivery_state = DeleveryState::DELIVERED;
+                $order_payment->update();
+                return true;
+            } else
+                return false;
+        } catch (\Exception $ex) {
+            return redirect()->route('index')->with('error', 'حصلت مشكلة غير متوقعة عند اكتمال الدفع من الموقع' . $ex->getMessage());
+        }
+    }
+
+    public function undoPay($id)
+    {
+        try {
+            $order = OrderRequest::where('id', $id)->first();
+            $reply = Reply::where('request_id', $id)->first();
+            $order_paid = Order::where('order_reference', $id)->first();
+            $order_payment = OrderPayment::where('order_id', $order_paid->id)->first();
+
+            $sender = User::where('id', $order_paid->admin_id)->first();
+            $reciever = User::where('id', $order_payment->client_id)->first();
+            $data = self::getProducts($id);
+
+            // Make Payment from admin to pharmacy
+            $paied = WalletController::pay(
+                $sender,
+                $reciever,
+                floatval($data['total_price']),
+                $order_paid->pharmacy_id,
+                0,
+                $data['products']
+            );
+
+            if ($paied) {
+                $reply->state = ReplyState::REJECTED;
+                $order->state = RequestState::REJECTED;
+                $reply->update();
+                $order->update();
+
+                $order_paid->rejected = 1;
+                $order_paid->update();
+
+                $order_payment->delivery_state = DeleveryState::REJECTED;
+                $order_payment->update();
+                return true;
+            } else
+                return false;
+        } catch (\Exception $ex) {
+            return redirect()->route('index')->with('error', 'حصلت مشكلة غير متوقعة عند اكتمال الدفع من الموقع' . $ex->getMessage());
         }
     }
 

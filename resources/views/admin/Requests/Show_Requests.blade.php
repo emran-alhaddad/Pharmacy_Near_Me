@@ -8,10 +8,10 @@
         <div class="card bg-white m-5">
 
             <div class="card-header d-flex justify-content-between">
-                <a href="/_admin/add_Requests"><i class="fas fa-plus"></i></a>
-                <h3>الطلبيات</h3>
+                <!-- <a href="/_admin/add_Requests"><i class="fas fa-plus"></i></a> -->
+                <h3>تقرير الطلبيات المكتملة</h3>
             </div>
-            <div class="card-content"> 
+            <div class="card-content">
                 <table class="table">
                     <thead>
                         <tr>
@@ -21,8 +21,8 @@
                             <th> مدينة الصيدلية </th>
                             <th>تاريخ الطلبية</th>
                             <th>عرض التفاصيل</th>
-                          
-                           
+
+
                             <th>الحالة</th>
                             <!-- <th>العمليات</th> -->
                         </tr>
@@ -31,7 +31,7 @@
 
                     <tbody>
                         @foreach ( $request as $req )
-                       
+
                         <tr>
                            <td>{{$req->client->user->name}}</td>
                             <td>{{$req->pharmacy->user->name}}</td>
@@ -72,7 +72,7 @@
 
 
                         </tr>
-                           
+
                         @endforeach
                     </tbody>
 

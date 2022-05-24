@@ -54,7 +54,7 @@
                                                                         title="صورة العلاج "
                                                                         style="list-style-type: none;">
                                                                         <img src="{{ asset('uploads/requests/' . $requestDetails->drug_image) }}"
-                                                                            alt="Avatar" class="rounded-circle">
+                                                                            alt="Avatar" class="rounded-circle image_show">
                                                                     </li>
                                                                 @endif
                                                                 <strong>{{ $requestDetails->drug_title }}</strong>
@@ -109,7 +109,7 @@
                                                                                                             style="list-style-type: none;">
                                                                                                             <img src="{{ asset('uploads/requests/' . $requestDetails->drug_image) }}"
                                                                                                                 alt="Avatar"
-                                                                                                                class="rounded-circle">
+                                                                                                                class="rounded-circle image_show">
                                                                                                         </li>
                                                                                                     @endif
                                                                                                     <strong>{{ $requestDetails->drug_title }}</strong>
@@ -132,7 +132,7 @@
                                                                                                             style="list-style-type: none;">
                                                                                                             <img src="{{ asset('uploads/replies/' . $replyDetails->alt_drug_image) }}"
                                                                                                                 alt="Avatar"
-                                                                                                                class="rounded-circle">
+                                                                                                                class="rounded-circle image_show">
                                                                                                         </li>
                                                                                                     @endif
                                                                                                     <strong>{{ $replyDetails->alt_drug_title }}</strong>

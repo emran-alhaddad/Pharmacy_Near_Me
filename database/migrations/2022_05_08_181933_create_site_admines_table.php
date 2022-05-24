@@ -19,20 +19,20 @@ return new class extends Migration
             $table->string('name');
             $table->string('logo');
             $table->string('image')->nullable();
-            $table->string('title_about');
-            $table->text('descripe_about');
+            $table->string('title_about')->nullable();
+            $table->text('descripe_about')->nullable();
             $table->string('descripe_main');
             $table->string('descripe_ser_client')->nullable();;
             $table->string('descripe_ser_phar')->nullable();;
             $table->string('descripe_ser_user')->nullable();
-         
+            $table->string('email');
             $table->string('facebook');
             $table->string('twitter');
             $table->string('whatsup');
-            $table->string('google');
             $table->string('phone');
-           
-            
+
+
+
             $table->timestamps();
         });
     }
@@ -44,7 +44,7 @@ return new class extends Migration
      */
     public function down()
     {
-        
+
         Schema::dropIfExists('site_admines');
     }
 };

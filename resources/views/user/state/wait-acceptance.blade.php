@@ -17,7 +17,7 @@
                         <td>{{ $request->pharmacy->user->name }}</td>
                         <td>{{ $request->created_at->diffForHumans() }}</td>
                         <td><span class="badge bg-warning text-dark">انتضار القبول</span></td>
-                        <td><a class=" btn btn-submit btn-hover me-2" href="javascript:void(0);"
+                        <td><a class=" btn btn-submit btn-hover me-2" 
                                 data-bs-toggle="collapse" role="button" data-bs-target="#details{{ $request->id }}">
                                 عرض التفاصيل
                             </a></td>
@@ -44,7 +44,7 @@
                                                                 data-bs-placement="top" class="avatar pull-up"
                                                                 title="صورة العلاج " style="list-style-type: none;">
                                                                 <img src="{{ asset('uploads/requests/' . $details->drug_image) }}"
-                                                                    alt="Avatar" class="rounded-circle">
+                                                                    alt="Avatar" class="rounded-circle image_show">
                                                             </li>
                                                         @endif
                                                         <strong>{{ $details->drug_title }}</strong>

@@ -4,13 +4,17 @@
 
     <div class="content-wrapper">
         @if (session('error'))
-            <div class="alert alert-danger" role="alert">
-                {{ session('error') }}
+            <div class="alert alert-danger alert-dismissible text-center mt-2 fade show" role="alert">
+                {!! session('error') !!}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
             </div>
         @endif
         @if (session('status'))
-            <div class="alert alert-success" role="alert">
-                {{ session('status') }}
+            <div class="alert alert-success alert-dismissible text-center mt-2 fade show" role="alert">
+                {!! session('status') !!}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
             </div>
         @endif
         <!-- Content -->
@@ -57,6 +61,12 @@
                                                         </a>
                                                     </div>
 
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <p id="replay_massage">
 
 
                                                     <div class="col">

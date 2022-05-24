@@ -8,6 +8,7 @@ use App\Models\sevicesModel;
 use Illuminate\Support\Facades\DB;
 use App\Utils\SystemUtils;
 
+
 class ServicesController extends Controller
 {
     //
@@ -47,6 +48,19 @@ class ServicesController extends Controller
     }
     public function AddService(){
         return view('admin.WebSiteSetting.Add_Service');
+    }
+
+    public function updateImageService(Request $request)
+    {
+        $path=SystemUtils::UpdateImages($request,'service');
+
+        $effect=sevicesModel::where('id', '=',$request->id )->update(['image' => $path]);
+      
+        if($effect)
+        {
+          return back()->with('status','تم تعديل صورة  الخدمة  بنجاح');
+        }
+        return back()->with('error',' لم تم تعديل صورة الخدمة  بنجاح');
     }
 
     public function storeService(Request $request){

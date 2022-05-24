@@ -15,19 +15,26 @@
 
     <style>
         :root {
-            --black: #444;
-            --light-color: #777;
-            --box-shadow: .5rem .5rem 0 rgba(22, 160, 133, .2);
-            --text-shadow: .4rem .4rem 0 rgba(0, 0, 0, .2);
+            --black: #333;
+            --light-black: #777;
+            --main-color: #01497c;
+            --hover-main: #2a6f97;
+            --secondary-color: #42a5f5;
+            --hover-secondary: #64b5f6;
+            --bg-sec: #f6f4fa;
             --border: .2rem solid var(--main-color);
-
-            --main-color: #543ab7;
-            --secondary-color: #00acc1;
-            --hover-main: #817ecd;
-            --hover-secondary: #9bb0dd;
-            --bg-sec: #f2f2fa;
-
             --radius: .5rem;
+            --font-type: 'Tajawal', sans-serif;
+            --fs-p: 1.7rem;
+            --fs-span: 1rem;
+        }
+
+          body {
+            font-family: "Tajawal", sans-serif;
+            font-weight: normal;
+            font-style: normal;
+            background: #f4f5f6;
+            text-justify: justify;
         }
 
         * {
@@ -67,7 +74,7 @@
             border: var(--border);
             border-radius: var(--radius);
             box-shadow: var(--box-shadow);
-            color: rgba(84, 58, 183, 1);
+            color: var(--main-color);
             cursor: pointer;
             text-align: center;
         }

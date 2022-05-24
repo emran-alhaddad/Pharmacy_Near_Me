@@ -19,7 +19,7 @@ use App\Models\Pharmacy;
 class ClientController extends Controller
 {
 
-    // Show Client Profile page
+    // Show Client Profile page 
     public function index()
     {
         $client = User::with('client')->where('id', Auth::id())->firstOrFail();

@@ -3,8 +3,6 @@
 @section('content')
     {{-- action={{route('_admin-create-customer')}} --}}
 
-
-
     <style>
         .card {
             margin-top: 12em;
@@ -75,17 +73,18 @@
                 @endforeach
 
                 @if (session('error'))
-                    <div class="alert alert-danger" role="alert">
+                    <div class="alert alert-danger alert-dismissible text-center mt-2 fade show" role="alert">
                         {{ session()->get('error') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
                     </div>
                 @elseif(session('state'))
-                    <div class="alert alert-success" role="alert">
+                    <div class="alert alert-success alert-dismissible text-center mt-2 fade show" role="alert">
                         {{ session()->get('state') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
                     </div>
                 @endif
-
-
-
 
             </div>
 
@@ -93,7 +92,14 @@
                 @csrf
                 <div class="mb-3 m-auto  col-10">
                     <label for="exampleInputName" class="form-label">صورة الرخصة</label>
-                    <input type="file" name="license" class="form-control " id="exampleInputName">
+                    <label for="request-image" class="form-label text-center w-100"
+                    style="background-color: #f8f8f8; border: 1px solid #01497c; cursor:pointer">
+                    <img id="request-image-preview" data-src="{{ asset('admin/img/work/plus.jpg') }}"
+                     src="{{ asset('admin/img/work/plus.jpg') }}" class="img-fluid"
+                        style="height: 120px;" title="إضغط لإختيار صورة الروشتة">
+                    <input class="form-control drug_image file-change" name="license" type="file" hidden id="request-image"
+                        data-extentions="jpg,png" data-preview="request-image-preview" />
+                </label>
                 </div>
 
                 <div class="mb-3  m-auto col-10">

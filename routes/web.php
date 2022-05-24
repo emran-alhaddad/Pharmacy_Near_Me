@@ -3,6 +3,8 @@
 use App\Http\Controllers\User;
 use App\Http\Controllers\Admin;
 use App\Http\Controllers\Pharmacy;
+use App\Http\Controllers\ChatController;
+
 use App\Http\Controllers\Front;
 use App\Http\Controllers\Auth\Login;
 use App\Http\Controllers\Auth\Register;
@@ -13,6 +15,10 @@ use App\Models\Role;
 use App\Models\User as ModelsUser;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Payment;
+use App\Http\Controllers\Notify;
+
+
+
 use App\Http\Controllers\Admin\ServicesController;
 use App\Http\Controllers\Payment\PaymentController;
 
@@ -42,11 +48,10 @@ Route::post('/pharmacy/{id}/license/store', [Front\interfacesController::class, 
 Route::post('/pharmacies/search', [Front\interfacesController::class, 'searchPharmacies'])->name('search-pharmacies');
 Route::get('/select/city/{id}/zones', [Front\interfacesController::class, 'getCityZones'])->name('city-zones');
 
-// // // PHARMACY TEST ROUTES
-// Route::get('/account', [Pharmacy\PharmacyController::class, 'account'])->name('profile');
-// Route::get('/settings', [Pharmacy\PharmacyController::class, 'settings'])->name('settings');
-// Route::get('/detail', [Pharmacy\PharmacyController::class, 'detailes'])->name('orderData');
-// Route::get('/order', [Pharmacy\PharmacyController::class, 'order'])->name('order');
+/* backend front  route */
+Route::get('/front/showinfor',[Front\HomeController::class,'indexInfo'])->name('front_showinfor'); 
+
+
 
 
 
@@ -87,7 +92,18 @@ Route::get('auth/google/callback', [Social\GoogleController::class, 'callback'])
 // Email Verification
 Route::get('auth/verify_email/{token}', [CustomAuth\VerifyEmailController::class, 'verify']);
 
-// This Code will Used By Hadeel after payment process 
+// Adds Request 
+Route::post('advertisings/add', [Front\interfacesController::class, 'addAdvertisingRequest'])->name('add-advertising-request');
+Route::get('advertisings/create/{token}', [Front\interfacesController::class, 'createAdvertisingRequest']);
+Route::post('advertisings/store', [Front\interfacesController::class, 'storeAdvertisingRequest'])->name('store-advertising-request');
+
+// Payment Of Adds
+Route::get('/user/payment/ads/{id}', [PaymentController::class, 'index2'])->name('user-payment-ads');
+Route::post('/user/payment/ads/{id}/pay', [PaymentController::class, 'pay'])->name('user-payment-ads-pay');
+Route::get('/user/payment/ads/success/{info}', [PaymentController::class, 'success'])->name('user-payment-ads-success');
+Route::get('/user/payment/ads/cancel/{cancel}', [PaymentController::class, 'cancel'])->name('user-payment-ads-cancel');
+
+// This Code will Used By Hadeel after payment process
 Route::get('/transfer/{sender}/{reciver}/{amount}', function ($id1, $id2, $amount) {
     $sender = ModelsUser::where('id', $id1)->first();
     // $sender->deposit(200);
@@ -99,15 +115,12 @@ Route::get('/transfer/{sender}/{reciver}/{amount}', function ($id1, $id2, $amoun
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/pharmacy/{id}/add-order', [Front\interfacesController::class, 'add_order'])->name('add-order');
-    
     Route::get('/user/payment/{id}', [PaymentController::class, 'index'])->name('user-payment');
-
     Route::post('/user/payment/{id}/pay', [PaymentController::class, 'pay'])->name('user-payment-pay');
     Route::get('/user/payment/success/{info}', [PaymentController::class, 'success'])->name('user-payment-success');
-    Route::get('/user/payment/success/', [PaymentController::class, 'done'])->name('user-payment-done');
     Route::get('/user/payment/cancel/{cancel}', [PaymentController::class, 'cancel'])->name('user-payment-cancel');
 
-    
+
     // Client Routes
     Route::group(['middleware' => ['role:client']], function () {
         Route::get('/client/', [User\ClientController::class, 'index'])->name('client-dashboard');
@@ -127,11 +140,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/client/avater/update', [User\ClientController::class, 'updateAvater'])->name('client-avater-update');
         // Client Orders
         Route::get('/client/orders', [User\OrderController::class, 'index'])->name('client-orders');
+        Route::get('/client/orders/notifacation/{id}/{stateTap}', [User\OrderController::class, 'returnAccepttouser'])->name('client-orders_notifacation');
+        
         Route::get('/client/orders/create', [User\OrderController::class, 'create'])->name('client-orders-create');
         Route::post('/client/orders/store', [User\OrderController::class, 'store'])->name('client-orders-store');
         Route::get('/client/order/{id}/reject', [User\OrderController::class, 'reject'])->name('client-orders-reject');
         Route::get('/client/order/{id}/delivered', [User\OrderController::class, 'delivered'])->name('client-orders-delivered');
         Route::get('/client/reply-details/{id}/toggle/{state}', [User\OrderController::class, 'toggleReplyDetails'])->name('client-reply-details-toggle');
+    
 
         // Client Compliants
         Route::get('/problems/', [User\ComplaintController::class, 'index'])->name('problems');
@@ -156,6 +172,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         // Pharmacy Orders
         Route::get('/_pharmacy/orders', [Pharmacy\PharmacyController::class, 'orders'])->name('pharmacy-orders');
+        // Route::get('/_pharmacy/orders/#wait-payment/{id}', [Pharmacy\PharmacyController::class, 'showOrdersWaitAcceptance'])->name('pharmacy-orders-wait-acceptance');
         Route::get('/_pharmacy/order/{id}', [Pharmacy\PharmacyController::class, 'detailes'])->name('pharmacy-order-details');
         Route::post('/_pharmacy/order/{id}/reply', [Pharmacy\PharmacyController::class, 'reply'])->name('pharmacy-order-reply');
         Route::get('/_pharmacy/order/{id}/reject', [Pharmacy\PharmacyController::class, 'reject'])->name('pharmacy-order-reject');
@@ -196,9 +213,10 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/_admin/show_Complaints', [Admin\ComplaintsController::class, 'showComplaints'])->name('admin-show_Complaints');
         Route::get('/_admin/add_Complaints/{id}', [Admin\ComplaintsController::class, 'addComplaints'])->name('admin-add_Complaints');
+        Route::get('/_admin/add_Complaint_Orders/{id}', [Admin\ComplaintsController::class, 'showCompliantOrders'])->name('admin-complaint-orders');
         Route::get('/_admin/edit_Complaints', [Admin\ComplaintsController::class, 'editComplaints'])->name('admin-edit_Complaints');
         Route::post('/_admin/create_Complaints/{id}', [Admin\ComplaintsController::class, 'relpay'])->name('admin-create_Complaints');
-
+        Route::get('/_admin/showalert/{id}', [Admin\ComplaintsController::class, 'showalert'])->name('admin-showalert');
 
         Route::get('/_admin/show_Zones', [Admin\ZonesController::class, 'showZones'])->name('admin-show_Zones');
         Route::get('/_admin/add_zone', [Admin\ZonesController::class, 'addZones'])->name('admin-add_Zones');
@@ -237,7 +255,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/_admin/phar/create', [Admin\PharController::class, 'create'])->name('_admin-phar_create');
         Route::post('/_admin/update/phar_avater', [Admin\PharController::class, 'doUpdataImage'])->name('_admin-phar_avater');
         Route::post('/_admin/update/phar_license', [Admin\PharController::class, 'doUpdataLicense'])->name('_admin-phar_licenes');
-
+        Route::post('/_admin/update/phar_email', [Admin\PharController::class, 'updateEmail'])->name('_admin-phar_email');
+        Route::post('/_admin/update/check_email', [Admin\PharController::class, 'checkUpdateEmail'])->name('_admin-phar_check_email');
+        Route::get('/_admin/showPharsAlert/{id}', [Admin\PharController::class, 'showPharsAlert'])->name('admin-showPharsAlert');
 
 
         Route::get('/_admin/show_PaymentMethods', [Admin\PaymentMethodsCotroller::class, 'showPaymentMethods'])->name('admin-show_PaymentMethods');
@@ -275,6 +295,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/_admin/get_services', [Admin\ServicesController::class, 'index'])->name('admin-get_services');
         Route::get('/_admin/Add_Service', [Admin\ServicesController::class, 'AddService'])->name('admin-Add_Service');
         Route::post('/_admin/store_Service', [Admin\ServicesController::class, 'storeService'])->name('admin-store_Service');
+        Route::post('/_admin/update_iamge_Service', [Admin\ServicesController::class, 'updateImageService'])->name('admin-update_iamge_Service');
         Route::get('/admin/activity_service/{id}/{stats}', [Admin\ServicesController::class, 'activity'])->name('admin-activity_service');
 
         // Route::get('/_admin/adds', [AdvertiseController::class, 'index'])->name('admin-adds');
@@ -286,3 +307,22 @@ Route::group(['middleware' => 'auth'], function () {
     // Logout
     Route::get('/logout', [CustomAuth\LogoutController::class, 'logout'])->name('logout');
 });
+
+
+// payment page route
+Route::get('/checkout-order', [Front\interfacesController::class, 'localCheckout'])->name('checkout-order');
+// test payment route  There is a problem her
+Route::get('/checkout-order/test', [Payment\PaymentController::class, 'index'])->name('test');
+Route::get('/checkout-order/test/response/{info}', [Payment\PaymentController::class, 'showTest'])->name('test/response');
+Route::get('/checkout-order/test/response/{info}', [Payment\PaymentController::class, 'showTest'])->name('test/response');
+Route::get('/checkout-order/test/cancel/{cancel}', [Payment\PaymentController::class, 'testCancel'])->name('testCancel');
+Route::get('/checkout-order/test/cancel', [Payment\PaymentController::class, 'viewCancel'])->name('viewCancel');
+
+Route::get('send', [Notify\NotificationsController::class, 'registerNotification'])->name('viewCancel');
+   //chat routs
+   Route::group(['middleware' => 'auth'], function () {
+    Route::get('/inbox', [ChatController::class, 'index'])->name('inbox.index');
+    Route::get('/inbox/{id}', [ChatController::class, 'show'])->name('inbox.show');
+});
+
+
