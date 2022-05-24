@@ -189,17 +189,28 @@
     </div>
 
     <script>
-        function reject(order, pharmacy) {
-            $('#order').val(order);
-            $('#pharmacy_id').val(pharmacy);
-            $('#pharmacy').val(pharmacy).change();
-        }
+  
+    function reject(order, pharmacy) {
+        $('#order').val(order);
+        $('#pharmacy_id').val(pharmacy);
+        $('#pharmacy').val(pharmacy).change();
+    }
+  
+     
+    @if(session('tapState'))
+    $(document).ready(function(){
+        $("button[data-bs-target=\'#{{ session('tapState') }}\']").trigger('click');
+
+    });
+
+    @endif   
+   
 
 
-        @if (session('tapState'))
-            $(document).ready(function() {
-                $("button[data-bs-target=\'#{{ session('tapState') }}\']").trigger("click");
-            });
-        @endif
+        // @if (session('tapState'))
+        //     $(document).ready(function() {
+        //         $("button[data-bs-target=\'#{{ session('tapState') }}\']").trigger("click");
+        //     });
+        // @endif
     </script>
 @stop

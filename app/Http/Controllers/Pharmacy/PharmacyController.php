@@ -413,12 +413,13 @@ class PharmacyController extends Controller
         return back()->with('status', 'تم التعديل بنجاح');
     }
 
-    // public function showOrdersWaitAcceptance($id)
-    // {
+    public function showOrederNotify($id,$tab)
+    {
     //     $requests = OrderRequest::with(['details', 'client.user'])->where('requests.id',$id)->get();
 
-    // return view('pharmacy.orders.manageOrders', [
-    //     'requests' => $requests
+    // // return view('pharmacy.orders.manageOrders', [
+    // //     'requests' => $requests
     // ]);
-    // }
+    return redirect()->route('pharmacy-orders')->with( ['tapState' => $tab] );
+    }
 }
