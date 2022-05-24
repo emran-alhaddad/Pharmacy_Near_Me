@@ -22,8 +22,8 @@ class PharmaciesSeeder extends Seeder
     {   
 
         $user = new User();
-        $user->name = "صيدلية الحداد";
-        $user->email = 'emranhadad770774255770774255@gmail.com';
+        $user->name = "الصيدلية 1";
+        $user->email = 'pharmacy.near.me.taiz@gmail.com';
         $user->password = Hash::make('phar');
         $user->email_verified_at = Carbon::now()->timestamp;
         $user->is_active = 1;

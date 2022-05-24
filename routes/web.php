@@ -214,6 +214,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/_admin/show_Complaints', [Admin\ComplaintsController::class, 'showComplaints'])->name('admin-show_Complaints');
         Route::get('/_admin/add_Complaints/{id}', [Admin\ComplaintsController::class, 'addComplaints'])->name('admin-add_Complaints');
+        Route::get('/_admin/add_Complaint_Orders/{id}', [Admin\ComplaintsController::class, 'showCompliantOrders'])->name('admin-complaint-orders');
         Route::get('/_admin/edit_Complaints', [Admin\ComplaintsController::class, 'editComplaints'])->name('admin-edit_Complaints');
         Route::post('/_admin/create_Complaints/{id}', [Admin\ComplaintsController::class, 'relpay'])->name('admin-create_Complaints');
         Route::get('/_admin/showalert/{id}', [Admin\ComplaintsController::class, 'showalert'])->name('admin-showalert');

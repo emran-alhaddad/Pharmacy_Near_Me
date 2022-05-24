@@ -22,8 +22,8 @@ class ClientsSeeder extends Seeder
     {    
         
         $user = new User();
-        $user->name = " اسامة محفوظ";
-        $user->email = 'alwafy0516@gmail.com';
+        $user->name = "العميل 1";
+        $user->email = 'emranhadad770774255770774255@gmail.com';
         $user->password = Hash::make('client');
         $user->email_verified_at = Carbon::now()->timestamp;
         $user->is_active = 1;

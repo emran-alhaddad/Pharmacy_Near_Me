@@ -20,7 +20,7 @@ class AdminsSeeder extends Seeder
     {
 
         $user = new User();
-        $user->name = "عمران الحداد";
+        $user->name = "إدارة منصة علاجي";
         $user->email = 'alhaddademran@gmail.com';
         $user->password = Hash::make('admin');
         $user->email_verified_at = Carbon::now()->timestamp;

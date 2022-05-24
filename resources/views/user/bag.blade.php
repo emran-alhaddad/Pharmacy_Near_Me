@@ -33,6 +33,7 @@
                                     <tr>
                                         <th> رقم العملية </th>
                                         <th>نص العملية</th>
+                                        <th></th>
 
                                     </tr>
                                 </thead>
@@ -40,9 +41,38 @@
                                 <tbody>
                                     @foreach ($transactions as $transaction)
                                         <tr>
-                                            <td>{{ $transaction->uuid }}</td>
+                                            <td>{{ $transaction['id'] }}</td>
                                             <td>
+                                                @if ($transaction['type'] == 'deposit')
+                                                    أودع /
+                                                    {{ $transaction['sender'] }}
+                                                    {{ $transaction['amount'] }}$
+                                                    إلى حسابك
+                                                @elseif ($transaction['type'] == 'withdraw')
+                                                    لقد قمت بتحويل
+                                                    {{ $transaction['amount'] }}$
+                                                    إلى حساب
+                                                    {{ $transaction['sender'] }}
+                                                @endif
 
+                                                بتاريخ
+                                                {{ $transaction['date'] }}
+
+                                            </td>
+                                            <td>
+                                                <a class=" btn btn-submit text-light btn-hover me-2" data-bs-toggle="collapse"
+                                                    role="button" data-bs-target="#details{{ $transaction['id'] }}">
+                                                    عرض التفاصيل
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3">
+                                                <div class="collapse" id="details{{ $transaction['id'] }}">
+                                                    <div class="card card-body">
+                                                        {!! $transaction['data'] !!}
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -55,44 +85,13 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-
-
-
-                <script src="http://127.0.0.1:8000/admin/js/script2.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-                                integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-                                crossorigin="anonymous"></script>
-
-
-
-
             </div>
         </div>
-        <div id="rejected" class="tab-pane fade in">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">رقم الطلبية</th>
-                        <th scope="col">الصيدلية</th>
-                        <th scope="col">تاريخ الطلبية</th>
-                        <th scope="col">حالة الطلبية</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
+    </div>
 
 
 
-                </tbody>
-            </table>
-        </div>
-    </div>
-    </div>
-    </div>
+
     <!-- / Content -->
 
 
