@@ -4,27 +4,27 @@
 @section('admin_pages')
 
 <section>
-<div class="container py-5 my-5">
+<div class="container py-5">
 
-<div class="row">
-    <div class="col-lg-4">
-    <div class="card mb-4">
+    <div class="col-lg-8">
+    <div class="card mt-5 ms-5">
         <div class="card-body text-center">
         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
             class="rounded-circle img-fluid" style="width: 150px;">
         <h5 class="my-3">{{$admin->name}}</h5>
         <p class="text-muted mb-1">Full Stack Developer</p>
         <a href="/_admin/edit_profile">
-        <button id="edit_button" type="button" class="btn btn-outline-dark m-3">تعديل بيانات الحساب</button>
+        <button id="edit_button" type="button" class="btn btn-outline-dark m-3">تعديل </button>
         </a>
 
         </div>
     </div>
-    </div>
-    <div class="col-lg-8">
+</div>
+
+<div class="col-lg-8">
 
 
-     <div class="card mb-4">
+    <div class="card mt-5">
         <div class="card-body">
         <div class="row">
             <div class="col-sm-3">
@@ -56,7 +56,7 @@
 
 
         </div>
-    </div>
+</div>
 
 
 </section>

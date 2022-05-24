@@ -30,10 +30,10 @@
         });
     </script> -->
 
-
+    <script src="https://kit.fontawesome.com/44a26292a7.js" crossorigin="anonymous"></script>
 </head>
 
-<body class="overlay-scrollbar">
+<body class="overlay">
 
     <div class="navbar">
         <ul class="navbar-nav">
@@ -50,7 +50,7 @@
         <li class=" dropdown dropdown-notifications">
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown"
                 data-bs-auto-close="outside" aria-expanded="false">
-                <i class="fas fa-bell"></i>
+                <i class="fas fa-bell" id="bell"></i>
                 <span class="badge bg-danger rounded-pill badge-notifications">
                     {{ \App\Http\Controllers\Notify\NotificationsController::getNotification()['count'] }}
                 </span>
@@ -110,15 +110,17 @@
         </form>
 
         <a href="/_admin/profile">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                class="rounded-circle img-fluid" style="width: 60px;">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+            class="rounded-circle img-fluid" style="width: 2.5rem;" id="admin-avatar" >
         </a>
 
-
-
+     
     </div>
+    <div class="alert alert-secondary " id="alert_Not" role="alert"></div>
 
+</div>
 
+ 
 
 
     <!-- <li class="dropdown dropdown-notifications">
@@ -147,12 +149,13 @@
             encrypted: true
         });
 
-        var channel = pusher.subscribe('new_notification');
-
-        channel.bind('App\\Events\\Notify', function(data) {
-            const audio = new Audio('{{ asset('/uploads/aduio/alert.mp3') }}');
-            audio.play();
-            var node = document.createElement('li');
+    var channel = pusher.subscribe('new_notification');
+   
+    channel.bind('App\\Events\\Notify', function(data) {
+        const audio = new Audio('{{asset("/uploads/aduio/alert.mp3")}}');
+        audio.play();
+        document.getElementById('alert_Not').innerTEXT=data.message;
+        var node = document.createElement('li');
             // <li class="list-group-item list-group-item-action dropdown-notifications-item">
             //         <div class="d-flex">
             //             <div class="flex-grow-1">

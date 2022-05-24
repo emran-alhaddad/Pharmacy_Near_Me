@@ -47,23 +47,24 @@
                         <td>{{$ad->position}}</td>
                         <td>  <img src={{asset("/uploads/ads/$ad->image")}} alt="avatar"
                                     class="rounded-circle img-fluid" style="width: 50px;"></td>
-                        
+
 
                                     @if ($ad->is_active==1)
 
-                                    <td>  <a href={{route('admin-ads_activity', ['id' => $ad->id , 'stats'=>0])}}>   <button class="btn btn-success text-white" >مفعل</button></a></td>
-            
-            
+                                    <td>  <a href={{route('admin-ads_activity', ['id' => $ad->id , 'stats'=>0])}}>   <button class="btn badge btn-success text-white" >مفعل</button></a></td>
+
+
                                       @else
-            
-                                        <td>  <a href={{route('admin-ads_activity', ['id' => $ad->id ,'stats'=>1])}}> <button class="btn btn-danger text-white" >موقف</button></a></td>
-            
+
+                                        <td>  <a href={{route('admin-ads_activity', ['id' => $ad->id ,'stats'=>1])}}> <button class="btn badge btn-danger text-white" >موقف</button></a></td>
+
                                       @endif
-                    
+
 
                             <td>
-                                <a href={{route('admin-edit_ads', ['id' => $ad->id]);}} >   <button class="btn btn-primary text-white" >تعديل</button></a>
-                            <button class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#exampleModal{{$ad->id}}">حذف</button>
+                                <a href={{route('admin-edit_ads', ['id' => $ad->id]);}} >    <button class="btn " ><i class="fas fa-pen" id="edit"></i></button></a>
+                            <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal{{$ad->id}}" id="delete"><i class="fas fa-trash"></i></button>
+
                                     <div class="modal"  id="exampleModal{{$ad->id}}"  tabindex="-1">
                                         <div class="modal-dialog">
                                             <div class="modal-content">

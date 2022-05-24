@@ -83,6 +83,7 @@ body {
     background: var(--main-bg-color);
     color: var(--main-color);
     margin: 0;
+    overflow: hidden;
 }
 
 .navbar {
@@ -157,9 +158,9 @@ body {
 
 
 #logo {
-    width: 150px;
-    height: 70px;
-    padding-right: 20px;
+    width: 9rem;
+    height: 4rem;
+    padding-right: 1rem;
 }
 
 .avt img {
@@ -486,6 +487,23 @@ body {
     .btn i{
         font-size: .5rem;
     }
+
+    #bell{
+        position: relative;
+        font-size: 1rem;
+
+    }
+
+    #logo {
+        width: 7rem;
+        padding-right: 1rem;
+    }
+
+    #admin-avatar{
+        position: relative;
+        right: -1rem;
+        max-width: 1.7rem;
+    }
 }
 
 
@@ -528,6 +546,7 @@ body {
     .col-sm-12 {
         width: 100%;
     }
+
 }
 
 
@@ -865,5 +884,28 @@ table th {
 #submit_button
 {
     background-color: #4688C7;
+
+}
+
+#count{
+    position: relative;
+    margin-right: -2rem;
+    top: -1rem;
+    width: 5rem;
+}
+
+#admin-avatar{
+    /* position: relative; */
+    /* right: -5rem; */
+
+}
+
+#bell{
+    position: relative;
+    top: 1rem;
+    right: 1rem;
+    /* margin-right: .5rem; */
+    font-size: 1.3rem;
+    z-index: -1;
 
 }

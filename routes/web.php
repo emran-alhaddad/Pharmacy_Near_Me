@@ -96,6 +96,8 @@ Route::get('auth/verify_email/{token}', [CustomAuth\VerifyEmailController::class
 Route::post('advertisings/add', [Front\interfacesController::class, 'addAdvertisingRequest'])->name('add-advertising-request');
 Route::get('advertisings/create/{token}', [Front\interfacesController::class, 'createAdvertisingRequest']);
 Route::post('advertisings/store', [Front\interfacesController::class, 'storeAdvertisingRequest'])->name('store-advertising-request');
+
+// Payment Of Adds
 Route::get('/user/payment/ads/{id}', [PaymentController::class, 'index2'])->name('user-payment-ads');
 Route::post('/user/payment/ads/{id}/pay', [PaymentController::class, 'pay'])->name('user-payment-ads-pay');
 Route::get('/user/payment/ads/success/{info}', [PaymentController::class, 'success'])->name('user-payment-ads-success');
@@ -113,9 +115,7 @@ Route::get('/transfer/{sender}/{reciver}/{amount}', function ($id1, $id2, $amoun
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/pharmacy/{id}/add-order', [Front\interfacesController::class, 'add_order'])->name('add-order');
-
     Route::get('/user/payment/{id}', [PaymentController::class, 'index'])->name('user-payment');
-
     Route::post('/user/payment/{id}/pay', [PaymentController::class, 'pay'])->name('user-payment-pay');
     Route::get('/user/payment/success/{info}', [PaymentController::class, 'success'])->name('user-payment-success');
     Route::get('/user/payment/cancel/{cancel}', [PaymentController::class, 'cancel'])->name('user-payment-cancel');
@@ -140,6 +140,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/client/avater/update', [User\ClientController::class, 'updateAvater'])->name('client-avater-update');
         // Client Orders
         Route::get('/client/orders', [User\OrderController::class, 'index'])->name('client-orders');
+        Route::get('/client/orders/notifacation/{id}/{stateTap}', [User\OrderController::class, 'returnAccepttouser'])->name('client-orders_notifacation');
+        
         Route::get('/client/orders/create', [User\OrderController::class, 'create'])->name('client-orders-create');
         Route::post('/client/orders/store', [User\OrderController::class, 'store'])->name('client-orders-store');
         Route::get('/client/order/{id}/reject', [User\OrderController::class, 'reject'])->name('client-orders-reject');
@@ -170,6 +172,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         // Pharmacy Orders
         Route::get('/_pharmacy/orders', [Pharmacy\PharmacyController::class, 'orders'])->name('pharmacy-orders');
+        // Route::get('/_pharmacy/orders/#wait-payment/{id}', [Pharmacy\PharmacyController::class, 'showOrdersWaitAcceptance'])->name('pharmacy-orders-wait-acceptance');
         Route::get('/_pharmacy/order/{id}', [Pharmacy\PharmacyController::class, 'detailes'])->name('pharmacy-order-details');
         Route::post('/_pharmacy/order/{id}/reply', [Pharmacy\PharmacyController::class, 'reply'])->name('pharmacy-order-reply');
         Route::get('/_pharmacy/order/{id}/reject', [Pharmacy\PharmacyController::class, 'reject'])->name('pharmacy-order-reject');
@@ -210,6 +213,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/_admin/show_Complaints', [Admin\ComplaintsController::class, 'showComplaints'])->name('admin-show_Complaints');
         Route::get('/_admin/add_Complaints/{id}', [Admin\ComplaintsController::class, 'addComplaints'])->name('admin-add_Complaints');
+        Route::get('/_admin/add_Complaint_Orders/{id}', [Admin\ComplaintsController::class, 'showCompliantOrders'])->name('admin-complaint-orders');
         Route::get('/_admin/edit_Complaints', [Admin\ComplaintsController::class, 'editComplaints'])->name('admin-edit_Complaints');
         Route::post('/_admin/create_Complaints/{id}', [Admin\ComplaintsController::class, 'relpay'])->name('admin-create_Complaints');
         Route::get('/_admin/showalert/{id}', [Admin\ComplaintsController::class, 'showalert'])->name('admin-showalert');

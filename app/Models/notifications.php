@@ -14,6 +14,10 @@ class notifications extends Model
         'receiver_id',
         'message',
         'type',
+        'nameFrom',
+        'nameTo',
+        'request_id',
+        'user_id'
     ];
 
     public function pharmacy()
