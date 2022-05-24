@@ -41,7 +41,7 @@ class WalletController extends Controller
 
             if (Auth::user()->hasRole('admin'))
                 return view(
-                    'admin.wallet.index',
+                    'admin.wallet.bag',
                     ['transactions' => $allTransactions]
                 );
 
