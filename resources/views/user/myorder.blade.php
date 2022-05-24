@@ -104,7 +104,7 @@
     </div>
     </div>
 
-<!-- addCompliant Modal -->
+    <!-- addCompliant Modal -->
     <div id="addCompliant" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -140,8 +140,7 @@
                                 <div class="input-group mb-3">
 
                                     <div class="dropdown col-12">
-                                        <select id="pharmacy" name="pharmacy" disabled
-                                            class=" rounded form-control">
+                                        <select id="pharmacy" name="pharmacy" disabled class=" rounded form-control">
                                             @foreach ($pharmacies as $pharmacy)
                                                 <option value="{{ $pharmacy->user_id }}">
                                                     {{ $pharmacy->user->name }}
@@ -190,35 +189,17 @@
     </div>
 
     <script>
-  
-    function reject(order, pharmacy) {
-        $('#order').val(order);
-        $('#pharmacy_id').val(pharmacy);
-        $('#pharmacy').val(pharmacy).change();
-    }
-  
-       
-    @isset($tapState)
-        
-   
-    const tap = document.querySelectorAll('.nav-item button');
-   
-        for(i=0;i<tap.length ;i++)
-        {
-            tap[i].classList.remove('active');
+        function reject(order, pharmacy) {
+            $('#order').val(order);
+            $('#pharmacy_id').val(pharmacy);
+            $('#pharmacy').val(pharmacy).change();
         }
-        tap[1].classList.toggle('active');
-        tap[1].classList.remove('active');
-    
-        for(i=0;i<tap.length ;i++)
-        {
-            if(tap[i].getAttribute('data-bs-target')== "#{{$tapState}}")
-            tap[i].classList.toggle('active');
-            
-        }
-    @endisset    
-   
 
-       
-</script>
+
+        @if (session('tapState'))
+            $(document).ready(function() {
+                $("button[data-bs-target=\'#{{ session('tapState') }}\']").trigger("click");
+            });
+        @endif
+    </script>
 @stop

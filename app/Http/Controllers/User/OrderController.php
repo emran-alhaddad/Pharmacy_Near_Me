@@ -113,8 +113,8 @@ class OrderController extends Controller
             $order_payment->delivery_state = DeleveryState::REJECTED;
             $order_payment->update();
         }
-        $Notify = new NotificationsController();
-        $Notify -> rejectUserOrderNotification($id);
+        // $Notify = new NotificationsController();
+        // $Notify -> rejectUserOrderNotification($id);
         return back()->with('status', 'لقد تم رفض الطلبية ' . $id  . $msg . ' بنجاح');
     }
 
@@ -156,13 +156,8 @@ class OrderController extends Controller
     $pharmacies = Pharmacy::with('user')->where('user_id', $requests[0]->pharmacy_id)->get();
   
    
-    
-    return view('user.myorder', [
-            'requests' => $requests,
-            'user' => $client,
-            'pharmacies' => $pharmacies,
-            'tapState'=> $stateTap,
-        ]);
+    return redirect()->route('myorder')->with('tapState', $stateTap);
+
     }
 
 }
