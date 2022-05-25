@@ -50,18 +50,7 @@
             
             <a href="{{ route('add-order', $pharmacy->id) }}" class="main-btn btn-hover py-2 col-sm-2">تقديم طلب</a>
         </div>
-        <div class="container-sm mt-3">
-                @if (session('error'))
-                    <div class="alert alert-danger" style="direction: rtl;" role="alert">
-                        {{ session('error') }}
-                    </div>
-                @endif
-                @if (session('status'))
-                    <div class="alert alert-success" style="direction: rtl;" role="alert">
-                        {{ session('status') }}
-                    </div>
-                @endif
-            </div>
+
     </section>
 
 @stop

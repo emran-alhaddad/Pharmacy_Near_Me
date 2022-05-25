@@ -8,6 +8,13 @@
 					</div> <span> لوحة التحكم </span>
             </a>
         </li>
+		<li class="sidebar-nav-item"><a href="{{ route('admin-bag') }}"
+				class="sidebar-nav-link">
+					<div>
+						<i class="fas fa-tachometer-alt"></i>
+					</div> <span> المحفظة</span>
+            </a>
+        </li>
         <!-- <i class="fa-solid fa-house-medical"></i> -->
         <li>
         <li class="sidebar-nav-item "><a href="/_admin/show_WebSiteSetting"

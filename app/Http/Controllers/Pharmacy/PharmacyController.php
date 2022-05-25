@@ -163,8 +163,8 @@ class PharmacyController extends Controller
         $order = OrderRequest::where('id', $id)->first();
         $order->state = RequestState::REJECTED;
         $order->update();
-        $Notify = new NotificationsController();
-        $Notify -> replyRejectFromPharToCustomerNotification($id);
+        // $Notify = new NotificationsController();
+        // $Notify -> replyRejectFromPharToCustomerNotification($id);
         return redirect()->route('pharmacy-orders')->with('status', 'لقد تم رفض الطلبية ' . $id . ' بنجاح');
     }
 

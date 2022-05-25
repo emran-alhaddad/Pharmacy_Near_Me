@@ -2,32 +2,12 @@
 <script src="http://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 @section('content')
 
-
     {{-- payment --}}
 
     <section id="pay" class=" section radius" style="direction: rtl; margin: 120px 0px; z-index: 0; ">
         <div class="container mt-5">
             <div class="contact-head wow fadeInUp " data-wow-delay=".4s">
                 <div class="row p-2  shadow radius mt-5">
-
-                    <div class="alert alert-success alert-dismissible mt-2 me-3 text-center" role="alert">
-                        تهانينا تمت عملية الدفع بنجاح
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-
-                    @if (session('error'))
-                        <div class="alert alert-danger alert-dismissible mt-2 me-3 text-center" role="alert">
-                            {!! session('error') !!}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    @endif
-                    @if (session('status'))
-                        <div class="alert alert-success alert-dismissible mt-2 me-3 text-center" role="alert">
-                            {!! session('status') !!}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    @endif
-
                     <div class="card " id="bill">
                         <div class="card-header">
                             <p class="" style="font-size: 30px;">فاتورة دفع </p>
@@ -74,7 +54,7 @@
                                 </div>
 
                                 <div class="text-center p-4" role="button">
-                                <a><u class="text-info">العودة للبروفايل </u></a>
+                                <a href="{{ route('index') }}" class="btn btn-outline-primary">إكمال التصفح </a>
                             </div>
 
                             </div>

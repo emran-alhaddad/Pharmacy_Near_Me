@@ -358,5 +358,17 @@
     <script src="{{ asset('pharmacy/assets/js/pages-account-settings-account.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
    
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    @if (session('error'))
+            <script>
+                swal("عملية غير مكتملة", "{!! session('error') !!}", "error")
+            </script>
+        @endif
+        @if (session('status'))
+            <script>
+                swal("أكتملت العملية", "{!! session('status') !!}", "success")
+            </script>
+        @endif
   </body>
 </html>

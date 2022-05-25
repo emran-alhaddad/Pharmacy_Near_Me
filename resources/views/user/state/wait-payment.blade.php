@@ -192,7 +192,7 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
             method: 'get',
             url: url,
             success: function(data) {
-                $(item.parents().eq(13).prev().children()[3]).html("$"+data);
+                console.log($(item.parents().eq(13).prev().children()[3]));
             }
         });
     });

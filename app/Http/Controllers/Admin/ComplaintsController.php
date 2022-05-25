@@ -62,10 +62,6 @@ class ComplaintsController extends Controller
         return back()->with('error', ' لم يتم الرد على المستخدم  ');
     }
 
-    public function editComplaints()
-    {
-        return view('admin.Complaints.edit_Complaints')->with($id);;
-    }
 
     public function showCompliantOrders($id)
     {

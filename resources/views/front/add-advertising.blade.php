@@ -1,6 +1,8 @@
 @extends('layouts.masterFront')
 
 @section('content')
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <style>
         html {
             direction: rtl;
@@ -18,20 +20,6 @@
                             <h3>اضافة اعلان</h3>
                         </div>
                         <div class="card-content p-2">
-                            @if (isset($error))
-                                <div class="alert alert-danger alert-dismissible text-center mt-2 fade show" role="alert">
-                                    {!! $error !!}
-                                    <button type="button" class="close" data-dismiss="alert"
-                                        aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                </div>
-                            @endif
-                            @if (isset($status))
-                                <div class="alert alert-success alert-dismissible text-center mt-2 fade show" role="alert">
-                                    {!! $status !!}
-                                    <button type="button" class="close" data-dismiss="alert"
-                                        aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                </div>
-                            @endif
 
                             <form class="row g-3 mt-3" action={{ route('store-advertising-request') }} method="POST"
                                 enctype="multipart/form-data">
@@ -45,20 +33,33 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputLink" class="form-label">رابط الموقع</label>
-                                        <input type="text" class="form-control" id="exampleInputName" name="url">
+                                        <input type="url" class="form-control" id="exampleInputName" name="url">
                                     </div>
 
                                     <div class="row g-3">
                                         <div class="mb-3 col-6">
                                             <label for="exampleInputDate" class="form-label">تاريخ بداية الاعلان</label>
                                             <input type="date" id="startAt" name="startAt" min=@php echo date('Y-m-d'); @endphp
-                                                value=@php echo date('Y-m-d'); @endphp class="form-control" id="exampleInputName">
+                                                value=@php echo date('Y-m-d'); @endphp id="exampleInputName"
+                                                class="form-control rounded @error('startAt') border-danger @enderror">
+                                            @error('startAt')
+                                                <div class="invalid-feedback d-block">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
+
 
                                         <div class="mb-3 col-6">
                                             <label for="exampleInputLink" class="form-label">تاريخ نهاية الاعلان</label>
                                             <input type="date" id="endAt" name="endAt" min=@php echo Date('Y-m-d', strtotime('+1 days')); @endphp
-                                                value=@php echo Date('Y-m-d', strtotime('+1 days')); @endphp class="form-control" id="exampleInputName">
+                                                value=@php echo Date('Y-m-d', strtotime('+1 days')); @endphp
+                                                class="form-control rounded @error('endAt') border-danger @enderror">
+                                            @error('endAt')
+                                                <div class="invalid-feedback d-block">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -66,18 +67,25 @@
                                     <div class="mb-3 ">
                                         <label for="exampleInputLink" class="form-label"> مكان الاعلان</label>
                                         <select class="form-select" id="position" aria-label="Default select example"
-                                            name="position">
+                                            name="position"
+                                            class="form-control rounded @error('position') border-danger @enderror">
                                             <option selected value="3.2">الصفحة الرئيسية</option>
                                             <option value="1.6">أسفل الصفحة الرئيسية</option>
                                             <option value="0.8">على جانب صفحات اخرى</option>
                                         </select>
+                                        @error('position')
+                                            <div class="invalid-feedback d-block">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
 
                                 <div class="col-lg-4 col-md-12 col-sm-12">
                                     <div class="mb-3">
                                         <label class="form-label">صورة الاعلان</label>
-                                        <label for="advertising-image" class="form-label text-center w-100"
+                                        <label for="advertising-image"
+                                            class="form-label text-center w-100 @error('image') border-danger @enderror"
                                             style="background-color: #f8f8f8; border: 1px solid #01497c; cursor:pointer">
                                             <img id="advertising-image-preview"
                                                 data-src="{{ asset('admin/img/work/plus.jpg') }}"
@@ -87,6 +95,11 @@
                                                 id="advertising-image" data-extentions="jpg,png,jpeg"
                                                 data-preview="advertising-image-preview" />
                                         </label>
+                                        @error('image')
+                                            <div class="invalid-feedback d-block">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
 
                                     <div class="mb-3">
@@ -101,9 +114,10 @@
                                     </div>
 
                                 </div>
-                                <button id="submit_button" type="submit" class="main-btn btn-hover mt-5 mb-1">تقديم الإعلان</button>
+                                <button id="submit_button" type="submit" class="main-btn btn-hover mt-5 mb-1">تقديم
+                                    الإعلان</button>
                             </form>
-
+                            
 
                         </div>
                     </div>
@@ -114,9 +128,15 @@
 
     <script>
         $(function() {
-            $('#position').on('change', function() { calcPrice(); });
-            $('#startAt').on('change', function() { calcPrice(); });
-            $('#endAt').on('change', function() {  calcPrice(); });
+            $('#position').on('change', function() {
+                calcPrice();
+            });
+            $('#startAt').on('change', function() {
+                calcPrice();
+            });
+            $('#endAt').on('change', function() {
+                calcPrice();
+            });
 
 
             function calcPrice() {
@@ -127,7 +147,7 @@
                 var days = diff / 1000 / 60 / 60 / 24;
                 var price = (days * position).toFixed(2);
 
-                $('#price').text('تكلفة إعلانك هي : ' +price+ "$");
+                $('#price').text('تكلفة إعلانك هي : ' + price + "$");
                 $('input[name="price"]').val(price);
 
             }

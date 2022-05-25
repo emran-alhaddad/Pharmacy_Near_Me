@@ -24,20 +24,7 @@
     <!--====== SEARCH PART START ======-->
     @include('includes.FrontSearch')
     <!--====== SEARCH PART END ======-->
-    @if (session('error'))
-        <div class="alert alert-danger alert-dismissible text-center mt-2 fade show" role="alert">
-            {!! session('error') !!}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                    aria-hidden="true">&times;</span></button>
-        </div>
-    @endif
-    @if (session('status'))
-        <div class="alert alert-success alert-dismissible text-center mt-2 fade show" role="alert">
-            {!! session('status') !!}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                    aria-hidden="true">&times;</span></button>
-        </div>
-    @endif
+
     <!--====== PHARMACY SLIDER PART START ======-->
     <section class="feature-pharmacy-area bg_cover mt-5">
         <div class="container">
@@ -178,6 +165,7 @@
 
             <div class="radius col-sm-8" style=" direction: rtl; ">
                 <div class="col-md-12 col-sm-12 shadow-lg bg-light radius box-style">
+                    
                     <img src="{{asset("/uploads/ads/$ads->image")}}"  alt="" style="width: 100%; max-height: 20rem"
                         class="radius">
                 </div>

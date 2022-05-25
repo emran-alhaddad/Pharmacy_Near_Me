@@ -197,6 +197,9 @@ class interfacesController extends Controller
         $addsOwner = AdvertisingOwner::where('remember_token', $token)->first();
 
         if ($addsOwner) {
+            if($addsOwner->email_verified_at)
+            return view('front.add-advertising')->with('token', $token);
+            
             $addsOwner->email_verified_at = Carbon::now()->timestamp;
             $addsOwner->update();
             return view('front.add-advertising')->with(
@@ -228,15 +231,13 @@ class interfacesController extends Controller
             $ads->position = $request->position;
             $ads->startAt = $request->startAt;
             $ads->price = $request->price;
-            // $ads->is_active = $request->is_active;
             $ads->endAt = $request->endAt;
             if ($ads->save()) {
-                $addsOwner->email_verified_at = Carbon::now()->timestamp;
                 $addsOwner->remember_token = null;
                 $addsOwner->advertising_id = $ads->id;
                 $addsOwner->update();
                 // Make Payment
-                return redirect()->route('user-payment-ads',[$ads->id,true])
+                return redirect()->route('user-payment-ads',$ads->id)
                 ->with('status',SuccessMessages::ADDS_REQUEST_REGISTER);
             }
             return back()->with('error', 'لم نتمكن من إضافة إعلانك ... الرجاء المحاولة مرة أخرى');
@@ -252,6 +253,7 @@ class interfacesController extends Controller
                 'position' => 'required',
                 'startAt' => 'required|date|before:endAt',
                 'endAt' => 'required|date|after:startAt',
+                'image' => 'required'
             ],
             [
                 'position.required' => 'يجب تحديد  مكان الاعلان ',
@@ -260,6 +262,8 @@ class interfacesController extends Controller
                 'startAt.date' => 'يجب ان يكون صيغة التاريخ    ',
                 'endAt.date' => 'يجب ان يكون صيغة التاريخ    ',
                 'startAt.before' => '  يجب ان يكون  التاريخ  البداية اقل من تاريخ النهاية  ',
+                'image.required' => 'يجب إضافة صورة الاعلان ',
+
             ]
         );
     }

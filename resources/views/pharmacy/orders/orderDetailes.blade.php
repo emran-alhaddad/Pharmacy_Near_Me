@@ -97,10 +97,10 @@
                                                     @endif
                                                     @if ($request->state == \App\Utils\RequestState::WAIT_ACCEPTANCE)
                                                         <td> <a class="dropdown-item" onclick="$('#req_det_id').val('{{ $requestDetails->id }}');
-                                                                                    @if ($requestDetails->accept_alternative) $('#alternative').css('visibility','visible');
+                                                                                        @if ($requestDetails->accept_alternative) $('#alternative').css('visibility','visible');
                                                                 @else
                                                                 $('#alternative').css('visibility','hidden'); @endif
-                                                                                    " href="javascript:void(0);"
+                                                                                        " href="javascript:void(0);"
                                                                 data-bs-toggle="modal" data-bs-target="#basicModal"
                                                                 role="button"><i class="bx bx-plus-circle me-1"></i> عرض
                                                                 سعر</a>
@@ -120,16 +120,6 @@
                             <div class="alert_msg alert alert-danger mt-2 mb-2" style="display:none" role="alert">
 
                             </div>
-                            @if (session('error'))
-                                <div class="alert alert-danger mt-2 mb-2" role="alert">
-                                    {{ session('error') }}
-                                </div>
-                            @endif
-                            @if (session('status'))
-                                <div class="alert alert-success mt-2 mb-2" role="alert">
-                                    {{ session('status') }}
-                                </div>
-                            @endif
                             <div id="success_msg" class="alert alert-success mt-2 mb-2" style="display:none" role="alert">
 
                             </div>
@@ -145,7 +135,7 @@
                                                 <th> نوع الرد</th>
                                             </tr>
                                         </thead>
-                                        @if ($request->state != \App\Utils\RequestState::WAIT_ACCEPTANCE)
+                                        @if (!in_array($request->state, [\App\Utils\RequestState::WAIT_ACCEPTANCE, \App\Utils\RequestState::REJECTED]))
                                             <tbody>
                                                 @foreach ($request->replies->details as $replyDetails)
                                                     @php
@@ -162,7 +152,8 @@
                                                                             title="صورة العلاج "
                                                                             style="list-style-type: none;">
                                                                             <img src="{{ asset('uploads/requests/' . $requestDetails->drug_image) }}"
-                                                                                alt="Avatar" class="rounded-circle image_show">
+                                                                                alt="Avatar"
+                                                                                class="rounded-circle image_show">
                                                                         </li>
                                                                     @endif
                                                                     <strong>{{ $requestDetails->drug_title }}</strong>
@@ -183,7 +174,8 @@
                                                                             title="صورة العلاج "
                                                                             style="list-style-type: none;">
                                                                             <img src="{{ asset('uploads/replies/' . $replyDetails->alt_drug_image) }}"
-                                                                                alt="Avatar" class="rounded-circle image_show">
+                                                                                alt="Avatar"
+                                                                                class="rounded-circle image_show">
                                                                         </li>
                                                                     @endif
                                                                     <strong>{{ $replyDetails->alt_drug_title }}</strong>
@@ -335,7 +327,7 @@
         var drugs = {
             'data': []
         };
-let dataTransfere = new DataTransfer();
+        let dataTransfere = new DataTransfer();
 
         function addReplyDetails() {
 

@@ -144,7 +144,7 @@ class OrderController extends Controller
 
         $reply_detail->update();
         $request_id = Request_Details::where('id',$reply_detail->request_details_id)->first()->request_id;
-        return PaymentController::getProducts($request_id)['total_price'];
+        return PaymentController::getProducts($request_id )['total_price'];
     }
 
     public function returnAccepttouser($id,$stateTap)
