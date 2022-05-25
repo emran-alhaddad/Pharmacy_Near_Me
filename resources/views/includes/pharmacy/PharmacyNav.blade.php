@@ -137,29 +137,15 @@
         </li>
 
         <li class=" dropdown dropdown-notifications">
-                <a class="nav-link dropdown-toggle hide-arrow"  data-bs-toggle="dropdown"
-                    data-bs-auto-close="outside" aria-expanded="false">
-                    <i class="fas fa-bell"></i>
-                    <span class="badge bg-danger rounded-pill badge-notifications" id="count">
-                        {{ \App\Http\Controllers\Notify\NotificationsController::getCountNotification(Auth::id()) }}
-                    </span>
-                </a>
-                {{-- <ul class="dropdown-menu dropdown-menu-end py-0">
-                    <li class="dropdown-menu-header border-bottom">
-                        <div class="dropdown-header d-flex align-items-center py-3">
-                            <h5 class="text-body mb-0 me-auto">Notification</h5>
-                            <a href="javascript:void(0)" class="dropdown-notifications-all text-body"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Mark all as read"><i
-                                    class="bx fs-4 bx-envelope-open"></i></a>
-                        </div>
-                    </li> --}}
+
                     <li class="nav-item dropdown notification-ui show">
-                        {{-- <ul class=" list-group list-group-flush"> --}}
-                            <a class="nav-link dropdown-toggle notification-ui_icon" onclick="myFunction()" id="show-list-notify"     aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-bell"></i>
-                                <span  class="unread-notification"></span>
+                            <a class="nav-link dropdown-toggle notification-ui_icon" style="cursor: pointer"  id="show-list-notify" >
+                                <i class="fas fa-bell"></i>
+                                <span class="badge bg-danger rounded-pill badge-notifications" id="count">
+                                    {{ \App\Http\Controllers\Notify\NotificationsController::getCountNotification(Auth::id()) }}
+                                </span>
                             </a>
-                            <div class="dropdown-menu notification-ui_dd show"  id="list-notify" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu notification-ui_dd"  id="list-notify" aria-labelledby="navbarDropdown">
                                 <div class="notification-ui_dd-header">
                                     <h3 class="text-center">Notification</h3>
                                 </div>
@@ -247,28 +233,15 @@
 </nav>
 
 <script>
-// var btn_notify=document.getElementById('show-list-notify');
-//   btn_notify.addEventListener('click',function(){
-//     list_notify=document.getElementById('list-notify');
-//     list_notify.style.display='block';
-//   });
-function myFunction() {
-    alert("asdsaa");
-  var x = document.getElementById("list-notify");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
-// $(document).ready(function () {
-//     alert("dssdds");
-//     $("#show-list-notify").click(function (event) {
-//         event.preventDefault();
+
+$(document).ready(function () {
+   
+    $("#show-list-notify").click(function (event) {
+        event.preventDefault();
        
-//         $("#list-notify").toggle();
-//     });
-// });
+        $("#list-notify").toggle();
+    });
+});
 
     
     var pusher = new Pusher('{{ env('MIX_PUSHER_APP_KEY') }}', {
@@ -290,7 +263,7 @@ channel.bind('App\\Events\\Notify', function(data) {
 
         if (data.type == 'wait-acceptance') 
         {
-    //    $("#parent-notification").append( $('<h6/>',{'class' : 'mb-0'}).append($('<a/>',{
+    //    $("#list-notify").append( $('<h6/>',{'class' : 'mb-0'}).append($('<a/>',{
     //                'href': "{{ route('pharmacy-order-details', ['id' =>"+data.request_id+"]) }}",
     //                'class': 'text-decoration-none',
     //                'text':data.message+" "+data.nameFrom})
