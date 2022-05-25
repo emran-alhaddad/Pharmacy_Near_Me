@@ -317,12 +317,16 @@ body {
     width: 82px;
     /* height: 100vh;
 	position: fixed; */
-    margin-top: 85px;
+    margin-top: 2.3rem;
     background: var(--main-bg-color);
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 4px 1px;
     overflow-x: hidden;
     z-index: 100;
     /* transition: width .5s; */
+}
+
+.sidebar::-webkit-scrollbar{
+    display: none;
 }
 
 .sidebar:hover {
@@ -464,9 +468,7 @@ body {
     [class*="col-"] {
         width: 100%
     }
-    .sidebar {
-        margin-top: 5.5rem;
-    }
+  
     .card {
         width: 100%;
     }

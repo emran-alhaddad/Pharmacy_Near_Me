@@ -64,6 +64,6 @@ class User extends Authenticatable implements Wallet
         return $this->hasOne(Admin::class);
     }
     public function message() {
-        return $this->hasMany("App\Models\Messages");
+        return $this->hasMany("App\Models\Message");
     }
 }
