@@ -31,8 +31,8 @@
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown"
                     data-bs-auto-close="outside" aria-expanded="false">
                     <i class="fas fa-bell"></i>
-                    <span class="badge bg-danger rounded-pill badge-notifications">
-                        {{ \App\Http\Controllers\Notify\NotificationsController::getNotification(Auth::id())['count'] }}
+                    <span class="badge bg-danger rounded-pill badge-notifications" id="count">
+                        {{ \App\Http\Controllers\Notify\NotificationsController::getCountNotification(Auth::id()) }}
                     </span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end py-0">
@@ -47,7 +47,7 @@
                     <li class="dropdown-notifications-list scrollable-container" id="notifications_list">
                         <ul class=" list-group list-group-flush">
     
-                            @foreach (\App\Http\Controllers\Notify\NotificationsController::getNotification(Auth::id())['notifications'] as $notification)
+                            @foreach (\App\Http\Controllers\Notify\NotificationsController::getNotification()['notifications'] as $notification)
                              
                             @if(Auth::id()==$notification->receiver_id) 
                             
@@ -149,7 +149,7 @@
 
 
 </nav>
-<div class="alert alert-secondary " id="alert_Not" role="alert"></div>
+
 <script>
     var pusher = new Pusher('{{ env('MIX_PUSHER_APP_KEY') }}', {
         cluster: '{{ env('PUSHER_APP_CLUSTER') }}',
@@ -161,20 +161,21 @@ var channel = pusher.subscribe('new_notification');
 channel.bind('App\\Events\\Notify', function(data) {
     console.log(data);
     if(data.receiver_id=="{{Auth::id()}}")
-    { 
-        $('<h6>',{
-            'class' : 'mb-0',
-            'html':$('<a/>',{
-    href: "{{ route('client-orders_notifacation', ['id' =>"+data.request_id+",'stateTap' =>"+data->type+"]) }}",
-    class: 'text-decoration-none',
-    text:data.message+" "+data.nameFrom;
-    })
-        }).prepend("parent-notification");
+    {   count=(parseInt($('#count').text()))+1;
+        $('#count').text(count);
+        alert(count);
+        $("#parent-notification").append( $('<h6/>',{'class' : 'mb-0'}).append($('<a/>',{
+                   'href': "{{ route('client-orders_notifacation', ['id' =>"+data.request_id+",'stateTap' =>"+data.type+"]) }}",
+                   'class': 'text-decoration-none',
+                   'text':data.message+" "+data.nameFrom})
+        ))
 
-    const audio = new Audio('{{asset("/uploads/aduio/alert.mp3")}}');
+    
+
+   const audio = new Audio('{{asset("/uploads/aduio/alert.mp3")}}');
     audio.play(); 
     
-    $('#alert_Not').text(data.message+" "+data.nameFrom);
+  
     }
 });
 
