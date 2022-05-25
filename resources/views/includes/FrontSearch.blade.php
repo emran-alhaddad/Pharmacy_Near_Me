@@ -53,16 +53,6 @@
     </div>
 </div>
 <div class="container-md mt-3">
-    @if (session('error'))
-        <div class="alert alert-danger" style="direction: rtl;" role="alert">
-            {{ session('error') }}
-        </div>
-    @endif
-    @if (session('status'))
-        <div class="alert alert-success" style="direction: rtl;" role="alert">
-            {{ session('status') }}
-        </div>
-    @endif
 </div>
 
 

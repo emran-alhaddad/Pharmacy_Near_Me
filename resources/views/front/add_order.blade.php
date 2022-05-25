@@ -43,20 +43,7 @@
             <div id="alert-success" class="alert alert-success mt-2 mb-2" style="display:none" role="alert">
 
             </div>
-            @if (session('error'))
-                <div class="alert alert-danger alert-dismissible text-center mt-2 fade show" role="alert">
-                    {!! session('error') !!}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                </div>
-            @endif
-            @if (session('status'))
-                <div class="alert alert-success alert-dismissible text-center mt-2 fade show" role="alert">
-                    {!! session('status') !!}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                </div>
-            @endif
+           
             <div class="mb-3">
                 <h2 class="text-center divider mb-5">
                     لتقديم طلب دواء قم بإضافة

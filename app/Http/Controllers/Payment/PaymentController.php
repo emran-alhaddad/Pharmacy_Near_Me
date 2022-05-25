@@ -34,28 +34,32 @@ class PaymentController extends Controller
      * The index function which is used for posting the data to the api
      */
 
-    public static function getProducts($id)
+    public static function getProducts($id , $states = [])
     {
         try {
 
             $request = OrderRequest::with(['details', 'replies.details'])
-                ->where([ 'id' => $id])->first();
+                ->where(['id' => $id])->first();
 
             if (!$request)
                 return redirect()->route('index')->with('error', 'طلبيتك غير موجودة');
 
-            // if (!in_array($request->state, [RequestState::ACCEPTED, RequestState::WAIT_DELIVERY]))
+            // if (!in_array($request->state, [
+            //     RequestState::ACCEPTED, RequestState::WAIT_DELIVERY,
+            //     RequestState::REJECTED]))
             //     return redirect()->route('index')->with('error', 'طلبية غير صالحة للدفع');
 
 
             $total_products = $request->replies->details->where('state', 1)->count();
             $products = [];
             $total_price = 0;
-            foreach ($request->details as $reqDetails)
-                foreach ($request->replies->details as $repDetails)
-                    if ($reqDetails->id == $repDetails->request_details_id ) {
-                        $product = [];
+            $states[] = ReplyState::ACCEPTED;
 
+            foreach ($request->details as $reqDetails)
+                foreach ($request->replies->details as $repDetails) {
+                    if ($reqDetails->id == $repDetails->request_details_id && in_array($repDetails->state , $states)) {
+
+                        $product = [];
                         if ($reqDetails->quantity) $product['quantity'] = $reqDetails->quantity;
                         else  return redirect()->route('index')->with('error', 'منتج ليس له كمبة غير مقبول');
 
@@ -79,6 +83,8 @@ class PaymentController extends Controller
 
                         $products[] = $product;
                     }
+                }
+
 
             return array(
                 'order_reference' => $request->id,
@@ -154,10 +160,12 @@ class PaymentController extends Controller
 
     public function pay(Request $request, $id)
     {
-        $order = self::getProducts($id);
+        
         if ($request->has('is_advertising'))
             $order = self::getAdvertising($id);
-
+        else
+        $order = self::getProducts($id);
+        
         $products = [];
         foreach ($order['products'] as $product) {
             if (!isset($product['drug_title'])) $product['drug_title'] = "منتج ذو صورة";
@@ -258,10 +266,15 @@ class PaymentController extends Controller
                 $reciver->wallet->name = $card_type;
 
                 // Deposite the mony to reciver wallet andn notify him
+
                 WalletController::notifyDeposit(
                     $reciver,
-                    WalletController::depositMessage($card_holder, $reciver, floatval($paid_amount))['reciver_message'],
-                    $products
+                    WalletController::depositMessage(
+                        $card_holder,
+                        $reciver,
+                        floatval($paid_amount),
+                        $products
+                    )['reciver_message']
                 );
                 $reciver->deposit(floatval($paid_amount), [
                     'card_holder' => $card_holder,
@@ -270,7 +283,7 @@ class PaymentController extends Controller
 
 
                 $adds = Advertising::find($order_reference)->first();
-                $adds->is_active = 1;
+                $adds->is_active = 0;
                 $adds->update();
 
                 return view('payment.successPay', [
@@ -281,7 +294,7 @@ class PaymentController extends Controller
                     'paid_amount' => $paid_amount,
                     'created_at' => $created_at,
                     'is_advertising' => true
-                ]);
+                ])->with('status','تم الدفع بنجاح سيتم التحقق من الإعلان من قبل الإدارة وإطلاقة');
             }
 
             // get users Info
@@ -381,11 +394,9 @@ class PaymentController extends Controller
                 'products' => $products,
                 'paid_amount' => $paid_amount,
                 'created_at' => Carbon::parse($created_at)->diffForHumans()
-            ]);
-
+                ])->with('status','تم الدفع بنجاح');
         } catch (\Exception $ex) {
-            // return redirect()->route('index')->with('error', 'حصلت مشكلة غير متوقعة عند اكتمال الدفع من الموقع' . $ex->getMessage());
-            return $ex;
+            return redirect()->route('index')->with('error', 'حصلت مشكلة غير متوقعة عند اكتمال الدفع من الموقع' . $ex->getMessage());
         }
     }
 
@@ -400,7 +411,8 @@ class PaymentController extends Controller
 
             $sender = User::where('id', $order_paid->admin_id)->first();
             $reciever = User::where('id', $order_paid->pharmacy_id)->first();
-            $data = self::getProducts($id);
+            $data = self::getProducts($id , [ReplyState::REJECTED]);
+            
 
             // Make Payment from admin to pharmacy
             $paied = WalletController::pay(
@@ -441,8 +453,8 @@ class PaymentController extends Controller
 
             $sender = User::where('id', $order_paid->admin_id)->first();
             $reciever = User::where('id', $order_payment->client_id)->first();
-            $data = self::getProducts($id);
-
+            $data = self::getProducts($id , [ReplyState::REJECTED]);
+            
             // Make Payment from admin to pharmacy
             $paied = WalletController::pay(
                 $sender,

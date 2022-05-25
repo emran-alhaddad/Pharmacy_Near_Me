@@ -90,16 +90,6 @@
 
                     <div class="col-lg-7 col-12 radius p-5 ">
                         <div class="form-main mt-10">
-                            @if (session('error'))
-                                <div class="alert alert-danger" role="alert">
-                                    {!! session('error') !!}
-                                </div>
-                            @endif
-                            @if (session('status'))
-                                <div class="alert alert-success" role="alert">
-                                    {!! session('status') !!}
-                                </div>
-                            @endif
                             <form class="form" method="post" action="">
                                 <div class="row">
                                     <div class="col-lg-6 col-6 py-2">

@@ -28,9 +28,16 @@ class WalletController extends Controller
 
                 $oneTransaction['id'] = $transaction->uuid;
 
-                if (isset($meta->card_holder)) $oneTransaction['sender'] = $meta->card_holder;
-                else if (isset($meta->to))
-                    $oneTransaction['sender'] = User::where('id',$meta->to)->first()->name;
+                if (isset($meta->card_holder))
+                    $oneTransaction['sender'] =  $oneTransaction['from'] = $meta->card_holder;
+
+                else if (isset($meta->to)) {
+                    $oneTransaction['from'] = User::where('id', $meta->from)->first()->name;
+                    $oneTransaction['sender'] = User::where('id', $meta->to)->first()->name;
+                }
+
+                if (isset($meta->target_user))
+                    $oneTransaction['reciever'] = User::where('id', $meta->target_user)->first()->name;
                 $oneTransaction['type'] = $transaction->type;
                 $oneTransaction['amount'] = abs(floatval($transaction->amount));
                 $oneTransaction['date'] = $transaction->created_at;
@@ -42,7 +49,10 @@ class WalletController extends Controller
             if (Auth::user()->hasRole('admin'))
                 return view(
                     'admin.wallet.index',
-                    ['transactions' => $allTransactions]
+                    [
+                        'transactions' => $allTransactions,
+                        'user' => User::with('client')->where('id', Auth::id())->firstOrFail()
+                    ]
                 );
 
             else if (Auth::user()->hasRole('pharmacy'))
@@ -162,7 +172,7 @@ class WalletController extends Controller
                 if (isset($product['product_name'])) $products .= "<td><strong>" . $product['product_name'] . "</strong></td>";
                 if (isset($product['drug_image'])) $products .= "<td><strong> منتج ذو صورة </strong></td>";
                 else if (isset($product['drug_title'])) $products .= "<td><strong>" . $product['drug_title'] . "</strong></td>";
-                
+
                 if (isset($product['quantity'])) $products .= "<td>" . $product['quantity'] . "</td>";
                 if (isset($product['unit_amount'])) $products .= "<td>" . $product['unit_amount'] . "</td>";
                 if (isset($product['drug_price'])) $products .= "<td>" . $product['drug_price'] . "</td>";

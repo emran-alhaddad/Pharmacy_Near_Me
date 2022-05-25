@@ -223,7 +223,18 @@
     <!-- Page JS -->
     <script src="{{ asset('pharmacy/assets/js/pages-account-settings-account.js') }}"></script>
     @include('shared.image-view')
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+    @if (session('error'))
+        <script>
+            swal("عملية غير مكتملة", "{!! session('error') !!}", "error")
+        </script>
+    @endif
+    @if (session('status'))
+        <script>
+            swal("أكتملت العملية", "{!! session('status') !!}", "success")
+        </script>
+    @endif
 </body>
 
 

@@ -1,207 +1,98 @@
 @extends('layouts.masterAdmin')
 @section('admin_pages')
-    <div class="row">
-        <div class="wrapper bg-white">
-            @if (session('error'))
-                <div class="alert alert-danger" role="alert">
-                    {{ session('error') }}
-                </div>
-            @endif
-            @if (session('status'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
-                </div>
-            @endif
-        </div>
-        <div class="row">
-            <div class="col-12 col-m-12 col-sm-12">
-                <div class="card bg-white m-5">
 
-                    <div class="card-header d-flex justify-content-between">
-                        <a href="#"><i class="fas fa-plus"></i></a>
-                        <h3>المحفضه الخاصه بك</h3>
-                    </div>
-                    <div class="card-content">
-                    رصيدك الحالي: 
-                    {{ Auth::user()->balance }}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row  ">
-            <div class="col-8 col-m-12 col-sm-12">
-                <div class="card bg-white m-5">
+    <!-- Content -->
+<div class="wrapper bg-white">
+        <div class="container">
+            <nav class="navbar navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand"> رصيدك الحالي هو {{ $user->balance }} $</a>
+                    @if ($user->balance > 0)
+                        <button type="submit" class="btn btn-submit btn-hover  me-2">سحب رصيد من المحفظة <i
+                                class="lni lni-search-alt"></i></button>
+                    @endif
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="بحث" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">بحث</button>
+                    </form>
 
-                    <div class="card-header d-flex justify-content-between">
-                        <a href="{{ 'admin-add_Zones' }}"><i class="fas fa-plus"></i></a>
-                        <h3>حركة العمليات على محفظتك</h3>
-                    </div>
-                    <div class="card-content">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th> رقم العملية</th>
-                                    <th> اسم المنطقة السكنية</th>
-                                    <th> المدينة</th>
-                                    <th>الحالة</th>
-                                    <th>العمليات</th>
-                                </tr>
-                            </thead>
+            </nav>
+            <!--table-->
+            <div class="row  ">
+                <div class="col-12 col-m-12 col-sm-12">
+                    <div class="card bg-white m-5">
 
-                            <tbody>
-                                @foreach ($zones as $zone)
+                        <div class="card-header d-flex justify-content-between">
+
+                            <h5>العمليات في المحفظة</h5>
+                        </div>
+                        <div class="card-content">
+                            <table class="table table-hover">
+                                <thead>
                                     <tr>
-                                        <td>{{ $zone->name }}</td>
-                                        @if ($zone->is_active == 1)
-                                            <td> <a
-                                                    href={{ route('admin-activity_zone', ['id' => $zone->id, 'state' => 0]) }}>
-                                                    <button class="btn btn-success text-white">مفعل</button></a></td>
-                                        @else
-                                            <td> <a
-                                                    href={{ route('admin-activity_zone', ['id' => $zone->id, 'state' => 1]) }}>
-                                                    <button class="btn btn-danger text-white">موقف</button></a></td>
-                                        @endif
-
-                                        <td>
-                                            <a href={{ route('admin-edit_zone', ['id' => $zone->id]) }}> <button
-                                                    class="btn btn-primary text-white">تعديل</button></a>
-                                    <tr>
-                                        {{-- <td>ابولو</td>
-                            <td>تعز</td>
-                            <td>
-                                <button class="btn badge btn-success text-white" >مفعل</button>
-
-                            </td> --}}
-
-                                        <td>
-                                            <a href="/_admin/edit_Zones"> <button class="btn "><i
-                                                        class="fas fa-pen" id="edit"></i></button></a>
-                                            <button class="btn" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal" id="delete"><i
-                                                    class="fas fa-trash"></i></button>
-
-                                            <div class="modal" id="exampleModal" tabindex="-1">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">حذف </h5>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            </p> هل تريد حقا حذف الاعلان ؟</p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-danger"
-                                                                data-bs-dismiss="modal">لا</button>
-                                                            <button type="button" class="btn btn-primary">نعم</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </td> --}}
-
+                                        <th> رقم العملية </th>
+                                        <th>نص العملية</th>
+                                        <th></th>
 
                                     </tr>
-                                @endforeach
+                                </thead>
 
-                            </tbody>
+                                <tbody>
+                                    @foreach ($transactions as $transaction)
+                                        <tr>
+                                            <td>{{ $transaction['id'] }}</td>
+                                            <td>
+                                                @if ($transaction['type'] == 'deposit')
+                                                    أودع /
+                                                    {{ $transaction['from'] }}
+                                                    {{ $transaction['amount'] }}$
+                                                    إلى حسابك
+                                                @elseif ($transaction['type'] == 'withdraw')
+                                                    لقد قمت بتحويل
+                                                    {{ $transaction['amount'] }}$
+                                                    إلى حساب
+                                                    {{ $transaction['reciever'] }}
+                                                @endif
 
-                        </table>
+                                                بتاريخ
+                                                {{ $transaction['date'] }}
 
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-m-12 col-sm-12">
-                <div class="card bg-white m-5">
-
-                    <div class="card-header d-flex justify-content-between">
-                        <a href="{{ 'admin-add_Zones' }}"><i class="fas fa-plus"></i></a>
-                        <h3>المحفضه الخاصه بك</h3>
-                    </div>
-                    <div class="card-content">
-                        @if (session('error'))
-                            <div class="alert alert-danger" role="alert">
-                                {{ session('error') }}
-                            </div>
-                        @endif
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th> اسم المنطقة السكنية</th>
-                                    <th> المدينة</th>
-                                    <th>الحالة</th>
-                                    <th>العمليات</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                @foreach ($zones as $zone)
-                                    <tr>
-                                        <td>{{ $zone->name }}</td>
-                                        @if ($zone->is_active == 1)
-                                            <td> <a
-                                                    href={{ route('admin-activity_zone', ['id' => $zone->id, 'state' => 0]) }}>
-                                                    <button class="btn btn-success text-white">مفعل</button></a></td>
-                                        @else
-                                            <td> <a
-                                                    href={{ route('admin-activity_zone', ['id' => $zone->id, 'state' => 1]) }}>
-                                                    <button class="btn btn-danger text-white">موقف</button></a></td>
-                                        @endif
-
-                                        <td>
-                                            <a href={{ route('admin-edit_zone', ['id' => $zone->id]) }}> <button
-                                                    class="btn btn-primary text-white">تعديل</button></a>
-                                    <tr>
-                                        {{-- <td>ابولو</td>
-                            <td>تعز</td>
-                            <td>
-                                <button class="btn badge btn-success text-white" >مفعل</button>
-
-                            </td> --}}
-
-                                        <td>
-                                            <a href="/_admin/edit_Zones"> <button class="btn "><i
-                                                        class="fas fa-pen" id="edit"></i></button></a>
-                                            <button class="btn" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal" id="delete"><i
-                                                    class="fas fa-trash"></i></button>
-
-                                            <div class="modal" id="exampleModal" tabindex="-1">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">حذف </h5>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            </p> هل تريد حقا حذف الاعلان ؟</p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-danger"
-                                                                data-bs-dismiss="modal">لا</button>
-                                                            <button type="button" class="btn btn-primary">نعم</button>
-                                                        </div>
+                                            </td>
+                                            <td>
+                                                <a class=" btn btn-success text-light btn-hover me-2" data-bs-toggle="collapse"
+                                                    role="button" data-bs-target="#details{{ $transaction['id'] }}">
+                                                    عرض التفاصيل
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3">
+                                                <div class="collapse" id="details{{ $transaction['id'] }}">
+                                                    <div class="card card-body">
+                                                        {!! $transaction['data'] !!}
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
 
-                                        </td> --}}
 
+                                </tbody>
 
-                                    </tr>
-                                @endforeach
+                            </table>
 
-                            </tbody>
-
-                        </table>
-
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-@endsection
+
+
+
+
+    <!-- / Content -->
+
+
+
+@stop
