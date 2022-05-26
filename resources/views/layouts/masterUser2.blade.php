@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset('pharmacy/assets/vendor/css/theme-default.css')}}" />
     <link rel="stylesheet" href="{{ asset('pharmacy/assets/css/demo.css')}}" />
     <link rel="stylesheet" href="{{ asset('pharmacy/assets/css/chat.css')}}" />
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="{{ asset('pharmacy/assets/js/config.js')}}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
