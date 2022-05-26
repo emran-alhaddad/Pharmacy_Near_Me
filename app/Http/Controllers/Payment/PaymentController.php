@@ -484,8 +484,6 @@ class PaymentController extends Controller
         }
     }
 
-
-
     /**
      * This function is used to show the cancel page 
      */

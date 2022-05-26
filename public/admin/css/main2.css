@@ -1,4 +1,9 @@
 @import url('http://fonts.cdnfonts.com/css/tajawal?styles=19782,19779,19780,19781,19777,19778,19776');
+html {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
 :root {
     --primary-color: #4834d4;
     --success-color: #6ab04c;
@@ -155,8 +160,6 @@ body {
     cursor: pointer;
 }
 
-
-
 #logo {
     width: 9rem;
     height: 4rem;
@@ -280,7 +283,7 @@ body {
 
 .overlay-scrollbar::-webkit-scrollbar {
     width: 9px;
-    height: 9px;
+    height: 20px;
 }
 
 .scrollbar-hover::-webkit-scrollbar {
@@ -315,8 +318,8 @@ body {
 
 .sidebar {
     width: 82px;
-    /* height: 100vh;
-	position: fixed; */
+    height: 100vh;
+    /* position: fixed; */
     margin-top: 2.3rem;
     background: var(--main-bg-color);
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 4px 1px;
@@ -325,7 +328,7 @@ body {
     /* transition: width .5s; */
 }
 
-.sidebar::-webkit-scrollbar{
+.sidebar::-webkit-scrollbar {
     display: none;
 }
 
@@ -468,7 +471,6 @@ body {
     [class*="col-"] {
         width: 100%
     }
-  
     .card {
         width: 100%;
     }
@@ -485,23 +487,18 @@ body {
         font-size: .7rem;
         width: 3.5rem;
     }
-
-    .btn i{
+    .btn i {
         font-size: .5rem;
     }
-
-    #bell{
+    #bell {
         position: relative;
         font-size: 1rem;
-
     }
-
     #logo {
         width: 7rem;
         padding-right: 1rem;
     }
-
-    #admin-avatar{
+    #admin-avatar {
         position: relative;
         right: -1rem;
         max-width: 1.7rem;
@@ -548,7 +545,6 @@ body {
     .col-sm-12 {
         width: 100%;
     }
-
 }
 
 
@@ -871,43 +867,39 @@ table th {
     background-color: #4688C7;
 }
 
-.btn i{
+.btn i {
     font-size: 1.5rem;
 }
 
-#delete{
-    color:  rgb(196, 16, 16);
+#delete {
+    color: rgb(196, 16, 16);
 }
 
-#edit{
+#edit {
     color: #2B547A;
 }
 
-#submit_button
-{
+#submit_button {
     background-color: #4688C7;
-
 }
 
-#count{
+#count {
     position: relative;
     margin-right: -2rem;
     top: -1rem;
     width: 5rem;
 }
 
-#admin-avatar{
+#admin-avatar {
     /* position: relative; */
     /* right: -5rem; */
-
 }
 
-#bell{
+#bell {
     position: relative;
     top: 1rem;
     right: 1rem;
     /* margin-right: .5rem; */
     font-size: 1.3rem;
     z-index: -1;
-
 }

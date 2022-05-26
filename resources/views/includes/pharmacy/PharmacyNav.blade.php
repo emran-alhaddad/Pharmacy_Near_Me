@@ -18,12 +18,7 @@
         <li>
             <div class="dropdown-divider"></div>
         </li>
-        <li>
-            <a class="dropdown-item" href="{{ route('logout') }}">
-                <i class="bx bx-power-off ms-2"></i>
-                <span class="align-middle">تسجيل خروج </span>
-            </a>
-        </li>
+       
 
         <li class=" dropdown dropdown-notifications">
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown"
@@ -89,6 +84,58 @@
     </ul>
 </li>
 <!--/ User -->
+        <!-- User -->
+            <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online">
+                        <img src="{{ asset('uploads/avaters/pharmacy/avater.png') }}" alt
+                            class="w-px-40 h-auto rounded-circle">
+                    </div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-start" style="direction:rtl; text-align: right">
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0 ">
+                                    <div class="avatar avatar-online">
+                                        <img src="{{ asset('uploads/avaters/pharmacy/avater.png') }}" alt
+                                            class="w-px-30 h-auto rounded-circle">
+
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <span class="fw-semibold d-block">{{ Auth::user()->name }}</span>
+                                    <small class="text-muted">صيدلي</small>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('pharmacy-dashboard') }}">
+                            <i class="bx bx-user ms-1"></i>
+                            <span class="align-middle">حسابي</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('pharmacy-account') }}">
+                            <i class="bx bx-cog ms-1"></i>
+                            <span class="align-middle">الاعدادات</span>
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a class="dropdown-item" href="{{ route('logout') }}">
+                            <i class="bx bx-power-off ms-2"></i>
+                            <span class="align-middle">تسجيل خروج </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!--/ User -->
 </ul>
 </div>
 

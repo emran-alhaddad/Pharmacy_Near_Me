@@ -22,7 +22,7 @@
                         </td>
                         <td><span class="badge bg-warning text-dark" style="background-color:rgb(240, 225, 15);">في
                                 انتضار الدفع</span></td>
-                        <td><a class=" btn btn-submit btn-hover me-2" href="javascript:void(0);"
+                        <td><a class=" btn btn-submit text-light btn-hover me-2" href="javascript:void(0);"
                                 data-bs-toggle="collapse" role="button" data-bs-target="#details{{ $request->id }}">
                                 عرض التفاصيل
                             </a></td>

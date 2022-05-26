@@ -101,13 +101,6 @@ Route::post('/user/payment/ads/{id}/pay', [PaymentController::class, 'pay'])->na
 Route::get('/user/payment/ads/success/{info}', [PaymentController::class, 'success'])->name('user-payment-ads-success');
 Route::get('/user/payment/ads/cancel/{cancel}', [PaymentController::class, 'cancel'])->name('user-payment-ads-cancel');
 
-// This Code will Used By Hadeel after payment process
-Route::get('/transfer/{sender}/{reciver}/{amount}', function ($id1, $id2, $amount) {
-    $sender = ModelsUser::where('id', $id1)->first();
-    // $sender->deposit(200);
-    $reciver = ModelsUser::where('id', $id2)->first();
-    return WalletController::pay($sender, $reciver, $amount, 0.15);
-});
 
 // Routes That Needs Authentication
 Route::group(['middleware' => 'auth'], function () {
@@ -194,7 +187,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         // Admin Dashboard
         Route::get('/_admin/', [Admin\AdminController::class, 'index'])->name('admin-dashboard');
-        Route::get('/_admin/wallet', [Admin\WalletController::class, 'index'])->name('admin-bag');
+        Route::get('/_admin/wallet', [WalletController::class, 'index'])->name('admin-bag');
 
 
         Route::get('/_admin/profile', [Admin\AdminController::class, 'showProfile'])->name('admin-profile');

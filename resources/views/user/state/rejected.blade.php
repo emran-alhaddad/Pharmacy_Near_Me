@@ -18,7 +18,7 @@
                         <td>{{ $request->created_at->diffForHumans() }}</td>
                         <td><span class="badge bg-warning text-dark" style="background-color: brown;">غير متوفرة</span>
                         </td>
-                        <td><a class=" btn btn-submit btn-hover me-2" data-bs-toggle="collapse" role="button"
+                        <td><a class=" btn btn-submit btn-hover text-light me-2" data-bs-toggle="collapse" role="button"
                                 data-bs-target="#details{{ $request->id }}">
                                 عرض التفاصيل
                             </a></td>

@@ -33,7 +33,7 @@
     <script src="https://kit.fontawesome.com/44a26292a7.js" crossorigin="anonymous"></script>
 </head>
 
-<body class="overlay">
+<body class="overlay-scrollbar">
 
     <div class="navbar">
         <ul class="navbar-nav">

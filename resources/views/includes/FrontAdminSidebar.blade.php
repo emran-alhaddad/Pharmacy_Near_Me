@@ -11,7 +11,7 @@
 		<li class="sidebar-nav-item"><a href="{{ route('admin-bag') }}"
 				class="sidebar-nav-link">
 					<div>
-						<i class="fas fa-tachometer-alt"></i>
+						<i class="fas fa-wallet"></i>
 					</div> <span> المحفظة</span>
 
 		<li class="sidebar-nav-item"><a href="/home"
@@ -30,12 +30,12 @@
 					</div> <span >ادارة الموقع</span>
 			</a></li>
 
-			<li class="sidebar-nav-item "><a href="/_admin/wallet"
+			{{-- <li class="sidebar-nav-item "><a href="/_admin/wallet"
 				class="sidebar-nav-link">
 					<div>
                     <i class="fas fa-wallet"></i>
 					</div> <span > محفظتي</span>
-			</a></li>
+			</a></li> --}}
 
 			
 			<li class="sidebar-nav-item "><a href="/_admin/show_Phars"
@@ -106,12 +106,12 @@
 					</div> <span>ادارة  جدولة الطلبيات</span>
 			</a></li>
 
-            <li class="sidebar-nav-item"><a href="/_admin/show_Permissions"
+            {{-- <li class="sidebar-nav-item"><a href="/_admin/show_Permissions"
 				class="sidebar-nav-link">
 					<div>
 						<i class="fas fa-check"></i>
 					</div> <span>ادارة الصلاحيات</span>
-			</a></li>
+			</a></li> --}}
 
 			<li class="sidebar-nav-item"><a href="/logout"
 				class="sidebar-nav-link">
