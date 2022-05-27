@@ -49,8 +49,8 @@ class ComplaintController extends Controller
         return back()->with('error', 'لم يتم إضافة هذه الشكوى');
     else{
 
-        $Notify = new NotificationsController();
-        $Notify -> ComplaintsNotification($complaint);
+        // $Notify = new NotificationsController();
+        // $Notify -> ComplaintsNotification($complaint);
         if($request->has('order') && $request->order)
         {
           $complaint->order_reference = $request->order;

@@ -3,9 +3,21 @@
 @section('content')
 
     <div class="container-fluid radius " style=" margin-block-end: 50px;direction: rtl">
+
         <div class="radius" style="margin-top:105px">
             <div class=" d-flex justify-content-center">
                 <div class="col-md-4 col-sm-12 shadow-lg p-5 bg-light">
+                    @if (session('error'))
+                        <div class="alert alert-danger alert-dismissible d-flex align-items-center fade show" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                                <use xlink:href="#exclamation-triangle-fill" />
+                            </svg>
+                            <div>
+                                {!! session('error') !!}
+                            </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
                     <div class="text-center">
                         <h3 class="heading">تسجيل<span>دخول</span></h3>
                     </div>

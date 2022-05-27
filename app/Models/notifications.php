@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class notifications extends Model
-{
-    use HasFactory;
+{ protected $tiemstamp=true;
 
+    use HasFactory;
+    
     protected $fillable = [
         'sender_id',
         'receiver_id',
@@ -17,7 +18,8 @@ class notifications extends Model
         'nameFrom',
         'nameTo',
         'request_id',
-        'user_id'
+        'user_id',
+        'image'
     ];
 
     public function pharmacy()

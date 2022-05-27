@@ -29,6 +29,7 @@ return new class extends Migration
             $table->foreign('sender_id')->references('id')->on('users');
             $table->string('message');
             $table->string('type');
+            $table->string('image')->nullable();
             $table->string('nameFrom')->nullable();
             $table->string('nameTo')->nullable();
             $table->string('is_active')->default(1);

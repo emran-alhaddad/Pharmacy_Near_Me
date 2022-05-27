@@ -51,8 +51,8 @@
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown"
                 data-bs-auto-close="outside" aria-expanded="false">
                 <i class="fas fa-bell" id="bell"></i>
-                <span class="badge bg-danger rounded-pill badge-notifications">
-                    {{ \App\Http\Controllers\Notify\NotificationsController::getNotification(Auth::id())['count'] }}
+                <span class="badge bg-danger rounded-pill badge-notifications" id="count1">
+                    {{ \App\Http\Controllers\Notify\NotificationsController::getCountNotification(Auth::id()) }}
                 </span>
             </a>
             <ul class="dropdown-menu dropdown-menu-end py-0">
@@ -67,14 +67,21 @@
                 <li class="dropdown-notifications-list scrollable-container" id="notifications_list">
                     <ul class=" list-group list-group-flush">
 
-                        @foreach (\App\Http\Controllers\Notify\NotificationsController::getNotification(Auth::id())['notifications'] as $notification)
+                        @foreach (\App\Http\Controllers\Notify\NotificationsController::getNotification()['notifications'] as $notification)
                             <li class="list-group-item list-group-item-action dropdown-notifications-item">
                                 <div class="d-flex">
                                     <div class="flex-grow-1">
                                         @if ($notification->receiver_id ==Auth::id())
+                                            @if($notification->type=='complaint')
                                             <h6 class="mb-0"><a class="text-decoration-none"
                                             href={{ route('admin-showalert', ['id' => $notification->receiver_id]) }}>{{ $notification->message }}{{ $notification->nameFrom}}</a>
                                             </h6>
+                                            @else
+                                            <h6 class="mb-0"><a class="text-decoration-none"
+                                                href={{ route('admin-showPharsAlert', ['id' => $notification->sender_id]) }}>{{ $notification->message }}{{ $notification->nameFrom}}</a>
+                                                </h6>
+                                             @endif   
+
                                         {{-- @else
                                             <h6 class="mb-0"><a class="text-decoration-none"
                                                     href={{ route('admin-showPharsAlert', ['id' => $notification->receiver_id]) }}>{{ $notification->message }}</a>
@@ -154,6 +161,8 @@
     channel.bind('App\\Events\\Notify', function(data) {
         if(data.receiver_id=="{{Auth::id()}}")
         {
+             count=(parseInt($('#count1').text()))+1;
+        $('#count1').text(count);
         const audio = new Audio('{{asset("/uploads/aduio/alert.mp3")}}');
         audio.play();
         document.getElementById('alert_Not').innerTEXT=data.message+" "+data.message; 
