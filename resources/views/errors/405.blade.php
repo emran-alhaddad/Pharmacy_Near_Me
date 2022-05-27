@@ -9,7 +9,7 @@
 				<div class="col-xl-12 p-5">
 					<div class="text-center content-404 p-5">
 						<div class="image  p-5">
-							<img src="{{ asset('Front/assets/images/404/404-img.svg') }}" alt="">
+							<img src="{{ asset('Front/assets/images/404/405-img.svg') }}" alt="">
 						</div>
 						<h1>الصفحة ليست موجودة</h1>
 					</div>
