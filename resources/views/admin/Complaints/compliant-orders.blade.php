@@ -51,7 +51,7 @@
                                                             <li data-bs-toggle="tooltip" data-popup="tooltip-custom"
                                                                 data-bs-placement="top" class="avatar pull-up"
                                                                 title="صورة العلاج " style="list-style-type: none;">
-                                                                <img src="{{ asset('uploads/requests/' . $requestDetails->drug_image) }}"
+                                                                <img style="width:50px" src="{{ asset('uploads/requests/' . $requestDetails->drug_image) }}"
                                                                     alt="Avatar" class="rounded-circle image_show">
                                                             </li>
                                                         @endif
@@ -132,7 +132,7 @@
                                                                             data-bs-placement="top" class="avatar pull-up"
                                                                             title="صورة العلاج "
                                                                             style="list-style-type: none;">
-                                                                            <img src="{{ asset('uploads/requests/' . $requestDetails->drug_image) }}"
+                                                                            <img style="width:50px" src="{{ asset('uploads/requests/' . $requestDetails->drug_image) }}"
                                                                                 alt="Avatar"
                                                                                 class="rounded-circle image_show">
                                                                         </li>
@@ -154,7 +154,7 @@
                                                                             data-bs-placement="top" class="avatar pull-up"
                                                                             title="صورة العلاج "
                                                                             style="list-style-type: none;">
-                                                                            <img src="{{ asset('uploads/replies/' . $replyDetails->alt_drug_image) }}"
+                                                                            <img style="width:50px" src="{{ asset('uploads/replies/' . $replyDetails->alt_drug_image) }}"
                                                                                 alt="Avatar"
                                                                                 class="rounded-circle image_show">
                                                                         </li>
