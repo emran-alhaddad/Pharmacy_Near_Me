@@ -28,7 +28,7 @@ class interfacesController extends Controller
     public function index()
     {
         $pharmacies =  QueryController::pharmacies(6)->get();
-        $services = DB::table('sevices_models')->get(); // يحتوي على الخدمات التي يقدمها الموقع
+        $services = DB::table('sevices_models')->where('is_active',1)->get(); // يحتوي على الخدمات التي يقدمها الموقع
         $infoSite = DB::table('site_admines')->get(); // يحتوي على معلومات التواصل الاجتماعي وااسم الموقع وشعار الموقع
         $ads = DB::table('advertisings')->where('is_active','=',1)->get();
         // return $ads;

@@ -90,13 +90,15 @@
                         <div class="single-service d-flex justify-content-between shadow">
                             <div class="icon">
                                 <i class="lni lni-gift"></i>
-                                <!-- <img src="{{ asset("/uploads/service/$service->image") }}"  alt=""> -->
+                                {{-- <img class="icon" src="{{ asset("/uploads/service/$service->image") }}"  alt=""> --}}
                             </div>
                             <div class="service-content">
                                 <h3>{{ $service->title }} </h3>
                                 <p> {{ $service->descripe }}</p>
                             </div>
                         </div>
+
+                        
                     </div>
                 @endforeach
 
@@ -104,7 +106,7 @@
         </div>
     </section>
     <!--====== SERVICE PART ENDS ======-->
-
+{{-- تقديم شكاوي	توفر لك منصة علاجي طريقة لتقديم الشكوى على طلبية معينة حصل فيها خطب ما وأردت إستعادة نقودك بعد تأكد إدارة الموقع من صحة إدعائك --}}
 
     {{-- Forms --}}
     <section>
@@ -164,12 +166,21 @@
         @foreach($ads as $ads)
 
             <div class="radius col-sm-8" style=" direction: rtl; ">
-                <div class="col-md-12 col-sm-12 shadow-lg bg-light radius box-style">
+            <div class="col-md-12 col-sm-12 shadow-lg bg-light radius box-style">
+                    <img src="{{asset("/uploads/ads/$ads->image")}}"  alt="" style="width: 100%; max-height: 20rem"
+                        class="radius">
+                </div> 
+                {{-- <div class="col-md-12 col-sm-12 shadow-lg bg-light radius box-style">
                     
                     <img src="{{asset("/uploads/ads/$ads->image")}}"  alt="" style="width: 100%; max-height: 20rem"
                         class="radius">
-                </div>
+                </div> --}}
             </div>
+
+            {{-- <div class="col-md-12 col-sm-12 shadow-lg bg-light radius box-style">
+                    <img src="Front/assets/images/pharmacy/mainAdds.jpg" style="width: 100%; max-height: 20rem"
+                        class="radius">
+                </div> --}}
 
         @endforeach
 

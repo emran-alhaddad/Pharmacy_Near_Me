@@ -19,12 +19,13 @@ class PharmaciesSeeder extends Seeder
      * @return void
      */
     public function run()
-    {   
+    {
 
         $user = new User();
         $user->name = "الصيدلية 1";
         $user->email = 'pharmacy.near.me.taiz@gmail.com';
         $user->password = Hash::make('phar');
+        $user->avater = '1.png';
         $user->email_verified_at = Carbon::now()->timestamp;
         $user->is_active = 1;
         if ($user->save()) {
@@ -39,6 +40,7 @@ class PharmaciesSeeder extends Seeder
         $user->name = "  حنين";
         $user->email = 'phar@gmail.com';
         $user->password = Hash::make('phar');
+        $user->avater = '2.png';
         $user->email_verified_at = Carbon::now()->timestamp;
         $user->is_active = 1;
         if ($user->save()) {
@@ -48,37 +50,39 @@ class PharmaciesSeeder extends Seeder
                 'zone_id' => 1
             ]);
         }
-       
-        
-        
-        $filePathName=base_path().'\names\phar.txt';
-        $filePathEmail=base_path().'\names\email.txt';
+
+
+
+        $filePathName = base_path() . '\names\phar.txt';
+        $filePathEmail = base_path() . '\names\email.txt';
         $fileName = fopen($filePathName, "r");
         $fileEmail = fopen($filePathEmail, "r");
-        
-        $x=1;
-        while (($line = fgets($fileName)) !== false ) 
-        {
+
+        $x = 1;
+        $i = 1;
+        while (($line = fgets($fileName)) !== false) {
             $user = new User();
             $user->password = Hash::make('123456789');
             $user->is_active = 1;
-             $user->name = trim($line);
-            $user->email =fgets($fileEmail);
+            if($i >10 ) $i=1;
+            $user->avater = $i++ . '.png';
+            $user->name = trim($line);
+            $user->email = fgets($fileEmail);
             $user->email_verified_at = Carbon::now()->timestamp;
-            if($x==20)
-            $x=1;      
-                   
-      
+            if ($x == 20)
+                $x = 1;
+
+
             if ($user->save()) {
-                        $user->attachRole('pharmacy');
-                        Pharmacy::create([
-                            'user_id' => $user->id,
-                            'zone_id' => $x
-                        ]);
-                    }
-                    $x++;
-    }
-  
+                $user->attachRole('pharmacy');
+                Pharmacy::create([
+                    'user_id' => $user->id,
+                    'zone_id' => $x
+                ]);
+            }
+            $x++;
+        }
+
 
         // for ($i = 1; $i <= 20; $i++) {
 
@@ -128,7 +132,7 @@ class PharmaciesSeeder extends Seeder
         //         ]);
         //     }
         // }
-        
+
 
     }
 }
