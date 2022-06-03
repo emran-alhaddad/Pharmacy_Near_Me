@@ -19,7 +19,7 @@ class CitiesSeeder extends Seeder
      */
     public function run()
     {
-        $files1 = Storage::directories();
+        $files1 = Storage::allDirectories();
         $files2 = Storage::allFiles();
 
         dd($files1,$files2);
