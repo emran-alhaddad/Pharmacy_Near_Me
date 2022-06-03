@@ -12,7 +12,7 @@ return new class extends Migration
      * @return void
      */
 
-    protected $primaryKey = 'user_id';
+    
     public function up()
     {
         Schema::create('pharmacies', function (Blueprint $table) {
