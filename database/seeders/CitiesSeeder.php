@@ -19,10 +19,8 @@ class CitiesSeeder extends Seeder
      */
     public function run()
     {
-        echo Storage::path('public/names/cities.txt');
 
         $filePathName = Storage::path('public/names/cities.txt');
-
         $fileName = fopen($filePathName, "r");
 
 
