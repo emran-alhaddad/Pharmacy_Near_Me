@@ -9,6 +9,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\URL;
 
 class ClientsSeeder extends Seeder
 {
@@ -50,8 +51,8 @@ class ClientsSeeder extends Seeder
         
         
         
-        $filePathName=base_path().'\names\users.txt';
-        $filePathEmail=base_path().'\names\client_email.txt';
+        $filePathName=URL::to('/').'\names\users.txt';
+        $filePathEmail=URL::to('/').'\names\client_email.txt';
         $fileName = fopen($filePathName, "r");
         $fileEmail = fopen($filePathEmail, "r");
         

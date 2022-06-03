@@ -7,6 +7,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 
 
@@ -53,8 +54,8 @@ class PharmaciesSeeder extends Seeder
 
 
 
-        $filePathName = base_path() . '\names\phar.txt';
-        $filePathEmail = base_path() . '\names\email.txt';
+        $filePathName = URL::to('/') . '\names\phar.txt';
+        $filePathEmail = URL::to('/') . '\names\email.txt';
         $fileName = fopen($filePathName, "r");
         $fileEmail = fopen($filePathEmail, "r");
 
