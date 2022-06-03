@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\City;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 
 
@@ -17,7 +18,8 @@ class CitiesSeeder extends Seeder
      */
     public function run()
     {
-        $filePathName=base_path().'\names\cities.txt';
+        echo URL::to('/names/cities.txt');
+        $filePathName=URL::to('/').'\names\cities.txt';
        
         $fileName = fopen($filePathName, "r");
         
