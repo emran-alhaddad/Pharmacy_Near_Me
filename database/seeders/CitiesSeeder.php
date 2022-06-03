@@ -18,17 +18,31 @@ class CitiesSeeder extends Seeder
      */
     public function run()
     {
-        $filePathName='/app/names/cities.txt';
-       
+        // Path to the project's root folder    
+        echo base_path();
+
+        // Path to the 'app' folder    
+        echo app_path();
+
+        // Path to the 'public' folder    
+        echo public_path();
+
+        // Path to the 'storage' folder    
+        echo storage_path();
+
+        // Path to the 'storage/app' folder    
+        echo storage_path('app');
+
+        $filePathName = '/app/names/cities.txt';
+
         $fileName = fopen($filePathName, "r");
-        
-        
-        $x=0;
-        while (($line = fgets($fileName)) !== false) 
-        {
-       
-            City::create([ 'name' => $line ]);
+
+
+        $x = 0;
+        while (($line = fgets($fileName)) !== false) {
+
+            City::create(['name' => $line]);
             $x++;
-         }
+        }
     }
 }
