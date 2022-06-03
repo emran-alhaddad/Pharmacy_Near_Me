@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\zone;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 
 
@@ -18,7 +17,7 @@ class ZonesSeeder extends Seeder
      */
     public function run()
     {
-        $filePathName='./names\zones.txt';
+        $filePathName=base_path().'\names\zones.txt';
        
         $fileName = fopen($filePathName, "r");
         $x=1;
