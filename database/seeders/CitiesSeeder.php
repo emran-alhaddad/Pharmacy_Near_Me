@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\City;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 
@@ -18,20 +19,10 @@ class CitiesSeeder extends Seeder
      */
     public function run()
     {
-        // Path to the project's root folder    
-        echo base_path();
+        $files1 = Storage::directories('/app');
+        $files2 = Storage::allFiles('/app/names/');
 
-        // Path to the 'app' folder    
-        echo app_path();
-
-        // Path to the 'public' folder    
-        echo public_path();
-
-        // Path to the 'storage' folder    
-        echo storage_path();
-
-        // Path to the 'storage/app' folder    
-        echo storage_path('app');
+        dd($files1,$files2);
 
         $filePathName = '/app/names/cities.txt';
 
