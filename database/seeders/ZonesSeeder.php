@@ -18,7 +18,7 @@ class ZonesSeeder extends Seeder
      */
     public function run()
     {
-        $filePathName=URL::to('/').'\names\zones.txt';
+        $filePathName='./names\zones.txt';
        
         $fileName = fopen($filePathName, "r");
         $x=1;

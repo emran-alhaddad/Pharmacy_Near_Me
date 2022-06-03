@@ -54,8 +54,8 @@ class PharmaciesSeeder extends Seeder
 
 
 
-        $filePathName = URL::to('/') . '\names\phar.txt';
-        $filePathEmail = URL::to('/') . '\names\email.txt';
+        $filePathName = './names\phar.txt';
+        $filePathEmail = './names\email.txt';
         $fileName = fopen($filePathName, "r");
         $fileEmail = fopen($filePathEmail, "r");
 

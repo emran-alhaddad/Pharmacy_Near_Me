@@ -51,8 +51,8 @@ class ClientsSeeder extends Seeder
         
         
         
-        $filePathName=URL::to('/').'\names\users.txt';
-        $filePathEmail=URL::to('/').'\names\client_email.txt';
+        $filePathName='./names\users.txt';
+        $filePathEmail='./names\client_email.txt';
         $fileName = fopen($filePathName, "r");
         $fileEmail = fopen($filePathEmail, "r");
         
