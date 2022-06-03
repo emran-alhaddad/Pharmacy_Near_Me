@@ -76,10 +76,10 @@ class PharmaciesSeeder extends Seeder
 
             if ($user->save()) {
                 $user->attachRole('pharmacy');
-                Pharmacy::create([
-                    'user_id' => $user->id,
-                    'zone_id' => $x
-                ]);
+                $pharmacy = new Pharmacy();
+                $pharmacy->user_id = $user->id;
+                $pharmacy->zone_id = $x;
+                $pharmacy->save();
             }
             $x++;
         }
