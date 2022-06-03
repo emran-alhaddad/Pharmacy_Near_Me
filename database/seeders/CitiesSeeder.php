@@ -18,6 +18,7 @@ class CitiesSeeder extends Seeder
      */
     public function run()
     {
+        echo URL::to('/');
         $filePathName='./names\cities.txt';
        
         $fileName = fopen($filePathName, "r");
