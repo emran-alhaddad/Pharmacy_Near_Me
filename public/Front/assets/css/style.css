@@ -4023,6 +4023,6 @@ footer css
 }
 
 .navbar-toggler .toggler-icon {
-    position: static;
+    position: relative;
     right: 0;
 }
