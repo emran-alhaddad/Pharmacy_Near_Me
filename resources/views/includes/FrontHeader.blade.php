@@ -5,7 +5,7 @@
         <div class="container position-relative">
             <div class="row align-items-center">
                 <div class="col-xl-12">
-                    <nav class="navbar navbar-expand-lg dir">
+                    <nav class="navbar navbar-expand-lg dir" style="flex-wrap: nowrap;">
                         <a class="navbar-brand " href="{{ route('index') }}">
                             <img src="{{ asset('Front/assets/images/about/علاجي-01-3.svg') }}" id="logo"
                                 clasd="btn-hover" alt="Logo">
