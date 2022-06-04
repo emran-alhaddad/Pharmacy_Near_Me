@@ -1,4 +1,5 @@
 @import url('http://fonts.cdnfonts.com/css/tajawal?styles=19782,19779,19780,19781,19777,19778,19776');
+
 html {
     scroll-behavior: smooth;
 }
@@ -28,9 +29,7 @@ body {
     box-sizing: border-box;
 }
 
-
 /*! You have To Use This vars in style  */
-
 :root {
     --black: #333;
     --light-black: #777;
@@ -292,7 +291,6 @@ textarea:focus {
 
 
 /*===== All Section Title Style =====*/
-
 section {
     padding: 4rem 0;
 }
@@ -418,24 +416,31 @@ section {
     12.5% {
         transform: rotate(135deg);
     }
+
     25% {
         transform: rotate(270deg);
     }
+
     37.5% {
         transform: rotate(405deg);
     }
+
     50% {
         transform: rotate(540deg);
     }
+
     62.5% {
         transform: rotate(675deg);
     }
+
     75% {
         transform: rotate(810deg);
     }
+
     87.5% {
         transform: rotate(945deg);
     }
+
     to {
         transform: rotate(1080deg);
     }
@@ -445,9 +450,11 @@ section {
     0% {
         transform: rotate(130deg);
     }
+
     50% {
         transform: rotate(-5deg);
     }
+
     to {
         transform: rotate(130deg);
     }
@@ -457,9 +464,11 @@ section {
     0% {
         transform: rotate(-130deg);
     }
+
     50% {
         transform: rotate(5deg);
     }
+
     to {
         transform: rotate(-130deg);
     }
@@ -1595,6 +1604,7 @@ section {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
+
     .navbar-nav .nav-item .sub-menu li a.active,
     .navbar-nav .nav-item .sub-menu li a:hover {
         padding-left: 0;
@@ -1602,6 +1612,7 @@ section {
 }
 
 @media (max-width: 767px) {
+
     .navbar-nav .nav-item .sub-menu li a.active,
     .navbar-nav .nav-item .sub-menu li a:hover {
         padding-left: 0;
@@ -1723,7 +1734,6 @@ section {
     right: -60px;
 }
 
-
 /* .header-btn .main-btn.account-btn::after {
     content: '';
     position: absolute;
@@ -1745,13 +1755,15 @@ section {
     .header-btn .main-btn.account-btn {
         padding: 5px 11px;
     }
+
     .header-btn .main-btn {
         font-size: 16px;
         padding: 10px 30px;
         font-weight: 400;
         margin-top: 1px;
     }
-    .header-btn .main-btn.account-btn::after {
+
+    /* .header-btn .main-btn.account-btn::after {
         content: '';
         position: absolute;
         display: block;
@@ -1766,7 +1778,7 @@ section {
         transition: all 0.3s ease-out 0s;
         border-bottom: 2px solid var(--main-color);
         border-right: 2px solid var(--main-color);
-    }
+    } */
 }
 
 .sticky .navbar-toggler .toggler-icon {
@@ -2224,17 +2236,18 @@ hero area css
     background: #fff;
     overflow: hidden;
     margin-bottom: 30px;
-    border: 1px solid rgba(124, 134, 154, 0.25);
+    border: 1px solid rgba(56, 87, 147, 0.25);
     transition: all 0.3s ease-out 0s;
     box-shadow: 0px 3px 35px rgba(218, 222, 228, 0.3);
 }
 
 .single-pharmacy:hover {
-    box-shadow: 0px 12px 35px rgba(218, 222, 228, 0.65);
+    box-shadow: 0px 12px 35px rgba(174, 190, 214, 0.65);
 }
 
 .single-pharmacy.pharmacy-img {
     position: relative;
+
 }
 
 .single-pharmacy.pharmacy-img a {
@@ -2243,6 +2256,8 @@ hero area css
 
 .single-pharmacy.pharmacy-img img {
     width: 100%;
+    object-fit: fill;
+
 }
 
 .single-pharmacy.pharmacy-img .product-action {
@@ -3043,9 +3058,11 @@ video css
     0% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.5);
     }
+
     100% {
         transform: scale(1);
     }
