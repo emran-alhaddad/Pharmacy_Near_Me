@@ -51,7 +51,7 @@
                             @else
                                 <li>
                                     <a href="{{ route('login') }}"
-                                        class="main-btn  d-none mr-sm-2 d-md-block btn-hover">دخول</a>
+                                        class="main-btn mr-sm-2 d-md-block btn-hover">دخول</a>
                                 </li>
                             @endif
 
