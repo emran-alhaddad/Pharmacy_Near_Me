@@ -60,17 +60,6 @@
                                                 <h6 class="mb-0"><a class="text-decoration-none"
                                                 href={{ route('client-orders_notifacation', ['id' => $notification->request_id,'stateTap' =>$notification->type]) }}>{{ $notification->message }}{{$notification->nameFrom}}</a>
                                                 </h6>
-
-                                                
-                                            {{-- @else --}}
-                                                {{-- <h6 class="mb-0"><a class="text-decoration-none"
-                                                        href={{ route('admin-showPharsAlert', ['id' => $notification->receiver_id]) }}>{{ $notification->message }}</a>
-                                                </h6> --}}
-                                            {{-- @endif
-     --}}
-                                            {{-- <h6 class="mb-0">{{$notification->client_name }}</h6>
-                        <h6 class="mb-0">{{$notification->pharmacy_name }}</h6> --}}
-                                            {{-- <small class="text-muted">5 days ago</small> --}}
                                         </div>
                                         <div class="flex-shrink-0 dropdown-notifications-actions">
                                             <a href="javascript:void(0)" class="dropdown-notifications-read"><span
