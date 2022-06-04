@@ -4021,3 +4021,8 @@ footer css
 .navbar-toggler:focus {
     box-shadow: 0;
 }
+
+.navbar-toggler .toggler-icon {
+    position: static;
+    right: 0;
+}
