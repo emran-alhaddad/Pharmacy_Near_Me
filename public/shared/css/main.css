@@ -7,9 +7,21 @@
 
 .nav {
     overflow-x: auto;
+    flex-wrap: nowrap;
 }
 
 .nav-tabs:not(.nav-fill):not(.nav-justified) .nav-link,
 .nav-pills:not(.nav-fill):not(.nav-justified) .nav-link {
+    width: max-content;
+}
+
+.layout-content-navbar .content-wrapper {
+    width: 100%;
+    overflow: auto;
+}
+
+.container-p-y:not([class^=pb-]):not([class*=" pb-"]) {
+    padding-bottom: 1.625rem !important;
     width: auto;
+    overflow: auto;
 }
