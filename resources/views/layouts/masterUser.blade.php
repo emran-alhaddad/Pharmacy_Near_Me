@@ -25,7 +25,6 @@
     </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
     <script src="{{ asset('shared/js/main.js') }}"></script>
-    <script src="{{ asset('shared/css/main.css') }}"></script>
     <style>
         @import url('http://fonts.cdnfonts.com/css/tajawal?styles=19782,19779,19780,19781,19777,19778,19776');
 
@@ -168,6 +167,7 @@
         }
 
     </style>
+        <script src="{{ asset('shared/css/main.css') }}"></script>
 </head>
 
 <body style="direction: rtl;">

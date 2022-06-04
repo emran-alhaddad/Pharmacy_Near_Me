@@ -1,11 +1,10 @@
-.nav {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-}
-
 .nav .nav-item,
 .nav .nav-link,
 .tab-pane,
 .tab-pane .card-body {
     width: max-content;
+}
+
+.nav {
+    overflow-x: auto;
 }
