@@ -4004,4 +4004,22 @@ footer css
     .navbar-toggler {
         right: -20px;
     }
+    .header-btn .main-btn {
+        font-size: 13px;
+        padding: 5px 15px;
+        font-weight: 400;
+        margin-top: 12px;
+        margin-left: 66px;
+    }
+    .navbar-nav .nav-item a {
+        font-size: inherit;
+    }
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0;
+}
+
+.navbar {
+    flex-wrap: nowrap;
 }
