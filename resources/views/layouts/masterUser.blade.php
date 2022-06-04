@@ -167,7 +167,7 @@
         }
 
     </style>
-        <script src="{{ asset('shared/css/main.css') }}"></script>
+        <link rel="stylesheet" href="{{ asset('shared/css/main.css') }}">
 </head>
 
 <body style="direction: rtl;">

@@ -8,3 +8,8 @@
 .nav {
     overflow-x: auto;
 }
+
+.nav-tabs:not(.nav-fill):not(.nav-justified) .nav-link,
+.nav-pills:not(.nav-fill):not(.nav-justified) .nav-link {
+    width: auto;
+}
