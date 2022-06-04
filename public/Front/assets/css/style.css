@@ -4002,7 +4002,9 @@ footer css
 
 @media (max-width: 767px) {
     .navbar-toggler {
-        right: -20px;
+        left: 9px;
+        position: fixed;
+        width: fit-content;
     }
     .header-btn .main-btn {
         font-size: 13px;
