@@ -24,3 +24,14 @@
     width: 100%;
     overflow: auto;
 }
+
+.tab-content {
+    width: fit-content;
+}
+
+.nav-align-top,
+.nav-align-right,
+.nav-align-bottom,
+.nav-align-left {
+    width: fit-content;
+}
