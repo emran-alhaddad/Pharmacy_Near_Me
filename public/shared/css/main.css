@@ -21,7 +21,6 @@
 }
 
 .container-p-y:not([class^=pb-]):not([class*=" pb-"]) {
-    padding-bottom: 1.625rem !important;
-    width: auto;
+    width: 100%;
     overflow: auto;
 }
